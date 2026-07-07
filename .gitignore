@@ -1,0 +1,11 @@
+_kitlab6_webfix_*/
+_kitlab_removed_original_collar_assets/
+assets/kc/
+tools/
+__pycache__/
+kitlab6_asset_audit.py
+kitlab6_webfix_assets*.py
+KITLAB6_FIX_WEB_PUBLIC_NOW.py
+RUN_KITLAB6_FIX_WEB_PUBLIC_NOW.cmd
+KITLAB6_*ERROR.txt
+KITLAB6_*REPORT.txt

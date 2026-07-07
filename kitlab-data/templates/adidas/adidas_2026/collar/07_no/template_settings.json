@@ -11,8 +11,8 @@
   "key": "07_no",
   "layers": [
     {
-      "key": "assets/templates/adidas/Adidas%202026/collar/07_NO/rubber%20band%20fusion%20opacidad.png",
-      "src": "assets/templates/adidas/Adidas%202026/collar/07_NO/rubber%20band%20fusion%20opacidad.png",
+      "key": "assets/templates/Adidas/Adidas 2026/collar/07_NO/rubber band fusion opacidad.png",
+      "src": "assets/templates/Adidas/Adidas 2026/collar/07_NO/rubber band fusion opacidad.png",
       "name": "Rubber Band Fusion Opacidad",
       "displayName": "",
       "section": "collar",
@@ -36,8 +36,8 @@
       "baseDesignFolderPath": []
     },
     {
-      "key": "assets/templates/adidas/Adidas%202026/collar/07_NO/rubber%20band%202%20fusion%20opacidad.png",
-      "src": "assets/templates/adidas/Adidas%202026/collar/07_NO/rubber%20band%202%20fusion%20opacidad.png",
+      "key": "assets/templates/Adidas/Adidas 2026/collar/07_NO/rubber band 2 fusion opacidad.png",
+      "src": "assets/templates/Adidas/Adidas 2026/collar/07_NO/rubber band 2 fusion opacidad.png",
       "name": "Rubber Band 2 Fusion Opacidad",
       "displayName": "",
       "section": "collar",
@@ -61,8 +61,8 @@
       "baseDesignFolderPath": []
     },
     {
-      "key": "assets/templates/adidas/Adidas%202026/collar/07_NO/line.png",
-      "src": "assets/templates/adidas/Adidas%202026/collar/07_NO/line.png",
+      "key": "assets/templates/Adidas/Adidas 2026/collar/07_NO/line.png",
+      "src": "assets/templates/Adidas/Adidas 2026/collar/07_NO/line.png",
       "name": "Line",
       "displayName": "",
       "section": "collar",
@@ -88,8 +88,8 @@
       "baseDesignFolderPath": []
     },
     {
-      "key": "assets/templates/adidas/Adidas%202026/collar/07_NO/line%202.png",
-      "src": "assets/templates/adidas/Adidas%202026/collar/07_NO/line%202.png",
+      "key": "assets/templates/Adidas/Adidas 2026/collar/07_NO/line 2.png",
+      "src": "assets/templates/Adidas/Adidas 2026/collar/07_NO/line 2.png",
       "name": "Line 2",
       "displayName": "",
       "section": "collar",
@@ -115,8 +115,8 @@
       "baseDesignFolderPath": []
     },
     {
-      "key": "assets/templates/adidas/Adidas%202026/collar/07_NO/line%203.png",
-      "src": "assets/templates/adidas/Adidas%202026/collar/07_NO/line%203.png",
+      "key": "assets/templates/Adidas/Adidas 2026/collar/07_NO/line 3.png",
+      "src": "assets/templates/Adidas/Adidas 2026/collar/07_NO/line 3.png",
       "name": "Line 3",
       "displayName": "",
       "section": "collar",
@@ -142,8 +142,8 @@
       "baseDesignFolderPath": []
     },
     {
-      "key": "assets/templates/adidas/Adidas%202026/collar/07_NO/detail.png",
-      "src": "assets/templates/adidas/Adidas%202026/collar/07_NO/detail.png",
+      "key": "assets/templates/Adidas/Adidas 2026/collar/07_NO/detail.png",
+      "src": "assets/templates/Adidas/Adidas 2026/collar/07_NO/detail.png",
       "name": "Detail",
       "displayName": "Collar",
       "section": "collar",
@@ -169,8 +169,8 @@
       "baseDesignFolderPath": []
     },
     {
-      "key": "assets/templates/adidas/Adidas%202026/collar/07_NO/shadow%20opacidad.png",
-      "src": "assets/templates/adidas/Adidas%202026/collar/07_NO/shadow%20opacidad.png",
+      "key": "assets/templates/Adidas/Adidas 2026/collar/07_NO/shadow opacidad.png",
+      "src": "assets/templates/Adidas/Adidas 2026/collar/07_NO/shadow opacidad.png",
       "name": "Shadow Opacidad",
       "displayName": "",
       "section": "collar",
@@ -196,8 +196,8 @@
       "baseDesignFolderPath": []
     },
     {
-      "key": "assets/templates/adidas/Adidas%202026/collar/07_NO/detail%20front.png",
-      "src": "assets/templates/adidas/Adidas%202026/collar/07_NO/detail%20front.png",
+      "key": "assets/templates/Adidas/Adidas 2026/collar/07_NO/detail front.png",
+      "src": "assets/templates/Adidas/Adidas 2026/collar/07_NO/detail front.png",
       "name": "Detail Front",
       "displayName": "Front",
       "section": "collar",
@@ -223,8 +223,8 @@
       "baseDesignFolderPath": []
     },
     {
-      "key": "assets/templates/adidas/Adidas%202026/collar/07_NO/seams%20IV.png",
-      "src": "assets/templates/adidas/Adidas%202026/collar/07_NO/seams%20IV.png",
+      "key": "assets/templates/Adidas/Adidas 2026/collar/07_NO/seams IV.png",
+      "src": "assets/templates/Adidas/Adidas 2026/collar/07_NO/seams IV.png",
       "name": "Seams IV",
       "displayName": "",
       "section": "collar_seams",
@@ -248,8 +248,8 @@
       "baseDesignFolderPath": []
     },
     {
-      "key": "assets/templates/adidas/Adidas%202026/collar/07_NO/seams%20size%20IV.png",
-      "src": "assets/templates/adidas/Adidas%202026/collar/07_NO/seams%20size%20IV.png",
+      "key": "assets/templates/Adidas/Adidas 2026/collar/07_NO/seams size IV.png",
+      "src": "assets/templates/Adidas/Adidas 2026/collar/07_NO/seams size IV.png",
       "name": "Seams Size IV",
       "displayName": "",
       "section": "collar_seams",
