@@ -8750,6 +8750,43 @@
 
   const kitlabAssetListCache = new Map();
 
+  // KITLAB_PUBLIC_ASSET_MANIFEST_PATCH_V1
+  // Web public mode: Cloudflare Pages cannot list folders like kitlab6_server.py.
+  // This manifest gives KitLab the same folder/file lists without adding index.html files inside assets.
+  const KITLAB_PUBLIC_ASSET_MANIFEST_URL = "kitlab-public-asset-manifest.json";
+  let kitlabPublicAssetManifestPromise = null;
+
+  async function loadKitlabPublicAssetManifest() {
+    if (kitlabPublicAssetManifestPromise) return kitlabPublicAssetManifestPromise;
+    kitlabPublicAssetManifestPromise = (async () => {
+      try {
+        const response = await fetch(kitlabNoCacheUrl(KITLAB_PUBLIC_ASSET_MANIFEST_URL), { cache: "no-store" });
+        if (!response.ok) return null;
+        const payload = await response.json();
+        return payload && typeof payload === "object" ? payload : null;
+      } catch (_) {
+        return null;
+      }
+    })();
+    return kitlabPublicAssetManifestPromise;
+  }
+
+  async function kitlabPublicManifestDirectory(key = "", byName = null) {
+    const manifest = await loadKitlabPublicAssetManifest();
+    if (!manifest || !manifest.dirs) return null;
+    const cleanKey = String(key || "").replace(/\\/g, "/").replace(/^\/+|\/+$/g, "");
+    const entry = manifest.dirs[cleanKey];
+    if (!entry) return null;
+    const sorter = typeof byName === "function" ? byName : ((a, b) => String(a).localeCompare(String(b), undefined, { sensitivity: "base" }));
+    const folders = Array.isArray(entry.folders) ? entry.folders.filter(Boolean) : [];
+    const files = Array.isArray(entry.files) ? entry.files.filter((f) => /\.(png|webp|jpg|jpeg|gif|svg)$/i.test(String(f || ""))) : [];
+    return {
+      folders: [...new Set(folders)].sort(sorter),
+      files: [...new Set(files)].sort(sorter),
+    };
+  }
+
+
   async function listKitlabAssetDirectory(pathSegments = []) {
     const parts = Array.isArray(pathSegments) ? pathSegments.filter(Boolean).map((part) => String(part)) : [];
     const key = parts.join("/");
@@ -8765,6 +8802,10 @@
           const files = Array.isArray(payload?.files) ? payload.files.filter((f) => /\.(png|webp|jpg|jpeg)$/i.test(f)) : [];
           return { folders: [...new Set(folders)].sort(byName), files: [...new Set(files)].sort(byName) };
         }
+      } catch (_) {}
+      try {
+        const manifestResult = await kitlabPublicManifestDirectory(key, byName);
+        if (manifestResult) return manifestResult;
       } catch (_) {}
       try {
         const url = encodePathParts(parts) + "/";
@@ -8995,6 +9036,12 @@
     } catch (error) {
       console.warn("Overlay API listing unavailable, trying directory fallback:", error);
     }
+    try {
+      const manifestResult = await listKitlabAssetDirectory(["assets", "overlay"]);
+      const files = normalizeList(manifestResult?.files || []);
+      if (files.length) return files;
+    } catch (_) {}
+
     try {
       const response = await fetch(kitlabNoCacheUrl(`${OVERLAY_ASSET_ROOT}/`), { cache: "no-store" });
       if (response.ok) {
@@ -9415,6 +9462,11 @@
       console.warn("Pattern API listing unavailable, trying directory fallback:", error);
     }
 
+    try {
+      const manifestResult = await listKitlabAssetDirectory(["assets", "pattern", ...parts]);
+      if (manifestResult && ((manifestResult.folders || []).length || (manifestResult.files || []).length)) return manifestResult;
+    } catch (_) {}
+
     // Fallback for plain http.server or older builds.
     try {
       const url = patternAssetUrl(parts) + "/";
@@ -9479,6 +9531,11 @@
     } catch (error) {
       console.warn("Base Design API listing unavailable, trying directory fallback:", error);
     }
+    try {
+      const manifestResult = await listKitlabAssetDirectory(["assets", "base_design", ...parts]);
+      if (manifestResult && ((manifestResult.folders || []).length || (manifestResult.files || []).length)) return manifestResult;
+    } catch (_) {}
+
     try {
       const url = baseDesignAssetUrl(parts) + "/";
       const response = await fetch(kitlabNoCacheUrl(url), { cache: "no-store" });
