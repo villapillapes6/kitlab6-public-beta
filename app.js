@@ -2615,6 +2615,39 @@
     setTimeout(apply, 240);
   }
 
+
+  // KITLAB_USED_BY_HTML_FALLBACK_FIX_V1
+  // Cloudflare Pages can return the app HTML for missing used_by.txt paths.
+  // Never show that HTML inside template thumbnails/popovers.
+  const KITLAB_PUBLIC_USED_BY_TXT_PATHS = new Set(["assets/templates/Adidas/Adidas 2026/used_by.txt","assets/templates/Adidas/Adidas 25-26 Aeroready/used_by.txt","assets/templates/Adidas/Adidas 25-26/used_by.txt","assets/templates/Adidas/Adidas GK 2026/used_by.txt","assets/templates/Adidas/Adidas GK Trefoil 2026/used_by.txt","assets/templates/Adidas/Adidas Trefoil 2026/used_by.txt","assets/templates/Basic/Basic V1/shirt/used_by.txt","assets/templates/Basic/Basic V1/short/used_by.txt","assets/templates/Basic/Basic V1/socks/used_by.txt","assets/templates/Basic/Basic V1/used_by.txt","assets/templates/Basic/Basic V2/shirt/used_by.txt","assets/templates/Basic/Basic V2/short/used_by.txt","assets/templates/Basic/Basic V2/used_by.txt","assets/templates/Joma/Joma GK 26-27 V2/used_by.txt","assets/templates/Joma/Joma GK 26-27/used_by.txt","assets/templates/Macron/Basic/used_by.txt","assets/templates/Macron/Macron 24-25/shirt/Wyvern/used_by.txt","assets/templates/Macron/Macron GK 24-25/shirt/used_by.txt","assets/templates/Macron/Macron GK 24-25/short/used_by.txt","assets/templates/Macron/Macron GK 24-25/socks/used_by.txt","assets/templates/Macron/Macron GK 24-25/used_by.txt","assets/templates/Macron/Macron GK 25-26/shirt/used_by.txt","assets/templates/Macron/Macron GK 25-26/short/used_by.txt","assets/templates/Macron/Macron GK 25-26/socks/used_by.txt","assets/templates/Macron/Macron GK 25-26/used_by.txt","assets/templates/Nike/Nike 2026/used_by.txt","assets/templates/Nike/Nike 23-24 Shared/used_by.txt","assets/templates/Nike/Nike 24-25 Shared/used_by.txt","assets/templates/Nike/Nike 25-26 V2/used_by.txt","assets/templates/Nike/Nike 25-26 V3/used_by.txt","assets/templates/Nike/Nike 25-26/used_by.txt","assets/templates/Nike/Nike GK 2026/used_by.txt","assets/templates/Nike/Nike GK 25-26/used_by.txt","assets/templates/Nike/Nike GK WorldCup 26-27/used_by.txt","assets/templates/Nike/Nike Total 90 25-26/short/used_by.txt","assets/templates/Nike/Nike Total 90 25-26/used_by.txt","assets/templates/Puma/Puma 2026/used_by.txt","assets/templates/Puma/Puma 26-27 DryCELL/used_by.txt","assets/templates/Puma/Puma 26-27 Ultraweave/used_by.txt","assets/templates/Puma/Puma 26-27 V2 DryCELL/used_by.txt","assets/templates/Puma/Puma GK 2026 V1/used_by.txt","assets/templates/Puma/Puma GK 2026 V2/used_by.txt","assets/templates/Puma/Puma GK WorldCup 2026/used_by.txt","assets/templates/Umbro/basic/used_by.txt","assets/templates/Umbro/umbro 25-26/shirt/v1/used_by.txt","assets/templates/Umbro/umbro 25-26/shirt/v2/used_by.txt","assets/templates/Umbro/umbro 25-26/short/v1/used_by.txt","assets/templates/Umbro/umbro 25-26/socks/v1/used_by.txt","assets/templates/Umbro/Umbro GK 25-26/used_by.txt"]);
+
+  function kitlabNormalizePublicTxtPath(value) {
+    try {
+      let clean = String(value || '').split('#')[0].split('?')[0].replace(/\\/g, '/').replace(/^\/+/, '');
+      clean = decodeURIComponent(clean);
+      return clean.replace(/\/+$/g, '').replace(/\/g, '/');
+    } catch (_) {
+      return String(value || '').split('#')[0].split('?')[0].replace(/\\/g, '/').replace(/^\/+/, '').replace(/\/+$/g, '');
+    }
+  }
+
+  function kitlabPublicUsedByTxtExists(src) {
+    if (!KITLAB_PUBLIC_USED_BY_TXT_PATHS || !KITLAB_PUBLIC_USED_BY_TXT_PATHS.size) return false;
+    const clean = kitlabNormalizePublicTxtPath(src);
+    if (KITLAB_PUBLIC_USED_BY_TXT_PATHS.has(clean)) return true;
+    const lower = clean.toLowerCase();
+    for (const item of KITLAB_PUBLIC_USED_BY_TXT_PATHS) {
+      if (String(item).toLowerCase() === lower) return true;
+    }
+    return false;
+  }
+
+  function kitlabTextLooksLikeHtmlFallback(text) {
+    const value = String(text || '').trim().slice(0, 2000).toLowerCase();
+    if (!value) return false;
+    return value.includes('<!doctype') || value.includes('<html') || value.includes('<head') || value.includes('<body') || value.includes('<script') || value.includes('<canvas') || value.includes('id="kitcanvas"') || value.includes('app-shell') || value.includes('kitlab pe');
+  }
+
   async function hydrateTemplateUsedByPopover(card) {
     if (!card || card.dataset.templateUsedByChecked === "1") return;
     const popover = card.querySelector("[data-template-used-by-popover]");
@@ -2640,9 +2673,22 @@
 
     try {
       if (src) {
+        // Public web safety: only fetch physical used_by.txt files that exist in the public asset tree.
+        // Otherwise Cloudflare may return index.html and KitLab would display HTML text on thumbnails.
+        if (!kitlabPublicUsedByTxtExists(src)) {
+          clear();
+          return;
+        }
         const url = `${src}${src.includes("?") ? "&" : "?"}_kitlab_txt=${Date.now()}`;
         const response = await fetch(url, { cache: "no-store" });
-        if (response.ok && renderText(await response.text())) return;
+        if (!response.ok) { clear(); return; }
+        const contentType = String(response.headers.get("content-type") || "").toLowerCase();
+        const text = await response.text();
+        if (contentType.includes("text/html") || kitlabTextLooksLikeHtmlFallback(text)) {
+          clear();
+          return;
+        }
+        if (renderText(text)) return;
       }
       clear();
     } catch (err) {
