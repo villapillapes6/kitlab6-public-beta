@@ -1,0 +1,17 @@
+/*
+  X-Content-Type-Options: nosniff
+
+/index.html
+  Cache-Control: no-cache
+
+/app.js
+  Cache-Control: no-cache
+
+/style.css
+  Cache-Control: no-cache
+
+/kitlab-data/*
+  Cache-Control: no-cache
+
+/assets/*
+  Cache-Control: public, max-age=604800
