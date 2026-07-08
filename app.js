@@ -19942,3 +19942,96 @@
   safeBootCall("template entry preview warmup", scheduleTemplateGalleryPreviewWarmup);
   safeBootCall("deferred base warmup", scheduleDeferredTemplateLayerWarmup);
 })();
+
+
+/* KITLAB6 PERFORMANCE v1 — Safe lazy loading for gallery thumbnails.
+   Scope: DOM gallery/thumbnail <img> only. Does not touch canvas render images,
+   template layer loading, export PNG, assets, kitlab-data, or template settings. */
+(function kitlabPerformanceLazyLoadV1() {
+  if (window.__KITLAB_PERFORMANCE_LAZYLOAD_V1__) return;
+  window.__KITLAB_PERFORMANCE_LAZYLOAD_V1__ = true;
+
+  const GALLERY_IMG_SELECTOR = [
+    '#brandGalleryModal img',
+    '.brand-gallery-window img',
+    '#internalBrandGrid img',
+    '.internal-card img',
+    '.template-card img',
+    '.template-folder-card img',
+    '.collar-card img',
+    '.armband-card img',
+    '.armband-folder-card img',
+    '.kitlab-template-mode-choice-card img',
+    '.kitlab-modular-part-card img',
+    '.part-thumb',
+    '.project-kit-thumb'
+  ].join(',');
+
+  const EXCLUDE_SELECTOR = [
+    '.kitlab-header-logo-wrap',
+    '.module-tabbar',
+    '.rail-btn',
+    '.settings-icon-btn',
+    '.icon-btn',
+    '.logo-row-icon-btn',
+    '.project-panel-actions'
+  ].join(',');
+
+  function isGalleryImage(img) {
+    if (!img || img.tagName !== 'IMG') return false;
+    if (img.closest(EXCLUDE_SELECTOR)) return false;
+    return img.matches(GALLERY_IMG_SELECTOR) || !!img.closest('#brandGalleryModal, .brand-gallery-window, #internalBrandGrid');
+  }
+
+  function optimizeGalleryImage(img) {
+    if (!isGalleryImage(img)) return;
+
+    try {
+      img.loading = 'lazy';
+    } catch (err) {}
+
+    try {
+      img.decoding = 'async';
+    } catch (err) {}
+
+    try {
+      if ('fetchPriority' in img && !img.closest('.kitlab-template-mode-choice-card')) {
+        img.fetchPriority = 'low';
+      }
+    } catch (err) {}
+  }
+
+  function scanGalleryImages(root) {
+    if (!root) return;
+
+    if (root.tagName === 'IMG') {
+      optimizeGalleryImage(root);
+      return;
+    }
+
+    if (!root.querySelectorAll) return;
+    root.querySelectorAll('img').forEach(optimizeGalleryImage);
+  }
+
+  scanGalleryImages(document);
+
+  window.addEventListener('load', function () {
+    scanGalleryImages(document);
+  }, { once: true });
+
+  const observer = new MutationObserver(function (mutations) {
+    for (const mutation of mutations) {
+      for (const node of mutation.addedNodes) {
+        if (node && node.nodeType === 1) {
+          scanGalleryImages(node);
+        }
+      }
+    }
+  });
+
+  observer.observe(document.documentElement || document.body, {
+    childList: true,
+    subtree: true
+  });
+})();
+
