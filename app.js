@@ -3254,6 +3254,39 @@
     return BRAND_PARTS[part]?.assetType || "brand";
   }
 
+
+  // KITLAB6 PERFORMANCE v2 — template gallery lightweight thumbnails.
+  // If a WebP thumb exists under assets/thumbs/templates/..., the gallery uses it.
+  // Original template PNG thumbnails remain as fallback and render/export files are never touched.
+  function templatePerformanceThumbSrc(src) {
+    const raw = String(src || "").trim();
+    if (!raw || /^(data:|blob:|file:)/i.test(raw)) return raw;
+    const hashIndex = raw.indexOf("#");
+    const hash = hashIndex >= 0 ? raw.slice(hashIndex) : "";
+    const noHash = hashIndex >= 0 ? raw.slice(0, hashIndex) : raw;
+    const queryIndex = noHash.indexOf("?");
+    const base = queryIndex >= 0 ? noHash.slice(0, queryIndex) : noHash;
+    const query = queryIndex >= 0 ? noHash.slice(queryIndex) : "";
+    const normalized = base.replace(/^\.?\//, "");
+    if (!/^assets\/templates\//i.test(normalized)) return raw;
+    const thumbBase = normalized
+      .replace(/^assets\/templates\//i, "assets/thumbs/templates/")
+      .replace(/\.(png|jpg|jpeg|webp)$/i, ".webp");
+    return thumbBase + query + hash;
+  }
+
+  function templatePerformanceFallbacks(primary, original, fallbacks = []) {
+    const out = [];
+    const seen = new Set();
+    [primary, original, ...(Array.isArray(fallbacks) ? fallbacks : [])].forEach((value) => {
+      const clean = String(value || "").trim();
+      if (!clean || seen.has(clean)) return;
+      seen.add(clean);
+      out.push(clean);
+    });
+    return out.slice(1);
+  }
+
   const TEMPLATE_FOLDER_FALLBACK_THUMB = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 96'%3E%3Cpath fill='white' d='M10 20h37l10 12h61v44c0 7-5 12-12 12H22c-7 0-12-5-12-12V20z'/%3E%3Cpath fill='white' opacity='.72' d='M10 28V18c0-6 4-10 10-10h30l10 12h48c6 0 10 4 10 10v8H10z'/%3E%3C/svg%3E";
 
   function templateBrandSortKey(name) {
@@ -4297,8 +4330,10 @@
     const options = modularPartOptions(activePart);
     const cards = options.map((option, idx) => {
       const selected = selections[activePart] === option.item ? " is-selected" : "";
-      const img = withAssetCacheBust(option.thumb || TEMPLATE_FOLDER_FALLBACK_THUMB);
-      return `<button type="button" class="kitlab-modular-part-card${selected}" data-modular-template-part-card="${activePart}" data-modular-template-option-index="${idx}" title="${escapeAttr(option.name)}">${kitlabGalleryImageFallbackHtml(img, option.name, [TEMPLATE_FOLDER_FALLBACK_THUMB], 'loading="lazy"')}${templateUsedByPopoverHtml(option.item)}<span>${escapeHtml(option.name)}</span></button>`;
+      const imgOriginal = option.thumb || TEMPLATE_FOLDER_FALLBACK_THUMB;
+      const img = templatePerformanceThumbSrc(imgOriginal);
+      const imgFallbacks = templatePerformanceFallbacks(img, imgOriginal, [TEMPLATE_FOLDER_FALLBACK_THUMB]);
+      return `<button type="button" class="kitlab-modular-part-card${selected}" data-modular-template-part-card="${activePart}" data-modular-template-option-index="${idx}" title="${escapeAttr(option.name)}">${kitlabGalleryImageFallbackHtml(img, option.name, imgFallbacks, 'loading="lazy" decoding="async"')}${templateUsedByPopoverHtml(option.item)}<span>${escapeHtml(option.name)}</span></button>`;
     }).join("");
     const loadDisabled = modularSelectionComplete() ? "" : " disabled";
     els.internalBrandGrid.innerHTML = `<div class="kitlab-modular-template-wrap is-part-${escapeAttr(activePart)}"><div class="kitlab-modular-load-row"><button type="button" class="kitlab-modular-load-btn" data-load-modular-template="1"${loadDisabled}>Load Template</button></div><div class="kitlab-modular-part-tabs">${tabs}</div><div class="kitlab-modular-part-cards">${cards || `<div class="gallery-empty">No ${templateModularPartLabel(activePart)} templates found</div>`}</div></div>`;
@@ -17078,7 +17113,9 @@
         const technologyLabel = item.isTemplateBrand ? "" : templateTechnologyLabel(item);
         const fallbackList = Array.isArray(item.thumbFallbacks) ? item.thumbFallbacks.map((src) => withAssetCacheBust(src)) : [];
         const titleText = technologyLabel ? `${displayName}\n${technologyLabel}` : displayName;
-        const visualHtml = item.isTemplateBrand ? templateBrandIconMaskHtml(imgSrc, displayName) : kitlabGalleryImageFallbackHtml(imgSrc, displayName, fallbackList, 'loading="lazy"');
+        const thumbSrc = item.isTemplateBrand ? imgSrc : templatePerformanceThumbSrc(imgSrc);
+        const thumbFallbackList = item.isTemplateBrand ? fallbackList : templatePerformanceFallbacks(thumbSrc, imgSrc, fallbackList);
+        const visualHtml = item.isTemplateBrand ? templateBrandIconMaskHtml(imgSrc, displayName) : kitlabGalleryImageFallbackHtml(thumbSrc, displayName, thumbFallbackList, 'loading="lazy" decoding="async"');
         return `<button class="internal-card${sourceClass}" data-internal-brand-file="${escapeHtml(key)}" title="${escapeHtml(titleText)}">${visualHtml}${templateUsedByPopoverHtml(item)}${templateGalleryCardLabelHtml(displayName, technologyLabel)}</button>`;
       }
       return `<button class="internal-card${sourceClass}" data-internal-brand-file="${escapeHtml(key)}" title="${escapeHtml(item.name)}"><img src="${escapeAttr(imgSrc)}" alt="${escapeHtml(item.name)}" loading="lazy"><span>${escapeHtml(item.name)}</span></button>`;
