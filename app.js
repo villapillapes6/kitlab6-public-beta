@@ -9445,47 +9445,7 @@
 
   async function listAssetFolder(pathParts = []) {
     const parts = patternPathParts(pathParts);
-    const byName = (a, b) => cleanPatternName(a).localeCompare(cleanPatternName(b), undefined, { sensitivity: "base" });
-
-    // v1.0.37: use the KitLab local server API first. This is much safer than
-    // parsing the browser directory listing and works with spaces/unicode/#U names.
-    try {
-      const apiUrl = `/kitlab-api/list-assets?dir=${encodeURIComponent(["assets", "pattern", ...parts].join("/"))}`;
-      const response = await fetch(kitlabNoCacheUrl(apiUrl), { cache: "no-store" });
-      if (response.ok) {
-        const payload = await response.json();
-        const folders = Array.isArray(payload?.folders) ? payload.folders.filter(Boolean) : [];
-        const files = Array.isArray(payload?.files) ? payload.files.filter((f) => /\.(png|webp|jpg|jpeg)$/i.test(f)) : [];
-        return { folders: [...new Set(folders)].sort(byName), files: [...new Set(files)].sort(byName) };
-      }
-    } catch (error) {
-      console.warn("Pattern API listing unavailable, trying directory fallback:", error);
-    }
-
-    // Fallback for plain http.server or older builds.
-    try {
-      const url = patternAssetUrl(parts) + "/";
-      const response = await fetch(kitlabNoCacheUrl(url), { cache: "no-store" });
-      if (!response.ok) return { folders: [], files: [] };
-      const html = await response.text();
-      const folders = [];
-      const files = [];
-      const hrefRegex = /href=["']([^"']+)["']/gi;
-      let match;
-      while ((match = hrefRegex.exec(html))) {
-        let href = String(match[1] || "");
-        if (!href || href === "../" || href === "./") continue;
-        href = href.split("?")[0].split("#")[0];
-        const decoded = decodeURIComponent(href.replace(/\/$/, "").split("/").pop() || "");
-        if (!decoded || decoded.startsWith(".")) continue;
-        if (/\.(png|webp|jpg|jpeg)$/i.test(decoded)) files.push(decoded);
-        else if (href.endsWith("/") || !/\.[a-z0-9]+$/i.test(decoded)) folders.push(decoded);
-      }
-      return { folders: [...new Set(folders)].sort(byName), files: [...new Set(files)].sort(byName) };
-    } catch (error) {
-      console.warn("Pattern folder listing unavailable:", error);
-      return { folders: [], files: [] };
-    }
+    return listKitlabAssetDirectory(["assets", "pattern", ...parts]);
   }
 
   async function refreshPatternGalleryFolder(pathStack = state.patternGalleryPath || []) {
@@ -9513,42 +9473,7 @@
 
   async function listBaseDesignAssetFolder(pathParts = []) {
     const parts = baseDesignPathParts(pathParts);
-    const byName = (a, b) => cleanPatternName(a).localeCompare(cleanPatternName(b), undefined, { sensitivity: "base" });
-    try {
-      const apiUrl = `/kitlab-api/list-assets?dir=${encodeURIComponent(["assets", "base_design", ...parts].join("/"))}`;
-      const response = await fetch(kitlabNoCacheUrl(apiUrl), { cache: "no-store" });
-      if (response.ok) {
-        const payload = await response.json();
-        const folders = Array.isArray(payload?.folders) ? payload.folders.filter(Boolean) : [];
-        const files = Array.isArray(payload?.files) ? payload.files.filter((f) => /\.(png|webp|jpg|jpeg)$/i.test(f)) : [];
-        return { folders: [...new Set(folders)].sort(byName), files: [...new Set(files)].sort(byName) };
-      }
-    } catch (error) {
-      console.warn("Base Design API listing unavailable, trying directory fallback:", error);
-    }
-    try {
-      const url = baseDesignAssetUrl(parts) + "/";
-      const response = await fetch(kitlabNoCacheUrl(url), { cache: "no-store" });
-      if (!response.ok) return { folders: [], files: [] };
-      const html = await response.text();
-      const folders = [];
-      const files = [];
-      const hrefRegex = /href=["']([^"']+)["']/gi;
-      let match;
-      while ((match = hrefRegex.exec(html))) {
-        let href = String(match[1] || "");
-        if (!href || href === "../" || href === "./") continue;
-        href = href.split("?")[0].split("#")[0];
-        const decoded = decodeURIComponent(href.replace(/\/$/, "").split("/").pop() || "");
-        if (!decoded || decoded.startsWith(".")) continue;
-        if (/\.(png|webp|jpg|jpeg)$/i.test(decoded)) files.push(decoded);
-        else if (href.endsWith("/") || !/\.[a-z0-9]+$/i.test(decoded)) folders.push(decoded);
-      }
-      return { folders: [...new Set(folders)].sort(byName), files: [...new Set(files)].sort(byName) };
-    } catch (error) {
-      console.warn("Base Design folder listing unavailable:", error);
-      return { folders: [], files: [] };
-    }
+    return listKitlabAssetDirectory(["assets", "base_design", ...parts]);
   }
 
   async function refreshBaseDesignGalleryFolder(pathStack = state.baseDesignGalleryPath || []) {
