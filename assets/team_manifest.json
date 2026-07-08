@@ -34,8 +34,8 @@
         "name": "KF Egnatia"
       },
       {
-        "file": "KF Sk#U00ebnderbeu Kor#U00e7#U00eb.png",
-        "name": "KF Skënderbeu Korçë"
+        "file": "KF Skenderbeu Korce.png",
+        "name": "KF Skenderbeu Korce"
       },
       {
         "file": "KF Tirana.png",
@@ -54,8 +54,8 @@
         "name": "CR Belouizdad"
       },
       {
-        "file": "ES S#U00e9tif.png",
-        "name": "ES Sétif"
+        "file": "ES Setif.png",
+        "name": "ES Setif"
       },
       {
         "file": "MC Alger.png",
@@ -86,8 +86,8 @@
         "name": "CD Primeiro de Agosto"
       },
       {
-        "file": "GD Sagrada Esperan#U00e7a.png",
-        "name": "GD Sagrada Esperança"
+        "file": "GD Sagrada Esperan.png",
+        "name": "GD Sagrada Esperan"
       },
       {
         "file": "Petro de Luanda.png",
@@ -118,44 +118,40 @@
         "name": "Argentinos Juniors"
       },
       {
-        "file": "Arsenal F#U00fatbol Club.png",
-        "name": "Arsenal Fútbol Club"
+        "file": "Arsenal Futbol Club.png",
+        "name": "Arsenal Futbol Club"
       },
       {
-        "file": "Asociaci#U00f3n Atl#U00e9tica Estudiantes.png",
-        "name": "Asociación Atlética Estudiantes"
+        "file": "Asociacion Atletica Estudiantes.png",
+        "name": "Asociacion Atletica Estudiantes"
       },
       {
-        "file": "Asociaci#U00f3n Deportiva Berazategui.png",
-        "name": "Asociación Deportiva Berazategui"
+        "file": "Asociacion Deportiva Berazategui.png",
+        "name": "Asociacion Deportiva Berazategui"
       },
       {
-        "file": "ASyD Justo Jos#U00e9 de Urquiza.png",
-        "name": "ASyD Justo José de Urquiza"
+        "file": "ASyD Justo Jose de Urquiza.png",
+        "name": "ASyD Justo Jose de Urquiza"
       },
       {
-        "file": "Atl#U00e9tico Central C#U00f3rdoba.png",
-        "name": "Atlético Central Córdoba"
+        "file": "Atletico Central Cordoba.png",
+        "name": "Atletico Central Cordoba"
       },
       {
-        "file": "Atl#U00e9tico Club San Mart#U00edn.png",
-        "name": "Atlético Club San Martín"
+        "file": "Atletico Club San Martin.png",
+        "name": "Atletico Club San Martin"
       },
       {
-        "file": "Atl#U00e9tico de Rafaela.png",
-        "name": "Atlético de Rafaela"
+        "file": "Atletico de Rafaela.png",
+        "name": "Atletico de Rafaela"
       },
       {
-        "file": "Atl#U00e9tico Escobar.png",
-        "name": "Atlético Escobar"
+        "file": "Atletico Escobar.png",
+        "name": "Atletico Escobar"
       },
       {
         "file": "Ben Hur.png",
         "name": "Ben Hur"
-      },
-      {
-        "file": "C#U00edrculo Deportivo.png",
-        "name": "Círculo Deportivo"
       },
       {
         "file": "CA Argentino de Merlo.png",
@@ -170,12 +166,12 @@
         "name": "CA Barracas Central"
       },
       {
-        "file": "CA Bartolom#U00e9 Mitre.png",
-        "name": "CA Bartolomé Mitre"
+        "file": "CA Bartolome Mitre.png",
+        "name": "CA Bartolome Mitre"
       },
       {
-        "file": "CA Central C#U00f3rdoba.png",
-        "name": "CA Central Córdoba"
+        "file": "CA Central Cordoba.png",
+        "name": "CA Central Cordoba"
       },
       {
         "file": "CA Chacarita Juniors.png",
@@ -202,20 +198,20 @@
         "name": "CA Gimnasia y Esgrima"
       },
       {
-        "file": "CA Hurac#U00e1n Las Heras.png",
-        "name": "CA Huracán Las Heras"
+        "file": "CA Huracan Las Heras.png",
+        "name": "CA Huracan Las Heras"
       },
       {
-        "file": "CA Ituzaing#U00f3.png",
-        "name": "CA Ituzaingó"
+        "file": "CA Ituzaingo.png",
+        "name": "CA Ituzaingo"
       },
       {
         "file": "CA Juventud Unida Universitario.png",
         "name": "CA Juventud Unida Universitario"
       },
       {
-        "file": "CA Lan#U00fas.png",
-        "name": "CA Lanús"
+        "file": "CA Lanus.png",
+        "name": "CA Lanus"
       },
       {
         "file": "CA Nueva Chicago.png",
@@ -242,8 +238,8 @@
         "name": "CA Tiro Federal de Rosario"
       },
       {
-        "file": "CA V#U00e9lez Sarsfield.png",
-        "name": "CA Vélez Sarsfield"
+        "file": "CA Velez Sarsfield.png",
+        "name": "CA Velez Sarsfield"
       },
       {
         "file": "CA Victoriano Arenas.png",
@@ -254,32 +250,36 @@
         "name": "CA Villa San Carlos"
       },
       {
-        "file": "Ca#U00f1uelas FC.png",
-        "name": "Cañuelas FC"
-      },
-      {
         "file": "Cambaceres.png",
         "name": "Cambaceres"
+      },
+      {
+        "file": "Canuelas FC.png",
+        "name": "Canuelas FC"
       },
       {
         "file": "CASyD de Belgrano.png",
         "name": "CASyD de Belgrano"
       },
       {
-        "file": "CD Guaran#U00ed Antonio Franco.png",
-        "name": "CD Guaraní Antonio Franco"
+        "file": "CD Guarani Antonio Franco.png",
+        "name": "CD Guarani Antonio Franco"
       },
       {
         "file": "Central Ballester.png",
         "name": "Central Ballester"
       },
       {
-        "file": "Central C#U00f3rdoba de Rosario.png",
-        "name": "Central Córdoba de Rosario"
+        "file": "Central Cordoba de Rosario.png",
+        "name": "Central Cordoba de Rosario"
       },
       {
         "file": "Centro Juventud Antoniana.png",
         "name": "Centro Juventud Antoniana"
+      },
+      {
+        "file": "Circulo Deportivo.png",
+        "name": "Circulo Deportivo"
       },
       {
         "file": "Club Agropecuario Argentino.png",
@@ -294,220 +294,224 @@
         "name": "Club Almirante Brown"
       },
       {
-        "file": "Club Atl#U00e9tico 9 de Julio.png",
-        "name": "Club Atlético 9 de Julio"
+        "file": "Club Atletico 9 de Julio.png",
+        "name": "Club Atletico 9 de Julio"
       },
       {
-        "file": "Club Atl#U00e9tico Acassuso.png",
-        "name": "Club Atlético Acassuso"
+        "file": "Club Atletico Acassuso.png",
+        "name": "Club Atletico Acassuso"
       },
       {
-        "file": "Club Atl#U00e9tico Aldosivi.png",
-        "name": "Club Atlético Aldosivi"
+        "file": "Club Atletico Aldosivi.png",
+        "name": "Club Atletico Aldosivi"
       },
       {
-        "file": "Club Atl#U00e9tico All Boys.png",
-        "name": "Club Atlético All Boys"
+        "file": "Club Atletico All Boys.png",
+        "name": "Club Atletico All Boys"
       },
       {
-        "file": "Club Atl#U00e9tico Alvarado.png",
-        "name": "Club Atlético Alvarado"
+        "file": "Club Atletico Alvarado.png",
+        "name": "Club Atletico Alvarado"
       },
       {
-        "file": "Club Atl#U00e9tico Atlanta.png",
-        "name": "Club Atlético Atlanta"
+        "file": "Club Atletico Atlanta.png",
+        "name": "Club Atletico Atlanta"
       },
       {
-        "file": "Club Atl#U00e9tico Banfield.png",
-        "name": "Club Atlético Banfield"
+        "file": "Club Atletico Banfield.png",
+        "name": "Club Atletico Banfield"
       },
       {
-        "file": "Club Atl#U00e9tico Belgrano.png",
-        "name": "Club Atlético Belgrano"
+        "file": "Club Atletico Belgrano Star.png",
+        "name": "Club Atletico Belgrano Star"
       },
       {
-        "file": "Club Atl#U00e9tico Boca Juniors.png",
-        "name": "Club Atlético Boca Juniors"
+        "file": "Club Atletico Belgrano.png",
+        "name": "Club Atletico Belgrano"
       },
       {
-        "file": "Club Atl#U00e9tico Boca Unidos.png",
-        "name": "Club Atlético Boca Unidos"
+        "file": "Club Atletico Boca Juniors.png",
+        "name": "Club Atletico Boca Juniors"
       },
       {
-        "file": "Club Atl#U00e9tico Brown.png",
-        "name": "Club Atlético Brown"
+        "file": "Club Atletico Boca Unidos.png",
+        "name": "Club Atletico Boca Unidos"
       },
       {
-        "file": "Club Atl#U00e9tico Central Norte.png",
-        "name": "Club Atlético Central Norte"
+        "file": "Club Atletico Brown.png",
+        "name": "Club Atletico Brown"
       },
       {
-        "file": "Club Atl#U00e9tico Chaco For Ever.png",
-        "name": "Club Atlético Chaco For Ever"
+        "file": "Club Atletico Central Norte.png",
+        "name": "Club Atletico Central Norte"
       },
       {
-        "file": "Club Atl#U00e9tico Claypole.png",
-        "name": "Club Atlético Claypole"
+        "file": "Club Atletico Chaco For Ever.png",
+        "name": "Club Atletico Chaco For Ever"
       },
       {
-        "file": "Club Atl#U00e9tico Col#U00f3n.png",
-        "name": "Club Atlético Colón"
+        "file": "Club Atletico Claypole.png",
+        "name": "Club Atletico Claypole"
       },
       {
-        "file": "Club Atl#U00e9tico Colegiales.png",
-        "name": "Club Atlético Colegiales"
+        "file": "Club Atletico Colegiales.png",
+        "name": "Club Atletico Colegiales"
       },
       {
-        "file": "Club Atl#U00e9tico Defensores de Belgrano.png",
-        "name": "Club Atlético Defensores de Belgrano"
+        "file": "Club Atletico Colon.png",
+        "name": "Club Atletico Colon"
       },
       {
-        "file": "Club Atl#U00e9tico Defensores Unidos.png",
-        "name": "Club Atlético Defensores Unidos"
+        "file": "Club Atletico Defensores de Belgrano.png",
+        "name": "Club Atletico Defensores de Belgrano"
       },
       {
-        "file": "Club Atl#U00e9tico Douglas Haig.png",
-        "name": "Club Atlético Douglas Haig"
+        "file": "Club Atletico Defensores Unidos.png",
+        "name": "Club Atletico Defensores Unidos"
       },
       {
-        "file": "Club Atl#U00e9tico El Linque#U00f1o.png",
-        "name": "Club Atlético El Linqueño"
+        "file": "Club Atletico Douglas Haig.png",
+        "name": "Club Atletico Douglas Haig"
       },
       {
-        "file": "Club Atl#U00e9tico Estudiantes.png",
-        "name": "Club Atlético Estudiantes"
+        "file": "Club Atletico El Linqueno.png",
+        "name": "Club Atletico El Linqueno"
       },
       {
-        "file": "Club Atl#U00e9tico Excursionistas.png",
-        "name": "Club Atlético Excursionistas"
+        "file": "Club Atletico Estudiantes.png",
+        "name": "Club Atletico Estudiantes"
       },
       {
-        "file": "Club Atl#U00e9tico F#U00e9nix.png",
-        "name": "Club Atlético Fénix"
+        "file": "Club Atletico Excursionistas.png",
+        "name": "Club Atletico Excursionistas"
       },
       {
-        "file": "Club Atl#U00e9tico G#U00fcemes.png",
-        "name": "Club Atlético Güemes"
+        "file": "Club Atletico Fenix.png",
+        "name": "Club Atletico Fenix"
       },
       {
-        "file": "Club Atl#U00e9tico General Lamadrid.png",
-        "name": "Club Atlético General Lamadrid"
+        "file": "Club Atletico G mes.png",
+        "name": "Club Atletico G mes"
       },
       {
-        "file": "Club Atl#U00e9tico Germinal.png",
-        "name": "Club Atlético Germinal"
+        "file": "Club Atletico General Lamadrid.png",
+        "name": "Club Atletico General Lamadrid"
       },
       {
-        "file": "Club Atl#U00e9tico Gimnasia y Esgrima Mendoza.png",
-        "name": "Club Atlético Gimnasia y Esgrima Mendoza"
+        "file": "Club Atletico Germinal.png",
+        "name": "Club Atletico Germinal"
       },
       {
-        "file": "Club Atl#U00e9tico Hurac#U00e1n.png",
-        "name": "Club Atlético Huracán"
+        "file": "Club Atletico Gimnasia y Esgrima Mendoza.png",
+        "name": "Club Atletico Gimnasia y Esgrima Mendoza"
       },
       {
-        "file": "Club Atl#U00e9tico Independiente.png",
-        "name": "Club Atlético Independiente"
+        "file": "Club Atletico Huracan.png",
+        "name": "Club Atletico Huracan"
       },
       {
-        "file": "Club Atl#U00e9tico Kimberley.png",
-        "name": "Club Atlético Kimberley"
+        "file": "Club Atletico Independiente.png",
+        "name": "Club Atletico Independiente"
       },
       {
-        "file": "Club Atl#U00e9tico Liniers.png",
-        "name": "Club Atlético Liniers"
+        "file": "Club Atletico Kimberley.png",
+        "name": "Club Atletico Kimberley"
       },
       {
-        "file": "Club Atl#U00e9tico Los Andes.png",
-        "name": "Club Atlético Los Andes"
+        "file": "Club Atletico Liniers.png",
+        "name": "Club Atletico Liniers"
       },
       {
-        "file": "Club Atl#U00e9tico Lugano.png",
-        "name": "Club Atlético Lugano"
+        "file": "Club Atletico Los Andes.png",
+        "name": "Club Atletico Los Andes"
       },
       {
-        "file": "Club Atl#U00e9tico Mitre.png",
-        "name": "Club Atlético Mitre"
+        "file": "Club Atletico Lugano.png",
+        "name": "Club Atletico Lugano"
       },
       {
-        "file": "Club Atl#U00e9tico Newell's Old Boys.png",
-        "name": "Club Atlético Newell's Old Boys"
+        "file": "Club Atletico Mitre.png",
+        "name": "Club Atletico Mitre"
       },
       {
-        "file": "Club Atl#U00e9tico Paran#U00e1.png",
-        "name": "Club Atlético Paraná"
+        "file": "Club Atletico Newells Old Boys.png",
+        "name": "Club Atletico Newells Old Boys"
       },
       {
-        "file": "Club Atl#U00e9tico Patronato.png",
-        "name": "Club Atlético Patronato"
+        "file": "Club Atletico Parana.png",
+        "name": "Club Atletico Parana"
       },
       {
-        "file": "Club Atl#U00e9tico Platense.png",
-        "name": "Club Atlético Platense"
+        "file": "Club Atletico Patronato.png",
+        "name": "Club Atletico Patronato"
       },
       {
-        "file": "Club Atl#U00e9tico Racing.png",
-        "name": "Club Atlético Racing"
+        "file": "Club Atletico Platense.png",
+        "name": "Club Atletico Platense"
       },
       {
-        "file": "Club Atl#U00e9tico River Plate.png",
-        "name": "Club Atlético River Plate"
+        "file": "Club Atletico Racing.png",
+        "name": "Club Atletico Racing"
       },
       {
-        "file": "Club Atl#U00e9tico San Lorenzo de Alem.png",
-        "name": "Club Atlético San Lorenzo de Alem"
+        "file": "Club Atletico River Plate.png",
+        "name": "Club Atletico River Plate"
       },
       {
-        "file": "Club Atl#U00e9tico San Mart#U00edn.png",
-        "name": "Club Atlético San Martín"
+        "file": "Club Atletico San Lorenzo de Alem.png",
+        "name": "Club Atletico San Lorenzo de Alem"
       },
       {
-        "file": "Club Atl#U00e9tico San Miguel.png",
-        "name": "Club Atlético San Miguel"
+        "file": "Club Atletico San Martin.png",
+        "name": "Club Atletico San Martin"
       },
       {
-        "file": "Club Atl#U00e9tico San Telmo.png",
-        "name": "Club Atlético San Telmo"
+        "file": "Club Atletico San Miguel.png",
+        "name": "Club Atletico San Miguel"
       },
       {
-        "file": "Club Atl#U00e9tico Sarmiento.png",
-        "name": "Club Atlético Sarmiento"
+        "file": "Club Atletico San Telmo.png",
+        "name": "Club Atletico San Telmo"
       },
       {
-        "file": "Club Atl#U00e9tico Talleres.png",
-        "name": "Club Atlético Talleres"
+        "file": "Club Atletico Sarmiento.png",
+        "name": "Club Atletico Sarmiento"
       },
       {
-        "file": "Club Atl#U00e9tico Temperley.png",
-        "name": "Club Atlético Temperley"
+        "file": "Club Atletico Talleres.png",
+        "name": "Club Atletico Talleres"
       },
       {
-        "file": "Club Atl#U00e9tico Tigre.png",
-        "name": "Club Atlético Tigre"
+        "file": "Club Atletico Temperley.png",
+        "name": "Club Atletico Temperley"
       },
       {
-        "file": "Club Atl#U00e9tico Tucum#U00e1n.png",
-        "name": "Club Atlético Tucumán"
+        "file": "Club Atletico Tigre.png",
+        "name": "Club Atletico Tigre"
       },
       {
-        "file": "Club Atl#U00e9tico Uni#U00f3n.png",
-        "name": "Club Atlético Unión"
+        "file": "Club Atletico Tucuman.png",
+        "name": "Club Atletico Tucuman"
+      },
+      {
+        "file": "Club Atletico Union.png",
+        "name": "Club Atletico Union"
       },
       {
         "file": "Club Camioneros.png",
         "name": "Club Camioneros"
       },
       {
-        "file": "Club Centro Espa#U00f1ol.png",
-        "name": "Club Centro Español"
+        "file": "Club Centro Espanol.png",
+        "name": "Club Centro Espanol"
       },
       {
         "file": "Club Cipolletti.png",
         "name": "Club Cipolletti"
       },
       {
-        "file": "Club Ciudad de Bol#U00edvar.png",
-        "name": "Club Ciudad de Bolívar"
+        "file": "Club Ciudad de Bolivar.png",
+        "name": "Club Ciudad de Bolivar"
       },
       {
         "file": "Club Comunicaciones.png",
@@ -534,8 +538,8 @@
         "name": "Club Deportivo Argentino"
       },
       {
-        "file": "Club Deportivo Espa#U00f1ol.png",
-        "name": "Club Deportivo Español"
+        "file": "Club Deportivo Espanol.png",
+        "name": "Club Deportivo Espanol"
       },
       {
         "file": "Club Deportivo Juventud Unida.png",
@@ -546,24 +550,24 @@
         "name": "Club Deportivo Laferrere"
       },
       {
-        "file": "Club Deportivo Maip#U00fa.png",
-        "name": "Club Deportivo Maipú"
+        "file": "Club Deportivo Maipu.png",
+        "name": "Club Deportivo Maipu"
       },
       {
-        "file": "Club Deportivo Mor#U00f3n.png",
-        "name": "Club Deportivo Morón"
+        "file": "Club Deportivo Moron.png",
+        "name": "Club Deportivo Moron"
       },
       {
         "file": "Club Deportivo Riestra.png",
         "name": "Club Deportivo Riestra"
       },
       {
-        "file": "Club Deportivo Rinc#U00f3n.png",
-        "name": "Club Deportivo Rincón"
-      },
-      {
         "file": "Club Deportivo Rincon.png",
         "name": "Club Deportivo Rincon"
+      },
+      {
+        "file": "Club Deportivo Rincon_2.png",
+        "name": "Club Deportivo Rincon_2"
       },
       {
         "file": "Club Deportivo UAI Urquiza.png",
@@ -586,16 +590,16 @@
         "name": "Club Gimnasia y Esgrima"
       },
       {
-        "file": "Club Hurac#U00e1n.png",
-        "name": "Club Huracán"
+        "file": "Club Huracan.png",
+        "name": "Club Huracan"
       },
       {
         "file": "Club Independiente Chivilcoy.png",
         "name": "Club Independiente Chivilcoy"
       },
       {
-        "file": "Club Luj#U00e1n.png",
-        "name": "Club Luján"
+        "file": "Club Lujan.png",
+        "name": "Club Lujan"
       },
       {
         "file": "Club Mercedes.png",
@@ -622,8 +626,8 @@
         "name": "Club Social y Deportivo Madryn"
       },
       {
-        "file": "Club Sol de Am#U00e9rica.png",
-        "name": "Club Sol de América"
+        "file": "Club Sol de America.png",
+        "name": "Club Sol de America"
       },
       {
         "file": "Club Sol de Mayo.png",
@@ -658,40 +662,40 @@
         "name": "Club Sportivo Italiano"
       },
       {
-        "file": "Club Sportivo Pe#U00f1arol.png",
-        "name": "Club Sportivo Peñarol"
+        "file": "Club Sportivo Pe rol.png",
+        "name": "Club Sportivo Pe rol"
       },
       {
         "file": "Club Sportivo y Biblioteca Atenas.png",
         "name": "Club Sportivo y Biblioteca Atenas"
       },
       {
-        "file": "Club Tucum#U00e1n Central Deportes.png",
-        "name": "Club Tucumán Central Deportes"
+        "file": "Club Tucuman Central Deportes.png",
+        "name": "Club Tucuman Central Deportes"
       },
       {
-        "file": "Club Villa D#U00e1lmine.png",
-        "name": "Club Villa Dálmine"
+        "file": "Club Villa Dalmine.png",
+        "name": "Club Villa Dalmine"
       },
       {
         "file": "Club Villa Mitre.png",
         "name": "Club Villa Mitre"
       },
       {
-        "file": "CSCyD Mu#U00f1iz.png",
-        "name": "CSCyD Muñiz"
+        "file": "CSCyD Muniz.png",
+        "name": "CSCyD Muniz"
       },
       {
         "file": "CSyD Merlo.png",
         "name": "CSyD Merlo"
       },
       {
-        "file": "CSyD San Jorge de Tucum#U00e1n.png",
-        "name": "CSyD San Jorge de Tucumán"
+        "file": "CSyD San Jorge de Tucuman.png",
+        "name": "CSyD San Jorge de Tucuman"
       },
       {
-        "file": "CSyD Trist#U00e1n Su#U00e1rez.png",
-        "name": "CSyD Tristán Suárez"
+        "file": "CSyD Tristan Suarez.png",
+        "name": "CSyD Tristan Suarez"
       },
       {
         "file": "CSyD Yupanqui.png",
@@ -710,8 +714,8 @@
         "name": "Deportivo Mandiyu de Corrientes"
       },
       {
-        "file": "Deportivo Metal#U00fargico.png",
-        "name": "Deportivo Metalúrgico"
+        "file": "Deportivo Metalurgico.png",
+        "name": "Deportivo Metalurgico"
       },
       {
         "file": "Deportivo Roca.png",
@@ -750,8 +754,8 @@
         "name": "Guillermo Brown"
       },
       {
-        "file": "Guti#U00e9rrez Sport Club.png",
-        "name": "Gutiérrez Sport Club"
+        "file": "Gutierrez Sport Club.png",
+        "name": "Gutierrez Sport Club"
       },
       {
         "file": "Independiente Rivadavia.png",
@@ -770,16 +774,16 @@
         "name": "Leones de Rosario FC"
       },
       {
-        "file": "Quilmes Atl#U00e9tico Club.png",
-        "name": "Quilmes Atlético Club"
+        "file": "Quilmes Atletico Club.png",
+        "name": "Quilmes Atletico Club"
       },
       {
         "file": "Racing Club.png",
         "name": "Racing Club"
       },
       {
-        "file": "Ram#U00f3n Santamarina.png",
-        "name": "Ramón Santamarina"
+        "file": "Ramon Santamarina.png",
+        "name": "Ramon Santamarina"
       },
       {
         "file": "Real Pilar FC.png",
@@ -790,16 +794,16 @@
         "name": "Sacachispas FC"
       },
       {
-        "file": "San Mart#U00edn de Burzaco.png",
-        "name": "San Martín de Burzaco"
+        "file": "San Martin de Burzaco.png",
+        "name": "San Martin de Burzaco"
       },
       {
         "file": "Sansinena SyD.png",
         "name": "Sansinena SyD"
       },
       {
-        "file": "Sportivo Atl#U00e9tico Club.png",
-        "name": "Sportivo Atlético Club"
+        "file": "Sportivo Atletico Club.png",
+        "name": "Sportivo Atletico Club"
       }
     ]
   },
@@ -894,8 +898,8 @@
         "name": "FC Admira Wacker"
       },
       {
-        "file": "FC Blau-Wei#U00df Linz.png",
-        "name": "FC Blau-Weiß Linz"
+        "file": "FC Blau-Weiss Linz.png",
+        "name": "FC Blau-Weiss Linz"
       },
       {
         "file": "FC Red Bull Salzburg.png",
@@ -938,8 +942,8 @@
         "name": "SK Sturm Graz"
       },
       {
-        "file": "SKN St. P#U00f6lten.png",
-        "name": "SKN St. Pölten"
+        "file": "SKN St. Polten.png",
+        "name": "SKN St. Polten"
       },
       {
         "file": "SV Mattersburg.png",
@@ -974,12 +978,12 @@
         "name": "Gabala FK"
       },
       {
-        "file": "Neft#U00e7i PFK.png",
-        "name": "Neftçi PFK"
+        "file": "Neftci PFK.png",
+        "name": "Neftci PFK"
       },
       {
-        "file": "Qaraba#U011f FK.png",
-        "name": "Qarabağ FK"
+        "file": "Qarabag FK.png",
+        "name": "Qarabag FK"
       },
       {
         "file": "Sabah FC.png",
@@ -1118,12 +1122,12 @@
         "name": "Patro Eisden"
       },
       {
-        "file": "RAAL La Louvi#U00e8re.png",
-        "name": "RAAL La Louvière"
+        "file": "RAAL La Louviere.png",
+        "name": "RAAL La Louviere"
       },
       {
-        "file": "RFC Li#U00e8ge.png",
-        "name": "RFC Liège"
+        "file": "RFC Liege.png",
+        "name": "RFC Liege"
       },
       {
         "file": "RFC Seraing.png",
@@ -1170,8 +1174,8 @@
         "name": "Sporting Lokeren"
       },
       {
-        "file": "Standard Li#U00e8ge.png",
-        "name": "Standard Liège"
+        "file": "Standard Liege.png",
+        "name": "Standard Liege"
       },
       {
         "file": "SV Zulte Waregem.png",
@@ -1214,8 +1218,8 @@
         "name": "ABB"
       },
       {
-        "file": "CA Nacional Potos#U00ed.png",
-        "name": "CA Nacional Potosí"
+        "file": "CA Nacional Potosi.png",
+        "name": "CA Nacional Potosi"
       },
       {
         "file": "CD Oriente Petrolero.png",
@@ -1226,8 +1230,8 @@
         "name": "CD Real Tomayapo"
       },
       {
-        "file": "CD San Jos#U00e9.png",
-        "name": "CD San José"
+        "file": "CD San Jose.png",
+        "name": "CD San Jose"
       },
       {
         "file": "CD Totora Real Oruro.png",
@@ -1238,8 +1242,8 @@
         "name": "Club Always Ready"
       },
       {
-        "file": "Club Atl#U00e9tico Palmaflor.png",
-        "name": "Club Atlético Palmaflor"
+        "file": "Club Atletico Palmaflor.png",
+        "name": "Club Atletico Palmaflor"
       },
       {
         "file": "Club Aurora.png",
@@ -1250,24 +1254,24 @@
         "name": "Club Blooming"
       },
       {
-        "file": "Club Bol#U00edvar.png",
-        "name": "Club Bolívar"
+        "file": "Club Bolivar.png",
+        "name": "Club Bolivar"
       },
       {
-        "file": "Club Deportivo Guabir#U00e1.png",
-        "name": "Club Deportivo Guabirá"
+        "file": "Club Deportivo Guabira.png",
+        "name": "Club Deportivo Guabira"
       },
       {
         "file": "Club Deportivo Petrolero.png",
         "name": "Club Deportivo Petrolero"
       },
       {
-        "file": "Club Deportivo Vaca D#U00edez.png",
-        "name": "Club Deportivo Vaca Díez"
+        "file": "Club Deportivo Vaca D z.png",
+        "name": "Club Deportivo Vaca D z"
       },
       {
-        "file": "Club Destroyer's.png",
-        "name": "Club Destroyer's"
+        "file": "Club Destroyers.png",
+        "name": "Club Destroyers"
       },
       {
         "file": "Club Gualberto Villarroel.png",
@@ -1282,8 +1286,8 @@
         "name": "Club Jorge Wilstermann"
       },
       {
-        "file": "Club Real Potos#U00ed.png",
-        "name": "Club Real Potosí"
+        "file": "Club Real Potosi.png",
+        "name": "Club Real Potosi"
       },
       {
         "file": "Club Real Santa Cruz.png",
@@ -1302,8 +1306,8 @@
         "name": "Club Universitario de Vinto"
       },
       {
-        "file": "Gran Mamor#U00e9 FC.png",
-        "name": "Gran Mamoré FC"
+        "file": "Gran Mamore FC.png",
+        "name": "Gran Mamore FC"
       },
       {
         "file": "San Antonio Bulo Bulo.png",
@@ -1330,8 +1334,8 @@
         "name": "FK Borac Banja Luka"
       },
       {
-        "file": "H#U0160K Zrinjski Mostar.png",
-        "name": "HŠK Zrinjski Mostar"
+        "file": "HSK Zrinjski Mostar.png",
+        "name": "HSK Zrinjski Mostar"
       }
     ]
   },
@@ -1342,76 +1346,76 @@
     "flag": "🇧🇷",
     "teams": [
       {
-        "file": "#U00c1gua Santa.png",
-        "name": "Água Santa"
-      },
-      {
         "file": "ABC Futebol Clube.png",
         "name": "ABC Futebol Clube"
       },
       {
-        "file": "AD S#U00e3o Caetano.png",
-        "name": "AD São Caetano"
+        "file": "AD Sao Caetano.png",
+        "name": "AD Sao Caetano"
       },
       {
-        "file": "Agremia#U00e7#U00e3o Sportiva Arapiraquense.png",
-        "name": "Agremiação Sportiva Arapiraquense"
+        "file": "Agremiacao Sportiva Arapiraquense.png",
+        "name": "Agremiacao Sportiva Arapiraquense"
       },
       {
-        "file": "Am#U00e9rica Futebol Clube.png",
-        "name": "América Futebol Clube"
+        "file": "Agua Santa.png",
+        "name": "Agua Santa"
       },
       {
         "file": "Amazonas Futebol Clube.png",
         "name": "Amazonas Futebol Clube"
       },
       {
-        "file": "Associa#U00e7#U00e3o Atl#U00e9tica Aparecidense.png",
-        "name": "Associação Atlética Aparecidense"
+        "file": "America Futebol Clube.png",
+        "name": "America Futebol Clube"
       },
       {
-        "file": "Associa#U00e7#U00e3o Atl#U00e9tica de Altos.png",
-        "name": "Associação Atlética de Altos"
+        "file": "Associacao Atletica Aparecidense.png",
+        "name": "Associacao Atletica Aparecidense"
       },
       {
-        "file": "Associa#U00e7#U00e3o Atl#U00e9tica Ponte Preta.png",
-        "name": "Associação Atlética Ponte Preta"
+        "file": "Associacao Atletica de Altos.png",
+        "name": "Associacao Atletica de Altos"
       },
       {
-        "file": "Associa#U00e7#U00e3o Chapecoense de Futebol.png",
-        "name": "Associação Chapecoense de Futebol"
+        "file": "Associacao Atletica Ponte Preta.png",
+        "name": "Associacao Atletica Ponte Preta"
       },
       {
-        "file": "Associa#U00e7#U00e3o Desportiva Confian#U00e7a.png",
-        "name": "Associação Desportiva Confiança"
+        "file": "Associacao Chapecoense de Futebol.png",
+        "name": "Associacao Chapecoense de Futebol"
       },
       {
-        "file": "Associa#U00e7#U00e3o Ferrovi#U00e1ria de Esportes.png",
-        "name": "Associação Ferroviária de Esportes"
+        "file": "Associacao Desportiva Confian.png",
+        "name": "Associacao Desportiva Confian"
       },
       {
-        "file": "Associa#U00e7#U00e3o Portuguesa de Desportosa.png",
-        "name": "Associação Portuguesa de Desportosa"
+        "file": "Associacao Ferroviaria de Esportes.png",
+        "name": "Associacao Ferroviaria de Esportes"
+      },
+      {
+        "file": "Associacao Portuguesa de Desportosa.png",
+        "name": "Associacao Portuguesa de Desportosa"
       },
       {
         "file": "Athletic Club.png",
         "name": "Athletic Club"
       },
       {
-        "file": "Atl#U00e9tico Acreano.png",
-        "name": "Atlético Acreano"
+        "file": "Atletico Acreano.png",
+        "name": "Atletico Acreano"
       },
       {
-        "file": "Atl#U00e9tico Clube Goianiense.png",
-        "name": "Atlético Clube Goianiense"
+        "file": "Atletico Clube Goianiense.png",
+        "name": "Atletico Clube Goianiense"
       },
       {
-        "file": "Ava#U00ed Futebol Clube.png",
-        "name": "Avaí Futebol Clube"
+        "file": "Avai Futebol Clube.png",
+        "name": "Avai Futebol Clube"
       },
       {
-        "file": "Bangu Atl#U00e9tico Clube.png",
-        "name": "Bangu Atlético Clube"
+        "file": "Bangu Atletico Clube.png",
+        "name": "Bangu Atletico Clube"
       },
       {
         "file": "Boa Esporte Clube.png",
@@ -1422,16 +1426,16 @@
         "name": "Botafogo de Futebol e Regatas"
       },
       {
-        "file": "Botafogo FC Jo#U00e3o Pessoa.png",
-        "name": "Botafogo FC João Pessoa"
+        "file": "Botafogo FC Joao Pessoa.png",
+        "name": "Botafogo FC Joao Pessoa"
       },
       {
         "file": "Botafogo FC.png",
         "name": "Botafogo FC"
       },
       {
-        "file": "Bras#U00edlia Futebol Clube.png",
-        "name": "Brasília Futebol Clube"
+        "file": "Brasilia Futebol Clube.png",
+        "name": "Brasilia Futebol Clube"
       },
       {
         "file": "Brusque Futebol Clube.png",
@@ -1442,8 +1446,8 @@
         "name": "Campinense Clube"
       },
       {
-        "file": "Cear#U00e1 Sporting Club.png",
-        "name": "Ceará Sporting Club"
+        "file": "Ceara Sporting Club.png",
+        "name": "Ceara Sporting Club"
       },
       {
         "file": "Centro Sportivo Alagoano.png",
@@ -1454,12 +1458,12 @@
         "name": "Cianorte Futebol Clube"
       },
       {
-        "file": "Clube Atl#U00e9tico Mineiro.png",
-        "name": "Clube Atlético Mineiro"
+        "file": "Clube Atletico Mineiro.png",
+        "name": "Clube Atletico Mineiro"
       },
       {
-        "file": "Clube Atl#U00e9tico Paranaense.png",
-        "name": "Clube Atlético Paranaense"
+        "file": "Clube Atletico Paranaense.png",
+        "name": "Clube Atletico Paranaense"
       },
       {
         "file": "Clube de Regatas Brasil.png",
@@ -1474,24 +1478,24 @@
         "name": "Clube do Remo"
       },
       {
-        "file": "Clube N#U00e1utico Capibaribe.png",
-        "name": "Clube Náutico Capibaribe"
+        "file": "Clube Nautico Capibaribe.png",
+        "name": "Clube Nautico Capibaribe"
       },
       {
         "file": "Coritiba Foot Ball Club.png",
         "name": "Coritiba Foot Ball Club"
       },
       {
-        "file": "Crici#U00fama EC.png",
-        "name": "Criciúma EC"
+        "file": "Criciuma EC.png",
+        "name": "Criciuma EC"
       },
       {
         "file": "Cruzeiro Esporte Clube.png",
         "name": "Cruzeiro Esporte Clube"
       },
       {
-        "file": "Cuiab#U00e1 Esporte Clube.png",
-        "name": "Cuiabá Esporte Clube"
+        "file": "Cuiaba Esporte Clube.png",
+        "name": "Cuiaba Esporte Clube"
       },
       {
         "file": "Esporte Clube Bahia.png",
@@ -1506,28 +1510,28 @@
         "name": "Esporte Clube Juventude"
       },
       {
-        "file": "Esporte Clube S#U00e3o Bento.png",
-        "name": "Esporte Clube São Bento"
+        "file": "Esporte Clube Sao Bento.png",
+        "name": "Esporte Clube Sao Bento"
       },
       {
-        "file": "Esporte Clube S#U00e3o Jos#U00e9.png",
-        "name": "Esporte Clube São José"
+        "file": "Esporte Clube Sao Jose.png",
+        "name": "Esporte Clube Sao Jose"
       },
       {
-        "file": "Esporte Clube Vit#U00f3ria.png",
-        "name": "Esporte Clube Vitória"
+        "file": "Esporte Clube Vitoria.png",
+        "name": "Esporte Clube Vitoria"
       },
       {
-        "file": "FC Atl#U00e9tico Cearense.png",
-        "name": "FC Atlético Cearense"
+        "file": "FC Atletico Cearense.png",
+        "name": "FC Atletico Cearense"
       },
       {
         "file": "FC Cascavel.png",
         "name": "FC Cascavel"
       },
       {
-        "file": "Ferrovi#U00e1rio Atl#U00e9tico Clube.png",
-        "name": "Ferroviário Atlético Clube"
+        "file": "Ferroviario Atletico Clube.png",
+        "name": "Ferroviario Atletico Clube"
       },
       {
         "file": "Figueirense Futebol Clube.png",
@@ -1550,20 +1554,20 @@
         "name": "Globo Futebol Clube"
       },
       {
-        "file": "Goi#U00e1s Esporte Clube.png",
-        "name": "Goiás Esporte Clube"
+        "file": "Goias Esporte Clube.png",
+        "name": "Goias Esporte Clube"
       },
       {
-        "file": "Gr#U00eamio Esportivo Brasil.png",
-        "name": "Grêmio Esportivo Brasil"
+        "file": "Gremio Esportivo Brasil.png",
+        "name": "Gremio Esportivo Brasil"
       },
       {
-        "file": "Gr#U00eamio Foot-Ball Porto Alegrense.png",
-        "name": "Grêmio Foot-Ball Porto Alegrense"
+        "file": "Gremio Foot-Ball Porto Alegrense.png",
+        "name": "Gremio Foot-Ball Porto Alegrense"
       },
       {
-        "file": "Gr#U00eamio Novorizontino.png",
-        "name": "Grêmio Novorizontino"
+        "file": "Gremio Novorizontino.png",
+        "name": "Gremio Novorizontino"
       },
       {
         "file": "Guarani Futebol Clube.png",
@@ -1586,16 +1590,16 @@
         "name": "Luverdense Esporte Clube"
       },
       {
-        "file": "Maca#U00e9 Esporte Futebol Clube.png",
-        "name": "Macaé Esporte Futebol Clube"
+        "file": "Macae Esporte Futebol Clube.png",
+        "name": "Macae Esporte Futebol Clube"
       },
       {
         "file": "Manaus Futebol Clube.png",
         "name": "Manaus Futebol Clube"
       },
       {
-        "file": "Maring#U00e1 FC.png",
-        "name": "Maringá FC"
+        "file": "Maringa FC.png",
+        "name": "Maringa FC"
       },
       {
         "file": "Mirassol FC.png",
@@ -1606,20 +1610,20 @@
         "name": "Mogi Mirim Esporte Clube"
       },
       {
-        "file": "Moto Club de S#U00e3o Lu#U00eds.png",
-        "name": "Moto Club de São Luís"
+        "file": "Moto Club de Sao Luis.png",
+        "name": "Moto Club de Sao Luis"
       },
       {
         "file": "Oeste Futebol Clube.png",
         "name": "Oeste Futebol Clube"
       },
       {
-        "file": "Oper#U00e1rio Ferrovi#U00e1rio.png",
-        "name": "Operário Ferroviário"
+        "file": "Operario Ferroviario.png",
+        "name": "Operario Ferroviario"
       },
       {
-        "file": "Paran#U00e1 Clube.png",
-        "name": "Paraná Clube"
+        "file": "Parana Clube.png",
+        "name": "Parana Clube"
       },
       {
         "file": "Paulista Futebol Clube.png",
@@ -1638,24 +1642,16 @@
         "name": "Red Bull Bragantino"
       },
       {
-        "file": "S#U00e3o Bernardo Futebol Clube.png",
-        "name": "São Bernardo Futebol Clube"
-      },
-      {
-        "file": "S#U00e3o Paulo FC.png",
-        "name": "São Paulo FC"
-      },
-      {
         "file": "S.E.R. Caxias do Sul.png",
         "name": "S.E.R. Caxias do Sul"
       },
       {
-        "file": "Salgueiro Atl#U00e9tico Clube.png",
-        "name": "Salgueiro Atlético Clube"
+        "file": "Salgueiro Atletico Clube.png",
+        "name": "Salgueiro Atletico Clube"
       },
       {
-        "file": "Sampaio Corr#U00eaa Futebol Clube.png",
-        "name": "Sampaio Corrêa Futebol Clube"
+        "file": "Sampaio Corr Futebol Clube.png",
+        "name": "Sampaio Corr Futebol Clube"
       },
       {
         "file": "Santa Cruz Futebol Clube.png",
@@ -1664,6 +1660,14 @@
       {
         "file": "Santos Futebol Clube.png",
         "name": "Santos Futebol Clube"
+      },
+      {
+        "file": "Sao Bernardo Futebol Clube.png",
+        "name": "Sao Bernardo Futebol Clube"
+      },
+      {
+        "file": "Sao Paulo FC.png",
+        "name": "Sao Paulo FC"
       },
       {
         "file": "Sociedade Esportiva Palmeiras.png",
@@ -1826,16 +1830,16 @@
     "flag": "🇨🇦",
     "teams": [
       {
-        "file": "Atl#U00e9tico Ottawa.png",
-        "name": "Atlético Ottawa"
+        "file": "Atletico Ottawa.png",
+        "name": "Atletico Ottawa"
       },
       {
         "file": "Cavalry FC.png",
         "name": "Cavalry FC"
       },
       {
-        "file": "FC Supra du Qu#U00e9bec.png",
-        "name": "FC Supra du Québec"
+        "file": "FC Supra du Qu c.png",
+        "name": "FC Supra du Qu c"
       },
       {
         "file": "Forge FC.png",
@@ -1874,8 +1878,8 @@
         "name": "AC Barnechea"
       },
       {
-        "file": "Atl#U00e9tico Colina.png",
-        "name": "Atlético Colina"
+        "file": "Atletico Colina.png",
+        "name": "Atletico Colina"
       },
       {
         "file": "Audax Italiano.png",
@@ -1886,8 +1890,8 @@
         "name": "Brujas de Salamanca"
       },
       {
-        "file": "CD Conc#U00f3n National.png",
-        "name": "CD Concón National"
+        "file": "CD Concon National.png",
+        "name": "CD Concon National"
       },
       {
         "file": "CD Deportes Valdivia.png",
@@ -1902,8 +1906,8 @@
         "name": "CD Provincial Ranco"
       },
       {
-        "file": "CD Real Juventud San Joaqu#U00edn.png",
-        "name": "CD Real Juventud San Joaquín"
+        "file": "CD Real Juventud San Joaquin.png",
+        "name": "CD Real Juventud San Joaquin"
       },
       {
         "file": "CD San Marcos de Arica.png",
@@ -1918,20 +1922,20 @@
         "name": "CD Trasandino de los Andes"
       },
       {
-        "file": "CD Uni#U00f3n San Felipe.png",
-        "name": "CD Unión San Felipe"
+        "file": "CD Union San Felipe.png",
+        "name": "CD Union San Felipe"
       },
       {
-        "file": "CD Universidad de Concepci#U00f3n.png",
-        "name": "CD Universidad de Concepción"
+        "file": "CD Universidad de Concepcion.png",
+        "name": "CD Universidad de Concepcion"
       },
       {
         "file": "Club de Deportes Cobresal.png",
         "name": "Club de Deportes Cobresal"
       },
       {
-        "file": "Club de Deportes Copiap#U00f3.png",
-        "name": "Club de Deportes Copiapó"
+        "file": "Club de Deportes Copiapo.png",
+        "name": "Club de Deportes Copiapo"
       },
       {
         "file": "Club de Deportes Iquique.png",
@@ -1978,24 +1982,24 @@
         "name": "Club Deportes La Serena"
       },
       {
-        "file": "Club Deportivo #U00d1ublense.png",
-        "name": "Club Deportivo Ñublense"
+        "file": "Club Deportivo Arturo Fernandez Vial.png",
+        "name": "Club Deportivo Arturo Fernandez Vial"
       },
       {
-        "file": "Club Deportivo Arturo Fern#U00e1ndez Vial.png",
-        "name": "Club Deportivo Arturo Fernández Vial"
-      },
-      {
-        "file": "Club Deportivo General Vel#U00e1squez.png",
-        "name": "Club Deportivo General Velásquez"
+        "file": "Club Deportivo General Velasquez.png",
+        "name": "Club Deportivo General Velasquez"
       },
       {
         "file": "Club Deportivo Magallanes.png",
         "name": "Club Deportivo Magallanes"
       },
       {
-        "file": "Club Deportivo O'Higgins.png",
-        "name": "Club Deportivo O'Higgins"
+        "file": "Club Deportivo Nublense.png",
+        "name": "Club Deportivo Nublense"
+      },
+      {
+        "file": "Club Deportivo OHiggins.png",
+        "name": "Club Deportivo OHiggins"
       },
       {
         "file": "Club Deportivo Palestino.png",
@@ -2026,12 +2030,12 @@
         "name": "Coquimbo Unido"
       },
       {
-        "file": "CSD Concepci#U00f3n.png",
-        "name": "CSD Concepción"
+        "file": "CSD Concepcion.png",
+        "name": "CSD Concepcion"
       },
       {
-        "file": "Curic#U00f3 Unido.png",
-        "name": "Curicó Unido"
+        "file": "Curico Unido.png",
+        "name": "Curico Unido"
       },
       {
         "file": "Deportes Iberia.png",
@@ -2050,8 +2054,8 @@
         "name": "Deportes Rengo"
       },
       {
-        "file": "Everton de Vi#U00f1a del Mar.png",
-        "name": "Everton de Viña del Mar"
+        "file": "Everton de Vi del Mar.png",
+        "name": "Everton de Vi del Mar"
       },
       {
         "file": "Independiente de Cauquenes.png",
@@ -2070,8 +2074,8 @@
         "name": "Provincial Ovalle FC"
       },
       {
-        "file": "Rodelindo Rom#U00e1n FC.png",
-        "name": "Rodelindo Román FC"
+        "file": "Rodelindo Roman FC.png",
+        "name": "Rodelindo Roman FC"
       },
       {
         "file": "San Antonio Unido.png",
@@ -2090,20 +2094,20 @@
         "name": "Santiago Morning"
       },
       {
-        "file": "Uni#U00f3n Compa#U00f1#U00edas.png",
-        "name": "Unión Compañías"
+        "file": "Union Compan s.png",
+        "name": "Union Compan s"
       },
       {
-        "file": "Uni#U00f3n Espa#U00f1ola.png",
-        "name": "Unión Española"
+        "file": "Union Espanola.png",
+        "name": "Union Espanola"
       },
       {
-        "file": "Uni#U00f3n La Calera.png",
-        "name": "Unión La Calera"
+        "file": "Union La Calera.png",
+        "name": "Union La Calera"
       },
       {
-        "file": "Universidad Cat#U00f3lica.png",
-        "name": "Universidad Católica"
+        "file": "Universidad Catolica.png",
+        "name": "Universidad Catolica"
       }
     ]
   },
@@ -2254,48 +2258,48 @@
     "flag": "🇨🇴",
     "teams": [
       {
-        "file": "#U00c1guilas Doradas.png",
-        "name": "Águilas Doradas"
+        "file": "Aguilas Doradas.png",
+        "name": "Aguilas Doradas"
       },
       {
         "file": "Alianza FC.png",
         "name": "Alianza FC"
       },
       {
-        "file": "Am#U00e9rica de Cali.png",
-        "name": "América de Cali"
+        "file": "America de Cali.png",
+        "name": "America de Cali"
       },
       {
-        "file": "Asociaci#U00f3n Deportivo Pasto.png",
-        "name": "Asociación Deportivo Pasto"
+        "file": "Asociacion Deportivo Pasto.png",
+        "name": "Asociacion Deportivo Pasto"
       },
       {
-        "file": "Atl#U00e9tico FC.png",
-        "name": "Atlético FC"
+        "file": "Atletico FC.png",
+        "name": "Atletico FC"
       },
       {
-        "file": "Atl#U00e9tico Junior.png",
-        "name": "Atlético Junior"
+        "file": "Atletico Junior.png",
+        "name": "Atletico Junior"
       },
       {
-        "file": "Atl#U00e9tico Nacional.png",
-        "name": "Atlético Nacional"
+        "file": "Atletico Nacional.png",
+        "name": "Atletico Nacional"
       },
       {
         "file": "Barranquilla FC.png",
         "name": "Barranquilla FC"
       },
       {
-        "file": "Bogot#U00e1 FC.png",
-        "name": "Bogotá FC"
+        "file": "Bogota FC.png",
+        "name": "Bogota FC"
       },
       {
-        "file": "Boyac#U00e1 Chic#U00f3 FC.png",
-        "name": "Boyacá Chicó FC"
+        "file": "Boyaca Chico FC.png",
+        "name": "Boyaca Chico FC"
       },
       {
-        "file": "C#U00facuta Deportivo.png",
-        "name": "Cúcuta Deportivo"
+        "file": "C uta Deportivo.png",
+        "name": "C uta Deportivo"
       },
       {
         "file": "CA Bucaramanga.png",
@@ -2306,8 +2310,8 @@
         "name": "Club Boca Juniors Cali"
       },
       {
-        "file": "Deportes Quind#U00edo.png",
-        "name": "Deportes Quindío"
+        "file": "Deportes Quindio.png",
+        "name": "Deportes Quindio"
       },
       {
         "file": "Deportes Tolima.png",
@@ -2318,8 +2322,8 @@
         "name": "Deportivo Cali"
       },
       {
-        "file": "Deportivo Independiente Medell#U00edn.png",
-        "name": "Deportivo Independiente Medellín"
+        "file": "Deportivo Independiente Medellin.png",
+        "name": "Deportivo Independiente Medellin"
       },
       {
         "file": "Deportivo Pereira.png",
@@ -2342,8 +2346,8 @@
         "name": "Independiente Yumbo"
       },
       {
-        "file": "Internacional de Bogot#U00e1.png",
-        "name": "Internacional de Bogotá"
+        "file": "Internacional de Bogota.png",
+        "name": "Internacional de Bogota"
       },
       {
         "file": "Internacional F. C. Palmira.png",
@@ -2374,8 +2378,8 @@
         "name": "Orsomarso SC"
       },
       {
-        "file": "Patriotas Boyac#U00e1.png",
-        "name": "Patriotas Boyacá"
+        "file": "Patriotas Boyaca.png",
+        "name": "Patriotas Boyaca"
       },
       {
         "file": "Real Cartagena.png",
@@ -2394,8 +2398,8 @@
         "name": "Tigres FC"
       },
       {
-        "file": "Uni#U00f3n Magdalena.png",
-        "name": "Unión Magdalena"
+        "file": "Union Magdalena.png",
+        "name": "Union Magdalena"
       }
     ]
   },
@@ -2426,8 +2430,8 @@
         "name": "Club Sport Herediano"
       },
       {
-        "file": "CS Cartagin#U00e9s.png",
-        "name": "CS Cartaginés"
+        "file": "CS Cartagines.png",
+        "name": "CS Cartagines"
       },
       {
         "file": "Deportivo Saprissa.png",
@@ -2454,8 +2458,8 @@
         "name": "Municipal Grecia"
       },
       {
-        "file": "Municipal P#U00e9rez Zeled#U00f3n.png",
-        "name": "Municipal Pérez Zeledón"
+        "file": "Municipal Perez Zeledon.png",
+        "name": "Municipal Perez Zeledon"
       },
       {
         "file": "Puntarenas FC.png",
@@ -2466,16 +2470,16 @@
         "name": "Santa Ana FC"
       },
       {
-        "file": "Santos de Gu#U00e1piles FC.png",
-        "name": "Santos de Guápiles FC"
+        "file": "Santos de Guapiles FC.png",
+        "name": "Santos de Guapiles FC"
       },
       {
         "file": "Sporting FC.png",
         "name": "Sporting FC"
       },
       {
-        "file": "Sporting San Jos#U00e9.png",
-        "name": "Sporting San José"
+        "file": "Sporting San Jose.png",
+        "name": "Sporting San Jose"
       }
     ]
   },
@@ -2502,10 +2506,6 @@
         "name": "GNK Dinamo Zagreb"
       },
       {
-        "file": "HNK #U0160ibenik.png",
-        "name": "HNK Šibenik"
-      },
-      {
         "file": "HNK Gorica.png",
         "name": "HNK Gorica"
       },
@@ -2518,12 +2518,16 @@
         "name": "HNK Rijeka"
       },
       {
+        "file": "HNK Sibenik.png",
+        "name": "HNK Sibenik"
+      },
+      {
         "file": "NK Hrvatski Dragovoljac.png",
         "name": "NK Hrvatski Dragovoljac"
       },
       {
-        "file": "NK Inter Zapre#U0161i#U0107.png",
-        "name": "NK Inter Zaprešić"
+        "file": "NK Inter Zapresic.png",
+        "name": "NK Inter Zapresic"
       },
       {
         "file": "NK Istra 1961.png",
@@ -2538,16 +2542,16 @@
         "name": "NK Osijek"
       },
       {
-        "file": "NK Rude#U0161.png",
-        "name": "NK Rudeš"
+        "file": "NK Rudes.png",
+        "name": "NK Rudes"
       },
       {
         "file": "NK Slaven Belupo.png",
         "name": "NK Slaven Belupo"
       },
       {
-        "file": "NK Vara#U017edin.png",
-        "name": "NK Varaždin"
+        "file": "NK Vara in.png",
+        "name": "NK Vara in"
       }
     ]
   },
@@ -2602,8 +2606,8 @@
     "flag": "🇨🇿",
     "teams": [
       {
-        "file": "1. FC Slov#U00e1cko.png",
-        "name": "1. FC Slovácko"
+        "file": "1. FC Slov ko.png",
+        "name": "1. FC Slov ko"
       },
       {
         "file": "AC Sparta Prague.png",
@@ -2618,40 +2622,40 @@
         "name": "Dukla Praga"
       },
       {
-        "file": "Dynamo #U010cesk#U00e9 Bud#U011bjovice.png",
-        "name": "Dynamo České Budějovice"
+        "file": "Dynamo ske Budejovice.png",
+        "name": "Dynamo ske Budejovice"
       },
       {
-        "file": "FC Ban#U00edk Ostrava.png",
-        "name": "FC Baník Ostrava"
+        "file": "FC Banik Ostrava.png",
+        "name": "FC Banik Ostrava"
       },
       {
-        "file": "FC Hradec Kr#U00e1lov#U00e9.png",
-        "name": "FC Hradec Králové"
+        "file": "FC Hradec Kralove.png",
+        "name": "FC Hradec Kralove"
       },
       {
         "file": "FC Slovan Liberec.png",
         "name": "FC Slovan Liberec"
       },
       {
-        "file": "FC Viktoria Plze#U0148.png",
-        "name": "FC Viktoria Plzeň"
+        "file": "FC Viktoria Plzen.png",
+        "name": "FC Viktoria Plzen"
       },
       {
         "file": "FC Zbrojovka Brno.png",
         "name": "FC Zbrojovka Brno"
       },
       {
-        "file": "FC Zl#U00edn.png",
-        "name": "FC Zlín"
+        "file": "FC Zlin.png",
+        "name": "FC Zlin"
       },
       {
         "file": "FK Jablonec.png",
         "name": "FK Jablonec"
       },
       {
-        "file": "FK Mlad#U00e1 Boleslav.png",
-        "name": "FK Mladá Boleslav"
+        "file": "FK Mlada Boleslav.png",
+        "name": "FK Mlada Boleslav"
       },
       {
         "file": "FK Pardubice.png",
@@ -2662,8 +2666,8 @@
         "name": "FK Teplice"
       },
       {
-        "file": "MFK Karvin#U00e1.png",
-        "name": "MFK Karviná"
+        "file": "MFK Karvina.png",
+        "name": "MFK Karvina"
       },
       {
         "file": "SFC Opava.png",
@@ -2698,8 +2702,8 @@
         "name": "AC Horsens"
       },
       {
-        "file": "Br#U00f8ndby IF.png",
-        "name": "Brøndby IF"
+        "file": "Brondby IF.png",
+        "name": "Brondby IF"
       },
       {
         "file": "Esbjerg fB.png",
@@ -2714,8 +2718,8 @@
         "name": "FC Midtjylland"
       },
       {
-        "file": "FC Nordsj#U00e6lland.png",
-        "name": "FC Nordsjælland"
+        "file": "FC Nordsjaelland.png",
+        "name": "FC Nordsjaelland"
       },
       {
         "file": "Hobro IK.png",
@@ -2738,12 +2742,12 @@
         "name": "Randers FC"
       },
       {
-        "file": "S#U00f8nderjyske Fodbold.png",
-        "name": "Sønderjyske Fodbold"
-      },
-      {
         "file": "Silkeborg IF.png",
         "name": "Silkeborg IF"
+      },
+      {
+        "file": "Sonderjyske Fodbold.png",
+        "name": "Sonderjyske Fodbold"
       },
       {
         "file": "Vejle Boldklub.png",
@@ -2762,28 +2766,28 @@
     "flag": "🇩🇴",
     "teams": [
       {
-        "file": "Atl#U00e1ntico FC.png",
-        "name": "Atlántico FC"
+        "file": "Atlantico FC.png",
+        "name": "Atlantico FC"
       },
       {
-        "file": "Atl#U00e9tico San Francisco.png",
-        "name": "Atlético San Francisco"
+        "file": "Atletico San Francisco.png",
+        "name": "Atletico San Francisco"
       },
       {
-        "file": "Atl#U00e9tico Vega Real.png",
-        "name": "Atlético Vega Real"
+        "file": "Atletico Vega Real.png",
+        "name": "Atletico Vega Real"
       },
       {
         "file": "Cibao FC.png",
         "name": "Cibao FC"
       },
       {
-        "file": "Club Atl#U00e9tico Pantoja.png",
-        "name": "Club Atlético Pantoja"
+        "file": "Club Atletico Pantoja.png",
+        "name": "Club Atletico Pantoja"
       },
       {
-        "file": "Club Atl#U00e9tico San Crist#U00f3bal.png",
-        "name": "Club Atlético San Cristóbal"
+        "file": "Club Atletico San Crist l.png",
+        "name": "Club Atletico San Crist l"
       },
       {
         "file": "Delfines del Este FC.png",
@@ -2802,8 +2806,8 @@
         "name": "Salcedo Futbol Club"
       },
       {
-        "file": "Universidad O&M FC.png",
-        "name": "Universidad O&M FC"
+        "file": "Universidad O M FC.png",
+        "name": "Universidad O M FC"
       }
     ]
   },
@@ -2834,40 +2838,40 @@
         "name": "9 de Octubre FC"
       },
       {
-        "file": "Atl#U00e9tico Santo Domingo.png",
-        "name": "Atlético Santo Domingo"
-      },
-      {
-        "file": "B#U00fahos ULVR FC.png",
-        "name": "Búhos ULVR FC"
+        "file": "Atletico Santo Domingo.png",
+        "name": "Atletico Santo Domingo"
       },
       {
         "file": "Barcelona Sporting Club.png",
         "name": "Barcelona Sporting Club"
       },
       {
+        "file": "Buhos ULVR FC.png",
+        "name": "Buhos ULVR FC"
+      },
+      {
         "file": "CD El Nacional.png",
         "name": "CD El Nacional"
       },
       {
-        "file": "Chacaritas F#U00fatbol Club.png",
-        "name": "Chacaritas Fútbol Club"
+        "file": "Chacaritas Futbol Club.png",
+        "name": "Chacaritas Futbol Club"
       },
       {
-        "file": "Club Atl#U00e9tico Porte#U00f1o.png",
-        "name": "Club Atlético Porteño"
+        "file": "Club Atletico Porteno.png",
+        "name": "Club Atletico Porteno"
       },
       {
-        "file": "Club Atl#U00e9tico Vinotinto.png",
-        "name": "Club Atlético Vinotinto"
+        "file": "Club Atletico Vinotinto.png",
+        "name": "Club Atletico Vinotinto"
       },
       {
         "file": "Club Centro Deportivo Olmedo.png",
         "name": "Club Centro Deportivo Olmedo"
       },
       {
-        "file": "Club Deportivo Am#U00e9rica.png",
-        "name": "Club Deportivo América"
+        "file": "Club Deportivo America.png",
+        "name": "Club Deportivo America"
       },
       {
         "file": "Club Deportivo Cuenca.png",
@@ -2894,12 +2898,12 @@
         "name": "Club Sport Emelec"
       },
       {
-        "file": "Cumbay#U00e1 FC.png",
-        "name": "Cumbayá FC"
+        "file": "Cumbaya FC.png",
+        "name": "Cumbaya FC"
       },
       {
-        "file": "Delf#U00edn Sporting Club.png",
-        "name": "Delfín Sporting Club"
+        "file": "Delfin Sporting Club.png",
+        "name": "Delfin Sporting Club"
       },
       {
         "file": "Fuerza Amarilla Sporting Club.png",
@@ -2930,8 +2934,8 @@
         "name": "Leones FC"
       },
       {
-        "file": "Libertad F#U00fatbol Club.png",
-        "name": "Libertad Fútbol Club"
+        "file": "Libertad Futbol Club.png",
+        "name": "Libertad Futbol Club"
       },
       {
         "file": "Liga de Loja.png",
@@ -2942,8 +2946,8 @@
         "name": "Liga de Portoviejo"
       },
       {
-        "file": "Macar#U00e1.png",
-        "name": "Macará"
+        "file": "Macara.png",
+        "name": "Macara"
       },
       {
         "file": "Manta FC.png",
@@ -2970,12 +2974,12 @@
         "name": "Sociedad Deportivo Quito"
       },
       {
-        "file": "T#U00e9cnico Universitario.png",
-        "name": "Técnico Universitario"
+        "file": "T nico Universitario.png",
+        "name": "T nico Universitario"
       },
       {
-        "file": "Universidad Cat#U00f3lica.png",
-        "name": "Universidad Católica"
+        "file": "Universidad Catolica.png",
+        "name": "Universidad Catolica"
       },
       {
         "file": "Vinotinto del Ecuador FC.png",
@@ -3010,8 +3014,8 @@
     "flag": "🇸🇻",
     "teams": [
       {
-        "file": "A. D. Isidro Metap#U00e1n.png",
-        "name": "A. D. Isidro Metapán"
+        "file": "A. D. Isidro Metapan.png",
+        "name": "A. D. Isidro Metapan"
       },
       {
         "file": "AD Chalatenango.png",
@@ -3026,8 +3030,8 @@
         "name": "CD Cacahuatique"
       },
       {
-        "file": "CD Drag#U00f3n.png",
-        "name": "CD Dragón"
+        "file": "CD Dragon.png",
+        "name": "CD Dragon"
       },
       {
         "file": "CD El Vencedor.png",
@@ -3038,28 +3042,28 @@
         "name": "CD Fuerte San Francisco"
       },
       {
-        "file": "CD Luis #U00c1ngel Firpo.png",
-        "name": "CD Luis Ángel Firpo"
+        "file": "CD Luis Angel Firpo.png",
+        "name": "CD Luis Angel Firpo"
       },
       {
-        "file": "CD Municipal Lime#U00f1o.png",
-        "name": "CD Municipal Limeño"
+        "file": "CD Municipal Limeno.png",
+        "name": "CD Municipal Limeno"
       },
       {
         "file": "CD Platense Zacatecoluca.png",
         "name": "CD Platense Zacatecoluca"
       },
       {
-        "file": "Club Deportivo #U00c1guila.png",
-        "name": "Club Deportivo Águila"
+        "file": "Club Deportivo Aguila.png",
+        "name": "Club Deportivo Aguila"
       },
       {
         "file": "Club Deportivo FAS.png",
         "name": "Club Deportivo FAS"
       },
       {
-        "file": "Club Deportivo H#U00e9rcules.png",
-        "name": "Club Deportivo Hércules"
+        "file": "Club Deportivo Hercules.png",
+        "name": "Club Deportivo Hercules"
       },
       {
         "file": "Club Social Independiente.png",
@@ -3184,10 +3188,6 @@
       {
         "file": "Charlton Athletic FC.png",
         "name": "Charlton Athletic FC"
-      },
-      {
-        "file": "Chelsea 2.png",
-        "name": "Chelsea 2"
       },
       {
         "file": "Chelsea FC.png",
@@ -3518,8 +3518,8 @@
     "flag": "🇫🇴",
     "teams": [
       {
-        "file": "K#U00cd Klaksvik.png",
-        "name": "KÍ Klaksvik"
+        "file": "KI Klaksvik.png",
+        "name": "KI Klaksvik"
       }
     ]
   },
@@ -3586,16 +3586,16 @@
         "name": "AS Nancy Lorraine"
       },
       {
-        "file": "AS Saint-#U00c9tienne.png",
-        "name": "AS Saint-Étienne"
+        "file": "AS Saint-Etienne.png",
+        "name": "AS Saint-Etienne"
       },
       {
         "file": "Aubagne FC.png",
         "name": "Aubagne FC"
       },
       {
-        "file": "Avenir Sportif B#U00e9ziers.png",
-        "name": "Avenir Sportif Béziers"
+        "file": "Avenir Sportif Beziers.png",
+        "name": "Avenir Sportif Beziers"
       },
       {
         "file": "Clermont Foot.png",
@@ -3606,8 +3606,8 @@
         "name": "CS Sedan Ardennes"
       },
       {
-        "file": "Dijon Football C#U00f4te d'Or.png",
-        "name": "Dijon Football Côte d'Or"
+        "file": "Dijon Football Cote dOr.png",
+        "name": "Dijon Football Cote dOr"
       },
       {
         "file": "En Avant de Guingamp.png",
@@ -3626,8 +3626,8 @@
         "name": "FC Borgo"
       },
       {
-        "file": "FC Bourg-P#U00e9ronnas.png",
-        "name": "FC Bourg-Péronnas"
+        "file": "FC Bourg-Peronnas.png",
+        "name": "FC Bourg-Peronnas"
       },
       {
         "file": "FC Chambly.png",
@@ -3670,8 +3670,8 @@
         "name": "FC Villefranche Beaujolais"
       },
       {
-        "file": "Gaz#U00e9lec FC Ajaccio.png",
-        "name": "Gazélec FC Ajaccio"
+        "file": "Gazelec FC Ajaccio.png",
+        "name": "Gazelec FC Ajaccio"
       },
       {
         "file": "GOAL FC.png",
@@ -3686,8 +3686,8 @@
         "name": "Havre Athletic Club"
       },
       {
-        "file": "La Berrichonne de Ch#U00e2teauroux.png",
-        "name": "La Berrichonne de Châteauroux"
+        "file": "La Berrichonne de Chateauroux.png",
+        "name": "La Berrichonne de Chateauroux"
       },
       {
         "file": "Le Mans FC.png",
@@ -3698,6 +3698,10 @@
         "name": "Le Puy Foot 43 Auvergne"
       },
       {
+        "file": "Le Puy-en-Velay FC.png",
+        "name": "Le Puy-en-Velay FC"
+      },
+      {
         "file": "Lille LOSC.png",
         "name": "Lille LOSC"
       },
@@ -3706,12 +3710,12 @@
         "name": "Marignane GCB FC"
       },
       {
-        "file": "Montpellier H#U00e9rault SC.png",
-        "name": "Montpellier Hérault SC"
+        "file": "Montpellier Herault SC.png",
+        "name": "Montpellier Herault SC"
       },
       {
-        "file": "N#U00eemes Olympique.png",
-        "name": "Nîmes Olympique"
+        "file": "Nimes Olympique.png",
+        "name": "Nimes Olympique"
       },
       {
         "file": "OGC Nice.png",
@@ -3762,8 +3766,8 @@
         "name": "Rodez AF"
       },
       {
-        "file": "SAS #U00c9pinal.png",
-        "name": "SAS Épinal"
+        "file": "SAS Epinal.png",
+        "name": "SAS Epinal"
       },
       {
         "file": "SC Bastia.png",
@@ -3818,8 +3822,8 @@
         "name": "US Concarneau"
       },
       {
-        "file": "US Orl#U00e9ans Loiret.png",
-        "name": "US Orléans Loiret"
+        "file": "US Orl ns Loiret.png",
+        "name": "US Orl ns Loiret"
       },
       {
         "file": "USL Dunkerque.png",
@@ -3854,24 +3858,24 @@
         "name": "1. FC Heidenheim"
       },
       {
-        "file": "1. FC K#U00f6ln.png",
-        "name": "1. FC Köln"
-      },
-      {
         "file": "1. FC Kaiserslautern.png",
         "name": "1. FC Kaiserslautern"
+      },
+      {
+        "file": "1. FC Koln.png",
+        "name": "1. FC Koln"
       },
       {
         "file": "1. FC Magdeburg.png",
         "name": "1. FC Magdeburg"
       },
       {
-        "file": "1. FC N#U00fcrnberg.png",
-        "name": "1. FC Nürnberg"
+        "file": "1. FC Nurnberg.png",
+        "name": "1. FC Nurnberg"
       },
       {
-        "file": "1. FC Saarbr#U00fccken.png",
-        "name": "1. FC Saarbrücken"
+        "file": "1. FC Saarbr ken.png",
+        "name": "1. FC Saarbr ken"
       },
       {
         "file": "1. FC Schweinfurt 05.png",
@@ -3906,8 +3910,8 @@
         "name": "Borussia Dortmund"
       },
       {
-        "file": "Borussia M#U00f6nchengladbach.png",
-        "name": "Borussia Mönchengladbach"
+        "file": "Borussia Monchengladbach.png",
+        "name": "Borussia Monchengladbach"
       },
       {
         "file": "Chemnitzer FC.png",
@@ -3970,8 +3974,8 @@
         "name": "FC Viktoria Colonia"
       },
       {
-        "file": "Fortuna D#U00fcsseldorf.png",
-        "name": "Fortuna Düsseldorf"
+        "file": "Fortuna Dusseldorf.png",
+        "name": "Fortuna Dusseldorf"
       },
       {
         "file": "FSV Zwickau.png",
@@ -4018,12 +4022,12 @@
         "name": "RB Leipzig"
       },
       {
-        "file": "Rot-Wei#U00df Oberhausen.png",
-        "name": "Rot-Weiß Oberhausen"
-      },
-      {
         "file": "Rot-Weiss Essen.png",
         "name": "Rot-Weiss Essen"
+      },
+      {
+        "file": "Rot-Weiss Oberhausen.png",
+        "name": "Rot-Weiss Oberhausen"
       },
       {
         "file": "SC Friburgo.png",
@@ -4034,8 +4038,8 @@
         "name": "SC Paderborn 07"
       },
       {
-        "file": "SC Preu#U00dfen M#U00fcnster.png",
-        "name": "SC Preußen Münster"
+        "file": "SC Preu n Munster.png",
+        "name": "SC Preu n Munster"
       },
       {
         "file": "SC Verl.png",
@@ -4046,8 +4050,8 @@
         "name": "SG Dynamo Dresden"
       },
       {
-        "file": "SG Sonnenhof Gro#U00dfaspach.png",
-        "name": "SG Sonnenhof Großaspach"
+        "file": "SG Sonnenhof Gro spach.png",
+        "name": "SG Sonnenhof Gro spach"
       },
       {
         "file": "SG Wattenscheid 09.png",
@@ -4058,8 +4062,8 @@
         "name": "SpVgg Bayreuth Nuevo Escudo"
       },
       {
-        "file": "SpVgg Greuther F#U00fcrth.png",
-        "name": "SpVgg Greuther Fürth"
+        "file": "SpVgg Greuther Furth.png",
+        "name": "SpVgg Greuther Furth"
       },
       {
         "file": "SpVgg Unterhaching.png",
@@ -4102,20 +4106,20 @@
         "name": "SV Werder Bremen"
       },
       {
-        "file": "T#U00fcrkg#U00fcc#U00fc M#U00fcnchen.png",
-        "name": "Türkgücü München"
-      },
-      {
-        "file": "TSV 1860 M#U00fcnchen.png",
-        "name": "TSV 1860 München"
+        "file": "TSV 1860 Munchen.png",
+        "name": "TSV 1860 Munchen"
       },
       {
         "file": "TSV Havelse.png",
         "name": "TSV Havelse"
       },
       {
-        "file": "VfB L#U00fcbeck.png",
-        "name": "VfB Lübeck"
+        "file": "Turkg u Munchen.png",
+        "name": "Turkg u Munchen"
+      },
+      {
+        "file": "VfB L ck.png",
+        "name": "VfB L ck"
       },
       {
         "file": "VfB Oldenburg.png",
@@ -4130,8 +4134,8 @@
         "name": "VfL Bochum 1848"
       },
       {
-        "file": "VfL Osnabr#U00fcck.png",
-        "name": "VfL Osnabrück"
+        "file": "VfL Osnabr k.png",
+        "name": "VfL Osnabr k"
       },
       {
         "file": "VfL Wolfsburgo.png",
@@ -4169,10 +4173,6 @@
     "code": "GR",
     "flag": "🇬🇷",
     "teams": [
-      {
-        "file": "#U0391ris Thessaloniki FC.png",
-        "name": "Αris Thessaloniki FC"
-      },
       {
         "file": "AE Kifisia FC.png",
         "name": "AE Kifisia FC"
@@ -4286,6 +4286,10 @@
         "name": "PAS Giannina FC"
       },
       {
+        "file": "ris Thessaloniki FC.png",
+        "name": "ris Thessaloniki FC"
+      },
+      {
         "file": "Rodos FC.png",
         "name": "Rodos FC"
       },
@@ -4326,8 +4330,8 @@
         "name": "Catarina FC"
       },
       {
-        "file": "CD Nueva Concepci#U00f3n.png",
-        "name": "CD Nueva Concepción"
+        "file": "CD Nueva Concepcion.png",
+        "name": "CD Nueva Concepcion"
       },
       {
         "file": "Club Deportivo Iztapa.png",
@@ -4350,8 +4354,8 @@
         "name": "CSD Agua Blanca"
       },
       {
-        "file": "CSD Cob#U00e1n Imperial.png",
-        "name": "CSD Cobán Imperial"
+        "file": "CSD Coban Imperial.png",
+        "name": "CSD Coban Imperial"
       },
       {
         "file": "CSD Mictlan Nuevo Escudo.png",
@@ -4362,20 +4366,20 @@
         "name": "CSD Municipal"
       },
       {
-        "file": "CSD Puerto San Jos#U00e9.png",
-        "name": "CSD Puerto San José"
+        "file": "CSD Puerto San Jose.png",
+        "name": "CSD Puerto San Jose"
       },
       {
         "file": "CSD Sacachispas.png",
         "name": "CSD Sacachispas"
       },
       {
-        "file": "CSD Solol#U00e1.png",
-        "name": "CSD Sololá"
+        "file": "CSD Solola.png",
+        "name": "CSD Solola"
       },
       {
-        "file": "CSD Suchitep#U00e9quez.png",
-        "name": "CSD Suchitepéquez"
+        "file": "CSD Suchitepequez.png",
+        "name": "CSD Suchitepequez"
       },
       {
         "file": "Cuilapa FC.png",
@@ -4386,8 +4390,8 @@
         "name": "Deportivo Achuapa"
       },
       {
-        "file": "Deportivo Amatitl#U00e1n.png",
-        "name": "Deportivo Amatitlán"
+        "file": "Deportivo Amatitlan.png",
+        "name": "Deportivo Amatitlan"
       },
       {
         "file": "Deportivo Guastatoya.png",
@@ -4410,8 +4414,8 @@
         "name": "Deportivo San Pedro FC"
       },
       {
-        "file": "Deportivo Siquinal#U00e1.png",
-        "name": "Deportivo Siquinalá"
+        "file": "Deportivo Siquinala.png",
+        "name": "Deportivo Siquinala"
       },
       {
         "file": "Deportivo Xinabajul Huehue.png",
@@ -4422,16 +4426,16 @@
         "name": "Deportivo Zacapa"
       },
       {
-        "file": "FC Santa Luc#U00eda Cotzumalguapa.png",
-        "name": "FC Santa Lucía Cotzumalguapa"
+        "file": "FC Santa Luc Cotzumalguapa.png",
+        "name": "FC Santa Luc Cotzumalguapa"
       },
       {
         "file": "Juventud Pinulteca FC.png",
         "name": "Juventud Pinulteca FC"
       },
       {
-        "file": "Quich#U00e9 FC.png",
-        "name": "Quiché FC"
+        "file": "Quiche FC.png",
+        "name": "Quiche FC"
       },
       {
         "file": "San Juan FC.png",
@@ -4442,8 +4446,8 @@
         "name": "Sanarate FC"
       },
       {
-        "file": "Xelaj#U00fa MC.png",
-        "name": "Xelajú MC"
+        "file": "Xelaju MC.png",
+        "name": "Xelaju MC"
       }
     ]
   },
@@ -4490,12 +4494,12 @@
         "name": "CD Victoria"
       },
       {
-        "file": "Club Deportivo G#U00e9nesis.png",
-        "name": "Club Deportivo Génesis"
+        "file": "Club Deportivo Genesis.png",
+        "name": "Club Deportivo Genesis"
       },
       {
-        "file": "Club Deportivo Marath#U00f3n.png",
-        "name": "Club Deportivo Marathón"
+        "file": "Club Deportivo Marathon.png",
+        "name": "Club Deportivo Marathon"
       },
       {
         "file": "Club Deportivo Olimpia.png",
@@ -4514,8 +4518,8 @@
         "name": "FC Motagua"
       },
       {
-        "file": "G#U00e9nesis PN.png",
-        "name": "Génesis PN"
+        "file": "Genesis FC.png",
+        "name": "Genesis FC"
       },
       {
         "file": "Juticalpa FC.png",
@@ -4534,8 +4538,8 @@
         "name": "Platense FC"
       },
       {
-        "file": "Real CD Espa#U00f1a.png",
-        "name": "Real CD España"
+        "file": "Real CD Espa.png",
+        "name": "Real CD Espa"
       }
     ]
   },
@@ -4602,28 +4606,28 @@
     "flag": "🇭🇺",
     "teams": [
       {
-        "file": "Ferencv#U00e1rosi TC.png",
-        "name": "Ferencvárosi TC"
+        "file": "Ferencvarosi TC.png",
+        "name": "Ferencvarosi TC"
       },
       {
-        "file": "Kecskem#U00e9ti TE.png",
-        "name": "Kecskeméti TE"
+        "file": "Kecskemeti TE.png",
+        "name": "Kecskemeti TE"
       },
       {
-        "file": "Mez#U0151k#U00f6vesdi SE.png",
-        "name": "Mezőkövesdi SE"
+        "file": "Mezokovesdi SE.png",
+        "name": "Mezokovesdi SE"
       },
       {
-        "file": "MOL Feh#U00e9rv#U00e1r FC.png",
-        "name": "MOL Fehérvár FC"
+        "file": "MOL Fehervar FC.png",
+        "name": "MOL Fehervar FC"
       },
       {
         "file": "Paksi FC.png",
         "name": "Paksi FC"
       },
       {
-        "file": "Pusk#U00e1s Akad#U00e9mia FC.png",
-        "name": "Puskás Akadémia FC"
+        "file": "Puskas Akademia FC.png",
+        "name": "Puskas Akademia FC"
       }
     ]
   },
@@ -4634,12 +4638,12 @@
     "flag": "🇮🇸",
     "teams": [
       {
-        "file": "Brei#U00f0ablik.png",
-        "name": "Breiðablik"
+        "file": "Brei lik.png",
+        "name": "Brei lik"
       },
       {
-        "file": "V#U00edkingur Reykjavik.png",
-        "name": "Víkingur Reykjavik"
+        "file": "Vikingur Reykjavik.png",
+        "name": "Vikingur Reykjavik"
       }
     ]
   },
@@ -4738,8 +4742,8 @@
         "name": "Paykan FC"
       },
       {
-        "file": "Pers#U00e9polis FC.png",
-        "name": "Persépolis FC"
+        "file": "Persepolis FC.png",
+        "name": "Persepolis FC"
       },
       {
         "file": "Sanat Naft Abadan FC.png",
@@ -4858,8 +4862,8 @@
         "name": "Sligo Rovers FC"
       },
       {
-        "file": "St Patrick's Athletic FC.png",
-        "name": "St Patrick's Athletic FC"
+        "file": "St Patricks Athletic FC.png",
+        "name": "St Patricks Athletic FC"
       },
       {
         "file": "University College Dublin AFC.png",
@@ -4890,8 +4894,8 @@
         "name": "FC Ashdod"
       },
       {
-        "file": "Hapoel Be'er Sheva FC.png",
-        "name": "Hapoel Be'er Sheva FC"
+        "file": "Hapoel Beer Sheva FC.png",
+        "name": "Hapoel Beer Sheva FC"
       },
       {
         "file": "Hapoel Hadera FC.png",
@@ -5002,8 +5006,8 @@
         "name": "AS Roma"
       },
       {
-        "file": "Ascoli Calcio 1898 FC.png",
-        "name": "Ascoli Calcio 1898 FC"
+        "file": "Ascoli Calcio.png",
+        "name": "Ascoli Calcio"
       },
       {
         "file": "Atalanta Bergamasca Calcio.png",
@@ -5074,8 +5078,8 @@
         "name": "FC Pro Vercelli 1892"
       },
       {
-        "file": "FC S#U00fcdtirol.png",
-        "name": "FC Südtirol"
+        "file": "FC S tirol.png",
+        "name": "FC S tirol"
       },
       {
         "file": "FC Trapani 1905.png",
@@ -5222,6 +5226,10 @@
         "name": "US Sassuolo"
       },
       {
+        "file": "Venezia FC 2.png",
+        "name": "Venezia FC 2"
+      },
+      {
         "file": "Venezia FC.png",
         "name": "Venezia FC"
       },
@@ -5354,8 +5362,8 @@
         "name": "Iwate Grulla Morioka"
       },
       {
-        "file": "J#U00fabilo Iwata.png",
-        "name": "Júbilo Iwata"
+        "file": "J ilo Iwata.png",
+        "name": "J ilo Iwata"
       },
       {
         "file": "JEF United Chiba.png",
@@ -5446,10 +5454,6 @@
         "name": "Urawa Red Diamonds"
       },
       {
-        "file": "V-Varen Nagasaki.png",
-        "name": "V-Varen Nagasaki"
-      },
-      {
         "file": "Vegalta Sendai.png",
         "name": "Vegalta Sendai"
       },
@@ -5462,8 +5466,12 @@
         "name": "Vissel Kobe"
       },
       {
-        "file": "Yokohama F#U00b7Marinos.png",
-        "name": "Yokohama F·Marinos"
+        "file": "V-Varen Nagasaki.png",
+        "name": "V-Varen Nagasaki"
+      },
+      {
+        "file": "Yokohama F Marinos.png",
+        "name": "Yokohama F Marinos"
       },
       {
         "file": "Yokohama FC.png",
@@ -5582,12 +5590,12 @@
     "flag": "🇱🇹",
     "teams": [
       {
-        "file": "FK #U017dalgiris.png",
-        "name": "FK Žalgiris"
+        "file": "FK Kauno lgiris.png",
+        "name": "FK Kauno lgiris"
       },
       {
-        "file": "FK Kauno #U017dalgiris.png",
-        "name": "FK Kauno Žalgiris"
+        "file": "FK lgiris.png",
+        "name": "FK lgiris"
       }
     ]
   },
@@ -5698,10 +5706,6 @@
         "name": "Alebrijes de Oaxaca"
       },
       {
-        "file": "Atl#U00e9tico de San Luis.png",
-        "name": "Atlético de San Luis"
-      },
-      {
         "file": "Atlante FC.png",
         "name": "Atlante FC"
       },
@@ -5710,8 +5714,12 @@
         "name": "Atlas FC"
       },
       {
-        "file": "Canc#U00fan FC.png",
-        "name": "Cancún FC"
+        "file": "Atletico de San Luis.png",
+        "name": "Atletico de San Luis"
+      },
+      {
+        "file": "Cancun FC.png",
+        "name": "Cancun FC"
       },
       {
         "file": "CD Inter Playa del Carmen.png",
@@ -5722,52 +5730,52 @@
         "name": "CD Irapuato"
       },
       {
-        "file": "CD Tapat#U00edo.png",
-        "name": "CD Tapatío"
+        "file": "CD Tapatio.png",
+        "name": "CD Tapatio"
       },
       {
         "file": "Cimarrones de Sonora FC.png",
         "name": "Cimarrones de Sonora FC"
       },
       {
-        "file": "Club Am#U00e9rica.png",
-        "name": "Club América"
+        "file": "Club America.png",
+        "name": "Club America"
       },
       {
-        "file": "Club Atl#U00e9tico La Paz.png",
-        "name": "Club Atlético La Paz"
+        "file": "Club Atletico La Paz.png",
+        "name": "Club Atletico La Paz"
       },
       {
-        "file": "Club Atl#U00e9tico Morelia.png",
-        "name": "Club Atlético Morelia"
+        "file": "Club Atletico Morelia.png",
+        "name": "Club Atletico Morelia"
       },
       {
         "file": "Club Celaya FC.png",
         "name": "Club Celaya FC"
       },
       {
-        "file": "Club de F#U00fatbol Ajolotes.png",
-        "name": "Club de Fútbol Ajolotes"
+        "file": "Club de Futbol Ajolotes.png",
+        "name": "Club de Futbol Ajolotes"
       },
       {
-        "file": "Club de F#U00fatbol Cruz Azul.png",
-        "name": "Club de Fútbol Cruz Azul"
+        "file": "Club de Futbol Cruz Azul.png",
+        "name": "Club de Futbol Cruz Azul"
       },
       {
-        "file": "Club de F#U00fatbol Monterrey.png",
-        "name": "Club de Fútbol Monterrey"
+        "file": "Club de Futbol Monterrey.png",
+        "name": "Club de Futbol Monterrey"
       },
       {
-        "file": "Club de F#U00fatbol Pachuca.png",
-        "name": "Club de Fútbol Pachuca"
+        "file": "Club de Futbol Pachuca.png",
+        "name": "Club de Futbol Pachuca"
       },
       {
         "file": "Club Deportivo Guadalajara.png",
         "name": "Club Deportivo Guadalajara"
       },
       {
-        "file": "Club Le#U00f3n.png",
-        "name": "Club León"
+        "file": "Club Leon.png",
+        "name": "Club Leon"
       },
       {
         "file": "Club Necaxa.png",
@@ -5806,8 +5814,8 @@
         "name": "Dorados de Sinaloa"
       },
       {
-        "file": "F#U00fatbol Club Ju#U00e1rez.png",
-        "name": "Fútbol Club Juárez"
+        "file": "Futbol Club Juarez.png",
+        "name": "Futbol Club Juarez"
       },
       {
         "file": "Gavilanes FC Matamoros.png",
@@ -5830,8 +5838,8 @@
         "name": "Lobos ULMX"
       },
       {
-        "file": "Mazatl#U00e1n FC.png",
-        "name": "Mazatlán FC"
+        "file": "Mazatlan FC.png",
+        "name": "Mazatlan FC"
       },
       {
         "file": "Mineros de Zacatecas.png",
@@ -5842,8 +5850,8 @@
         "name": "Pumas UNAM"
       },
       {
-        "file": "Quer#U00e9taro FC.png",
-        "name": "Querétaro FC"
+        "file": "Queretaro FC.png",
+        "name": "Queretaro FC"
       },
       {
         "file": "Reboceros de la Piedad.png",
@@ -5854,8 +5862,8 @@
         "name": "Tecos UAG"
       },
       {
-        "file": "Tepatitl#U00e1n FC.png",
-        "name": "Tepatitlán FC"
+        "file": "Tepatitlan FC.png",
+        "name": "Tepatitlan FC"
       },
       {
         "file": "Tigres UANL.png",
@@ -5882,8 +5890,8 @@
     "flag": "🇲🇩",
     "teams": [
       {
-        "file": "FC Petrocub H#U00eence#U0219ti.png",
-        "name": "FC Petrocub Hîncești"
+        "file": "FC Petrocub Hincesti.png",
+        "name": "FC Petrocub Hincesti"
       },
       {
         "file": "FC Sheriff Tiraspol.png",
@@ -5898,8 +5906,8 @@
     "flag": "🇲🇪",
     "teams": [
       {
-        "file": "FK De#U010di#U0107.png",
-        "name": "FK Dečić"
+        "file": "FK Decic.png",
+        "name": "FK Decic"
       }
     ]
   },
@@ -6130,8 +6138,8 @@
         "name": "ART Jalapa"
       },
       {
-        "file": "Cacique Diriang#U00e9n FC.png",
-        "name": "Cacique Diriangén FC"
+        "file": "Cacique Diriangen FC.png",
+        "name": "Cacique Diriangen FC"
       },
       {
         "file": "CD Junior.png",
@@ -6150,8 +6158,8 @@
         "name": "Chinandega FC"
       },
       {
-        "file": "Club Sport S#U00e9baco.png",
-        "name": "Club Sport Sébaco"
+        "file": "Club Sport S co.png",
+        "name": "Club Sport S co"
       },
       {
         "file": "Juventus Managua FC Nuevo Escudo.png",
@@ -6174,8 +6182,8 @@
         "name": "Rancho Santana FC"
       },
       {
-        "file": "Real Estel#U00ed FC.png",
-        "name": "Real Estelí FC"
+        "file": "Real Esteli FC.png",
+        "name": "Real Esteli FC"
       },
       {
         "file": "Real Madriz FC.png",
@@ -6198,8 +6206,8 @@
         "name": "FK Vardar"
       },
       {
-        "file": "KF Shk#U00ebndija.png",
-        "name": "KF Shkëndija"
+        "file": "KF Shkendija.png",
+        "name": "KF Shkendija"
       },
       {
         "file": "KF Shkupi.png",
@@ -6230,8 +6238,8 @@
         "name": "Aalesunds FK"
       },
       {
-        "file": "FK Bod#U00f8-Glimt.png",
-        "name": "FK Bodø-Glimt"
+        "file": "FK Bodo-Glimt.png",
+        "name": "FK Bodo-Glimt"
       },
       {
         "file": "FK Haugesund.png",
@@ -6262,12 +6270,12 @@
         "name": "Kristiansund BK"
       },
       {
-        "file": "Lillestr#U00f8m SK.png",
-        "name": "Lillestrøm SK"
+        "file": "Lillestrom SK.png",
+        "name": "Lillestrom SK"
       },
       {
-        "file": "Mj#U00f8ndalen IF Fotball.png",
-        "name": "Mjøndalen IF Fotball"
+        "file": "Mjondalen IF Fotball.png",
+        "name": "Mjondalen IF Fotball"
       },
       {
         "file": "Molde FK.png",
@@ -6298,20 +6306,20 @@
         "name": "Sogndal Fotball"
       },
       {
-        "file": "Stab#U00e6k Fotball.png",
-        "name": "Stabæk Fotball"
+        "file": "Stabaek Fotball.png",
+        "name": "Stabaek Fotball"
       },
       {
-        "file": "Str#U00f8msgodset Toppfotball.png",
-        "name": "Strømsgodset Toppfotball"
+        "file": "Stromsgodset Toppfotball.png",
+        "name": "Stromsgodset Toppfotball"
       },
       {
-        "file": "Troms#U00f8 IL.png",
-        "name": "Tromsø IL"
+        "file": "Tromso IL.png",
+        "name": "Tromso IL"
       },
       {
-        "file": "V#U00e5lerenga Fotball.png",
-        "name": "Vålerenga Fotball"
+        "file": "Valerenga Fotball.png",
+        "name": "Valerenga Fotball"
       },
       {
         "file": "Viking FK.png",
@@ -6326,8 +6334,8 @@
     "flag": "🇵🇦",
     "teams": [
       {
-        "file": "#U00c1guilas de la U.png",
-        "name": "Águilas de la U"
+        "file": "Aguilas de la U.png",
+        "name": "Aguilas de la U"
       },
       {
         "file": "Alianza FC.png",
@@ -6354,28 +6362,28 @@
         "name": "Chorrillo FC"
       },
       {
-        "file": "Club Atl#U00e9tico Independiente.png",
-        "name": "Club Atlético Independiente"
+        "file": "Club Atletico Independiente.png",
+        "name": "Club Atletico Independiente"
       },
       {
         "file": "Club Deportivo Universitario.png",
         "name": "Club Deportivo Universitario"
       },
       {
-        "file": "Col#U00f3n C-3 FC.png",
-        "name": "Colón C-3 FC"
+        "file": "Colon C-3 FC.png",
+        "name": "Colon C-3 FC"
       },
       {
-        "file": "Deportivo #U00c1rabe Unido.png",
-        "name": "Deportivo Árabe Unido"
+        "file": "Deportivo Arabe Unido.png",
+        "name": "Deportivo Arabe Unido"
       },
       {
         "file": "Herrera FC.png",
         "name": "Herrera FC"
       },
       {
-        "file": "Mario M#U00e9ndez FC.png",
-        "name": "Mario Méndez FC"
+        "file": "Mario Mendez FC.png",
+        "name": "Mario Mendez FC"
       },
       {
         "file": "Panama City FC.png",
@@ -6390,16 +6398,16 @@
         "name": "San Francisco FC"
       },
       {
-        "file": "San Mart#U00edn FC.png",
-        "name": "San Martín FC"
+        "file": "San Martin FC.png",
+        "name": "San Martin FC"
       },
       {
-        "file": "SD Atl#U00e9tico Nacional.png",
-        "name": "SD Atlético Nacional"
+        "file": "SD Atletico Nacional.png",
+        "name": "SD Atletico Nacional"
       },
       {
-        "file": "SD Panam#U00e1 Oeste.png",
-        "name": "SD Panamá Oeste"
+        "file": "SD Panama Oeste.png",
+        "name": "SD Panama Oeste"
       },
       {
         "file": "Sporting San Miguelito.png",
@@ -6418,12 +6426,12 @@
         "name": "UMECIT FC"
       },
       {
-        "file": "Uni#U00f3n Cocl#U00e9 FC.png",
-        "name": "Unión Coclé FC"
+        "file": "Union Cocle FC.png",
+        "name": "Union Cocle FC"
       },
       {
-        "file": "Universidad Latina de Panam#U00e1.png",
-        "name": "Universidad Latina de Panamá"
+        "file": "Universidad Latina de Panama.png",
+        "name": "Universidad Latina de Panama"
       },
       {
         "file": "Veraguas United FC.png",
@@ -6462,32 +6470,32 @@
         "name": "Club 12 de Junio"
       },
       {
-        "file": "Club 12 de Octubre de Itaugu#U00e1.png",
-        "name": "Club 12 de Octubre de Itauguá"
+        "file": "Club 12 de Octubre de Itaugua.png",
+        "name": "Club 12 de Octubre de Itaugua"
       },
       {
         "file": "Club 24 de Setiembre Nuevo Escudo.png",
         "name": "Club 24 de Setiembre Nuevo Escudo"
       },
       {
-        "file": "Club Atl#U00e9tico 3 de Febrero.png",
-        "name": "Club Atlético 3 de Febrero"
+        "file": "Club Atletico 3 de Febrero.png",
+        "name": "Club Atletico 3 de Febrero"
       },
       {
-        "file": "Club Atl#U00e9tico River Plate.png",
-        "name": "Club Atlético River Plate"
+        "file": "Club Atletico River Plate.png",
+        "name": "Club Atletico River Plate"
       },
       {
-        "file": "Club Atl#U00e9tico Tembetary.png",
-        "name": "Club Atlético Tembetary"
+        "file": "Club Atletico Tembetary.png",
+        "name": "Club Atletico Tembetary"
       },
       {
-        "file": "Club Cerro Porte#U00f1o.png",
-        "name": "Club Cerro Porteño"
+        "file": "Club Cerro Porteno.png",
+        "name": "Club Cerro Porteno"
       },
       {
-        "file": "Club Deportivo Capiat#U00e1.png",
-        "name": "Club Deportivo Capiatá"
+        "file": "Club Deportivo Capiata.png",
+        "name": "Club Deportivo Capiata"
       },
       {
         "file": "Club Deportivo Santani.png",
@@ -6502,20 +6510,20 @@
         "name": "Club General Caballero"
       },
       {
-        "file": "Club General D#U00edaz.png",
-        "name": "Club General Díaz"
+        "file": "Club General D z.png",
+        "name": "Club General D z"
       },
       {
-        "file": "Club General Mart#U00edn Ledesma.png",
-        "name": "Club General Martín Ledesma"
+        "file": "Club General Martin Ledesma.png",
+        "name": "Club General Martin Ledesma"
       },
       {
-        "file": "Club Guaran#U00ed de Trinidad.png",
-        "name": "Club Guaraní de Trinidad"
+        "file": "Club Guarani de Trinidad.png",
+        "name": "Club Guarani de Trinidad"
       },
       {
-        "file": "Club Guaran#U00ed.png",
-        "name": "Club Guaraní"
+        "file": "Club Guarani.png",
+        "name": "Club Guarani"
       },
       {
         "file": "Club Libertad.png",
@@ -6530,12 +6538,12 @@
         "name": "Club Olimpia"
       },
       {
-        "file": "Club Rubio #U00d1u.png",
-        "name": "Club Rubio Ñu"
+        "file": "Club Rubio Nu.png",
+        "name": "Club Rubio Nu"
       },
       {
-        "file": "Club Sol de Am#U00e9rica.png",
-        "name": "Club Sol de América"
+        "file": "Club Sol de America.png",
+        "name": "Club Sol de America"
       },
       {
         "file": "Club Sportivo 2 de Mayo.png",
@@ -6546,16 +6554,16 @@
         "name": "Club Sportivo Ameliano"
       },
       {
-        "file": "Club Sportivo Carapegu#U00e1.png",
-        "name": "Club Sportivo Carapeguá"
+        "file": "Club Sportivo Carapegua.png",
+        "name": "Club Sportivo Carapegua"
       },
       {
-        "file": "Club Sportivo Ite#U00f1o.png",
-        "name": "Club Sportivo Iteño"
+        "file": "Club Sportivo Iteno.png",
+        "name": "Club Sportivo Iteno"
       },
       {
-        "file": "Club Sportivo Luque#U00f1o.png",
-        "name": "Club Sportivo Luqueño"
+        "file": "Club Sportivo Luqueno.png",
+        "name": "Club Sportivo Luqueno"
       },
       {
         "file": "Club Sportivo San Lorenzo.png",
@@ -6566,12 +6574,12 @@
         "name": "Club Sportivo Trinidense"
       },
       {
-        "file": "Encarnaci#U00f3n FC.png",
-        "name": "Encarnación FC"
+        "file": "Encarnacion FC.png",
+        "name": "Encarnacion FC"
       },
       {
-        "file": "Guaire#U00f1a FC.png",
-        "name": "Guaireña FC"
+        "file": "Guaire FC.png",
+        "name": "Guaire FC"
       },
       {
         "file": "Independiente FBC.png",
@@ -6610,16 +6618,16 @@
         "name": "Alianza UDH"
       },
       {
-        "file": "Asociaci#U00f3n Deportiva Agropecuaria.png",
-        "name": "Asociación Deportiva Agropecuaria"
+        "file": "Asociacion Deportiva Agropecuaria.png",
+        "name": "Asociacion Deportiva Agropecuaria"
       },
       {
-        "file": "Asociaci#U00f3n Deportiva Tarma.png",
-        "name": "Asociación Deportiva Tarma"
+        "file": "Asociacion Deportiva Tarma.png",
+        "name": "Asociacion Deportiva Tarma"
       },
       {
-        "file": "Atl#U00e9tico Grau.png",
-        "name": "Atlético Grau"
+        "file": "Atletico Grau.png",
+        "name": "Atletico Grau"
       },
       {
         "file": "Ayacucho FC.png",
@@ -6638,8 +6646,8 @@
         "name": "CD Comerciantes Unidos"
       },
       {
-        "file": "CD Credicoop San Rom#U00e1n.png",
-        "name": "CD Credicoop San Román"
+        "file": "CD Credicoop San Roman.png",
+        "name": "CD Credicoop San Roman"
       },
       {
         "file": "CD Defensor La Bocana.png",
@@ -6678,12 +6686,12 @@
         "name": "Club Deportivo Sport Loreto"
       },
       {
-        "file": "Club Deportivo Uni#U00f3n Comercio.png",
-        "name": "Club Deportivo Unión Comercio"
+        "file": "Club Deportivo Union Comercio.png",
+        "name": "Club Deportivo Union Comercio"
       },
       {
-        "file": "Club Sport Alianza Atl#U00e9tico Sullana.png",
-        "name": "Club Sport Alianza Atlético Sullana"
+        "file": "Club Sport Alianza Atletico Sullana.png",
+        "name": "Club Sport Alianza Atletico Sullana"
       },
       {
         "file": "Club Sport Boys Association.png",
@@ -6694,8 +6702,8 @@
         "name": "Club Sport Rosario"
       },
       {
-        "file": "Club Sport Uni#U00f3n Huaral.png",
-        "name": "Club Sport Unión Huaral"
+        "file": "Club Sport Union Huaral.png",
+        "name": "Club Sport Union Huaral"
       },
       {
         "file": "Club Sport Victoria.png",
@@ -6710,8 +6718,8 @@
         "name": "Club Sportivo Cienciano"
       },
       {
-        "file": "Club Universidad T#U00e9cnica de Cajamarca.png",
-        "name": "Club Universidad Técnica de Cajamarca"
+        "file": "Club Universidad T nica de Cajamarca.png",
+        "name": "Club Universidad T nica de Cajamarca"
       },
       {
         "file": "Club Universitario de Deportes.png",
@@ -6722,8 +6730,8 @@
         "name": "Comerciantes FC"
       },
       {
-        "file": "CSD Le#U00f3n de Hu#U00e1nuco.png",
-        "name": "CSD León de Huánuco"
+        "file": "CSD Leon de Huanuco.png",
+        "name": "CSD Leon de Huanuco"
       },
       {
         "file": "Cusco FC.png",
@@ -6738,10 +6746,6 @@
         "name": "Deportivo Llacuabamba"
       },
       {
-        "file": "F#U00fatbol Club Cajamarca.png",
-        "name": "Fútbol Club Cajamarca"
-      },
-      {
         "file": "FBC Melgar.png",
         "name": "FBC Melgar"
       },
@@ -6752,6 +6756,10 @@
       {
         "file": "FC San Marcos.png",
         "name": "FC San Marcos"
+      },
+      {
+        "file": "Futbol Club Cajamarca.png",
+        "name": "Futbol Club Cajamarca"
       },
       {
         "file": "Juan Aurich.png",
@@ -6782,8 +6790,8 @@
         "name": "Sport Huancayo"
       },
       {
-        "file": "Universidad C#U00e9sar Vallejo CF.png",
-        "name": "Universidad César Vallejo CF"
+        "file": "Universidad Cesar Vallejo CF.png",
+        "name": "Universidad Cesar Vallejo CF"
       }
     ]
   },
@@ -6810,14 +6818,6 @@
     "flag": "🇵🇱",
     "teams": [
       {
-        "file": "#U0141KS #U0141#U00f3d#U017a.png",
-        "name": "ŁKS Łódź"
-      },
-      {
-        "file": "#U015al#U0105sk Wroc#U0142aw.png",
-        "name": "Śląsk Wrocław"
-      },
-      {
         "file": "Arka Gdynia.png",
         "name": "Arka Gdynia"
       },
@@ -6830,48 +6830,52 @@
         "name": "FKS Stal Mielec"
       },
       {
-        "file": "G#U00f3rnik Zabrze.png",
-        "name": "Górnik Zabrze"
-      },
-      {
-        "file": "GKS G#U00f3rnik #U0141#U0119czna.png",
-        "name": "GKS Górnik Łęczna"
+        "file": "GKS Gornik L zna.png",
+        "name": "GKS Gornik L zna"
       },
       {
         "file": "GKS Katowice.png",
         "name": "GKS Katowice"
       },
       {
-        "file": "Jagiellonia Bia#U0142ystok.png",
-        "name": "Jagiellonia Białystok"
+        "file": "Gornik Zabrze.png",
+        "name": "Gornik Zabrze"
+      },
+      {
+        "file": "Jagiellonia Bialystok.png",
+        "name": "Jagiellonia Bialystok"
       },
       {
         "file": "Korona Kielce.png",
         "name": "Korona Kielce"
       },
       {
-        "file": "Lech Pozna#U0144.png",
-        "name": "Lech Poznań"
+        "file": "Lech Poznan.png",
+        "name": "Lech Poznan"
       },
       {
-        "file": "Lechia Gda#U0144sk.png",
-        "name": "Lechia Gdańsk"
+        "file": "Lechia Gdansk.png",
+        "name": "Lechia Gdansk"
       },
       {
         "file": "Legia Warszawa.png",
         "name": "Legia Warszawa"
       },
       {
-        "file": "Mied#U017a Legnica.png",
-        "name": "Miedź Legnica"
+        "file": "LKS L z.png",
+        "name": "LKS L z"
+      },
+      {
+        "file": "Miedz Legnica.png",
+        "name": "Miedz Legnica"
       },
       {
         "file": "MKS Cracovia.png",
         "name": "MKS Cracovia"
       },
       {
-        "file": "MKS Puszcza Niepo#U0142omice.png",
-        "name": "MKS Puszcza Niepołomice"
+        "file": "MKS Puszcza Niepolomice.png",
+        "name": "MKS Puszcza Niepolomice"
       },
       {
         "file": "Motor Lublin.png",
@@ -6882,52 +6886,56 @@
         "name": "Piast Gliwice"
       },
       {
-        "file": "Podbeskidzie Bielsko-Bia#U0142a.png",
-        "name": "Podbeskidzie Bielsko-Biała"
+        "file": "Podbeskidzie Bielsko-Bia.png",
+        "name": "Podbeskidzie Bielsko-Bia"
       },
       {
-        "file": "Pogo#U0144 Szczecin.png",
-        "name": "Pogoń Szczecin"
+        "file": "Pogon Szczecin.png",
+        "name": "Pogon Szczecin"
       },
       {
-        "file": "Rak#U00f3w Cz#U0119stochowa.png",
-        "name": "Raków Częstochowa"
+        "file": "Rakow Czestochowa.png",
+        "name": "Rakow Czestochowa"
       },
       {
         "file": "RKS Radomiak Radom.png",
         "name": "RKS Radomiak Radom"
       },
       {
-        "file": "Ruch Chorz#U00f3w.png",
-        "name": "Ruch Chorzów"
+        "file": "Ruch Chorzow.png",
+        "name": "Ruch Chorzow"
       },
       {
-        "file": "Sandecja Nowy S#U0105cz.png",
-        "name": "Sandecja Nowy Sącz"
+        "file": "Sandecja Nowy S z.png",
+        "name": "Sandecja Nowy S z"
+      },
+      {
+        "file": "Slask Wroc w.png",
+        "name": "Slask Wroc w"
       },
       {
         "file": "Warta Poznan.png",
         "name": "Warta Poznan"
       },
       {
-        "file": "Widzew #U0141#U00f3d#U017a.png",
-        "name": "Widzew Łódź"
+        "file": "Widzew L z.png",
+        "name": "Widzew L z"
       },
       {
-        "file": "Wis#U0142a Krak#U00f3w SA.png",
-        "name": "Wisła Kraków SA"
+        "file": "Wis Krakow SA.png",
+        "name": "Wis Krakow SA"
       },
       {
-        "file": "Wis#U0142a P#U0142ock.png",
-        "name": "Wisła Płock"
+        "file": "Wis Plock.png",
+        "name": "Wis Plock"
       },
       {
-        "file": "Zag#U0142#U0119bie Lubin SA.png",
-        "name": "Zagłębie Lubin SA"
+        "file": "Zagl ie Lubin SA.png",
+        "name": "Zagl ie Lubin SA"
       },
       {
-        "file": "Zag#U0142#U0119bie Sosnowiec.png",
-        "name": "Zagłębie Sosnowiec"
+        "file": "Zagl ie Sosnowiec.png",
+        "name": "Zagl ie Sosnowiec"
       }
     ]
   },
@@ -6938,16 +6946,16 @@
     "flag": "🇵🇹",
     "teams": [
       {
-        "file": "Acad#U00e9mico de Viseu FC.png",
-        "name": "Académico de Viseu FC"
+        "file": "Academico de Viseu FC.png",
+        "name": "Academico de Viseu FC"
       },
       {
         "file": "Amora FC.png",
         "name": "Amora FC"
       },
       {
-        "file": "Associa#U00e7#U00e3o Acad#U00e9mica de Coimbra.png",
-        "name": "Associação Académica de Coimbra"
+        "file": "Associacao Academica de Coimbra.png",
+        "name": "Associacao Academica de Coimbra"
       },
       {
         "file": "AVS Futebol SAD.png",
@@ -6962,8 +6970,8 @@
         "name": "Boavista FC"
       },
       {
-        "file": "Casa Pia Atl#U00e9tico Clube.png",
-        "name": "Casa Pia Atlético Clube"
+        "file": "Casa Pia Atletico Clube.png",
+        "name": "Casa Pia Atletico Clube"
       },
       {
         "file": "CD Cova da Piedade.png",
@@ -6990,8 +6998,8 @@
         "name": "CF Estrela da Amadora"
       },
       {
-        "file": "Club Sport Mar#U00edtimo.png",
-        "name": "Club Sport Marítimo"
+        "file": "Club Sport Maritimo.png",
+        "name": "Club Sport Maritimo"
       },
       {
         "file": "Clube Desportivo Feirense.png",
@@ -7022,16 +7030,16 @@
         "name": "FC Barreirense"
       },
       {
-        "file": "FC Famalic#U00e3o.png",
-        "name": "FC Famalicão"
+        "file": "FC Famalicao.png",
+        "name": "FC Famalicao"
       },
       {
         "file": "FC Felgueiras.png",
         "name": "FC Felgueiras"
       },
       {
-        "file": "FC Pa#U00e7os de Ferreira.png",
-        "name": "FC Paços de Ferreira"
+        "file": "FC Pacos de Ferreira.png",
+        "name": "FC Pacos de Ferreira"
       },
       {
         "file": "FC Penafiel.png",
@@ -7062,8 +7070,8 @@
         "name": "Grupo Desportivo de Chaves"
       },
       {
-        "file": "Leix#U00f5es SC.png",
-        "name": "Leixões SC"
+        "file": "Leix s SC.png",
+        "name": "Leix s SC"
       },
       {
         "file": "Moreirense Futebol Clube.png",
@@ -7090,8 +7098,8 @@
         "name": "Rio Ave FC"
       },
       {
-        "file": "SC Covilh#U00e3.png",
-        "name": "SC Covilhã"
+        "file": "SC Covilha.png",
+        "name": "SC Covilha"
       },
       {
         "file": "SC Farense.png",
@@ -7130,8 +7138,8 @@
         "name": "UD Oliveirense"
       },
       {
-        "file": "Uni#U00e3o Desportiva de Leiria.png",
-        "name": "União Desportiva de Leiria"
+        "file": "Uniao Desportiva de Leiria.png",
+        "name": "Uniao Desportiva de Leiria"
       },
       {
         "file": "Varzim SC.png",
@@ -7142,12 +7150,12 @@
         "name": "Vilaverdense FC"
       },
       {
-        "file": "Vit#U00f3ria Sport Clube.png",
-        "name": "Vitória Sport Clube"
-      },
-      {
         "file": "Vitoria Futebol Clube.png",
         "name": "Vitoria Futebol Clube"
+      },
+      {
+        "file": "Vitoria Sport Clube.png",
+        "name": "Vitoria Sport Clube"
       }
     ]
   },
@@ -7158,8 +7166,8 @@
     "flag": "🇵🇷",
     "teams": [
       {
-        "file": "Bayam#U00f3n FC.png",
-        "name": "Bayamón FC"
+        "file": "Bayamon FC.png",
+        "name": "Bayamon FC"
       },
       {
         "file": "Metropolitan FA.png",
@@ -7242,16 +7250,16 @@
     "flag": "🇷🇴",
     "teams": [
       {
-        "file": "AFC Chindia T#U00e2rgovi#U0219te.png",
-        "name": "AFC Chindia Târgoviște"
+        "file": "AFC Chindia Targoviste.png",
+        "name": "AFC Chindia Targoviste"
       },
       {
         "file": "AFC Unirea Slobozia.png",
         "name": "AFC Unirea Slobozia"
       },
       {
-        "file": "ASC O#U021belul Gala#U021bi.png",
-        "name": "ASC Oțelul Galați"
+        "file": "ASC O lul Galati.png",
+        "name": "ASC O lul Galati"
       },
       {
         "file": "CFR Cluj.png",
@@ -7262,8 +7270,8 @@
         "name": "Clubul Sportiv Mioveni"
       },
       {
-        "file": "CS Gaz Metan Media#U0219.png",
-        "name": "CS Gaz Metan Mediaș"
+        "file": "CS Gaz Metan Medias.png",
+        "name": "CS Gaz Metan Medias"
       },
       {
         "file": "CS Universitatea Craiova.png",
@@ -7274,16 +7282,16 @@
         "name": "FC Academica Clinceni"
       },
       {
-        "file": "FC Arge#U0219 Pite#U0219ti.png",
-        "name": "FC Argeș Pitești"
+        "file": "FC Arges Pitesti.png",
+        "name": "FC Arges Pitesti"
       },
       {
         "file": "FC Astra Giurgiu.png",
         "name": "FC Astra Giurgiu"
       },
       {
-        "file": "FC Boto#U0219ani.png",
-        "name": "FC Botoșani"
+        "file": "FC Boto ni.png",
+        "name": "FC Boto ni"
       },
       {
         "file": "FC Dinamo de Bucarest.png",
@@ -7294,8 +7302,8 @@
         "name": "FC Farul Constanta"
       },
       {
-        "file": "FC Gloria Buz#U0103u.png",
-        "name": "FC Gloria Buzău"
+        "file": "FC Gloria Buzau.png",
+        "name": "FC Gloria Buzau"
       },
       {
         "file": "FC Hermannstadt.png",
@@ -7306,12 +7314,12 @@
         "name": "FC Petrolul Ploiesti"
       },
       {
-        "file": "FC Politehnica Ia#U0219i.png",
-        "name": "FC Politehnica Iași"
+        "file": "FC Politehnica Iasi.png",
+        "name": "FC Politehnica Iasi"
       },
       {
-        "file": "FC Rapid Bucure#U0219ti.png",
-        "name": "FC Rapid București"
+        "file": "FC Rapid Bucuresti.png",
+        "name": "FC Rapid Bucuresti"
       },
       {
         "file": "FC Universitatea Cluj.png",
@@ -7474,8 +7482,8 @@
         "name": "FC Rotor Volgograd"
       },
       {
-        "file": "FC Rubin Kaz#U00e1n.png",
-        "name": "FC Rubin Kazán"
+        "file": "FC Rubin Kazan.png",
+        "name": "FC Rubin Kazan"
       },
       {
         "file": "FC Shinnik Yaroslavl.png",
@@ -7506,8 +7514,8 @@
         "name": "FC Tom Tomsk"
       },
       {
-        "file": "FC Torpedo Mosc#U00fa.png",
-        "name": "FC Torpedo Moscú"
+        "file": "FC Torpedo Moscu.png",
+        "name": "FC Torpedo Moscu"
       },
       {
         "file": "FC Tosno.png",
@@ -7570,8 +7578,8 @@
         "name": "Abha Club Nuevo Escudo"
       },
       {
-        "file": "Al#U2013Shabab FC.png",
-        "name": "Al–Shabab FC"
+        "file": "Al Shabab FC.png",
+        "name": "Al Shabab FC"
       },
       {
         "file": "Al-Adalah FC.png",
@@ -7754,24 +7762,20 @@
     "flag": "🇷🇸",
     "teams": [
       {
-        "file": "FK #U010cukari#U010dki.png",
-        "name": "FK Čukarički"
-      },
-      {
-        "file": "FK #U017delezni#U010dar Pan#U010devo.png",
-        "name": "FK Železničar Pančevo"
-      },
-      {
         "file": "FK Crvena Zvezda.png",
         "name": "FK Crvena Zvezda"
+      },
+      {
+        "file": "FK Cukaricki.png",
+        "name": "FK Cukaricki"
       },
       {
         "file": "FK IMT.png",
         "name": "FK IMT"
       },
       {
-        "file": "FK In#U0111ija.png",
-        "name": "FK Inđija"
+        "file": "FK Indija.png",
+        "name": "FK Indija"
       },
       {
         "file": "FK Javor Ivanjica.png",
@@ -7782,24 +7786,28 @@
         "name": "FK Kolubara"
       },
       {
-        "file": "FK Ma#U010dva #U0160abac.png",
-        "name": "FK Mačva Šabac"
+        "file": "FK lezni r Pan vo.png",
+        "name": "FK lezni r Pan vo"
+      },
+      {
+        "file": "FK Macva ac.png",
+        "name": "FK Macva ac"
       },
       {
         "file": "FK Metalac.png",
         "name": "FK Metalac"
       },
       {
-        "file": "FK Mladost Lu#U010dani.png",
-        "name": "FK Mladost Lučani"
+        "file": "FK Mladost Lu ni.png",
+        "name": "FK Mladost Lu ni"
       },
       {
         "file": "FK Mladost Novi Sad.png",
         "name": "FK Mladost Novi Sad"
       },
       {
-        "file": "FK Napredak Kru#U0161evac.png",
-        "name": "FK Napredak Kruševac"
+        "file": "FK Napredak Kru vac.png",
+        "name": "FK Napredak Kru vac"
       },
       {
         "file": "FK Novi Pazar.png",
@@ -7818,12 +7826,12 @@
         "name": "FK Rad"
       },
       {
-        "file": "FK Radni#U010dki 1923.png",
-        "name": "FK Radnički 1923"
+        "file": "FK Radnicki 1923.png",
+        "name": "FK Radnicki 1923"
       },
       {
-        "file": "FK Radni#U010dki Ni#U0161.png",
-        "name": "FK Radnički Niš"
+        "file": "FK Radnicki Nis.png",
+        "name": "FK Radnicki Nis"
       },
       {
         "file": "FK Radnik Surdulica.png",
@@ -7838,8 +7846,8 @@
         "name": "FK TSC"
       },
       {
-        "file": "FK Vo#U017edovac.png",
-        "name": "FK Voždovac"
+        "file": "FK Vo ovac.png",
+        "name": "FK Vo ovac"
       },
       {
         "file": "FK Vojvodina.png",
@@ -7854,16 +7862,16 @@
         "name": "Jedinstvo Ub"
       },
       {
-        "file": "OFK Ba#U010dka.png",
-        "name": "OFK Bačka"
+        "file": "OFK Backa.png",
+        "name": "OFK Backa"
       },
       {
         "file": "OFK Belgrado.png",
         "name": "OFK Belgrado"
       },
       {
-        "file": "Tekstilac Od#U017eaci.png",
-        "name": "Tekstilac Odžaci"
+        "file": "Tekstilac Od i.png",
+        "name": "Tekstilac Od i"
       }
     ]
   },
@@ -7914,10 +7922,6 @@
     "flag": "🇸🇰",
     "teams": [
       {
-        "file": "#U0160K Slovan Bratislava.png",
-        "name": "ŠK Slovan Bratislava"
-      },
-      {
         "file": "FC DAC 1904.png",
         "name": "FC DAC 1904"
       },
@@ -7926,8 +7930,12 @@
         "name": "FC Spartak Trnava"
       },
       {
-        "file": "M#U0160K #U017dilina.png",
-        "name": "MŠK Žilina"
+        "file": "MSK Zilina.png",
+        "name": "MSK Zilina"
+      },
+      {
+        "file": "SK Slovan Bratislava.png",
+        "name": "SK Slovan Bratislava"
       }
     ]
   },
@@ -7937,10 +7945,6 @@
     "code": "SI",
     "flag": "🇸🇮",
     "teams": [
-      {
-        "file": "N#U0160 Mura.png",
-        "name": "NŠ Mura"
-      },
       {
         "file": "NK Celje.png",
         "name": "NK Celje"
@@ -7952,6 +7956,10 @@
       {
         "file": "NK Olimpija Ljubljana.png",
         "name": "NK Olimpija Ljubljana"
+      },
+      {
+        "file": "NS Mura.png",
+        "name": "NS Mura"
       }
     ]
   },
@@ -8098,16 +8106,16 @@
     "flag": "🇪🇸",
     "teams": [
       {
-        "file": "AD Alcorc#U00f3n.png",
-        "name": "AD Alcorcón"
+        "file": "AD Alcorcon.png",
+        "name": "AD Alcorcon"
       },
       {
         "file": "AD Ceuta FC.png",
         "name": "AD Ceuta FC"
       },
       {
-        "file": "Albacete Balompi#U00e9.png",
-        "name": "Albacete Balompié"
+        "file": "Albacete Balompie.png",
+        "name": "Albacete Balompie"
       },
       {
         "file": "Algeciras CF.png",
@@ -8126,12 +8134,12 @@
         "name": "Athletic Club"
       },
       {
-        "file": "Atl#U00e9tico Baleares.png",
-        "name": "Atlético Baleares"
+        "file": "Atletico Baleares.png",
+        "name": "Atletico Baleares"
       },
       {
-        "file": "Atl#U00e9tico Sanluque#U00f1o.png",
-        "name": "Atlético Sanluqueño"
+        "file": "Atletico Sanluqueno.png",
+        "name": "Atletico Sanluqueno"
       },
       {
         "file": "Atzeneta UE.png",
@@ -8146,12 +8154,8 @@
         "name": "Burgos CF"
       },
       {
-        "file": "C#U00e1diz CF.png",
-        "name": "Cádiz CF"
-      },
-      {
-        "file": "C#U00f3rdoba CF.png",
-        "name": "Córdoba CF"
+        "file": "C iz CF.png",
+        "name": "C iz CF"
       },
       {
         "file": "CA Osasuna.png",
@@ -8178,8 +8182,8 @@
         "name": "CD Calahorra"
       },
       {
-        "file": "CD Castell#U00f3n.png",
-        "name": "CD Castellón"
+        "file": "CD Castellon.png",
+        "name": "CD Castellon"
       },
       {
         "file": "CD Covadonga.png",
@@ -8218,8 +8222,8 @@
         "name": "CD Lealtad de Villaviciosa"
       },
       {
-        "file": "CD Legan#U00e9s.png",
-        "name": "CD Leganés"
+        "file": "CD Leganes.png",
+        "name": "CD Leganes"
       },
       {
         "file": "CD Lugo.png",
@@ -8230,8 +8234,8 @@
         "name": "CD Marino"
       },
       {
-        "file": "CD Mirand#U00e9s.png",
-        "name": "CD Mirandés"
+        "file": "CD Mirandes.png",
+        "name": "CD Mirandes"
       },
       {
         "file": "CD Numancia.png",
@@ -8278,8 +8282,8 @@
         "name": "CF Intercity"
       },
       {
-        "file": "CF La Nuc#U00eda.png",
-        "name": "CF La Nucía"
+        "file": "CF La Nuc.png",
+        "name": "CF La Nuc"
       },
       {
         "file": "CF Lorca Deportiva.png",
@@ -8298,8 +8302,8 @@
         "name": "CF Villanovense"
       },
       {
-        "file": "Club Atl#U00e9tico de Madrid.png",
-        "name": "Club Atlético de Madrid"
+        "file": "Club Atletico de Madrid.png",
+        "name": "Club Atletico de Madrid"
       },
       {
         "file": "Club Haro Deportivo.png",
@@ -8318,6 +8322,10 @@
         "name": "Club Recreativo Granada"
       },
       {
+        "file": "Cordoba CF.png",
+        "name": "Cordoba CF"
+      },
+      {
         "file": "Coruxo FC.png",
         "name": "Coruxo FC"
       },
@@ -8330,12 +8338,16 @@
         "name": "Cultural Leonesa"
       },
       {
-        "file": "Deportivo Alav#U00e9s.png",
-        "name": "Deportivo Alavés"
+        "file": "Deportivo Alaves.png",
+        "name": "Deportivo Alaves"
       },
       {
-        "file": "Deportivo de la Coru#U00f1a.png",
-        "name": "Deportivo de la Coruña"
+        "file": "Deportivo de A Coruna.png",
+        "name": "Deportivo de A Coruna"
+      },
+      {
+        "file": "Deportivo de la Coruna.png",
+        "name": "Deportivo de la Coruna"
       },
       {
         "file": "DUX Internacional de Madrid.png",
@@ -8362,12 +8374,12 @@
         "name": "Getafe CF"
       },
       {
-        "file": "Gimn#U00e0stic de Tarragona.png",
-        "name": "Gimnàstic de Tarragona"
+        "file": "Gimnastic de Tarragona.png",
+        "name": "Gimnastic de Tarragona"
       },
       {
-        "file": "Gimn#U00e1stica Segoviana.png",
-        "name": "Gimnástica Segoviana"
+        "file": "Gimnastica Segoviana.png",
+        "name": "Gimnastica Segoviana"
       },
       {
         "file": "Girona FC.png",
@@ -8378,12 +8390,12 @@
         "name": "Granada CF"
       },
       {
-        "file": "H#U00e9rcules CF Nuevo Escudo.png",
-        "name": "Hércules CF Nuevo Escudo"
+        "file": "Hercules CF.png",
+        "name": "Hercules CF"
       },
       {
-        "file": "Las Palmas Atl#U00e9tico.png",
-        "name": "Las Palmas Atlético"
+        "file": "Las Palmas Atletico.png",
+        "name": "Las Palmas Atletico"
       },
       {
         "file": "Las Rozas CF.png",
@@ -8406,16 +8418,16 @@
         "name": "Lorca FC"
       },
       {
-        "file": "M#U00e1laga CF.png",
-        "name": "Málaga CF"
-      },
-      {
-        "file": "M#U00e9rida AD.png",
-        "name": "Mérida AD"
+        "file": "Malaga CF.png",
+        "name": "Malaga CF"
       },
       {
         "file": "Marbella FC.png",
         "name": "Marbella FC"
+      },
+      {
+        "file": "Merida AD.png",
+        "name": "Merida AD"
       },
       {
         "file": "Orihuela CF.png",
@@ -8450,16 +8462,16 @@
         "name": "RCD Mallorca"
       },
       {
-        "file": "Real Balomp#U00e9dica Linense.png",
-        "name": "Real Balompédica Linense"
+        "file": "Real Balomp ica Linense.png",
+        "name": "Real Balomp ica Linense"
       },
       {
         "file": "Real Betis.png",
         "name": "Real Betis"
       },
       {
-        "file": "Real Ja#U00e9n.png",
-        "name": "Real Jaén"
+        "file": "Real Jaen.png",
+        "name": "Real Jaen"
       },
       {
         "file": "Real Madrid CF.png",
@@ -8478,8 +8490,8 @@
         "name": "Real Sociedad"
       },
       {
-        "file": "Real Uni#U00f3n Club.png",
-        "name": "Real Unión Club"
+        "file": "Real Union Club.png",
+        "name": "Real Union Club"
       },
       {
         "file": "Real Valladolid.png",
@@ -8502,8 +8514,8 @@
         "name": "Salamanca CF UDS"
       },
       {
-        "file": "SCR Pe#U00f1a Deportiva.png",
-        "name": "SCR Peña Deportiva"
+        "file": "SCR Pe Deportiva.png",
+        "name": "SCR Pe Deportiva"
       },
       {
         "file": "SD Amorebieta Nuevo Escudo.png",
@@ -8530,8 +8542,8 @@
         "name": "SD Leioa"
       },
       {
-        "file": "SD Logro#U00f1#U00e9s.png",
-        "name": "SD Logroñés"
+        "file": "SD Logrones.png",
+        "name": "SD Logrones"
       },
       {
         "file": "SD Ponferradina.png",
@@ -8546,24 +8558,24 @@
         "name": "Sestao River Club"
       },
       {
-        "file": "Sevilla Atl#U00e9tico.png",
-        "name": "Sevilla Atlético"
+        "file": "Sevilla Atletico.png",
+        "name": "Sevilla Atletico"
       },
       {
         "file": "Sevilla FC.png",
         "name": "Sevilla FC"
       },
       {
-        "file": "Sporting de Gij#U00f3n.png",
-        "name": "Sporting de Gijón"
+        "file": "Sporting de Gijon.png",
+        "name": "Sporting de Gijon"
       },
       {
         "file": "UCAM Murcia.png",
         "name": "UCAM Murcia"
       },
       {
-        "file": "UD Almer#U00eda.png",
-        "name": "UD Almería"
+        "file": "UD Almer.png",
+        "name": "UD Almer"
       },
       {
         "file": "UD Ibiza.png",
@@ -8574,8 +8586,8 @@
         "name": "UD Las Palmas"
       },
       {
-        "file": "UD Logro#U00f1#U00e9s.png",
-        "name": "UD Logroñés"
+        "file": "UD Logrones.png",
+        "name": "UD Logrones"
       },
       {
         "file": "UD Melilla.png",
@@ -8590,20 +8602,20 @@
         "name": "UD Poblense"
       },
       {
-        "file": "UD San Sebasti#U00e1n de los Reyes.png",
-        "name": "UD San Sebastián de los Reyes"
+        "file": "UD San Sebastian de los Reyes.png",
+        "name": "UD San Sebastian de los Reyes"
       },
       {
-        "file": "UD Socu#U00e9llamos.png",
-        "name": "UD Socuéllamos"
+        "file": "UD Socuellamos.png",
+        "name": "UD Socuellamos"
       },
       {
         "file": "UD Tamaraceite.png",
         "name": "UD Tamaraceite"
       },
       {
-        "file": "UE Cornell#U00e0.png",
-        "name": "UE Cornellà"
+        "file": "UE Cornella.png",
+        "name": "UE Cornella"
       },
       {
         "file": "UE Olot.png",
@@ -8682,18 +8694,6 @@
     "flag": "🇸🇪",
     "teams": [
       {
-        "file": "#U00d6SK Fotboll.png",
-        "name": "ÖSK Fotboll"
-      },
-      {
-        "file": "#U00d6sters IF.png",
-        "name": "Östers IF"
-      },
-      {
-        "file": "#U00d6stersunds FK.png",
-        "name": "Östersunds FK"
-      },
-      {
         "file": "AFC Eskilstuna.png",
         "name": "AFC Eskilstuna"
       },
@@ -8702,16 +8702,16 @@
         "name": "AIK Fotboll"
       },
       {
-        "file": "BK H#U00e4cken.png",
-        "name": "BK Häcken"
+        "file": "BK H ken.png",
+        "name": "BK H ken"
       },
       {
         "file": "Degerfors IF.png",
         "name": "Degerfors IF"
       },
       {
-        "file": "Djurg#U00e5rdens IF Fotboll.png",
-        "name": "Djurgårdens IF Fotboll"
+        "file": "Djurgardens IF Fotboll.png",
+        "name": "Djurgardens IF Fotboll"
       },
       {
         "file": "Falkenbergs FF.png",
@@ -8750,36 +8750,48 @@
         "name": "IF Elfsborg"
       },
       {
-        "file": "IFK G#U00f6teborg.png",
-        "name": "IFK Göteborg"
+        "file": "IFK Goteborg.png",
+        "name": "IFK Goteborg"
       },
       {
-        "file": "IFK Norrk#U00f6ping.png",
-        "name": "IFK Norrköping"
+        "file": "IFK Norrkoping.png",
+        "name": "IFK Norrkoping"
       },
       {
-        "file": "IFK V#U00e4rnamo.png",
-        "name": "IFK Värnamo"
+        "file": "IFK Varnamo.png",
+        "name": "IFK Varnamo"
       },
       {
         "file": "IK Sirius Fotboll.png",
         "name": "IK Sirius Fotboll"
       },
       {
-        "file": "J#U00f6nk#U00f6pings S#U00f6dra IF.png",
-        "name": "Jönköpings Södra IF"
+        "file": "Jonkopings S ra IF.png",
+        "name": "Jonkopings S ra IF"
       },
       {
         "file": "Kalmar FF.png",
         "name": "Kalmar FF"
       },
       {
-        "file": "Malm#U00f6 FF.png",
-        "name": "Malmö FF"
+        "file": "Malmo FF.png",
+        "name": "Malmo FF"
       },
       {
-        "file": "Mj#U00e4llby AIF.png",
-        "name": "Mjällby AIF"
+        "file": "Mjallby AIF.png",
+        "name": "Mjallby AIF"
+      },
+      {
+        "file": "OSK Fotboll.png",
+        "name": "OSK Fotboll"
+      },
+      {
+        "file": "Osters IF.png",
+        "name": "Osters IF"
+      },
+      {
+        "file": "Ostersunds FK.png",
+        "name": "Ostersunds FK"
       },
       {
         "file": "Varbergs BoIS.png",
@@ -8846,16 +8858,16 @@
         "name": "FC Winterthur"
       },
       {
-        "file": "FC Z#U00fcrich.png",
-        "name": "FC Zürich"
+        "file": "FC Zurich.png",
+        "name": "FC Zurich"
       },
       {
-        "file": "Grasshopper Club Z#U00fcrich.png",
-        "name": "Grasshopper Club Zürich"
+        "file": "Grasshopper Club Zurich.png",
+        "name": "Grasshopper Club Zurich"
       },
       {
-        "file": "Neuch#U00e2tel Xamax FCS.png",
-        "name": "Neuchâtel Xamax FCS"
+        "file": "Neuchatel Xamax FCS.png",
+        "name": "Neuchatel Xamax FCS"
       },
       {
         "file": "Servette FC.png",
@@ -9050,16 +9062,16 @@
     "flag": "🇹🇳",
     "teams": [
       {
-        "file": "#U00c9toile Sportive du Sahel.png",
-        "name": "Étoile Sportive du Sahel"
-      },
-      {
         "file": "CS Sfaxien.png",
         "name": "CS Sfaxien"
       },
       {
-        "file": "Esp#U00e9rance Sportive de Tunis.png",
-        "name": "Espérance Sportive de Tunis"
+        "file": "Esperance Sportive de Tunis.png",
+        "name": "Esperance Sportive de Tunis"
+      },
+      {
+        "file": "Etoile Sportive du Sahel.png",
+        "name": "Etoile Sportive du Sahel"
       }
     ]
   },
@@ -9069,30 +9081,6 @@
     "code": "",
     "flag": "🏳️",
     "teams": [
-      {
-        "file": "#U00c7aykur Rizespor.png",
-        "name": "Çaykur Rizespor"
-      },
-      {
-        "file": "#U00c7orum FK.png",
-        "name": "Çorum FK"
-      },
-      {
-        "file": "#U00dcmraniyespor.png",
-        "name": "Ümraniyespor"
-      },
-      {
-        "file": "#U0130stanbul Ba#U015fak#U015fehir FK.png",
-        "name": "İstanbul Başakşehir FK"
-      },
-      {
-        "file": "#U0130stanbulspor.png",
-        "name": "İstanbulspor"
-      },
-      {
-        "file": "#U015eanl#U0131urfaspor SK.png",
-        "name": "Şanlıurfaspor SK"
-      },
       {
         "file": "Adana Demirspor.png",
         "name": "Adana Demirspor"
@@ -9110,8 +9098,8 @@
         "name": "Alanyaspor"
       },
       {
-        "file": "Alt#U0131nordu FK.png",
-        "name": "Altınordu FK"
+        "file": "Alt nordu FK.png",
+        "name": "Alt nordu FK"
       },
       {
         "file": "Altay SK.png",
@@ -9122,8 +9110,8 @@
         "name": "Amedspor"
       },
       {
-        "file": "Ankara Ke#U00e7i#U00f6reng#U00fcc#U00fc.png",
-        "name": "Ankara Keçiörengücü"
+        "file": "Ankara Kecioreng u.png",
+        "name": "Ankara Kecioreng u"
       },
       {
         "file": "Ankaraspor.png",
@@ -9134,16 +9122,16 @@
         "name": "Antalyaspor"
       },
       {
-        "file": "Bal#U0131kesirspor.png",
-        "name": "Balıkesirspor"
+        "file": "Bal kesirspor.png",
+        "name": "Bal kesirspor"
       },
       {
-        "file": "Band#U0131rmaspor.png",
-        "name": "Bandırmaspor"
+        "file": "Band rmaspor.png",
+        "name": "Band rmaspor"
       },
       {
-        "file": "Be#U015fikta#U015f JK.png",
-        "name": "Beşiktaş JK"
+        "file": "Besiktas JK.png",
+        "name": "Besiktas JK"
       },
       {
         "file": "Bodrumspor.png",
@@ -9158,6 +9146,10 @@
         "name": "Bursaspor"
       },
       {
+        "file": "Corum FK.png",
+        "name": "Corum FK"
+      },
+      {
         "file": "Denizlispor.png",
         "name": "Denizlispor"
       },
@@ -9170,76 +9162,88 @@
         "name": "Esenler Erokspor"
       },
       {
-        "file": "Ey#U00fcpspor.png",
-        "name": "Eyüpspor"
+        "file": "Eyupspor.png",
+        "name": "Eyupspor"
       },
       {
-        "file": "Fatih Karag#U00fcmr#U00fck SK.png",
-        "name": "Fatih Karagümrük SK"
+        "file": "Fatih Karagumruk SK.png",
+        "name": "Fatih Karagumruk SK"
       },
       {
-        "file": "Fenerbah#U00e7e SK.png",
-        "name": "Fenerbahçe SK"
-      },
-      {
-        "file": "G#U00f6ztepe SK.png",
-        "name": "Göztepe SK"
+        "file": "Fenerbah SK.png",
+        "name": "Fenerbah SK"
       },
       {
         "file": "Galatasaray SK.png",
         "name": "Galatasaray SK"
       },
       {
-        "file": "Gazi#U015fehir Gaziantep FK.png",
-        "name": "Gazişehir Gaziantep FK"
+        "file": "Gazi hir Gaziantep FK.png",
+        "name": "Gazi hir Gaziantep FK"
       },
       {
-        "file": "Gen#U00e7lerbirli#U011fi SK.png",
-        "name": "Gençlerbirliği SK"
+        "file": "Genclerbirligi SK.png",
+        "name": "Genclerbirligi SK"
       },
       {
         "file": "Giresunspor.png",
         "name": "Giresunspor"
       },
       {
+        "file": "Goztepe SK.png",
+        "name": "Goztepe SK"
+      },
+      {
         "file": "Hatayspor.png",
         "name": "Hatayspor"
       },
       {
-        "file": "I#U011fd#U0131r FK.png",
-        "name": "Iğdır FK"
+        "file": "I r FK.png",
+        "name": "I r FK"
       },
       {
-        "file": "Kardemir Karab#U00fckspor.png",
-        "name": "Kardemir Karabükspor"
+        "file": "Istanbul Ba k hir FK.png",
+        "name": "Istanbul Ba k hir FK"
       },
       {
-        "file": "Kas#U0131mpa#U015fa SK.png",
-        "name": "Kasımpaşa SK"
+        "file": "Istanbulspor.png",
+        "name": "Istanbulspor"
+      },
+      {
+        "file": "Kardemir Karabukspor.png",
+        "name": "Kardemir Karabukspor"
+      },
+      {
+        "file": "Kas mpa SK.png",
+        "name": "Kas mpa SK"
       },
       {
         "file": "Kayserispor.png",
         "name": "Kayserispor"
       },
       {
-        "file": "Kocaelispor Kul#U00fcb#U00fc.png",
-        "name": "Kocaelispor Kulübü"
+        "file": "Kocaelispor Kul u.png",
+        "name": "Kocaelispor Kul u"
       },
       {
         "file": "Konyaspor.png",
         "name": "Konyaspor"
       },
       {
-        "file": "Manisa Futbol Kul#U00fcb#U00fc.png",
-        "name": "Manisa Futbol Kulübü"
+        "file": "Manisa Futbol Kul u.png",
+        "name": "Manisa Futbol Kul u"
       },
       {
-        "file": "Menemen Spor Kul#U00fcb.png",
-        "name": "Menemen Spor Kulüb"
+        "file": "Menemen Spor Kul.png",
+        "name": "Menemen Spor Kul"
       },
       {
-        "file": "MKE Ankarag#U00fcc#U00fc.png",
-        "name": "MKE Ankaragücü"
+        "file": "MKE Ankarag u.png",
+        "name": "MKE Ankarag u"
+      },
+      {
+        "file": "nl urfaspor SK.png",
+        "name": "nl urfaspor SK"
       },
       {
         "file": "Pendikspor SK.png",
@@ -9266,8 +9270,16 @@
         "name": "Tuzlaspor"
       },
       {
+        "file": "Umraniyespor.png",
+        "name": "Umraniyespor"
+      },
+      {
         "file": "Yeni Malatyaspor SK.png",
         "name": "Yeni Malatyaspor SK"
+      },
+      {
+        "file": "ykur Rizespor.png",
+        "name": "ykur Rizespor"
       }
     ]
   },
@@ -9320,6 +9332,10 @@
       {
         "file": "FC Karpaty Lviv.png",
         "name": "FC Karpaty Lviv"
+      },
+      {
+        "file": "FC Kharkiv.png",
+        "name": "FC Kharkiv"
       },
       {
         "file": "FC Kolos Kovalivka.png",
@@ -9518,8 +9534,8 @@
         "name": "Birmingham Legion FC"
       },
       {
-        "file": "CF Montr#U00e9al.png",
-        "name": "CF Montréal"
+        "file": "CF Montr l.png",
+        "name": "CF Montr l"
       },
       {
         "file": "Charleston Battery.png",
@@ -9778,12 +9794,12 @@
         "name": "CA Villa Teresa"
       },
       {
-        "file": "Central Espa#U00f1ol FC.png",
-        "name": "Central Español FC"
+        "file": "Central Espanol FC.png",
+        "name": "Central Espanol FC"
       },
       {
-        "file": "Centro Atl#U00e9tico F#U00e9nix.png",
-        "name": "Centro Atlético Fénix"
+        "file": "Centro Atletico Fenix.png",
+        "name": "Centro Atletico Fenix"
       },
       {
         "file": "Centro Cultural y Deportivo El Tanque Sisley.png",
@@ -9794,32 +9810,32 @@
         "name": "Cerro Largo FC"
       },
       {
-        "file": "Club Atl#U00e9tico Artigas.png",
-        "name": "Club Atlético Artigas"
+        "file": "Club Atletico Artigas.png",
+        "name": "Club Atletico Artigas"
       },
       {
-        "file": "Club Atl#U00e9tico Atenas.png",
-        "name": "Club Atlético Atenas"
+        "file": "Club Atletico Atenas.png",
+        "name": "Club Atletico Atenas"
       },
       {
-        "file": "Club Atl#U00e9tico Cerro.png",
-        "name": "Club Atlético Cerro"
+        "file": "Club Atletico Cerro.png",
+        "name": "Club Atletico Cerro"
       },
       {
-        "file": "Club Atl#U00e9tico Pe#U00f1arol.png",
-        "name": "Club Atlético Peñarol"
+        "file": "Club Atletico Pe rol.png",
+        "name": "Club Atletico Pe rol"
       },
       {
-        "file": "Club Atl#U00e9tico Progreso.png",
-        "name": "Club Atlético Progreso"
+        "file": "Club Atletico Progreso.png",
+        "name": "Club Atletico Progreso"
       },
       {
-        "file": "Club Atl#U00e9tico Rentistas.png",
-        "name": "Club Atlético Rentistas"
+        "file": "Club Atletico Rentistas.png",
+        "name": "Club Atletico Rentistas"
       },
       {
-        "file": "Club Atl#U00e9tico River Plate.png",
-        "name": "Club Atlético River Plate"
+        "file": "Club Atletico River Plate.png",
+        "name": "Club Atletico River Plate"
       },
       {
         "file": "Club Deportivo Maldonado.png",
@@ -9842,8 +9858,8 @@
         "name": "Club Sportivo Cerrito"
       },
       {
-        "file": "Col#U00f3n FC.png",
-        "name": "Colón FC"
+        "file": "Colon FC.png",
+        "name": "Colon FC"
       },
       {
         "file": "CS Miramar Misiones.png",
@@ -9854,8 +9870,8 @@
         "name": "CSyD Cooper"
       },
       {
-        "file": "CSyD Villa Espa#U00f1ola.png",
-        "name": "CSyD Villa Española"
+        "file": "CSyD Villa Espanola.png",
+        "name": "CSyD Villa Espanola"
       },
       {
         "file": "Danubio FC.png",
@@ -9866,20 +9882,20 @@
         "name": "Defensor Sporting Club"
       },
       {
-        "file": "Instituci#U00f3n Atl#U00e9tica Potencia.png",
-        "name": "Institución Atlética Potencia"
+        "file": "Institucion Atletica Potencia.png",
+        "name": "Institucion Atletica Potencia"
       },
       {
-        "file": "Instituci#U00f3n Atl#U00e9tica Sud Am#U00e9rica.png",
-        "name": "Institución Atlética Sud América"
+        "file": "Institucion Atletica Sud America.png",
+        "name": "Institucion Atletica Sud America"
       },
       {
         "file": "La Luz FC.png",
         "name": "La Luz FC"
       },
       {
-        "file": "Liverpool F#U00fatbol Club.png",
-        "name": "Liverpool Fútbol Club"
+        "file": "Liverpool Futbol Club.png",
+        "name": "Liverpool Futbol Club"
       },
       {
         "file": "Montevideo City Torque.png",
@@ -9902,8 +9918,8 @@
         "name": "Rocha FC"
       },
       {
-        "file": "Tacuaremb#U00f3 FC.png",
-        "name": "Tacuarembó FC"
+        "file": "Tacuarembo FC.png",
+        "name": "Tacuarembo FC"
       },
       {
         "file": "Uruguay Montevideo FC.png",
@@ -9958,28 +9974,28 @@
         "name": "Angostura FC"
       },
       {
-        "file": "Anzo#U00e1tegui FC.png",
-        "name": "Anzoátegui FC"
+        "file": "Anzoategui FC.png",
+        "name": "Anzoategui FC"
       },
       {
         "file": "Aragua FC.png",
         "name": "Aragua FC"
       },
       {
-        "file": "Atl#U00e9tico La Cruz.png",
-        "name": "Atlético La Cruz"
+        "file": "Atletico La Cruz.png",
+        "name": "Atletico La Cruz"
       },
       {
-        "file": "Atl#U00e9tico Venezuela CF.png",
-        "name": "Atlético Venezuela CF"
+        "file": "Atletico Venezuela CF.png",
+        "name": "Atletico Venezuela CF"
       },
       {
         "file": "Barquisimeto SC.png",
         "name": "Barquisimeto SC"
       },
       {
-        "file": "Bol#U00edvar Sports Club.png",
-        "name": "Bolívar Sports Club"
+        "file": "Bolivar Sports Club.png",
+        "name": "Bolivar Sports Club"
       },
       {
         "file": "Carabobo FC.png",
@@ -10010,28 +10026,28 @@
         "name": "Deportivo Rayo Zuliano"
       },
       {
-        "file": "Deportivo T#U00e1chira FC.png",
-        "name": "Deportivo Táchira FC"
+        "file": "Deportivo T hira FC.png",
+        "name": "Deportivo T hira FC"
       },
       {
         "file": "Dynamo Puerto FC.png",
         "name": "Dynamo Puerto FC"
       },
       {
-        "file": "El Vig#U00eda FC.png",
-        "name": "El Vigía FC"
+        "file": "El Vig FC.png",
+        "name": "El Vig FC"
       },
       {
-        "file": "Estudiantes de M#U00e9rida FC.png",
-        "name": "Estudiantes de Mérida FC"
+        "file": "Estudiantes de Merida FC.png",
+        "name": "Estudiantes de Merida FC"
       },
       {
         "file": "Gran Valencia FC Nuevo Escudo.png",
         "name": "Gran Valencia FC Nuevo Escudo"
       },
       {
-        "file": "H#U00e9roes de Falc#U00f3n FC.png",
-        "name": "Héroes de Falcón FC"
+        "file": "Heroes de Falcon FC.png",
+        "name": "Heroes de Falcon FC"
       },
       {
         "file": "Inter de Barinas.png",
@@ -10046,8 +10062,8 @@
         "name": "Llaneros de Guanare"
       },
       {
-        "file": "Mar#U00edtimo de la Guaira.png",
-        "name": "Marítimo de la Guaira"
+        "file": "Maritimo de la Guaira.png",
+        "name": "Maritimo de la Guaira"
       },
       {
         "file": "Metropolitanos FC.png",
@@ -10058,8 +10074,8 @@
         "name": "Mineros de Guayana"
       },
       {
-        "file": "Minerv#U00e9n FC.png",
-        "name": "Minervén FC"
+        "file": "Minerven FC.png",
+        "name": "Minerven FC"
       },
       {
         "file": "Monagas Sport Club.png",
@@ -10094,8 +10110,8 @@
         "name": "Universidad Central de Venezuela FC"
       },
       {
-        "file": "Ure#U00f1a Sport Club.png",
-        "name": "Ureña Sport Club"
+        "file": "Ure Sport Club.png",
+        "name": "Ure Sport Club"
       },
       {
         "file": "Yaracuy FC.png",
@@ -10138,8 +10154,8 @@
         "name": "Hoang Anh Gia Lai FC"
       },
       {
-        "file": "Th#U00e9p Xanh Nam #U0110#U1ecbnh FC.png",
-        "name": "Thép Xanh Nam Định FC"
+        "file": "Thep Xanh Nam Dinh FC.png",
+        "name": "Thep Xanh Nam Dinh FC"
       },
       {
         "file": "Viettel FC.png",
