@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.216_public_beta_hide_requested_ui";
+  const KITLAB_BUILD_VERSION = "v1.3.223_team_static_manifest_fix";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   const KITLAB_BASE_DESIGN_BUTTON_LOCKED = true; // v1.3.199: keep Base Design visible but blocked for beta until its placement rule is fixed.
 
@@ -3228,23 +3228,40 @@
 
   async function refreshTeamCountryFolder(countryName) {
     if (!countryName) return;
+
+    const applyFiles = (files) => {
+      const unique = [...new Set((Array.isArray(files) ? files : [])
+        .filter((fileName) => /\.(png|webp|jpg|jpeg|svg)$/i.test(String(fileName || "")))
+        .filter((fileName) => !String(fileName || "").startsWith(".")))]
+        .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base" }));
+      if (!unique.length) return false;
+      const country = TEAM_COUNTRIES.find((item) => item.country === countryName) || { country: countryName };
+      const nextItems = unique.map((fileName) => teamItemFromCountryFile(country.country, fileName));
+      INTERNAL_TEAMS = INTERNAL_TEAMS.filter((item) => item.country !== countryName).concat(nextItems);
+      return true;
+    };
+
+    // v1.3.223: Cloudflare Pages does not expose directory listings for assets/team/<country>/.
+    // Use the static asset manifest first, otherwise Team falls back to the old embedded list
+    // and broken entries like H#U00e9rcules CF Nuevo Escudo keep appearing.
+    try {
+      const listed = await listKitlabAssetDirectory(["assets", "team", countryName]);
+      if (applyFiles(listed?.files)) return;
+    } catch (_) {}
+
     try {
       const response = await fetch(encodePathParts(["assets", "team", countryName]) + "/", { cache: "no-store" });
       if (!response.ok) return;
       const html = await response.text();
       const files = [];
-      const hrefRegex = /href=["']([^"']+\.png)["']/gi;
+      const hrefRegex = /href=["']([^"']+\.(?:png|webp|jpg|jpeg|svg))["']/gi;
       let match;
       while ((match = hrefRegex.exec(html))) {
         let fileName = decodeURIComponent(match[1].split("/").pop());
         if (!fileName || fileName.startsWith(".")) continue;
         files.push(fileName);
       }
-      const unique = [...new Set(files)].sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base" }));
-      if (!unique.length) return;
-      const country = TEAM_COUNTRIES.find((item) => item.country === countryName) || { country: countryName };
-      const nextItems = unique.map((fileName) => teamItemFromCountryFile(country.country, fileName));
-      INTERNAL_TEAMS = INTERNAL_TEAMS.filter((item) => item.country !== countryName).concat(nextItems);
+      applyFiles(files);
     } catch (error) {
       // file:// cannot list the folder. Keep embedded manifest.
     }
