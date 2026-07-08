@@ -5,14 +5,14 @@
   "savedAt": "2026-06-07T07:20:14.403Z",
   "templateId": "adidas/adidas_2026",
   "collarSettingsId": "adidas/adidas_2026/collar/04",
-  "folderPath": "assets/templates/Adidas/Adidas%202026/collar/04",
+  "folderPath": "assets/templates/adidas/adidas%202026/collar/04",
   "id": "04",
   "name": "Collar 04",
   "key": "04",
   "layers": [
     {
-      "key": "assets/templates/Adidas/Adidas 2026/collar/04/rubber band fusion opacidad.png",
-      "src": "assets/templates/Adidas/Adidas 2026/collar/04/rubber band fusion opacidad.png",
+      "key": "assets/templates/adidas/adidas 2026/collar/04/rubber band fusion opacidad.png",
+      "src": "assets/templates/adidas/adidas 2026/collar/04/rubber band fusion opacidad.png",
       "name": "Rubber Band Fusion Opacidad",
       "displayName": "",
       "section": "collar",
@@ -36,8 +36,8 @@
       "baseDesignFolderPath": []
     },
     {
-      "key": "assets/templates/Adidas/Adidas 2026/collar/04/rubber band 2 fusion opacidad.png",
-      "src": "assets/templates/Adidas/Adidas 2026/collar/04/rubber band 2 fusion opacidad.png",
+      "key": "assets/templates/adidas/adidas 2026/collar/04/rubber band 2 fusion opacidad.png",
+      "src": "assets/templates/adidas/adidas 2026/collar/04/rubber band 2 fusion opacidad.png",
       "name": "Rubber Band 2 Fusion Opacidad",
       "displayName": "Rubber Band 2",
       "section": "collar",
@@ -61,8 +61,8 @@
       "baseDesignFolderPath": []
     },
     {
-      "key": "assets/templates/Adidas/Adidas 2026/collar/04/border.png",
-      "src": "assets/templates/Adidas/Adidas 2026/collar/04/border.png",
+      "key": "assets/templates/adidas/adidas 2026/collar/04/border.png",
+      "src": "assets/templates/adidas/adidas 2026/collar/04/border.png",
       "name": "Border",
       "displayName": "",
       "section": "collar",
@@ -88,8 +88,8 @@
       "baseDesignFolderPath": []
     },
     {
-      "key": "assets/templates/Adidas/Adidas 2026/collar/04/detail.png",
-      "src": "assets/templates/Adidas/Adidas 2026/collar/04/detail.png",
+      "key": "assets/templates/adidas/adidas 2026/collar/04/detail.png",
+      "src": "assets/templates/adidas/adidas 2026/collar/04/detail.png",
       "name": "Detail",
       "displayName": "Collar",
       "section": "collar",
@@ -115,8 +115,8 @@
       "baseDesignFolderPath": []
     },
     {
-      "key": "assets/templates/Adidas/Adidas 2026/collar/04/seams 2 IV.png",
-      "src": "assets/templates/Adidas/Adidas 2026/collar/04/seams 2 IV.png",
+      "key": "assets/templates/adidas/adidas 2026/collar/04/seams 2 IV.png",
+      "src": "assets/templates/adidas/adidas 2026/collar/04/seams 2 IV.png",
       "name": "Seams 2 IV",
       "displayName": "",
       "section": "collar_seams",
@@ -140,8 +140,8 @@
       "baseDesignFolderPath": []
     },
     {
-      "key": "assets/templates/Adidas/Adidas 2026/collar/04/seams 3 IV.png",
-      "src": "assets/templates/Adidas/Adidas 2026/collar/04/seams 3 IV.png",
+      "key": "assets/templates/adidas/adidas 2026/collar/04/seams 3 IV.png",
+      "src": "assets/templates/adidas/adidas 2026/collar/04/seams 3 IV.png",
       "name": "Seams 3 IV",
       "displayName": "",
       "section": "collar_seams",
@@ -165,8 +165,8 @@
       "baseDesignFolderPath": []
     },
     {
-      "key": "assets/templates/Adidas/Adidas 2026/collar/04/seams IV.png",
-      "src": "assets/templates/Adidas/Adidas 2026/collar/04/seams IV.png",
+      "key": "assets/templates/adidas/adidas 2026/collar/04/seams IV.png",
+      "src": "assets/templates/adidas/adidas 2026/collar/04/seams IV.png",
       "name": "Seams IV",
       "displayName": "",
       "section": "collar_seams",
@@ -195,5 +195,6 @@
   "collarSeamsFolderOpen": false,
   "_manualCollarSave": true,
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\adidas\\adidas_2026\\collar\\04\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\adidas\\adidas_2026\\collar\\04\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

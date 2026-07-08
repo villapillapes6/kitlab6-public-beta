@@ -5,7 +5,7 @@
   "savedAt": "2026-07-03T06:38:45.357Z",
   "templateId": "macron/macron_gk_25-26",
   "collarSettingsId": "macron/macron_gk_25-26/collar/01",
-  "folderPath": "assets/templates/Macron/Macron%20GK%2025-26/collar/01",
+  "folderPath": "assets/templates/macron/macron%20gk%2025-26/collar/01",
   "id": "01",
   "name": "Collar 01",
   "key": "01",
@@ -21,8 +21,8 @@
         "collar/1/back.png",
         "collar/collar/back.png"
       ],
-      "src": "assets/templates/Macron/Macron%20GK%2025-26/collar/back.png",
-      "path": "assets/templates/Macron/Macron%20GK%2025-26/collar/back.png",
+      "src": "assets/templates/macron/macron%20gk%2025-26/collar/back.png",
+      "path": "assets/templates/macron/macron%20gk%2025-26/collar/back.png",
       "originalPath": "collar/back.png",
       "rawName": "back.png",
       "name": "Back",
@@ -72,8 +72,8 @@
         "collar/1/detail.png",
         "collar/collar/detail.png"
       ],
-      "src": "assets/templates/Macron/Macron%20GK%2025-26/collar/detail.png",
-      "path": "assets/templates/Macron/Macron%20GK%2025-26/collar/detail.png",
+      "src": "assets/templates/macron/macron%20gk%2025-26/collar/detail.png",
+      "path": "assets/templates/macron/macron%20gk%2025-26/collar/detail.png",
       "originalPath": "collar/detail.png",
       "rawName": "detail.png",
       "name": "Detail",
@@ -124,8 +124,8 @@
         "collar_seams/seams/seams iv.png",
         "collar_seams/collar/seams iv.png"
       ],
-      "src": "assets/templates/Macron/Macron%20GK%2025-26/collar/seams%20IV.png",
-      "path": "assets/templates/Macron/Macron%20GK%2025-26/collar/seams%20IV.png",
+      "src": "assets/templates/macron/macron%20gk%2025-26/collar/seams%20iv.png",
+      "path": "assets/templates/macron/macron%20gk%2025-26/collar/seams%20iv.png",
       "originalPath": "collar/seams IV.png",
       "rawName": "seams IV.png",
       "name": "Seams IV",
@@ -170,5 +170,6 @@
   "collarSeamsFolderOpen": false,
   "_manualCollarSave": true,
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\macron\\macron_gk_25-26\\collar\\01\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\macron\\macron_gk_25-26\\collar\\01\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

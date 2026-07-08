@@ -22,8 +22,8 @@
         "collar/04/rubber band fusion opacidad.png",
         "collar/collar/v neck/04/rubber band fusion opacidad.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/V%20Neck/04/rubber%20band%20fusion%20opacidad.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/V%20Neck/04/rubber%20band%20fusion%20opacidad.png",
+      "src": "assets/templates/basic/basic%20v1/collar/v%20neck/04/rubber%20band%20fusion%20opacidad.png",
+      "path": "assets/templates/basic/basic%20v1/collar/v%20neck/04/rubber%20band%20fusion%20opacidad.png",
       "originalPath": "collar/V Neck/04/rubber band fusion opacidad.png",
       "rawName": "rubber band fusion opacidad.png",
       "name": "Rubber band fusion opacidad",
@@ -61,8 +61,8 @@
         "collar/04/border.png",
         "collar/collar/v neck/04/border.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/V%20Neck/04/border.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/V%20Neck/04/border.png",
+      "src": "assets/templates/basic/basic%20v1/collar/v%20neck/04/border.png",
+      "path": "assets/templates/basic/basic%20v1/collar/v%20neck/04/border.png",
       "originalPath": "collar/V Neck/04/border.png",
       "rawName": "border.png",
       "name": "Border",
@@ -102,8 +102,8 @@
         "collar/04/border 2.png",
         "collar/collar/v neck/04/border 2.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/V%20Neck/04/border%202.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/V%20Neck/04/border%202.png",
+      "src": "assets/templates/basic/basic%20v1/collar/v%20neck/04/border%202.png",
+      "path": "assets/templates/basic/basic%20v1/collar/v%20neck/04/border%202.png",
       "originalPath": "collar/V Neck/04/border 2.png",
       "rawName": "border 2.png",
       "name": "Border 2",
@@ -143,8 +143,8 @@
         "collar/04/detail.png",
         "collar/collar/v neck/04/detail.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/V%20Neck/04/detail.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/V%20Neck/04/detail.png",
+      "src": "assets/templates/basic/basic%20v1/collar/v%20neck/04/detail.png",
+      "path": "assets/templates/basic/basic%20v1/collar/v%20neck/04/detail.png",
       "originalPath": "collar/V Neck/04/detail.png",
       "rawName": "detail.png",
       "name": "Detail",
@@ -184,8 +184,8 @@
         "collar_seams/seams/seams 2 iv.png",
         "collar_seams/collar/v neck/04/seams 2 iv.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/V%20Neck/04/seams%202%20IV.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/V%20Neck/04/seams%202%20IV.png",
+      "src": "assets/templates/basic/basic%20v1/collar/v%20neck/04/seams%202%20iv.png",
+      "path": "assets/templates/basic/basic%20v1/collar/v%20neck/04/seams%202%20iv.png",
       "originalPath": "collar/V Neck/04/seams 2 IV.png",
       "rawName": "seams 2 IV.png",
       "name": "Seams 2 IV",
@@ -223,8 +223,8 @@
         "collar_seams/seams/seams iv.png",
         "collar_seams/collar/v neck/04/seams iv.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/V%20Neck/04/seams%20IV.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/V%20Neck/04/seams%20IV.png",
+      "src": "assets/templates/basic/basic%20v1/collar/v%20neck/04/seams%20iv.png",
+      "path": "assets/templates/basic/basic%20v1/collar/v%20neck/04/seams%20iv.png",
       "originalPath": "collar/V Neck/04/seams IV.png",
       "rawName": "seams IV.png",
       "name": "Seams IV",
@@ -256,5 +256,6 @@
   "collarSeamsFolderOpen": false,
   "_manualCollarSave": true,
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\basic\\shirt\\basic\\basic_v1\\collar\\v_neck\\04\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\basic\\shirt\\basic\\basic_v1\\collar\\v_neck\\04\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

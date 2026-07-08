@@ -5,7 +5,7 @@
   "savedAt": "2026-06-27T18:03:54.159Z",
   "templateId": "adidas/adidas_25-26",
   "collarSettingsId": "adidas/adidas_25-26/collar/02",
-  "folderPath": "assets/templates/Adidas/Adidas%2025-26/collar/02",
+  "folderPath": "assets/templates/adidas/adidas%2025-26/collar/02",
   "id": "02",
   "name": "Collar 02",
   "key": "02",
@@ -22,8 +22,8 @@
         "collar/2/mesh rubber band fusion opacidad.png",
         "collar/collar/02/mesh rubber band fusion opacidad.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%2025-26/collar/02/mesh%20rubber%20band%20fusion%20opacidad.png",
-      "path": "assets/templates/Adidas/Adidas%2025-26/collar/02/mesh%20rubber%20band%20fusion%20opacidad.png",
+      "src": "assets/templates/adidas/adidas%2025-26/collar/02/mesh%20rubber%20band%20fusion%20opacidad.png",
+      "path": "assets/templates/adidas/adidas%2025-26/collar/02/mesh%20rubber%20band%20fusion%20opacidad.png",
       "originalPath": "collar/02/mesh rubber band fusion opacidad.png",
       "rawName": "mesh rubber band fusion opacidad.png",
       "name": "Mesh Rubber Band Fusion Opacidad",
@@ -72,8 +72,8 @@
         "collar/2/mesh rubber band 2 fusion opacidad.png",
         "collar/collar/02/mesh rubber band 2 fusion opacidad.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%2025-26/collar/02/mesh%20rubber%20band%202%20fusion%20opacidad.png",
-      "path": "assets/templates/Adidas/Adidas%2025-26/collar/02/mesh%20rubber%20band%202%20fusion%20opacidad.png",
+      "src": "assets/templates/adidas/adidas%2025-26/collar/02/mesh%20rubber%20band%202%20fusion%20opacidad.png",
+      "path": "assets/templates/adidas/adidas%2025-26/collar/02/mesh%20rubber%20band%202%20fusion%20opacidad.png",
       "originalPath": "collar/02/mesh rubber band 2 fusion opacidad.png",
       "rawName": "mesh rubber band 2 fusion opacidad.png",
       "name": "Mesh Rubber Band 2 Fusion Opacidad",
@@ -122,8 +122,8 @@
         "collar/2/detail border.png",
         "collar/collar/02/detail border.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%2025-26/collar/02/detail%20border.png",
-      "path": "assets/templates/Adidas/Adidas%2025-26/collar/02/detail%20border.png",
+      "src": "assets/templates/adidas/adidas%2025-26/collar/02/detail%20border.png",
+      "path": "assets/templates/adidas/adidas%2025-26/collar/02/detail%20border.png",
       "originalPath": "collar/02/detail border.png",
       "rawName": "detail border.png",
       "name": "Detail Border",
@@ -174,8 +174,8 @@
         "collar/2/detail.png",
         "collar/collar/02/detail.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%2025-26/collar/02/detail.png",
-      "path": "assets/templates/Adidas/Adidas%2025-26/collar/02/detail.png",
+      "src": "assets/templates/adidas/adidas%2025-26/collar/02/detail.png",
+      "path": "assets/templates/adidas/adidas%2025-26/collar/02/detail.png",
       "originalPath": "collar/02/detail.png",
       "rawName": "detail.png",
       "name": "Detail",
@@ -226,8 +226,8 @@
         "collar_seams/seams/seams 2 iv.png",
         "collar_seams/collar/02/seams 2 iv.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%2025-26/collar/02/seams%202%20IV.png",
-      "path": "assets/templates/Adidas/Adidas%2025-26/collar/02/seams%202%20IV.png",
+      "src": "assets/templates/adidas/adidas%2025-26/collar/02/seams%202%20iv.png",
+      "path": "assets/templates/adidas/adidas%2025-26/collar/02/seams%202%20iv.png",
       "originalPath": "collar/02/seams 2 IV.png",
       "rawName": "seams 2 IV.png",
       "name": "Seams 2 IV",
@@ -276,8 +276,8 @@
         "collar_seams/seams/seams iv.png",
         "collar_seams/collar/02/seams iv.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%2025-26/collar/02/seams%20IV.png",
-      "path": "assets/templates/Adidas/Adidas%2025-26/collar/02/seams%20IV.png",
+      "src": "assets/templates/adidas/adidas%2025-26/collar/02/seams%20iv.png",
+      "path": "assets/templates/adidas/adidas%2025-26/collar/02/seams%20iv.png",
       "originalPath": "collar/02/seams IV.png",
       "rawName": "seams IV.png",
       "name": "Seams IV",
@@ -326,8 +326,8 @@
         "collar_seams/seams/seams back iv.png",
         "collar_seams/collar/02/seams back iv.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%2025-26/collar/02/seams%20back%20IV.png",
-      "path": "assets/templates/Adidas/Adidas%2025-26/collar/02/seams%20back%20IV.png",
+      "src": "assets/templates/adidas/adidas%2025-26/collar/02/seams%20back%20iv.png",
+      "path": "assets/templates/adidas/adidas%2025-26/collar/02/seams%20back%20iv.png",
       "originalPath": "collar/02/seams back IV.png",
       "rawName": "seams back IV.png",
       "name": "Seams Back IV",
@@ -376,8 +376,8 @@
         "collar_seams/seams/seams front iv.png",
         "collar_seams/collar/02/seams front iv.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%2025-26/collar/02/seams%20front%20IV.png",
-      "path": "assets/templates/Adidas/Adidas%2025-26/collar/02/seams%20front%20IV.png",
+      "src": "assets/templates/adidas/adidas%2025-26/collar/02/seams%20front%20iv.png",
+      "path": "assets/templates/adidas/adidas%2025-26/collar/02/seams%20front%20iv.png",
       "originalPath": "collar/02/seams front IV.png",
       "rawName": "seams front IV.png",
       "name": "Seams Front IV",
@@ -420,5 +420,6 @@
   "collarSeamsFolderOpen": false,
   "_manualCollarSave": true,
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\adidas\\adidas_25-26\\collar\\02\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\adidas\\adidas_25-26\\collar\\02\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

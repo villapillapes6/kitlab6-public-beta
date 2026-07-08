@@ -16,7 +16,7 @@
   "templateId": "modular_parts/umbro/socks/umbro/basic_v1",
   "selectedTemplate": {
     "name": "Basic V1",
-    "path": "assets/templates/Umbro/Basic%20V1",
+    "path": "assets/templates/umbro/basic%20v1",
     "brand": "Umbro"
   },
   "selectedCollar": null,
@@ -34,8 +34,8 @@
         "socks/hem.png",
         "socks/socks/detail/hem.png"
       ],
-      "src": "assets/templates/Umbro/Basic%20V1/socks/detail/hem.png",
-      "path": "assets/templates/Umbro/Basic%20V1/socks/detail/hem.png",
+      "src": "assets/templates/umbro/basic%20v1/socks/detail/hem.png",
+      "path": "assets/templates/umbro/basic%20v1/socks/detail/hem.png",
       "originalPath": "socks/detail/hem.png",
       "rawName": "hem.png",
       "name": "Hem",
@@ -81,8 +81,8 @@
         "seams fj",
         "ckri6urs2rgmqoju9ih"
       ],
-      "src": "assets/templates/Umbro/Basic%20V1/socks/seams/seams%20FJ.png",
-      "path": "assets/templates/Umbro/Basic%20V1/socks/seams/seams%20FJ.png",
+      "src": "assets/templates/umbro/basic%20v1/socks/seams/seams%20fj.png",
+      "path": "assets/templates/umbro/basic%20v1/socks/seams/seams%20fj.png",
       "originalPath": "socks/seams/seams FJ.png",
       "rawName": "seams FJ.png",
       "name": "Seams FJ",
@@ -178,10 +178,11 @@
     "part": "socks",
     "name": "Basic V1",
     "brand": "Umbro",
-    "path": "assets/templates/Umbro/Basic%20V1",
+    "path": "assets/templates/umbro/basic%20v1",
     "templateId": "umbro/basic_v1",
-    "thumb": "assets/templates/Umbro/Basic%20V1/socks/thumbnail.png"
+    "thumb": "assets/templates/umbro/basic%20v1/socks/thumbnail.png"
   },
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\umbro\\socks\\umbro\\basic_v1\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\umbro\\socks\\umbro\\basic_v1\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

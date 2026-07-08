@@ -5,7 +5,7 @@
   "savedAt": "2026-07-06T17:32:23.272Z",
   "templateId": "joma/joma_gk_26-27",
   "collarSettingsId": "joma/joma_gk_26-27/collar/01",
-  "folderPath": "assets/templates/Joma/Joma%20GK%2026-27/collar/01",
+  "folderPath": "assets/templates/joma/joma%20gk%2026-27/collar/01",
   "id": "01",
   "name": "Collar 1",
   "key": "01",
@@ -22,8 +22,8 @@
         "collar/1/tights rubber band fusion opacidad.png",
         "collar/collar/01/tights rubber band fusion opacidad.png"
       ],
-      "src": "assets/templates/Joma/Joma%20GK%2026-27/collar/01/tights%20rubber%20band%20fusion%20opacidad.png",
-      "path": "assets/templates/Joma/Joma%20GK%2026-27/collar/01/tights%20rubber%20band%20fusion%20opacidad.png",
+      "src": "assets/templates/joma/joma%20gk%2026-27/collar/01/tights%20rubber%20band%20fusion%20opacidad.png",
+      "path": "assets/templates/joma/joma%20gk%2026-27/collar/01/tights%20rubber%20band%20fusion%20opacidad.png",
       "originalPath": "collar/01/tights rubber band fusion opacidad.png",
       "rawName": "tights rubber band fusion opacidad.png",
       "name": "Tights Rubber Band Fusion Opacidad",
@@ -72,8 +72,8 @@
         "collar/1/detail.png",
         "collar/collar/01/detail.png"
       ],
-      "src": "assets/templates/Joma/Joma%20GK%2026-27/collar/01/detail.png",
-      "path": "assets/templates/Joma/Joma%20GK%2026-27/collar/01/detail.png",
+      "src": "assets/templates/joma/joma%20gk%2026-27/collar/01/detail.png",
+      "path": "assets/templates/joma/joma%20gk%2026-27/collar/01/detail.png",
       "originalPath": "collar/01/detail.png",
       "rawName": "detail.png",
       "name": "Detail",
@@ -124,8 +124,8 @@
         "collar_seams/seams/seams iv.png",
         "collar_seams/collar/01/seams iv.png"
       ],
-      "src": "assets/templates/Joma/Joma%20GK%2026-27/collar/01/seams%20IV.png",
-      "path": "assets/templates/Joma/Joma%20GK%2026-27/collar/01/seams%20IV.png",
+      "src": "assets/templates/joma/joma%20gk%2026-27/collar/01/seams%20iv.png",
+      "path": "assets/templates/joma/joma%20gk%2026-27/collar/01/seams%20iv.png",
       "originalPath": "collar/01/seams IV.png",
       "rawName": "seams IV.png",
       "name": "Seams IV",
@@ -170,5 +170,6 @@
   "collarSeamsFolderOpen": false,
   "_manualCollarSave": true,
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\joma\\joma_gk_26-27\\collar\\01\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\joma\\joma_gk_26-27\\collar\\01\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

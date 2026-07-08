@@ -5,7 +5,7 @@
   "savedAt": "2026-06-30T06:30:18.462Z",
   "templateId": "nike/nike_gk_worldcup_26-27",
   "collarSettingsId": "nike/nike_gk_worldcup_26-27/collar/1",
-  "folderPath": "assets/templates/Nike/Nike%20GK%20WorldCup%2026-27/collar/1",
+  "folderPath": "assets/templates/nike/nike%20gk%20worldcup%2026-27/collar/1",
   "id": "1",
   "name": "Collar 1",
   "key": "1",
@@ -21,8 +21,8 @@
         "collar/tights rubber band fusion opacidad.png",
         "collar/collar/1/tights rubber band fusion opacidad.png"
       ],
-      "src": "assets/templates/Nike/Nike%20GK%20WorldCup%2026-27/collar/1/tights rubber band fusion opacidad.png",
-      "path": "assets/templates/Nike/Nike%20GK%20WorldCup%2026-27/collar/1/tights%20rubber%20band%20fusion%20opacidad.png",
+      "src": "assets/templates/nike/nike%20gk%20worldcup%2026-27/collar/1/tights rubber band fusion opacidad.png",
+      "path": "assets/templates/nike/nike%20gk%20worldcup%2026-27/collar/1/tights%20rubber%20band%20fusion%20opacidad.png",
       "originalPath": "collar/1/tights rubber band fusion opacidad.png",
       "rawName": "tights rubber band fusion opacidad.png",
       "name": "Tights Rubber Band Fusion Opacidad",
@@ -70,8 +70,8 @@
         "collar/detail.png",
         "collar/collar/1/detail.png"
       ],
-      "src": "assets/templates/Nike/Nike GK WorldCup 26-27/collar/1/detail.png",
-      "path": "assets/templates/Nike/Nike%20GK%20WorldCup%2026-27/collar/1/detail.png",
+      "src": "assets/templates/nike/nike GK WorldCup 26-27/collar/1/detail.png",
+      "path": "assets/templates/nike/nike%20gk%20worldcup%2026-27/collar/1/detail.png",
       "originalPath": "collar/1/detail.png",
       "rawName": "detail.png",
       "name": "Detail",
@@ -122,8 +122,8 @@
         "collar_seams/seams/seams iv 2.png",
         "collar_seams/collar/1/seams iv 2.png"
       ],
-      "src": "assets/templates/Nike/Nike GK WorldCup 26-27/collar/1/seams IV 2.png",
-      "path": "assets/templates/Nike/Nike%20GK%20WorldCup%2026-27/collar/1/seams%20IV%202.png",
+      "src": "assets/templates/nike/nike GK WorldCup 26-27/collar/1/seams IV 2.png",
+      "path": "assets/templates/nike/nike%20gk%20worldcup%2026-27/collar/1/seams%20iv%202.png",
       "originalPath": "collar/1/seams IV 2.png",
       "rawName": "seams IV 2.png",
       "name": "Seams IV 2",
@@ -174,8 +174,8 @@
         "collar_seams/seams/seams iv.png",
         "collar_seams/collar/1/seams iv.png"
       ],
-      "src": "assets/templates/Nike/Nike%20GK%20WorldCup%2026-27/collar/1/seams IV.png",
-      "path": "assets/templates/Nike/Nike%20GK%20WorldCup%2026-27/collar/1/seams%20IV.png",
+      "src": "assets/templates/nike/nike%20gk%20worldcup%2026-27/collar/1/seams IV.png",
+      "path": "assets/templates/nike/nike%20gk%20worldcup%2026-27/collar/1/seams%20iv.png",
       "originalPath": "collar/1/seams IV.png",
       "rawName": "seams IV.png",
       "name": "Seams IV",
@@ -220,5 +220,6 @@
   "collarSeamsFolderOpen": false,
   "_manualCollarSave": true,
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\nike\\nike_gk_worldcup_26-27\\collar\\1\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\nike\\nike_gk_worldcup_26-27\\collar\\1\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

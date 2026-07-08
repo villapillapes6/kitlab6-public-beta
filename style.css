@@ -7699,3 +7699,13 @@ input:disabled,
 }
 
 /* v1.1.21: added short Adidas.png to Adidas 2026 and Adidas GK 2026 templates. */
+
+
+/* v1.3.216 public beta: requested hidden UI only. */
+.texture-main-line,
+#textureUpload,
+#textureLayerList,
+#saveTemplateSettingsBtn,
+#exportTemplateSettingsBtn {
+  display: none !important;
+}

@@ -16,7 +16,7 @@
   "templateId": "modular_parts/macron/socks/macron/macron_24-25/socks/v1",
   "selectedTemplate": {
     "name": "Macron 24/25 V1",
-    "path": "assets/templates/Macron/Macron%2024-25/socks/V1",
+    "path": "assets/templates/macron/macron%2024-25/socks/v1",
     "brand": "Macron"
   },
   "shortVariant": "v1",
@@ -35,8 +35,8 @@
         "socks/seams fj.png",
         "socks/macron 24-25/socks/v1/seams/seams fj.png"
       ],
-      "src": "assets/templates/Macron/Macron%2024-25/socks/V1/seams/seams%20FJ.png",
-      "path": "assets/templates/Macron/Macron%2024-25/socks/V1/seams/seams%20FJ.png",
+      "src": "assets/templates/macron/macron%2024-25/socks/v1/seams/seams%20fj.png",
+      "path": "assets/templates/macron/macron%2024-25/socks/v1/seams/seams%20fj.png",
       "originalPath": "macron 24-25/socks/v1/seams/seams FJ.png",
       "rawName": "seams FJ.png",
       "name": "Seams FJ",
@@ -132,10 +132,11 @@
     "part": "socks",
     "name": "Macron 24/25 V1",
     "brand": "Macron",
-    "path": "assets/templates/Macron/Macron%2024-25/socks/V1",
+    "path": "assets/templates/macron/macron%2024-25/socks/v1",
     "templateId": "macron/macron_24-25/socks/v1",
-    "thumb": "assets/templates/Macron/Macron%2024-25/socks/V1/thumbnail.png"
+    "thumb": "assets/templates/macron/macron%2024-25/socks/v1/thumbnail.png"
   },
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\macron\\socks\\macron\\macron_24-25\\socks\\v1\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\macron\\socks\\macron\\macron_24-25\\socks\\v1\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

@@ -12,7 +12,7 @@
   "templateId": "modular_parts/macron/short/macron/basic",
   "selectedTemplate": {
     "name": "Basic",
-    "path": "assets/templates/Macron/Basic",
+    "path": "assets/templates/macron/basic",
     "brand": "Macron"
   },
   "shortVariant": "v1",
@@ -32,8 +32,8 @@
         "short/details/short final.png",
         "short/basic/details/short final.png"
       ],
-      "src": "assets/templates/Macron/Basic/details/short%20final.png",
-      "path": "assets/templates/Macron/Basic/details/short%20final.png",
+      "src": "assets/templates/macron/basic/details/short%20final.png",
+      "path": "assets/templates/macron/basic/details/short%20final.png",
       "originalPath": "basic/details/short final.png",
       "rawName": "short final.png",
       "name": "Short Final",
@@ -82,8 +82,8 @@
         "short/brand/short label macron.png",
         "short/basic/brand/short label macron.png"
       ],
-      "src": "assets/templates/Macron/Basic/brand/short%20label%20macron.png",
-      "path": "assets/templates/Macron/Basic/brand/short%20label%20macron.png",
+      "src": "assets/templates/macron/basic/brand/short%20label%20macron.png",
+      "path": "assets/templates/macron/basic/brand/short%20label%20macron.png",
       "originalPath": "basic/brand/short label macron.png",
       "rawName": "short label macron.png",
       "name": "Short Label Macron",
@@ -131,8 +131,8 @@
         "short/seams fj.png",
         "short/basic/seams/seams fj.png"
       ],
-      "src": "assets/templates/Macron/Basic/seams/seams%20FJ.png",
-      "path": "assets/templates/Macron/Basic/seams/seams%20FJ.png",
+      "src": "assets/templates/macron/basic/seams/seams%20fj.png",
+      "path": "assets/templates/macron/basic/seams/seams%20fj.png",
       "originalPath": "basic/seams/seams FJ.png",
       "rawName": "seams FJ.png",
       "name": "Seams FJ",
@@ -180,8 +180,8 @@
         "short/short iv costados.png",
         "short/basic/seams/short iv costados.png"
       ],
-      "src": "assets/templates/Macron/Basic/seams/short%20IV%20costados.png",
-      "path": "assets/templates/Macron/Basic/seams/short%20IV%20costados.png",
+      "src": "assets/templates/macron/basic/seams/short%20iv%20costados.png",
+      "path": "assets/templates/macron/basic/seams/short%20iv%20costados.png",
       "originalPath": "basic/seams/short IV costados.png",
       "rawName": "short IV costados.png",
       "name": "Short IV Costados",
@@ -229,8 +229,8 @@
         "short/short iv final.png",
         "short/basic/seams/short iv final.png"
       ],
-      "src": "assets/templates/Macron/Basic/seams/short%20IV%20final.png",
-      "path": "assets/templates/Macron/Basic/seams/short%20IV%20final.png",
+      "src": "assets/templates/macron/basic/seams/short%20iv%20final.png",
+      "path": "assets/templates/macron/basic/seams/short%20iv%20final.png",
       "originalPath": "basic/seams/short IV final.png",
       "rawName": "short IV final.png",
       "name": "Short IV Final",
@@ -278,8 +278,8 @@
         "short/short iv goma.png",
         "short/basic/seams/short iv goma.png"
       ],
-      "src": "assets/templates/Macron/Basic/seams/short%20IV%20goma.png",
-      "path": "assets/templates/Macron/Basic/seams/short%20IV%20goma.png",
+      "src": "assets/templates/macron/basic/seams/short%20iv%20goma.png",
+      "path": "assets/templates/macron/basic/seams/short%20iv%20goma.png",
       "originalPath": "basic/seams/short IV goma.png",
       "rawName": "short IV goma.png",
       "name": "Short IV Goma",
@@ -372,10 +372,11 @@
     "part": "short",
     "name": "Basic",
     "brand": "Macron",
-    "path": "assets/templates/Macron/Basic",
+    "path": "assets/templates/macron/basic",
     "templateId": "macron/basic",
-    "thumb": "assets/templates/Macron/Basic/thumbnail.png"
+    "thumb": "assets/templates/macron/basic/thumbnail.png"
   },
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\macron\\short\\macron\\basic\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\macron\\short\\macron\\basic\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

@@ -5,7 +5,7 @@
   "savedAt": "2026-06-28T19:53:50.094Z",
   "templateId": "adidas/adidas_25-26_aeroready",
   "collarSettingsId": "adidas/adidas_25-26_aeroready/collar/05",
-  "folderPath": "assets/templates/Adidas/Adidas%2025-26%20Aeroready/collar/05",
+  "folderPath": "assets/templates/adidas/adidas%2025-26%20aeroready/collar/05",
   "id": "05",
   "name": "Collar 05",
   "key": "05",
@@ -22,8 +22,8 @@
         "collar/5/detail border.png",
         "collar/collar/05/detail border.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%2025-26%20Aeroready/collar/05/detail%20border.png",
-      "path": "assets/templates/Adidas/Adidas%2025-26%20Aeroready/collar/05/detail%20border.png",
+      "src": "assets/templates/adidas/adidas%2025-26%20aeroready/collar/05/detail%20border.png",
+      "path": "assets/templates/adidas/adidas%2025-26%20aeroready/collar/05/detail%20border.png",
       "originalPath": "collar/05/detail border.png",
       "rawName": "detail border.png",
       "name": "Detail Border",
@@ -74,8 +74,8 @@
         "collar/5/detail back.png",
         "collar/collar/05/detail back.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%2025-26%20Aeroready/collar/05/detail%20back.png",
-      "path": "assets/templates/Adidas/Adidas%2025-26%20Aeroready/collar/05/detail%20back.png",
+      "src": "assets/templates/adidas/adidas%2025-26%20aeroready/collar/05/detail%20back.png",
+      "path": "assets/templates/adidas/adidas%2025-26%20aeroready/collar/05/detail%20back.png",
       "originalPath": "collar/05/detail back.png",
       "rawName": "detail back.png",
       "name": "Detail Back",
@@ -126,8 +126,8 @@
         "collar/5/detail front.png",
         "collar/collar/05/detail front.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%2025-26%20Aeroready/collar/05/detail%20front.png",
-      "path": "assets/templates/Adidas/Adidas%2025-26%20Aeroready/collar/05/detail%20front.png",
+      "src": "assets/templates/adidas/adidas%2025-26%20aeroready/collar/05/detail%20front.png",
+      "path": "assets/templates/adidas/adidas%2025-26%20aeroready/collar/05/detail%20front.png",
       "originalPath": "collar/05/detail front.png",
       "rawName": "detail front.png",
       "name": "Detail Front",
@@ -178,8 +178,8 @@
         "collar_seams/seams/seams iv.png",
         "collar_seams/collar/05/seams iv.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%2025-26%20Aeroready/collar/05/seams%20IV.png",
-      "path": "assets/templates/Adidas/Adidas%2025-26%20Aeroready/collar/05/seams%20IV.png",
+      "src": "assets/templates/adidas/adidas%2025-26%20aeroready/collar/05/seams%20iv.png",
+      "path": "assets/templates/adidas/adidas%2025-26%20aeroready/collar/05/seams%20iv.png",
       "originalPath": "collar/05/seams IV.png",
       "rawName": "seams IV.png",
       "name": "Seams IV",
@@ -230,8 +230,8 @@
         "collar_seams/seams/seams front iv.png",
         "collar_seams/collar/05/seams front iv.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%2025-26%20Aeroready/collar/05/seams%20front%20IV.png",
-      "path": "assets/templates/Adidas/Adidas%2025-26%20Aeroready/collar/05/seams%20front%20IV.png",
+      "src": "assets/templates/adidas/adidas%2025-26%20aeroready/collar/05/seams%20front%20iv.png",
+      "path": "assets/templates/adidas/adidas%2025-26%20aeroready/collar/05/seams%20front%20iv.png",
       "originalPath": "collar/05/seams front IV.png",
       "rawName": "seams front IV.png",
       "name": "Seams Front IV",
@@ -282,8 +282,8 @@
         "collar_seams/seams/seams side iv.png",
         "collar_seams/collar/05/seams side iv.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%2025-26%20Aeroready/collar/05/seams%20side%20IV.png",
-      "path": "assets/templates/Adidas/Adidas%2025-26%20Aeroready/collar/05/seams%20side%20IV.png",
+      "src": "assets/templates/adidas/adidas%2025-26%20aeroready/collar/05/seams%20side%20iv.png",
+      "path": "assets/templates/adidas/adidas%2025-26%20aeroready/collar/05/seams%20side%20iv.png",
       "originalPath": "collar/05/seams side IV.png",
       "rawName": "seams side IV.png",
       "name": "Seams Side IV",
@@ -328,5 +328,6 @@
   "collarSeamsFolderOpen": false,
   "_manualCollarSave": true,
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\adidas\\adidas_25-26_aeroready\\collar\\05\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\adidas\\adidas_25-26_aeroready\\collar\\05\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

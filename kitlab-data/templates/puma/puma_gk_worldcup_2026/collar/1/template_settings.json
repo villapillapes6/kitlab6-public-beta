@@ -5,7 +5,7 @@
   "savedAt": "2026-07-07T13:55:45.887Z",
   "templateId": "puma/puma_gk_worldcup_2026",
   "collarSettingsId": "puma/puma_gk_worldcup_2026/collar/1",
-  "folderPath": "assets/templates/Puma/Puma%20GK%20WorldCup%202026/collar/1",
+  "folderPath": "assets/templates/puma/puma%20gk%20worldcup%202026/collar/1",
   "id": "1",
   "name": "Collar 1",
   "key": "1",
@@ -21,8 +21,8 @@
         "collar/detail back.png",
         "collar/collar/1/detail back.png"
       ],
-      "src": "assets/templates/Puma/Puma%20GK%20WorldCup%202026/collar/1/detail%20back.png",
-      "path": "assets/templates/Puma/Puma%20GK%20WorldCup%202026/collar/1/detail%20back.png",
+      "src": "assets/templates/puma/puma%20gk%20worldcup%202026/collar/1/detail%20back.png",
+      "path": "assets/templates/puma/puma%20gk%20worldcup%202026/collar/1/detail%20back.png",
       "originalPath": "collar/1/detail back.png",
       "rawName": "detail back.png",
       "name": "Detail Back",
@@ -72,8 +72,8 @@
         "collar/detail.png",
         "collar/collar/1/detail.png"
       ],
-      "src": "assets/templates/Puma/Puma%20GK%20WorldCup%202026/collar/1/detail.png",
-      "path": "assets/templates/Puma/Puma%20GK%20WorldCup%202026/collar/1/detail.png",
+      "src": "assets/templates/puma/puma%20gk%20worldcup%202026/collar/1/detail.png",
+      "path": "assets/templates/puma/puma%20gk%20worldcup%202026/collar/1/detail.png",
       "originalPath": "collar/1/detail.png",
       "rawName": "detail.png",
       "name": "Detail",
@@ -123,8 +123,8 @@
         "collar/tights fusion opacidad.png",
         "collar/collar/1/tights fusion opacidad.png"
       ],
-      "src": "assets/templates/Puma/Puma%20GK%20WorldCup%202026/collar/1/tights%20fusion%20opacidad.png",
-      "path": "assets/templates/Puma/Puma%20GK%20WorldCup%202026/collar/1/tights%20fusion%20opacidad.png",
+      "src": "assets/templates/puma/puma%20gk%20worldcup%202026/collar/1/tights%20fusion%20opacidad.png",
+      "path": "assets/templates/puma/puma%20gk%20worldcup%202026/collar/1/tights%20fusion%20opacidad.png",
       "originalPath": "collar/1/tights fusion opacidad.png",
       "rawName": "tights fusion opacidad.png",
       "name": "Tights",
@@ -173,8 +173,8 @@
         "collar_seams/seams/seams back iv.png",
         "collar_seams/collar/1/seams back iv.png"
       ],
-      "src": "assets/templates/Puma/Puma GK WorldCup 2026/collar/1/seams back IV.png",
-      "path": "assets/templates/Puma/Puma%20GK%20WorldCup%202026/collar/1/seams%20back%20IV.png",
+      "src": "assets/templates/puma/puma GK WorldCup 2026/collar/1/seams back IV.png",
+      "path": "assets/templates/puma/puma%20gk%20worldcup%202026/collar/1/seams%20back%20iv.png",
       "originalPath": "collar/1/seams back IV.png",
       "rawName": "seams back IV.png",
       "name": "Seams Back IV",
@@ -225,8 +225,8 @@
         "collar_seams/seams/seams iv.png",
         "collar_seams/collar/1/seams iv.png"
       ],
-      "src": "assets/templates/Puma/Puma%20GK%20WorldCup%202026/collar/1/seams%20IV.png",
-      "path": "assets/templates/Puma/Puma%20GK%20WorldCup%202026/collar/1/seams%20IV.png",
+      "src": "assets/templates/puma/puma%20gk%20worldcup%202026/collar/1/seams%20iv.png",
+      "path": "assets/templates/puma/puma%20gk%20worldcup%202026/collar/1/seams%20iv.png",
       "originalPath": "collar/1/seams IV.png",
       "rawName": "seams IV.png",
       "name": "Seams IV",
@@ -271,5 +271,6 @@
   "collarSeamsFolderOpen": false,
   "_manualCollarSave": true,
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\puma\\puma_gk_worldcup_2026\\collar\\1\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\puma\\puma_gk_worldcup_2026\\collar\\1\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

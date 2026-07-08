@@ -20,7 +20,7 @@
   "templateId": "modular_parts/umbro/shirt/umbro/umbro_gk_25-26",
   "selectedTemplate": {
     "name": "Umbro GK 25/26",
-    "path": "assets/templates/Umbro/Umbro%20GK%2025-26",
+    "path": "assets/templates/umbro/umbro%20gk%2025-26",
     "brand": "Umbro"
   },
   "selectedCollar": {
@@ -35,7 +35,7 @@
       "savedAt": "2026-06-22T01:51:13.477Z",
       "templateId": "modular_//umbro/umbro_gk_25_2f26/umbro_gk_25_2f26/umbro_gk_25_2f26",
       "collarSettingsId": "modular_parts/umbro/shirt/umbro/umbro_gk_25-26/collar/01",
-      "folderPath": "assets/templates/Umbro/Umbro%20GK%2025-26/collar/01",
+      "folderPath": "assets/templates/umbro/umbro%20gk%2025-26/collar/01",
       "id": "01",
       "name": "01",
       "key": "01",
@@ -52,8 +52,8 @@
             "collar/1/tights rubber band fusion opacidad.png",
             "collar/collar/01/tights rubber band fusion opacidad.png"
           ],
-          "src": "assets/templates/Umbro/Umbro GK 25-26/collar/01/tights rubber band fusion opacidad.png",
-          "path": "assets/templates/Umbro/Umbro%20GK%2025-26/collar/01/tights%20rubber%20band%20fusion%20opacidad.png",
+          "src": "assets/templates/umbro/umbro GK 25-26/collar/01/tights rubber band fusion opacidad.png",
+          "path": "assets/templates/umbro/umbro%20gk%2025-26/collar/01/tights%20rubber%20band%20fusion%20opacidad.png",
           "originalPath": "collar/01/tights rubber band fusion opacidad.png",
           "rawName": "tights rubber band fusion opacidad.png",
           "name": "Tights Rubber Band Fusion Opacidad",
@@ -100,8 +100,8 @@
             "collar/1/detail.png",
             "collar/collar/01/detail.png"
           ],
-          "src": "assets/templates/Umbro/Umbro%20GK%2025-26/collar/01/detail.png",
-          "path": "assets/templates/Umbro/Umbro%20GK%2025-26/collar/01/detail.png",
+          "src": "assets/templates/umbro/umbro%20gk%2025-26/collar/01/detail.png",
+          "path": "assets/templates/umbro/umbro%20gk%2025-26/collar/01/detail.png",
           "originalPath": "collar/01/detail.png",
           "rawName": "detail.png",
           "name": "Detail",
@@ -150,8 +150,8 @@
             "collar_seams/seams/seams iv.png",
             "collar_seams/collar/01/seams iv.png"
           ],
-          "src": "assets/templates/Umbro/Umbro%20GK%2025-26/collar/01/seams%20IV.png",
-          "path": "assets/templates/Umbro/Umbro%20GK%2025-26/collar/01/seams%20IV.png",
+          "src": "assets/templates/umbro/umbro%20gk%2025-26/collar/01/seams%20iv.png",
+          "path": "assets/templates/umbro/umbro%20gk%2025-26/collar/01/seams%20iv.png",
           "originalPath": "collar/01/seams IV.png",
           "rawName": "seams IV.png",
           "name": "Seams IV",
@@ -212,8 +212,8 @@
         "shirt/label umbro.png",
         "shirt/shirt/brand/label umbro.png"
       ],
-      "src": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/brand/label%20umbro.png",
-      "path": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/brand/label%20umbro.png",
+      "src": "assets/templates/umbro/umbro%20gk%2025-26/shirt/brand/label%20umbro.png",
+      "path": "assets/templates/umbro/umbro%20gk%2025-26/shirt/brand/label%20umbro.png",
       "originalPath": "shirt/brand/label umbro.png",
       "rawName": "label umbro.png",
       "name": "Label Umbro",
@@ -259,8 +259,8 @@
         "shirt/cuffs.png",
         "shirt/shirt/details/cuffs.png"
       ],
-      "src": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/details/cuffs.png",
-      "path": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/details/cuffs.png",
+      "src": "assets/templates/umbro/umbro%20gk%2025-26/shirt/details/cuffs.png",
+      "path": "assets/templates/umbro/umbro%20gk%2025-26/shirt/details/cuffs.png",
       "originalPath": "shirt/details/cuffs.png",
       "rawName": "cuffs.png",
       "name": "Cuffs",
@@ -308,8 +308,8 @@
         "shirt/triangle.png",
         "shirt/shirt/details/triangle.png"
       ],
-      "src": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/details/triangle.png",
-      "path": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/details/triangle.png",
+      "src": "assets/templates/umbro/umbro%20gk%2025-26/shirt/details/triangle.png",
+      "path": "assets/templates/umbro/umbro%20gk%2025-26/shirt/details/triangle.png",
       "originalPath": "shirt/details/triangle.png",
       "rawName": "triangle.png",
       "name": "Triangle",
@@ -357,8 +357,8 @@
         "shirt/sleeve_long_sleeve_shadow.png",
         "shirt/shirt/details/sleeve_long_sleeve_shadow.png"
       ],
-      "src": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/details/sleeve_long_sleeve_shadow.png",
-      "path": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/details/sleeve_long_sleeve_shadow.png",
+      "src": "assets/templates/umbro/umbro%20gk%2025-26/shirt/details/sleeve_long_sleeve_shadow.png",
+      "path": "assets/templates/umbro/umbro%20gk%2025-26/shirt/details/sleeve_long_sleeve_shadow.png",
       "originalPath": "shirt/details/sleeve_long_sleeve_shadow.png",
       "rawName": "sleeve_long_sleeve_shadow.png",
       "name": "Sleeve Long Sleeve Shadow",
@@ -406,8 +406,8 @@
         "shirt/sleeve short pattern 01.png",
         "shirt/shirt/pattern/sleeve short pattern 01.png"
       ],
-      "src": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/pattern/sleeve%20short%20pattern%2001.png",
-      "path": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/pattern/sleeve%20short%20pattern%2001.png",
+      "src": "assets/templates/umbro/umbro%20gk%2025-26/shirt/pattern/sleeve%20short%20pattern%2001.png",
+      "path": "assets/templates/umbro/umbro%20gk%2025-26/shirt/pattern/sleeve%20short%20pattern%2001.png",
       "originalPath": "shirt/pattern/sleeve short pattern 01.png",
       "rawName": "sleeve short pattern 01.png",
       "name": "Sleeve Short Pattern 01",
@@ -455,8 +455,8 @@
         "shirt/sleeve short pattern 02.png",
         "shirt/shirt/pattern/sleeve short pattern 02.png"
       ],
-      "src": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/pattern/sleeve%20short%20pattern%2002.png",
-      "path": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/pattern/sleeve%20short%20pattern%2002.png",
+      "src": "assets/templates/umbro/umbro%20gk%2025-26/shirt/pattern/sleeve%20short%20pattern%2002.png",
+      "path": "assets/templates/umbro/umbro%20gk%2025-26/shirt/pattern/sleeve%20short%20pattern%2002.png",
       "originalPath": "shirt/pattern/sleeve short pattern 02.png",
       "rawName": "sleeve short pattern 02.png",
       "name": "Sleeve Short Pattern 02",
@@ -505,8 +505,8 @@
         "collar/1/tights rubber band fusion opacidad.png",
         "collar/collar/01/tights rubber band fusion opacidad.png"
       ],
-      "src": "assets/templates/Umbro/Umbro GK 25-26/collar/01/tights rubber band fusion opacidad.png",
-      "path": "assets/templates/Umbro/Umbro%20GK%2025-26/collar/01/tights%20rubber%20band%20fusion%20opacidad.png",
+      "src": "assets/templates/umbro/umbro GK 25-26/collar/01/tights rubber band fusion opacidad.png",
+      "path": "assets/templates/umbro/umbro%20gk%2025-26/collar/01/tights%20rubber%20band%20fusion%20opacidad.png",
       "originalPath": "collar/01/tights rubber band fusion opacidad.png",
       "rawName": "tights rubber band fusion opacidad.png",
       "name": "Tights Rubber Band Fusion Opacidad",
@@ -553,8 +553,8 @@
         "collar/1/detail.png",
         "collar/collar/01/detail.png"
       ],
-      "src": "assets/templates/Umbro/Umbro%20GK%2025-26/collar/01/detail.png",
-      "path": "assets/templates/Umbro/Umbro%20GK%2025-26/collar/01/detail.png",
+      "src": "assets/templates/umbro/umbro%20gk%2025-26/collar/01/detail.png",
+      "path": "assets/templates/umbro/umbro%20gk%2025-26/collar/01/detail.png",
       "originalPath": "collar/01/detail.png",
       "rawName": "detail.png",
       "name": "Detail",
@@ -600,8 +600,8 @@
         "cuffs iv",
         "z5mwx3jpjqmqok6uzp"
       ],
-      "src": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/seams/cuffs%20IV.png",
-      "path": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/seams/cuffs%20IV.png",
+      "src": "assets/templates/umbro/umbro%20gk%2025-26/shirt/seams/cuffs%20iv.png",
+      "path": "assets/templates/umbro/umbro%20gk%2025-26/shirt/seams/cuffs%20iv.png",
       "originalPath": "shirt/seams/cuffs IV.png",
       "rawName": "cuffs IV.png",
       "name": "Cuffs IV",
@@ -645,8 +645,8 @@
         "hem iv",
         "ct1yb4pnwgcmqok6v2c"
       ],
-      "src": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/seams/hem%20IV.png",
-      "path": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/seams/hem%20IV.png",
+      "src": "assets/templates/umbro/umbro%20gk%2025-26/shirt/seams/hem%20iv.png",
+      "path": "assets/templates/umbro/umbro%20gk%2025-26/shirt/seams/hem%20iv.png",
       "originalPath": "shirt/seams/hem IV.png",
       "rawName": "hem IV.png",
       "name": "Hem IV",
@@ -690,8 +690,8 @@
         "seams fj",
         "iwrx19p6qdnmqok6uyp"
       ],
-      "src": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/seams/seams%20FJ.png",
-      "path": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/seams/seams%20FJ.png",
+      "src": "assets/templates/umbro/umbro%20gk%2025-26/shirt/seams/seams%20fj.png",
+      "path": "assets/templates/umbro/umbro%20gk%2025-26/shirt/seams/seams%20fj.png",
       "originalPath": "shirt/seams/seams FJ.png",
       "rawName": "seams FJ.png",
       "name": "Seams FJ",
@@ -735,8 +735,8 @@
         "shoulder iv",
         "zj3vlia06amqok6uyp"
       ],
-      "src": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/seams/shoulder%20IV.png",
-      "path": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/seams/shoulder%20IV.png",
+      "src": "assets/templates/umbro/umbro%20gk%2025-26/shirt/seams/shoulder%20iv.png",
+      "path": "assets/templates/umbro/umbro%20gk%2025-26/shirt/seams/shoulder%20iv.png",
       "originalPath": "shirt/seams/shoulder IV.png",
       "rawName": "shoulder IV.png",
       "name": "Shoulder IV",
@@ -780,8 +780,8 @@
         "size iv",
         "uyt4hysnjdnmqok6v2c"
       ],
-      "src": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/seams/size%20IV.png",
-      "path": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/seams/size%20IV.png",
+      "src": "assets/templates/umbro/umbro%20gk%2025-26/shirt/seams/size%20iv.png",
+      "path": "assets/templates/umbro/umbro%20gk%2025-26/shirt/seams/size%20iv.png",
       "originalPath": "shirt/seams/size IV.png",
       "rawName": "size IV.png",
       "name": "Size IV",
@@ -825,8 +825,8 @@
         "triangle iv",
         "b78i7qveb69mqok6uz9"
       ],
-      "src": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/seams/triangle%20IV.png",
-      "path": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/seams/triangle%20IV.png",
+      "src": "assets/templates/umbro/umbro%20gk%2025-26/shirt/seams/triangle%20iv.png",
+      "path": "assets/templates/umbro/umbro%20gk%2025-26/shirt/seams/triangle%20iv.png",
       "originalPath": "shirt/seams/triangle IV.png",
       "rawName": "triangle IV.png",
       "name": "Triangle IV",
@@ -870,8 +870,8 @@
         "underarm bn iv",
         "8psi4cnh7dmqok6uz9"
       ],
-      "src": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/seams/underarm%20BN%20IV.png",
-      "path": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/seams/underarm%20BN%20IV.png",
+      "src": "assets/templates/umbro/umbro%20gk%2025-26/shirt/seams/underarm%20bn%20iv.png",
+      "path": "assets/templates/umbro/umbro%20gk%2025-26/shirt/seams/underarm%20bn%20iv.png",
       "originalPath": "shirt/seams/underarm BN IV.png",
       "rawName": "underarm BN IV.png",
       "name": "Underarm BN IV",
@@ -918,8 +918,8 @@
         "collar_seams/seams/seams iv.png",
         "collar_seams/collar/01/seams iv.png"
       ],
-      "src": "assets/templates/Umbro/Umbro%20GK%2025-26/collar/01/seams%20IV.png",
-      "path": "assets/templates/Umbro/Umbro%20GK%2025-26/collar/01/seams%20IV.png",
+      "src": "assets/templates/umbro/umbro%20gk%2025-26/collar/01/seams%20iv.png",
+      "path": "assets/templates/umbro/umbro%20gk%2025-26/collar/01/seams%20iv.png",
       "originalPath": "collar/01/seams IV.png",
       "rawName": "seams IV.png",
       "name": "Seams IV",
@@ -1015,10 +1015,11 @@
     "part": "shirt",
     "name": "Umbro GK 25/26",
     "brand": "Umbro",
-    "path": "assets/templates/Umbro/Umbro%20GK%2025-26",
+    "path": "assets/templates/umbro/umbro%20gk%2025-26",
     "templateId": "umbro/umbro_gk_25-26",
-    "thumb": "assets/templates/Umbro/Umbro%20GK%2025-26/shirt/thumbnail.png"
+    "thumb": "assets/templates/umbro/umbro%20gk%2025-26/shirt/thumbnail.png"
   },
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\umbro\\shirt\\umbro\\umbro_gk_25-26\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\umbro\\shirt\\umbro\\umbro_gk_25-26\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

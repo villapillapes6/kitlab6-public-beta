@@ -5,7 +5,7 @@
   "savedAt": "2026-06-25T14:05:03.130Z",
   "templateId": "nike/nike_23-24_shared",
   "collarSettingsId": "nike/nike_23-24_shared/collar/1",
-  "folderPath": "assets/templates/Nike/Nike%2023-24%20Shared/collar/1",
+  "folderPath": "assets/templates/nike/nike%2023-24%20shared/collar/1",
   "id": "1",
   "name": "Collar 1",
   "key": "1",
@@ -22,8 +22,8 @@
         "collar_seams/seams/seams iv.png",
         "collar_seams/collar/1/seams iv.png"
       ],
-      "src": "assets/templates/Nike/Nike 23-24 Shared/collar/1/seams IV.png",
-      "path": "assets/templates/Nike/Nike%2023-24%20Shared/collar/1/seams%20IV.png",
+      "src": "assets/templates/nike/nike 23-24 Shared/collar/1/seams IV.png",
+      "path": "assets/templates/nike/nike%2023-24%20shared/collar/1/seams%20iv.png",
       "originalPath": "collar/1/seams IV.png",
       "rawName": "seams IV.png",
       "name": "Seams IV",
@@ -68,5 +68,6 @@
   "collarSeamsFolderOpen": false,
   "_manualCollarSave": true,
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\nike\\nike_23-24_shared\\collar\\1\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\nike\\nike_23-24_shared\\collar\\1\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

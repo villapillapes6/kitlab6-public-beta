@@ -16,7 +16,7 @@
   "templateId": "modular_parts/basic/socks/basic/basic",
   "selectedTemplate": {
     "name": "Basic",
-    "path": "assets/templates/Basic/Basic",
+    "path": "assets/templates/basic/basic",
     "brand": "basic"
   },
   "selectedCollar": null,
@@ -34,8 +34,8 @@
         "socks/socks doblado.png",
         "socks/details/socks doblado.png"
       ],
-      "src": "assets/templates/Basic/Basic/details/socks%20doblado.png",
-      "path": "assets/templates/Basic/Basic/details/socks%20doblado.png",
+      "src": "assets/templates/basic/basic/details/socks%20doblado.png",
+      "path": "assets/templates/basic/basic/details/socks%20doblado.png",
       "originalPath": "details/socks doblado.png",
       "rawName": "socks doblado.png",
       "name": "Socks Doblado",
@@ -93,10 +93,11 @@
     "part": "socks",
     "name": "Basic",
     "brand": "basic",
-    "path": "assets/templates/Basic/Basic",
+    "path": "assets/templates/basic/basic",
     "templateId": "basic/basic",
-    "thumb": "assets/templates/Basic/Basic/base/05.%20socks.png"
+    "thumb": "assets/templates/basic/basic/base/05.%20socks.png"
   },
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\basic\\socks\\basic\\basic\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\basic\\socks\\basic\\basic\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

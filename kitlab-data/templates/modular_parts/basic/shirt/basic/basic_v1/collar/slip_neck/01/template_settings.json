@@ -5,7 +5,7 @@
   "savedAt": "2026-07-07T16:31:34.141Z",
   "templateId": "modular_//basic/basic_v1/basic_v1/basic_v1",
   "collarSettingsId": "modular_parts/basic/shirt/basic/basic_v1/collar/slip_neck/01",
-  "folderPath": "assets/templates/Basic/Basic%20V1/collar/Slip%20Neck/01",
+  "folderPath": "assets/templates/basic/basic%20v1/collar/slip%20neck/01",
   "id": "Slip Neck/01",
   "name": "01",
   "key": "slip_neck/01",
@@ -22,8 +22,8 @@
         "collar/slip neck 1/detail border.png",
         "collar/collar/slip neck/01/detail border.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Slip%20Neck/01/detail%20border.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Slip%20Neck/01/detail%20border.png",
+      "src": "assets/templates/basic/basic%20v1/collar/slip%20neck/01/detail%20border.png",
+      "path": "assets/templates/basic/basic%20v1/collar/slip%20neck/01/detail%20border.png",
       "originalPath": "collar/Slip Neck/01/detail border.png",
       "rawName": "detail border.png",
       "name": "Detail Border",
@@ -74,8 +74,8 @@
         "collar/slip neck 1/detail.png",
         "collar/collar/slip neck/01/detail.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Slip%20Neck/01/detail.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Slip%20Neck/01/detail.png",
+      "src": "assets/templates/basic/basic%20v1/collar/slip%20neck/01/detail.png",
+      "path": "assets/templates/basic/basic%20v1/collar/slip%20neck/01/detail.png",
       "originalPath": "collar/Slip Neck/01/detail.png",
       "rawName": "detail.png",
       "name": "Detail",
@@ -126,8 +126,8 @@
         "collar/slip neck 1/detail apertura.png",
         "collar/collar/slip neck/01/detail apertura.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Slip%20Neck/01/detail%20apertura.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Slip%20Neck/01/detail%20apertura.png",
+      "src": "assets/templates/basic/basic%20v1/collar/slip%20neck/01/detail%20apertura.png",
+      "path": "assets/templates/basic/basic%20v1/collar/slip%20neck/01/detail%20apertura.png",
       "originalPath": "collar/Slip Neck/01/detail apertura.png",
       "rawName": "detail apertura.png",
       "name": "Detail Apertura",
@@ -178,8 +178,8 @@
         "collar_seams/seams/seams iv.png",
         "collar_seams/collar/slip neck/01/seams iv.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Slip%20Neck/01/seams%20IV.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Slip%20Neck/01/seams%20IV.png",
+      "src": "assets/templates/basic/basic%20v1/collar/slip%20neck/01/seams%20iv.png",
+      "path": "assets/templates/basic/basic%20v1/collar/slip%20neck/01/seams%20iv.png",
       "originalPath": "collar/Slip Neck/01/seams IV.png",
       "rawName": "seams IV.png",
       "name": "Seams IV",
@@ -230,8 +230,8 @@
         "collar_seams/seams/seams apertura iv.png",
         "collar_seams/collar/slip neck/01/seams apertura iv.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Slip%20Neck/01/seams%20apertura%20IV.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Slip%20Neck/01/seams%20apertura%20IV.png",
+      "src": "assets/templates/basic/basic%20v1/collar/slip%20neck/01/seams%20apertura%20iv.png",
+      "path": "assets/templates/basic/basic%20v1/collar/slip%20neck/01/seams%20apertura%20iv.png",
       "originalPath": "collar/Slip Neck/01/seams apertura IV.png",
       "rawName": "seams apertura IV.png",
       "name": "Seams Apertura IV",
@@ -280,8 +280,8 @@
         "collar_seams/seams/seams front 2 iv.png",
         "collar_seams/collar/slip neck/01/seams front 2 iv.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Slip%20Neck/01/seams%20front%202%20IV.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Slip%20Neck/01/seams%20front%202%20IV.png",
+      "src": "assets/templates/basic/basic%20v1/collar/slip%20neck/01/seams%20front%202%20iv.png",
+      "path": "assets/templates/basic/basic%20v1/collar/slip%20neck/01/seams%20front%202%20iv.png",
       "originalPath": "collar/Slip Neck/01/seams front 2 IV.png",
       "rawName": "seams front 2 IV.png",
       "name": "Seams Front 2 IV",
@@ -330,8 +330,8 @@
         "collar_seams/seams/seams front iv.png",
         "collar_seams/collar/slip neck/01/seams front iv.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Slip%20Neck/01/seams%20front%20IV.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Slip%20Neck/01/seams%20front%20IV.png",
+      "src": "assets/templates/basic/basic%20v1/collar/slip%20neck/01/seams%20front%20iv.png",
+      "path": "assets/templates/basic/basic%20v1/collar/slip%20neck/01/seams%20front%20iv.png",
       "originalPath": "collar/Slip Neck/01/seams front IV.png",
       "rawName": "seams front IV.png",
       "name": "Seams Front IV",
@@ -374,5 +374,6 @@
   "collarSeamsFolderOpen": false,
   "_manualCollarSave": true,
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\basic\\shirt\\basic\\basic_v1\\collar\\slip_neck\\01\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\basic\\shirt\\basic\\basic_v1\\collar\\slip_neck\\01\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

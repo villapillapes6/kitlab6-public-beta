@@ -12,7 +12,7 @@
   "templateId": "modular_parts/macron/short/macron/macron_gk_25-26",
   "selectedTemplate": {
     "name": "Macron GK 25/26",
-    "path": "assets/templates/Macron/Macron%20GK%2025-26",
+    "path": "assets/templates/macron/macron%20gk%2025-26",
     "brand": "Macron"
   },
   "selectedCollar": null,
@@ -30,8 +30,8 @@
         "short/label macron.png",
         "short/short/brand/label macron.png"
       ],
-      "src": "assets/templates/Macron/Macron%20GK%2025-26/short/brand/label%20macron.png",
-      "path": "assets/templates/Macron/Macron%20GK%2025-26/short/brand/label%20macron.png",
+      "src": "assets/templates/macron/macron%20gk%2025-26/short/brand/label%20macron.png",
+      "path": "assets/templates/macron/macron%20gk%2025-26/short/brand/label%20macron.png",
       "originalPath": "short/brand/label macron.png",
       "rawName": "label macron.png",
       "name": "Label macron",
@@ -77,8 +77,8 @@
         "short/short size macron.png",
         "short/short/brand/short size macron.png"
       ],
-      "src": "assets/templates/Macron/Macron%20GK%2025-26/short/brand/short%20size%20macron.png",
-      "path": "assets/templates/Macron/Macron%20GK%2025-26/short/brand/short%20size%20macron.png",
+      "src": "assets/templates/macron/macron%20gk%2025-26/short/brand/short%20size%20macron.png",
+      "path": "assets/templates/macron/macron%20gk%2025-26/short/brand/short%20size%20macron.png",
       "originalPath": "short/brand/short size macron.png",
       "rawName": "short size macron.png",
       "name": "Short size macron",
@@ -126,8 +126,8 @@
         "short/short size fusion opacidad.png",
         "short/short/mesh/short size fusion opacidad.png"
       ],
-      "src": "assets/templates/Macron/Macron%20GK%2025-26/short/mesh/short%20size%20fusion%20opacidad.png",
-      "path": "assets/templates/Macron/Macron%20GK%2025-26/short/mesh/short%20size%20fusion%20opacidad.png",
+      "src": "assets/templates/macron/macron%20gk%2025-26/short/mesh/short%20size%20fusion%20opacidad.png",
+      "path": "assets/templates/macron/macron%20gk%2025-26/short/mesh/short%20size%20fusion%20opacidad.png",
       "originalPath": "short/mesh/short size fusion opacidad.png",
       "rawName": "short size fusion opacidad.png",
       "name": "Short size fusion opacidad",
@@ -173,8 +173,8 @@
         "short/short size.png",
         "short/short/details/short size.png"
       ],
-      "src": "assets/templates/Macron/Macron%20GK%2025-26/short/details/short%20size.png",
-      "path": "assets/templates/Macron/Macron%20GK%2025-26/short/details/short%20size.png",
+      "src": "assets/templates/macron/macron%20gk%2025-26/short/details/short%20size.png",
+      "path": "assets/templates/macron/macron%20gk%2025-26/short/details/short%20size.png",
       "originalPath": "short/details/short size.png",
       "rawName": "short size.png",
       "name": "Short size",
@@ -222,8 +222,8 @@
         "short/short pattern.png",
         "short/short/pattern/short pattern.png"
       ],
-      "src": "assets/templates/Macron/Macron%20GK%2025-26/short/pattern/short%20pattern.png",
-      "path": "assets/templates/Macron/Macron%20GK%2025-26/short/pattern/short%20pattern.png",
+      "src": "assets/templates/macron/macron%20gk%2025-26/short/pattern/short%20pattern.png",
+      "path": "assets/templates/macron/macron%20gk%2025-26/short/pattern/short%20pattern.png",
       "originalPath": "short/pattern/short pattern.png",
       "rawName": "short pattern.png",
       "name": "Short pattern",
@@ -269,8 +269,8 @@
         "seams fj",
         "4l47sfc5jwimqojyp75"
       ],
-      "src": "assets/templates/Macron/Macron%20GK%2025-26/short/seams/seams%20FJ.png",
-      "path": "assets/templates/Macron/Macron%20GK%2025-26/short/seams/seams%20FJ.png",
+      "src": "assets/templates/macron/macron%20gk%2025-26/short/seams/seams%20fj.png",
+      "path": "assets/templates/macron/macron%20gk%2025-26/short/seams/seams%20fj.png",
       "originalPath": "short/seams/seams FJ.png",
       "rawName": "seams FJ.png",
       "name": "Seams FJ",
@@ -314,8 +314,8 @@
         "short iv final",
         "e3m9ikudvhkmqojyp75"
       ],
-      "src": "assets/templates/Macron/Macron%20GK%2025-26/short/seams/short%20IV%20final.png",
-      "path": "assets/templates/Macron/Macron%20GK%2025-26/short/seams/short%20IV%20final.png",
+      "src": "assets/templates/macron/macron%20gk%2025-26/short/seams/short%20iv%20final.png",
+      "path": "assets/templates/macron/macron%20gk%2025-26/short/seams/short%20iv%20final.png",
       "originalPath": "short/seams/short IV final.png",
       "rawName": "short IV final.png",
       "name": "Short IV final",
@@ -359,8 +359,8 @@
         "short iv goma",
         "b396m07qiw8mqojyp75"
       ],
-      "src": "assets/templates/Macron/Macron%20GK%2025-26/short/seams/short%20IV%20goma.png",
-      "path": "assets/templates/Macron/Macron%20GK%2025-26/short/seams/short%20IV%20goma.png",
+      "src": "assets/templates/macron/macron%20gk%2025-26/short/seams/short%20iv%20goma.png",
+      "path": "assets/templates/macron/macron%20gk%2025-26/short/seams/short%20iv%20goma.png",
       "originalPath": "short/seams/short IV goma.png",
       "rawName": "short IV goma.png",
       "name": "Short IV goma",
@@ -404,8 +404,8 @@
         "short size iv",
         "0hyojf3mcaklmqojyp75"
       ],
-      "src": "assets/templates/Macron/Macron%20GK%2025-26/short/seams/short%20size%20IV.png",
-      "path": "assets/templates/Macron/Macron%20GK%2025-26/short/seams/short%20size%20IV.png",
+      "src": "assets/templates/macron/macron%20gk%2025-26/short/seams/short%20size%20iv.png",
+      "path": "assets/templates/macron/macron%20gk%2025-26/short/seams/short%20size%20iv.png",
       "originalPath": "short/seams/short size IV.png",
       "rawName": "short size IV.png",
       "name": "Short size IV",
@@ -449,8 +449,8 @@
         "short size macron iv",
         "gnfcg399w67mqojyp75"
       ],
-      "src": "assets/templates/Macron/Macron%20GK%2025-26/short/seams/short%20size%20macron%20IV.png",
-      "path": "assets/templates/Macron/Macron%20GK%2025-26/short/seams/short%20size%20macron%20IV.png",
+      "src": "assets/templates/macron/macron%20gk%2025-26/short/seams/short%20size%20macron%20iv.png",
+      "path": "assets/templates/macron/macron%20gk%2025-26/short/seams/short%20size%20macron%20iv.png",
       "originalPath": "short/seams/short size macron IV.png",
       "rawName": "short size macron IV.png",
       "name": "Short size macron IV",
@@ -546,10 +546,11 @@
     "part": "short",
     "name": "Macron GK 25/26",
     "brand": "Macron",
-    "path": "assets/templates/Macron/Macron%20GK%2025-26",
+    "path": "assets/templates/macron/macron%20gk%2025-26",
     "templateId": "macron/macron_gk_25-26",
-    "thumb": "assets/templates/Macron/Macron%20GK%2025-26/short/thumbnail.png"
+    "thumb": "assets/templates/macron/macron%20gk%2025-26/short/thumbnail.png"
   },
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\macron\\short\\macron\\macron_gk_25-26\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\macron\\short\\macron\\macron_gk_25-26\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

@@ -22,8 +22,8 @@
         "collar/collar 01/detail.png",
         "collar/collar/01/detail.png"
       ],
-      "src": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01/detail.png",
-      "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01/detail.png",
+      "src": "assets/templates/macron/macron%20wyvern%2024-25/collar/01/detail.png",
+      "path": "assets/templates/macron/macron%20wyvern%2024-25/collar/01/detail.png",
       "originalPath": "collar/01/detail.png",
       "rawName": "detail.png",
       "name": "Detail",
@@ -62,8 +62,8 @@
         "collar/collar 01/border.png",
         "collar/collar/01/border.png"
       ],
-      "src": "assets/templates/Macron/Macron Wyvern 24-25/collar/01/border.png",
-      "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01/border.png",
+      "src": "assets/templates/macron/macron Wyvern 24-25/collar/01/border.png",
+      "path": "assets/templates/macron/macron%20wyvern%2024-25/collar/01/border.png",
       "originalPath": "collar/01/border.png",
       "rawName": "border.png",
       "name": "Border",
@@ -102,8 +102,8 @@
         "collar_seams/seams/seams 2 iv.png",
         "collar_seams/collar/01/seams 2 iv.png"
       ],
-      "src": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01/seams%202%20IV.png",
-      "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01/seams%202%20IV.png",
+      "src": "assets/templates/macron/macron%20wyvern%2024-25/collar/01/seams%202%20iv.png",
+      "path": "assets/templates/macron/macron%20wyvern%2024-25/collar/01/seams%202%20iv.png",
       "originalPath": "collar/01/seams 2 IV.png",
       "rawName": "seams 2 IV.png",
       "name": "Seams 2 IV",
@@ -142,8 +142,8 @@
         "collar_seams/seams/seams iv.png",
         "collar_seams/collar/01/seams iv.png"
       ],
-      "src": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01/seams%20IV.png",
-      "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01/seams%20IV.png",
+      "src": "assets/templates/macron/macron%20wyvern%2024-25/collar/01/seams%20iv.png",
+      "path": "assets/templates/macron/macron%20wyvern%2024-25/collar/01/seams%20iv.png",
       "originalPath": "collar/01/seams IV.png",
       "rawName": "seams IV.png",
       "name": "Seams IV",
@@ -176,5 +176,6 @@
   "collarSeamsFolderOpen": false,
   "_manualCollarSave": true,
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular\\macron\\macron_wyvern_24-25\\basic_v1\\basic_v1\\collar\\01\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular\\macron\\macron_wyvern_24-25\\basic_v1\\basic_v1\\collar\\01\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

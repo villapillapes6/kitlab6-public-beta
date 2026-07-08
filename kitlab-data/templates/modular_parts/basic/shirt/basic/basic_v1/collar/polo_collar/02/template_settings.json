@@ -5,7 +5,7 @@
   "savedAt": "2026-07-07T17:05:33.262Z",
   "templateId": "modular_//basic/basic_v1/basic_v1/basic_v1",
   "collarSettingsId": "modular_parts/basic/shirt/basic/basic_v1/collar/polo_collar/02",
-  "folderPath": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/02",
+  "folderPath": "assets/templates/basic/basic%20v1/collar/polo%20collar/02",
   "id": "Polo Collar/02",
   "name": "2/NO",
   "key": "polo_collar/02",
@@ -22,8 +22,8 @@
         "collar/polo collar 2/detail collar.png",
         "collar/collar/polo collar/02/detail collar.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/02/detail%20collar.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/02/detail%20collar.png",
+      "src": "assets/templates/basic/basic%20v1/collar/polo%20collar/02/detail%20collar.png",
+      "path": "assets/templates/basic/basic%20v1/collar/polo%20collar/02/detail%20collar.png",
       "originalPath": "collar/Polo Collar/02/detail collar.png",
       "rawName": "detail collar.png",
       "name": "Detail Collar",
@@ -74,8 +74,8 @@
         "collar/polo collar 2/detail collar opacidad.png",
         "collar/collar/polo collar/02/detail collar opacidad.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/02/detail%20collar%20opacidad.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/02/detail%20collar%20opacidad.png",
+      "src": "assets/templates/basic/basic%20v1/collar/polo%20collar/02/detail%20collar%20opacidad.png",
+      "path": "assets/templates/basic/basic%20v1/collar/polo%20collar/02/detail%20collar%20opacidad.png",
       "originalPath": "collar/Polo Collar/02/detail collar opacidad.png",
       "rawName": "detail collar opacidad.png",
       "name": "Detail Collar",
@@ -126,8 +126,8 @@
         "collar/polo collar 2/detail front.png",
         "collar/collar/polo collar/02/detail front.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/02/detail%20front.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/02/detail%20front.png",
+      "src": "assets/templates/basic/basic%20v1/collar/polo%20collar/02/detail%20front.png",
+      "path": "assets/templates/basic/basic%20v1/collar/polo%20collar/02/detail%20front.png",
       "originalPath": "collar/Polo Collar/02/detail front.png",
       "rawName": "detail front.png",
       "name": "Detail Front",
@@ -178,8 +178,8 @@
         "collar_seams/seams/seams iv.png",
         "collar_seams/collar/polo collar/02/seams iv.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/02/seams%20IV.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/02/seams%20IV.png",
+      "src": "assets/templates/basic/basic%20v1/collar/polo%20collar/02/seams%20iv.png",
+      "path": "assets/templates/basic/basic%20v1/collar/polo%20collar/02/seams%20iv.png",
       "originalPath": "collar/Polo Collar/02/seams IV.png",
       "rawName": "seams IV.png",
       "name": "Seams IV",
@@ -224,5 +224,6 @@
   "collarSeamsFolderOpen": false,
   "_manualCollarSave": true,
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\basic\\shirt\\basic\\basic_v1\\collar\\polo_collar\\02\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\basic\\shirt\\basic\\basic_v1\\collar\\polo_collar\\02\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

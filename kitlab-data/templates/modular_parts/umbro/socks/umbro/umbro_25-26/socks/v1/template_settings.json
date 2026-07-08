@@ -36,8 +36,8 @@
         "socks/detail/hem.png",
         "socks/umbro 25-26/socks/v1/detail/hem.png"
       ],
-      "src": "assets/templates/Umbro/umbro 25-26/socks/v1/detail/hem.png",
-      "path": "assets/templates/Umbro/umbro 25-26/socks/v1/detail/hem.png",
+      "src": "assets/templates/umbro/umbro 25-26/socks/v1/detail/hem.png",
+      "path": "assets/templates/umbro/umbro 25-26/socks/v1/detail/hem.png",
       "originalPath": "umbro 25-26/socks/v1/detail/hem.png",
       "rawName": "hem.png",
       "name": "Hem",
@@ -87,8 +87,8 @@
         "socks/seams fj.png",
         "socks/umbro 25-26/socks/v1/seams/seams fj.png"
       ],
-      "src": "assets/templates/Umbro/umbro 25-26/socks/v1/seams/seams FJ.png",
-      "path": "assets/templates/Umbro/umbro 25-26/socks/v1/seams/seams FJ.png",
+      "src": "assets/templates/umbro/umbro 25-26/socks/v1/seams/seams FJ.png",
+      "path": "assets/templates/umbro/umbro 25-26/socks/v1/seams/seams FJ.png",
       "originalPath": "umbro 25-26/socks/v1/seams/seams FJ.png",
       "rawName": "seams FJ.png",
       "name": "Seams FJ",
@@ -189,8 +189,9 @@
     "brand": "Umbro",
     "path": "assets/templates/umbro/umbro%2025-26/socks/v1",
     "templateId": "umbro/umbro_25-26/socks/v1",
-    "thumb": "assets/templates/Umbro/umbro 25-26/socks/v1/thumbnail.png"
+    "thumb": "assets/templates/umbro/umbro 25-26/socks/v1/thumbnail.png"
   },
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\umbro\\socks\\umbro\\umbro_25-26\\socks\\v1\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\umbro\\socks\\umbro\\umbro_25-26\\socks\\v1\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

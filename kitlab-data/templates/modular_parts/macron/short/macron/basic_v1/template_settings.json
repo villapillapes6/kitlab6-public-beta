@@ -12,7 +12,7 @@
   "templateId": "modular_parts/macron/short/macron/basic_v1",
   "selectedTemplate": {
     "name": "Basic V1",
-    "path": "assets/templates/Macron/Basic%20V1",
+    "path": "assets/templates/macron/basic%20v1",
     "brand": "Macron"
   },
   "selectedCollar": null,
@@ -30,8 +30,8 @@
         "short/label macron.png",
         "short/short/brand/label macron.png"
       ],
-      "src": "assets/templates/Macron/Basic%20V1/short/brand/label%20macron.png",
-      "path": "assets/templates/Macron/Basic%20V1/short/brand/label%20macron.png",
+      "src": "assets/templates/macron/basic%20v1/short/brand/label%20macron.png",
+      "path": "assets/templates/macron/basic%20v1/short/brand/label%20macron.png",
       "originalPath": "short/brand/label macron.png",
       "rawName": "label macron.png",
       "name": "Label Macron",
@@ -75,8 +75,8 @@
         "seams fj",
         "v488h5njva8mqojrdj5"
       ],
-      "src": "assets/templates/Macron/Basic%20V1/short/seams/seams%20FJ.png",
-      "path": "assets/templates/Macron/Basic%20V1/short/seams/seams%20FJ.png",
+      "src": "assets/templates/macron/basic%20v1/short/seams/seams%20fj.png",
+      "path": "assets/templates/macron/basic%20v1/short/seams/seams%20fj.png",
       "originalPath": "short/seams/seams FJ.png",
       "rawName": "seams FJ.png",
       "name": "Seams FJ",
@@ -120,8 +120,8 @@
         "short iv final",
         "2drb77ioqnimqojrdj5"
       ],
-      "src": "assets/templates/Macron/Basic%20V1/short/seams/short%20IV%20final.png",
-      "path": "assets/templates/Macron/Basic%20V1/short/seams/short%20IV%20final.png",
+      "src": "assets/templates/macron/basic%20v1/short/seams/short%20iv%20final.png",
+      "path": "assets/templates/macron/basic%20v1/short/seams/short%20iv%20final.png",
       "originalPath": "short/seams/short IV final.png",
       "rawName": "short IV final.png",
       "name": "Short IV Final",
@@ -165,8 +165,8 @@
         "short iv goma",
         "eaokv5naf5mqojrdj5"
       ],
-      "src": "assets/templates/Macron/Basic%20V1/short/seams/short%20IV%20goma.png",
-      "path": "assets/templates/Macron/Basic%20V1/short/seams/short%20IV%20goma.png",
+      "src": "assets/templates/macron/basic%20v1/short/seams/short%20iv%20goma.png",
+      "path": "assets/templates/macron/basic%20v1/short/seams/short%20iv%20goma.png",
       "originalPath": "short/seams/short IV goma.png",
       "rawName": "short IV goma.png",
       "name": "Short IV Goma",
@@ -210,8 +210,8 @@
         "size iv",
         "gq4kz9hszldmqojrdj5"
       ],
-      "src": "assets/templates/Macron/Basic%20V1/short/seams/size%20IV.png",
-      "path": "assets/templates/Macron/Basic%20V1/short/seams/size%20IV.png",
+      "src": "assets/templates/macron/basic%20v1/short/seams/size%20iv.png",
+      "path": "assets/templates/macron/basic%20v1/short/seams/size%20iv.png",
       "originalPath": "short/seams/size IV.png",
       "rawName": "size IV.png",
       "name": "Size IV",
@@ -301,10 +301,11 @@
     "part": "short",
     "name": "Basic V1",
     "brand": "Macron",
-    "path": "assets/templates/Macron/Basic%20V1",
+    "path": "assets/templates/macron/basic%20v1",
     "templateId": "macron/basic_v1",
-    "thumb": "assets/templates/Macron/Basic%20V1/short/thumbnail.png"
+    "thumb": "assets/templates/macron/basic%20v1/short/thumbnail.png"
   },
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\macron\\short\\macron\\basic_v1\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\macron\\short\\macron\\basic_v1\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

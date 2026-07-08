@@ -12,7 +12,7 @@
   "templateId": "modular_parts/adidas/short/adidas/adidas_2026",
   "selectedTemplate": {
     "name": "Adidas 26/27",
-    "path": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+",
+    "path": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool+",
     "brand": "Adidas"
   },
   "shortVariant": "v1",
@@ -31,8 +31,8 @@
         "short/climacool.png",
         "short/short/brand/climacool.png"
       ],
-      "src": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/brand/climacool.png",
-      "path": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/brand/climacool.png",
+      "src": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/brand/climacool.png",
+      "path": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/brand/climacool.png",
       "originalPath": "short/brand/climacool.png",
       "rawName": "climacool.png",
       "name": "Climacool",
@@ -82,8 +82,8 @@
         "short/adidas.png",
         "short/short/brand/adidas.png"
       ],
-      "src": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/brand/Adidas.png",
-      "path": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/brand/Adidas.png",
+      "src": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/brand/adidas.png",
+      "path": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/brand/adidas.png",
       "originalPath": "short/brand/Adidas.png",
       "rawName": "Adidas.png",
       "name": "Adidas",
@@ -133,8 +133,8 @@
         "short/short lineas adidas.png",
         "short/short/tights/short lineas adidas.png"
       ],
-      "src": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/tights/short%20lineas%20adidas.png",
-      "path": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/tights/short%20lineas%20adidas.png",
+      "src": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/tights/short%20lineas%20adidas.png",
+      "path": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/tights/short%20lineas%20adidas.png",
       "originalPath": "short/tights/short lineas adidas.png",
       "rawName": "short lineas adidas.png",
       "name": "Short Lineas Adidas",
@@ -182,8 +182,8 @@
         "short/short goma.png",
         "short/short/tights/short goma.png"
       ],
-      "src": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/tights/short%20goma.png",
-      "path": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/tights/short%20goma.png",
+      "src": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/tights/short%20goma.png",
+      "path": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/tights/short%20goma.png",
       "originalPath": "short/tights/short goma.png",
       "rawName": "short goma.png",
       "name": "Short Goma",
@@ -231,8 +231,8 @@
         "short/short malla.png",
         "short/short/tights/short malla.png"
       ],
-      "src": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/tights/short%20malla.png",
-      "path": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/tights/short%20malla.png",
+      "src": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/tights/short%20malla.png",
+      "path": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/tights/short%20malla.png",
       "originalPath": "short/tights/short malla.png",
       "rawName": "short malla.png",
       "name": "Short Malla",
@@ -280,8 +280,8 @@
         "short/short respiraderos goma.png",
         "short/short/details/short respiraderos goma.png"
       ],
-      "src": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/details/short%20respiraderos%20goma.png",
-      "path": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/details/short%20respiraderos%20goma.png",
+      "src": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/details/short%20respiraderos%20goma.png",
+      "path": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/details/short%20respiraderos%20goma.png",
       "originalPath": "short/details/short respiraderos goma.png",
       "rawName": "short respiraderos goma.png",
       "name": "Short Respiraderos Goma",
@@ -331,8 +331,8 @@
         "short/short final franja.png",
         "short/short/details/short final franja.png"
       ],
-      "src": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/details/short%20final%20franja.png",
-      "path": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/details/short%20final%20franja.png",
+      "src": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/details/short%20final%20franja.png",
+      "path": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/details/short%20final%20franja.png",
       "originalPath": "short/details/short final franja.png",
       "rawName": "short final franja.png",
       "name": "Short Final Franja",
@@ -382,8 +382,8 @@
         "short/short final.png",
         "short/short/details/short final.png"
       ],
-      "src": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/details/short%20final.png",
-      "path": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/details/short%20final.png",
+      "src": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/details/short%20final.png",
+      "path": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/details/short%20final.png",
       "originalPath": "short/details/short final.png",
       "rawName": "short final.png",
       "name": "Short Final",
@@ -433,8 +433,8 @@
         "short/short lineas adidas.png",
         "short/short/details/short lineas adidas.png"
       ],
-      "src": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/details/short%20lineas%20adidas.png",
-      "path": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/details/short%20lineas%20adidas.png",
+      "src": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/details/short%20lineas%20adidas.png",
+      "path": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/details/short%20lineas%20adidas.png",
       "originalPath": "short/details/short lineas adidas.png",
       "rawName": "short lineas adidas.png",
       "name": "Short Lineas Adidas",
@@ -484,8 +484,8 @@
         "short/seams fj.png",
         "short/short/seams/seams fj.png"
       ],
-      "src": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/seams/seams%20FJ.png",
-      "path": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/seams/seams%20FJ.png",
+      "src": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/seams/seams%20fj.png",
+      "path": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/seams/seams%20fj.png",
       "originalPath": "short/seams/seams FJ.png",
       "rawName": "seams FJ.png",
       "name": "Seams FJ",
@@ -533,8 +533,8 @@
         "short/short final iv.png",
         "short/short/seams/short final iv.png"
       ],
-      "src": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/seams/short%20final%20IV.png",
-      "path": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/seams/short%20final%20IV.png",
+      "src": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/seams/short%20final%20iv.png",
+      "path": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/seams/short%20final%20iv.png",
       "originalPath": "short/seams/short final IV.png",
       "rawName": "short final IV.png",
       "name": "Short Final IV",
@@ -582,8 +582,8 @@
         "short/short goma iv.png",
         "short/short/seams/short goma iv.png"
       ],
-      "src": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/seams/short%20goma%20IV.png",
-      "path": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/seams/short%20goma%20IV.png",
+      "src": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/seams/short%20goma%20iv.png",
+      "path": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/seams/short%20goma%20iv.png",
       "originalPath": "short/seams/short goma IV.png",
       "rawName": "short goma IV.png",
       "name": "Short Goma IV",
@@ -657,10 +657,11 @@
     "part": "short",
     "name": "Adidas 26/27",
     "brand": "Adidas",
-    "path": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+",
+    "path": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool+",
     "templateId": "adidas/adidas_2026",
-    "thumb": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/short/base/04.%20short.png"
+    "thumb": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/short/base/04.%20short.png"
   },
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\adidas\\short\\adidas\\adidas_2026\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\adidas\\short\\adidas\\adidas_2026\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

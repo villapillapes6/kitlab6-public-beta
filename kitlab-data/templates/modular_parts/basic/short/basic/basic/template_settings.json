@@ -12,7 +12,7 @@
   "templateId": "modular_parts/basic/short/basic/basic",
   "selectedTemplate": {
     "name": "Basic",
-    "path": "assets/templates/Basic/Basic",
+    "path": "assets/templates/basic/basic",
     "brand": "basic"
   },
   "selectedCollar": null,
@@ -30,8 +30,8 @@
         "short/short final.png",
         "short/details/short final.png"
       ],
-      "src": "assets/templates/Basic/Basic/details/short%20final.png",
-      "path": "assets/templates/Basic/Basic/details/short%20final.png",
+      "src": "assets/templates/basic/basic/details/short%20final.png",
+      "path": "assets/templates/basic/basic/details/short%20final.png",
       "originalPath": "details/short final.png",
       "rawName": "short final.png",
       "name": "Short Final",
@@ -66,8 +66,8 @@
         "short iv costados",
         "0biol8lu4jjnmqfq5lgq"
       ],
-      "src": "assets/templates/Basic/Basic/seams/short%20IV%20costados.png",
-      "path": "assets/templates/Basic/Basic/seams/short%20IV%20costados.png",
+      "src": "assets/templates/basic/basic/seams/short%20iv%20costados.png",
+      "path": "assets/templates/basic/basic/seams/short%20iv%20costados.png",
       "originalPath": "seams/short IV costados.png",
       "rawName": "short IV costados.png",
       "name": "Short IV Costados",
@@ -102,8 +102,8 @@
         "short iv goma",
         "xzwupsull6mmqfq5lgq"
       ],
-      "src": "assets/templates/Basic/Basic/seams/short%20IV%20goma.png",
-      "path": "assets/templates/Basic/Basic/seams/short%20IV%20goma.png",
+      "src": "assets/templates/basic/basic/seams/short%20iv%20goma.png",
+      "path": "assets/templates/basic/basic/seams/short%20iv%20goma.png",
       "originalPath": "seams/short IV goma.png",
       "rawName": "short IV goma.png",
       "name": "Short IV Goma",
@@ -138,8 +138,8 @@
         "short iv final",
         "mt6w51zqgi9mqfq5lgq"
       ],
-      "src": "assets/templates/Basic/Basic/seams/short%20IV%20final.png",
-      "path": "assets/templates/Basic/Basic/seams/short%20IV%20final.png",
+      "src": "assets/templates/basic/basic/seams/short%20iv%20final.png",
+      "path": "assets/templates/basic/basic/seams/short%20iv%20final.png",
       "originalPath": "seams/short IV final.png",
       "rawName": "short IV final.png",
       "name": "Short IV Final",
@@ -195,10 +195,11 @@
     "part": "short",
     "name": "Basic",
     "brand": "basic",
-    "path": "assets/templates/Basic/Basic",
+    "path": "assets/templates/basic/basic",
     "templateId": "basic/basic",
-    "thumb": "assets/templates/Basic/Basic/base/04.%20short.png"
+    "thumb": "assets/templates/basic/basic/base/04.%20short.png"
   },
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\basic\\short\\basic\\basic\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\basic\\short\\basic\\basic\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

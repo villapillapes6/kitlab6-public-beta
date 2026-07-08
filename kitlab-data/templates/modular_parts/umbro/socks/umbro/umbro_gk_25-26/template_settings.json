@@ -16,7 +16,7 @@
   "templateId": "modular_parts/umbro/socks/umbro/umbro_gk_25-26",
   "selectedTemplate": {
     "name": "Umbro GK 25/26",
-    "path": "assets/templates/Umbro/Umbro%20GK%2025-26",
+    "path": "assets/templates/umbro/umbro%20gk%2025-26",
     "brand": "Umbro"
   },
   "selectedCollar": null,
@@ -34,8 +34,8 @@
         "socks/hem.png",
         "socks/socks/detail/hem.png"
       ],
-      "src": "assets/templates/Umbro/Umbro%20GK%2025-26/socks/detail/hem.png",
-      "path": "assets/templates/Umbro/Umbro%20GK%2025-26/socks/detail/hem.png",
+      "src": "assets/templates/umbro/umbro%20gk%2025-26/socks/detail/hem.png",
+      "path": "assets/templates/umbro/umbro%20gk%2025-26/socks/detail/hem.png",
       "originalPath": "socks/detail/hem.png",
       "rawName": "hem.png",
       "name": "Hem",
@@ -81,8 +81,8 @@
         "seams fj",
         "sf7kj1yk2jcmqok6uzp"
       ],
-      "src": "assets/templates/Umbro/Umbro%20GK%2025-26/socks/seams/seams%20FJ.png",
-      "path": "assets/templates/Umbro/Umbro%20GK%2025-26/socks/seams/seams%20FJ.png",
+      "src": "assets/templates/umbro/umbro%20gk%2025-26/socks/seams/seams%20fj.png",
+      "path": "assets/templates/umbro/umbro%20gk%2025-26/socks/seams/seams%20fj.png",
       "originalPath": "socks/seams/seams FJ.png",
       "rawName": "seams FJ.png",
       "name": "Seams FJ",
@@ -177,10 +177,11 @@
     "part": "socks",
     "name": "Umbro GK 25/26",
     "brand": "Umbro",
-    "path": "assets/templates/Umbro/Umbro%20GK%2025-26",
+    "path": "assets/templates/umbro/umbro%20gk%2025-26",
     "templateId": "umbro/umbro_gk_25-26",
-    "thumb": "assets/templates/Umbro/Umbro%20GK%2025-26/socks/thumbnail.png"
+    "thumb": "assets/templates/umbro/umbro%20gk%2025-26/socks/thumbnail.png"
   },
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\umbro\\socks\\umbro\\umbro_gk_25-26\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\umbro\\socks\\umbro\\umbro_gk_25-26\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

@@ -5,7 +5,7 @@
   "savedAt": "2026-06-28T01:45:52.783Z",
   "templateId": "adidas/adidas_25-26",
   "collarSettingsId": "adidas/adidas_25-26/collar/04",
-  "folderPath": "assets/templates/Adidas/Adidas%2025-26/collar/04",
+  "folderPath": "assets/templates/adidas/adidas%2025-26/collar/04",
   "id": "04",
   "name": "Collar 04",
   "key": "04",
@@ -22,8 +22,8 @@
         "collar/4/detail border.png",
         "collar/collar/04/detail border.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%2025-26/collar/04/detail%20border.png",
-      "path": "assets/templates/Adidas/Adidas%2025-26/collar/04/detail%20border.png",
+      "src": "assets/templates/adidas/adidas%2025-26/collar/04/detail%20border.png",
+      "path": "assets/templates/adidas/adidas%2025-26/collar/04/detail%20border.png",
       "originalPath": "collar/04/detail border.png",
       "rawName": "detail border.png",
       "name": "Detail Border",
@@ -74,8 +74,8 @@
         "collar/4/detail.png",
         "collar/collar/04/detail.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%2025-26/collar/04/detail.png",
-      "path": "assets/templates/Adidas/Adidas%2025-26/collar/04/detail.png",
+      "src": "assets/templates/adidas/adidas%2025-26/collar/04/detail.png",
+      "path": "assets/templates/adidas/adidas%2025-26/collar/04/detail.png",
       "originalPath": "collar/04/detail.png",
       "rawName": "detail.png",
       "name": "Detail",
@@ -126,8 +126,8 @@
         "collar_seams/seams/seams iv.png",
         "collar_seams/collar/04/seams iv.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%2025-26/collar/04/seams%20IV.png",
-      "path": "assets/templates/Adidas/Adidas%2025-26/collar/04/seams%20IV.png",
+      "src": "assets/templates/adidas/adidas%2025-26/collar/04/seams%20iv.png",
+      "path": "assets/templates/adidas/adidas%2025-26/collar/04/seams%20iv.png",
       "originalPath": "collar/04/seams IV.png",
       "rawName": "seams IV.png",
       "name": "Seams IV",
@@ -176,8 +176,8 @@
         "collar_seams/seams/seams back iv.png",
         "collar_seams/collar/04/seams back iv.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%2025-26/collar/04/seams%20back%20IV.png",
-      "path": "assets/templates/Adidas/Adidas%2025-26/collar/04/seams%20back%20IV.png",
+      "src": "assets/templates/adidas/adidas%2025-26/collar/04/seams%20back%20iv.png",
+      "path": "assets/templates/adidas/adidas%2025-26/collar/04/seams%20back%20iv.png",
       "originalPath": "collar/04/seams back IV.png",
       "rawName": "seams back IV.png",
       "name": "Seams Back IV",
@@ -226,8 +226,8 @@
         "collar_seams/seams/seams front iv.png",
         "collar_seams/collar/04/seams front iv.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%2025-26/collar/04/seams%20front%20IV.png",
-      "path": "assets/templates/Adidas/Adidas%2025-26/collar/04/seams%20front%20IV.png",
+      "src": "assets/templates/adidas/adidas%2025-26/collar/04/seams%20front%20iv.png",
+      "path": "assets/templates/adidas/adidas%2025-26/collar/04/seams%20front%20iv.png",
       "originalPath": "collar/04/seams front IV.png",
       "rawName": "seams front IV.png",
       "name": "Seams Front IV",
@@ -276,8 +276,8 @@
         "collar_seams/seams/seams border iv.png",
         "collar_seams/collar/04/seams border iv.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%2025-26/collar/04/seams%20border%20IV.png",
-      "path": "assets/templates/Adidas/Adidas%2025-26/collar/04/seams%20border%20IV.png",
+      "src": "assets/templates/adidas/adidas%2025-26/collar/04/seams%20border%20iv.png",
+      "path": "assets/templates/adidas/adidas%2025-26/collar/04/seams%20border%20iv.png",
       "originalPath": "collar/04/seams border IV.png",
       "rawName": "seams border IV.png",
       "name": "Seams Border IV",
@@ -320,5 +320,6 @@
   "collarSeamsFolderOpen": false,
   "_manualCollarSave": true,
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\adidas\\adidas_25-26\\collar\\04\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\adidas\\adidas_25-26\\collar\\04\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

@@ -5,7 +5,7 @@
   "savedAt": "2026-07-07T14:23:35.075Z",
   "templateId": "modular_//umbro/umbro_25_2f26_v2/umbro_25_2f26_v1/umbro_25_2f26_v1",
   "collarSettingsId": "modular_parts/basic/shirt/basic/basic_v1/collar/v_neck/01",
-  "folderPath": "assets/templates/Basic/Basic%20V1/collar/V%20Neck/01",
+  "folderPath": "assets/templates/basic/basic%20v1/collar/v%20neck/01",
   "id": "V Neck/01",
   "name": "01",
   "key": "v_neck/01",
@@ -22,8 +22,8 @@
         "collar/v neck 1/rubber band fusion opacidad.png",
         "collar/collar/v neck/01/rubber band fusion opacidad.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/V%20Neck/01/rubber%20band%20fusion%20opacidad.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/V%20Neck/01/rubber%20band%20fusion%20opacidad.png",
+      "src": "assets/templates/basic/basic%20v1/collar/v%20neck/01/rubber%20band%20fusion%20opacidad.png",
+      "path": "assets/templates/basic/basic%20v1/collar/v%20neck/01/rubber%20band%20fusion%20opacidad.png",
       "originalPath": "collar/V Neck/01/rubber band fusion opacidad.png",
       "rawName": "rubber band fusion opacidad.png",
       "name": "Rubber band fusion opacidad",
@@ -72,8 +72,8 @@
         "collar/v neck 1/detail.png",
         "collar/collar/v neck/01/detail.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/V%20Neck/01/detail.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/V%20Neck/01/detail.png",
+      "src": "assets/templates/basic/basic%20v1/collar/v%20neck/01/detail.png",
+      "path": "assets/templates/basic/basic%20v1/collar/v%20neck/01/detail.png",
       "originalPath": "collar/V Neck/01/detail.png",
       "rawName": "detail.png",
       "name": "Detail",
@@ -124,8 +124,8 @@
         "collar_seams/seams/seams iv.png",
         "collar_seams/collar/v neck/01/seams iv.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/V%20Neck/01/seams%20IV.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/V%20Neck/01/seams%20IV.png",
+      "src": "assets/templates/basic/basic%20v1/collar/v%20neck/01/seams%20iv.png",
+      "path": "assets/templates/basic/basic%20v1/collar/v%20neck/01/seams%20iv.png",
       "originalPath": "collar/V Neck/01/seams IV.png",
       "rawName": "seams IV.png",
       "name": "Seams IV",
@@ -174,8 +174,8 @@
         "collar_seams/seams/seams 2 iv.png",
         "collar_seams/collar/v neck/01/seams 2 iv.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/V%20Neck/01/seams%202%20IV.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/V%20Neck/01/seams%202%20IV.png",
+      "src": "assets/templates/basic/basic%20v1/collar/v%20neck/01/seams%202%20iv.png",
+      "path": "assets/templates/basic/basic%20v1/collar/v%20neck/01/seams%202%20iv.png",
       "originalPath": "collar/V Neck/01/seams 2 IV.png",
       "rawName": "seams 2 IV.png",
       "name": "Seams 2 IV",
@@ -218,5 +218,6 @@
   "collarSeamsFolderOpen": false,
   "_manualCollarSave": true,
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\basic\\shirt\\basic\\basic_v1\\collar\\v_neck\\01\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\basic\\shirt\\basic\\basic_v1\\collar\\v_neck\\01\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

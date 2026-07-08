@@ -16,7 +16,7 @@
   "templateId": "modular_parts/macron/socks/macron/macron_gk_24-25",
   "selectedTemplate": {
     "name": "Macron GK 24/25",
-    "path": "assets/templates/Macron/Macron%20GK%2024-25",
+    "path": "assets/templates/macron/macron%20gk%2024-25",
     "brand": "Macron"
   },
   "selectedCollar": null,
@@ -34,8 +34,8 @@
         "socks/socks trim.png",
         "socks/socks/details/socks trim.png"
       ],
-      "src": "assets/templates/Macron/Macron%20GK%2024-25/socks/details/socks%20trim.png",
-      "path": "assets/templates/Macron/Macron%20GK%2024-25/socks/details/socks%20trim.png",
+      "src": "assets/templates/macron/macron%20gk%2024-25/socks/details/socks%20trim.png",
+      "path": "assets/templates/macron/macron%20gk%2024-25/socks/details/socks%20trim.png",
       "originalPath": "socks/details/socks trim.png",
       "rawName": "socks trim.png",
       "name": "Socks trim",
@@ -81,8 +81,8 @@
         "seams fj",
         "b9tou72agnpmqok121f"
       ],
-      "src": "assets/templates/Macron/Macron%20GK%2024-25/socks/seams/seams%20FJ.png",
-      "path": "assets/templates/Macron/Macron%20GK%2024-25/socks/seams/seams%20FJ.png",
+      "src": "assets/templates/macron/macron%20gk%2024-25/socks/seams/seams%20fj.png",
+      "path": "assets/templates/macron/macron%20gk%2024-25/socks/seams/seams%20fj.png",
       "originalPath": "socks/seams/seams FJ.png",
       "rawName": "seams FJ.png",
       "name": "Seams FJ",
@@ -180,10 +180,11 @@
     "part": "socks",
     "name": "Macron GK 24/25",
     "brand": "Macron",
-    "path": "assets/templates/Macron/Macron%20GK%2024-25",
+    "path": "assets/templates/macron/macron%20gk%2024-25",
     "templateId": "macron/macron_gk_24-25",
-    "thumb": "assets/templates/Macron/Macron%20GK%2024-25/socks/thumbnail.png"
+    "thumb": "assets/templates/macron/macron%20gk%2024-25/socks/thumbnail.png"
   },
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\macron\\socks\\macron\\macron_gk_24-25\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\macron\\socks\\macron\\macron_gk_24-25\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

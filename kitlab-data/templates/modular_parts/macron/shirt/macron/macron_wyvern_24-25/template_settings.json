@@ -20,7 +20,7 @@
   "templateId": "modular_parts/macron/shirt/macron/macron_wyvern_24-25",
   "selectedTemplate": {
     "name": "Macron Wyvern 24/25",
-    "path": "assets/templates/Macron/Macron%20Wyvern%2024-25",
+    "path": "assets/templates/macron/macron%20wyvern%2024-25",
     "brand": "Macron"
   },
   "selectedCollar": {
@@ -35,7 +35,7 @@
       "savedAt": "2026-06-22T01:39:19.374Z",
       "templateId": "modular_//macron/macron_wyvern_24_2f25/basic_v1/basic_v1",
       "collarSettingsId": "modular_parts/macron/shirt/macron/macron_wyvern_24-25/collar/01",
-      "folderPath": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01",
+      "folderPath": "assets/templates/macron/macron%20wyvern%2024-25/collar/01",
       "id": "01",
       "name": "Collar 01",
       "key": "01",
@@ -52,8 +52,8 @@
             "collar/1/detail.png",
             "collar/collar/01/detail.png"
           ],
-          "src": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01/detail.png",
-          "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01/detail.png",
+          "src": "assets/templates/macron/macron%20wyvern%2024-25/collar/01/detail.png",
+          "path": "assets/templates/macron/macron%20wyvern%2024-25/collar/01/detail.png",
           "originalPath": "collar/01/detail.png",
           "rawName": "detail.png",
           "name": "Detail",
@@ -102,8 +102,8 @@
             "collar/1/border.png",
             "collar/collar/01/border.png"
           ],
-          "src": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01/border.png",
-          "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01/border.png",
+          "src": "assets/templates/macron/macron%20wyvern%2024-25/collar/01/border.png",
+          "path": "assets/templates/macron/macron%20wyvern%2024-25/collar/01/border.png",
           "originalPath": "collar/01/border.png",
           "rawName": "border.png",
           "name": "Border",
@@ -152,8 +152,8 @@
             "collar_seams/seams/seams 2 iv.png",
             "collar_seams/collar/01/seams 2 iv.png"
           ],
-          "src": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01/seams%202%20IV.png",
-          "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01/seams%202%20IV.png",
+          "src": "assets/templates/macron/macron%20wyvern%2024-25/collar/01/seams%202%20iv.png",
+          "path": "assets/templates/macron/macron%20wyvern%2024-25/collar/01/seams%202%20iv.png",
           "originalPath": "collar/01/seams 2 IV.png",
           "rawName": "seams 2 IV.png",
           "name": "Seams 2 IV",
@@ -202,8 +202,8 @@
             "collar_seams/seams/seams iv.png",
             "collar_seams/collar/01/seams iv.png"
           ],
-          "src": "assets/templates/Macron/Macron Wyvern 24-25/collar/01/seams IV.png",
-          "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01/seams%20IV.png",
+          "src": "assets/templates/macron/macron Wyvern 24-25/collar/01/seams IV.png",
+          "path": "assets/templates/macron/macron%20wyvern%2024-25/collar/01/seams%20iv.png",
           "originalPath": "collar/01/seams IV.png",
           "rawName": "seams IV.png",
           "name": "Seams IV",
@@ -264,8 +264,8 @@
         "shirt/cuffs.png",
         "shirt/shirt/details/cuffs.png"
       ],
-      "src": "assets/templates/Macron/Macron%20Wyvern%2024-25/shirt/details/cuffs.png",
-      "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/shirt/details/cuffs.png",
+      "src": "assets/templates/macron/macron%20wyvern%2024-25/shirt/details/cuffs.png",
+      "path": "assets/templates/macron/macron%20wyvern%2024-25/shirt/details/cuffs.png",
       "originalPath": "shirt/details/cuffs.png",
       "rawName": "cuffs.png",
       "name": "Cuffs",
@@ -313,8 +313,8 @@
         "shirt/sleeve_long_sleeve_shadow.png",
         "shirt/shirt/details/sleeve_long_sleeve_shadow.png"
       ],
-      "src": "assets/templates/Macron/Macron%20Wyvern%2024-25/shirt/details/sleeve_long_sleeve_shadow.png",
-      "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/shirt/details/sleeve_long_sleeve_shadow.png",
+      "src": "assets/templates/macron/macron%20wyvern%2024-25/shirt/details/sleeve_long_sleeve_shadow.png",
+      "path": "assets/templates/macron/macron%20wyvern%2024-25/shirt/details/sleeve_long_sleeve_shadow.png",
       "originalPath": "shirt/details/sleeve_long_sleeve_shadow.png",
       "rawName": "sleeve_long_sleeve_shadow.png",
       "name": "Sleeve Long Sleeve Shadow",
@@ -362,8 +362,8 @@
         "shirt/label macron.png",
         "shirt/shirt/brand/label macron.png"
       ],
-      "src": "assets/templates/Macron/Macron%20Wyvern%2024-25/shirt/brand/label%20macron.png",
-      "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/shirt/brand/label%20macron.png",
+      "src": "assets/templates/macron/macron%20wyvern%2024-25/shirt/brand/label%20macron.png",
+      "path": "assets/templates/macron/macron%20wyvern%2024-25/shirt/brand/label%20macron.png",
       "originalPath": "shirt/brand/label macron.png",
       "rawName": "label macron.png",
       "name": "Label Macron",
@@ -409,8 +409,8 @@
         "shirt/shirt.png",
         "shirt/shirt/pattern/shirt.png"
       ],
-      "src": "assets/templates/Macron/Macron%20Wyvern%2024-25/shirt/pattern/shirt.png",
-      "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/shirt/pattern/shirt.png",
+      "src": "assets/templates/macron/macron%20wyvern%2024-25/shirt/pattern/shirt.png",
+      "path": "assets/templates/macron/macron%20wyvern%2024-25/shirt/pattern/shirt.png",
       "originalPath": "shirt/pattern/shirt.png",
       "rawName": "shirt.png",
       "name": "Shirt",
@@ -458,8 +458,8 @@
         "shirt/sleeve short.png",
         "shirt/shirt/pattern/sleeve short.png"
       ],
-      "src": "assets/templates/Macron/Macron%20Wyvern%2024-25/shirt/pattern/sleeve%20short.png",
-      "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/shirt/pattern/sleeve%20short.png",
+      "src": "assets/templates/macron/macron%20wyvern%2024-25/shirt/pattern/sleeve%20short.png",
+      "path": "assets/templates/macron/macron%20wyvern%2024-25/shirt/pattern/sleeve%20short.png",
       "originalPath": "shirt/pattern/sleeve short.png",
       "rawName": "sleeve short.png",
       "name": "Sleeve Short",
@@ -508,8 +508,8 @@
         "collar/1/detail.png",
         "collar/collar/01/detail.png"
       ],
-      "src": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01/detail.png",
-      "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01/detail.png",
+      "src": "assets/templates/macron/macron%20wyvern%2024-25/collar/01/detail.png",
+      "path": "assets/templates/macron/macron%20wyvern%2024-25/collar/01/detail.png",
       "originalPath": "collar/01/detail.png",
       "rawName": "detail.png",
       "name": "Detail",
@@ -558,8 +558,8 @@
         "collar/1/border.png",
         "collar/collar/01/border.png"
       ],
-      "src": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01/border.png",
-      "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01/border.png",
+      "src": "assets/templates/macron/macron%20wyvern%2024-25/collar/01/border.png",
+      "path": "assets/templates/macron/macron%20wyvern%2024-25/collar/01/border.png",
       "originalPath": "collar/01/border.png",
       "rawName": "border.png",
       "name": "Border",
@@ -605,8 +605,8 @@
         "cuffs iv",
         "bsek6oqzxqmmqojrdip"
       ],
-      "src": "assets/templates/Macron/Macron%20Wyvern%2024-25/shirt/seams/cuffs%20IV.png",
-      "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/shirt/seams/cuffs%20IV.png",
+      "src": "assets/templates/macron/macron%20wyvern%2024-25/shirt/seams/cuffs%20iv.png",
+      "path": "assets/templates/macron/macron%20wyvern%2024-25/shirt/seams/cuffs%20iv.png",
       "originalPath": "shirt/seams/cuffs IV.png",
       "rawName": "cuffs IV.png",
       "name": "Cuffs IV",
@@ -650,8 +650,8 @@
         "final iv",
         "qyw3cmequqmqojrdip"
       ],
-      "src": "assets/templates/Macron/Macron%20Wyvern%2024-25/shirt/seams/final%20IV.png",
-      "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/shirt/seams/final%20IV.png",
+      "src": "assets/templates/macron/macron%20wyvern%2024-25/shirt/seams/final%20iv.png",
+      "path": "assets/templates/macron/macron%20wyvern%2024-25/shirt/seams/final%20iv.png",
       "originalPath": "shirt/seams/final IV.png",
       "rawName": "final IV.png",
       "name": "Final IV",
@@ -695,8 +695,8 @@
         "seams fj",
         "ghaw33qow09mqojrdj5"
       ],
-      "src": "assets/templates/Macron/Macron%20Wyvern%2024-25/shirt/seams/seams%20FJ.png",
-      "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/shirt/seams/seams%20FJ.png",
+      "src": "assets/templates/macron/macron%20wyvern%2024-25/shirt/seams/seams%20fj.png",
+      "path": "assets/templates/macron/macron%20wyvern%2024-25/shirt/seams/seams%20fj.png",
       "originalPath": "shirt/seams/seams FJ.png",
       "rawName": "seams FJ.png",
       "name": "Seams FJ",
@@ -740,8 +740,8 @@
         "shirt sleeve short iv",
         "s16zvyr27bhmqojrdj5"
       ],
-      "src": "assets/templates/Macron/Macron%20Wyvern%2024-25/shirt/seams/shirt%20sleeve%20short%20IV.png",
-      "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/shirt/seams/shirt%20sleeve%20short%20IV.png",
+      "src": "assets/templates/macron/macron%20wyvern%2024-25/shirt/seams/shirt%20sleeve%20short%20iv.png",
+      "path": "assets/templates/macron/macron%20wyvern%2024-25/shirt/seams/shirt%20sleeve%20short%20iv.png",
       "originalPath": "shirt/seams/shirt sleeve short IV.png",
       "rawName": "shirt sleeve short IV.png",
       "name": "Shirt Sleeve Short IV",
@@ -785,8 +785,8 @@
         "size iv",
         "jthdoez1bnmqojrdj5"
       ],
-      "src": "assets/templates/Macron/Macron%20Wyvern%2024-25/shirt/seams/size%20IV.png",
-      "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/shirt/seams/size%20IV.png",
+      "src": "assets/templates/macron/macron%20wyvern%2024-25/shirt/seams/size%20iv.png",
+      "path": "assets/templates/macron/macron%20wyvern%2024-25/shirt/seams/size%20iv.png",
       "originalPath": "shirt/seams/size IV.png",
       "rawName": "size IV.png",
       "name": "Size IV",
@@ -833,8 +833,8 @@
         "collar_seams/seams/seams 2 iv.png",
         "collar_seams/collar/01/seams 2 iv.png"
       ],
-      "src": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01/seams%202%20IV.png",
-      "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01/seams%202%20IV.png",
+      "src": "assets/templates/macron/macron%20wyvern%2024-25/collar/01/seams%202%20iv.png",
+      "path": "assets/templates/macron/macron%20wyvern%2024-25/collar/01/seams%202%20iv.png",
       "originalPath": "collar/01/seams 2 IV.png",
       "rawName": "seams 2 IV.png",
       "name": "Seams 2 IV",
@@ -883,8 +883,8 @@
         "collar_seams/seams/seams iv.png",
         "collar_seams/collar/01/seams iv.png"
       ],
-      "src": "assets/templates/Macron/Macron Wyvern 24-25/collar/01/seams IV.png",
-      "path": "assets/templates/Macron/Macron%20Wyvern%2024-25/collar/01/seams%20IV.png",
+      "src": "assets/templates/macron/macron Wyvern 24-25/collar/01/seams IV.png",
+      "path": "assets/templates/macron/macron%20wyvern%2024-25/collar/01/seams%20iv.png",
       "originalPath": "collar/01/seams IV.png",
       "rawName": "seams IV.png",
       "name": "Seams IV",
@@ -978,10 +978,11 @@
     "part": "shirt",
     "name": "Macron Wyvern 24/25",
     "brand": "Macron",
-    "path": "assets/templates/Macron/Macron%20Wyvern%2024-25",
+    "path": "assets/templates/macron/macron%20wyvern%2024-25",
     "templateId": "macron/macron_wyvern_24-25",
-    "thumb": "assets/templates/Macron/Macron%20Wyvern%2024-25/shirt/thumbnail.png"
+    "thumb": "assets/templates/macron/macron%20wyvern%2024-25/shirt/thumbnail.png"
   },
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\macron\\shirt\\macron\\macron_wyvern_24-25\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\macron\\shirt\\macron\\macron_wyvern_24-25\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

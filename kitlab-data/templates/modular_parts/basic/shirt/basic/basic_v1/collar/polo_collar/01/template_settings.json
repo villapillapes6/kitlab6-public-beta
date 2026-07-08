@@ -5,7 +5,7 @@
   "savedAt": "2026-06-28T20:16:18.567Z",
   "templateId": "modular_//basic/basic_v1/basic_v1/basic_v1",
   "collarSettingsId": "modular_parts/basic/shirt/basic/basic_v1/collar/polo_collar/01",
-  "folderPath": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/01",
+  "folderPath": "assets/templates/basic/basic%20v1/collar/polo%20collar/01",
   "id": "Polo Collar/01",
   "name": "01",
   "key": "polo_collar/01",
@@ -22,8 +22,8 @@
         "collar/polo collar 1/tights rubber band fusion opacidad.png",
         "collar/collar/polo collar/01/tights rubber band fusion opacidad.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/01/tights%20rubber%20band%20fusion%20opacidad.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/01/tights%20rubber%20band%20fusion%20opacidad.png",
+      "src": "assets/templates/basic/basic%20v1/collar/polo%20collar/01/tights%20rubber%20band%20fusion%20opacidad.png",
+      "path": "assets/templates/basic/basic%20v1/collar/polo%20collar/01/tights%20rubber%20band%20fusion%20opacidad.png",
       "originalPath": "collar/Polo Collar/01/tights rubber band fusion opacidad.png",
       "rawName": "tights rubber band fusion opacidad.png",
       "name": "Tights rubber band fusion opacidad",
@@ -72,8 +72,8 @@
         "collar/button/brillo fusion opacidad.png",
         "collar/collar/polo collar/01/button/brillo fusion opacidad.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/01/button/brillo%20fusion%20opacidad.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/01/button/brillo%20fusion%20opacidad.png",
+      "src": "assets/templates/basic/basic%20v1/collar/polo%20collar/01/button/brillo%20fusion%20opacidad.png",
+      "path": "assets/templates/basic/basic%20v1/collar/polo%20collar/01/button/brillo%20fusion%20opacidad.png",
       "originalPath": "collar/Polo Collar/01/button/brillo fusion opacidad.png",
       "rawName": "brillo fusion opacidad.png",
       "name": "Brillo Fusion Opacidad",
@@ -122,8 +122,8 @@
         "collar/button/button.png",
         "collar/collar/polo collar/01/button/button.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/01/button/button.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/01/button/button.png",
+      "src": "assets/templates/basic/basic%20v1/collar/polo%20collar/01/button/button.png",
+      "path": "assets/templates/basic/basic%20v1/collar/polo%20collar/01/button/button.png",
       "originalPath": "collar/Polo Collar/01/button/button.png",
       "rawName": "button.png",
       "name": "Button",
@@ -174,8 +174,8 @@
         "collar/button/shadow ojal fusion opacidad.png",
         "collar/collar/polo collar/01/button/shadow ojal fusion opacidad.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/01/button/shadow%20ojal%20fusion%20opacidad.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/01/button/shadow%20ojal%20fusion%20opacidad.png",
+      "src": "assets/templates/basic/basic%20v1/collar/polo%20collar/01/button/shadow%20ojal%20fusion%20opacidad.png",
+      "path": "assets/templates/basic/basic%20v1/collar/polo%20collar/01/button/shadow%20ojal%20fusion%20opacidad.png",
       "originalPath": "collar/Polo Collar/01/button/shadow ojal fusion opacidad.png",
       "rawName": "shadow ojal fusion opacidad.png",
       "name": "Shadow Ojal Fusion Opacidad",
@@ -224,8 +224,8 @@
         "collar/button/shadow fusion opacidad.png",
         "collar/collar/polo collar/01/button/shadow fusion opacidad.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/01/button/shadow%20fusion%20opacidad.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/01/button/shadow%20fusion%20opacidad.png",
+      "src": "assets/templates/basic/basic%20v1/collar/polo%20collar/01/button/shadow%20fusion%20opacidad.png",
+      "path": "assets/templates/basic/basic%20v1/collar/polo%20collar/01/button/shadow%20fusion%20opacidad.png",
       "originalPath": "collar/Polo Collar/01/button/shadow fusion opacidad.png",
       "rawName": "shadow fusion opacidad.png",
       "name": "Shadow Fusion Opacidad",
@@ -274,8 +274,8 @@
         "collar/polo collar 1/detail.png",
         "collar/collar/polo collar/01/detail.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/01/detail.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/01/detail.png",
+      "src": "assets/templates/basic/basic%20v1/collar/polo%20collar/01/detail.png",
+      "path": "assets/templates/basic/basic%20v1/collar/polo%20collar/01/detail.png",
       "originalPath": "collar/Polo Collar/01/detail.png",
       "rawName": "detail.png",
       "name": "Detail",
@@ -326,8 +326,8 @@
         "collar/polo collar 1/shadow fusion opacidad.png",
         "collar/collar/polo collar/01/shadow fusion opacidad.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/01/shadow%20fusion%20opacidad.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/01/shadow%20fusion%20opacidad.png",
+      "src": "assets/templates/basic/basic%20v1/collar/polo%20collar/01/shadow%20fusion%20opacidad.png",
+      "path": "assets/templates/basic/basic%20v1/collar/polo%20collar/01/shadow%20fusion%20opacidad.png",
       "originalPath": "collar/Polo Collar/01/shadow fusion opacidad.png",
       "rawName": "shadow fusion opacidad.png",
       "name": "Shadow Fusion Opacidad",
@@ -376,8 +376,8 @@
         "collar/polo collar 1/front.png",
         "collar/collar/polo collar/01/front.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/01/front.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/01/front.png",
+      "src": "assets/templates/basic/basic%20v1/collar/polo%20collar/01/front.png",
+      "path": "assets/templates/basic/basic%20v1/collar/polo%20collar/01/front.png",
       "originalPath": "collar/Polo Collar/01/front.png",
       "rawName": "front.png",
       "name": "Front",
@@ -428,8 +428,8 @@
         "collar_seams/seams/seams front 2 iv.png",
         "collar_seams/collar/polo collar/01/seams front 2 iv.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/01/seams%20front%202%20IV.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/01/seams%20front%202%20IV.png",
+      "src": "assets/templates/basic/basic%20v1/collar/polo%20collar/01/seams%20front%202%20iv.png",
+      "path": "assets/templates/basic/basic%20v1/collar/polo%20collar/01/seams%20front%202%20iv.png",
       "originalPath": "collar/Polo Collar/01/seams front 2 IV.png",
       "rawName": "seams front 2 IV.png",
       "name": "Seams Front 2 IV",
@@ -478,8 +478,8 @@
         "collar_seams/seams/seams front iv.png",
         "collar_seams/collar/polo collar/01/seams front iv.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/01/seams%20front%20IV.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Polo%20Collar/01/seams%20front%20IV.png",
+      "src": "assets/templates/basic/basic%20v1/collar/polo%20collar/01/seams%20front%20iv.png",
+      "path": "assets/templates/basic/basic%20v1/collar/polo%20collar/01/seams%20front%20iv.png",
       "originalPath": "collar/Polo Collar/01/seams front IV.png",
       "rawName": "seams front IV.png",
       "name": "Seams Front IV",
@@ -524,5 +524,6 @@
   "collarSeamsFolderOpen": false,
   "_manualCollarSave": true,
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\basic\\shirt\\basic\\basic_v1\\collar\\polo_collar\\01\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\basic\\shirt\\basic\\basic_v1\\collar\\polo_collar\\01\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

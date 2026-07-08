@@ -5,7 +5,7 @@
   "savedAt": "2026-06-25T01:52:41.211Z",
   "templateId": "nike/nike_24-25_shared",
   "collarSettingsId": "nike/nike_24-25_shared/collar/1",
-  "folderPath": "assets/templates/Nike/Nike%2024-25%20Shared/collar/1",
+  "folderPath": "assets/templates/nike/nike%2024-25%20shared/collar/1",
   "id": "1",
   "name": "Collar 1",
   "key": "1",
@@ -21,8 +21,8 @@
         "collar/mesh rubber band front fusion opacidad.png",
         "collar/collar/1/mesh rubber band front fusion opacidad.png"
       ],
-      "src": "assets/templates/Nike/Nike%2024-25%20Shared/collar/1/mesh%20rubber%20band%20front%20fusion%20opacidad.png",
-      "path": "assets/templates/Nike/Nike%2024-25%20Shared/collar/1/mesh%20rubber%20band%20front%20fusion%20opacidad.png",
+      "src": "assets/templates/nike/nike%2024-25%20shared/collar/1/mesh%20rubber%20band%20front%20fusion%20opacidad.png",
+      "path": "assets/templates/nike/nike%2024-25%20shared/collar/1/mesh%20rubber%20band%20front%20fusion%20opacidad.png",
       "originalPath": "collar/1/mesh rubber band front fusion opacidad.png",
       "rawName": "mesh rubber band front fusion opacidad.png",
       "name": "Mesh Rubber Band Front Fusion Opacidad",
@@ -70,8 +70,8 @@
         "collar/mesh rubber band fusion opacidad.png",
         "collar/collar/1/mesh rubber band fusion opacidad.png"
       ],
-      "src": "assets/templates/Nike/Nike%2024-25%20Shared/collar/1/mesh%20rubber%20band%20fusion%20opacidad.png",
-      "path": "assets/templates/Nike/Nike%2024-25%20Shared/collar/1/mesh%20rubber%20band%20fusion%20opacidad.png",
+      "src": "assets/templates/nike/nike%2024-25%20shared/collar/1/mesh%20rubber%20band%20fusion%20opacidad.png",
+      "path": "assets/templates/nike/nike%2024-25%20shared/collar/1/mesh%20rubber%20band%20fusion%20opacidad.png",
       "originalPath": "collar/1/mesh rubber band fusion opacidad.png",
       "rawName": "mesh rubber band fusion opacidad.png",
       "name": "Mesh Rubber Band Fusion Opacidad",
@@ -119,8 +119,8 @@
         "collar/detail front.png",
         "collar/collar/1/detail front.png"
       ],
-      "src": "assets/templates/Nike/Nike%2024-25%20Shared/collar/1/detail%20front.png",
-      "path": "assets/templates/Nike/Nike%2024-25%20Shared/collar/1/detail%20front.png",
+      "src": "assets/templates/nike/nike%2024-25%20shared/collar/1/detail%20front.png",
+      "path": "assets/templates/nike/nike%2024-25%20shared/collar/1/detail%20front.png",
       "originalPath": "collar/1/detail front.png",
       "rawName": "detail front.png",
       "name": "Detail Front",
@@ -170,8 +170,8 @@
         "collar/detail.png",
         "collar/collar/1/detail.png"
       ],
-      "src": "assets/templates/Nike/Nike%2024-25%20Shared/collar/1/detail.png",
-      "path": "assets/templates/Nike/Nike%2024-25%20Shared/collar/1/detail.png",
+      "src": "assets/templates/nike/nike%2024-25%20shared/collar/1/detail.png",
+      "path": "assets/templates/nike/nike%2024-25%20shared/collar/1/detail.png",
       "originalPath": "collar/1/detail.png",
       "rawName": "detail.png",
       "name": "Detail",
@@ -222,8 +222,8 @@
         "collar_seams/seams/seams 2 iv.png",
         "collar_seams/collar/1/seams 2 iv.png"
       ],
-      "src": "assets/templates/Nike/Nike%2024-25%20Shared/collar/1/seams%202%20IV.png",
-      "path": "assets/templates/Nike/Nike%2024-25%20Shared/collar/1/seams%202%20IV.png",
+      "src": "assets/templates/nike/nike%2024-25%20shared/collar/1/seams%202%20iv.png",
+      "path": "assets/templates/nike/nike%2024-25%20shared/collar/1/seams%202%20iv.png",
       "originalPath": "collar/1/seams 2 IV.png",
       "rawName": "seams 2 IV.png",
       "name": "Seams 2 IV",
@@ -274,8 +274,8 @@
         "collar_seams/seams/seams iv.png",
         "collar_seams/collar/1/seams iv.png"
       ],
-      "src": "assets/templates/Nike/Nike 24-25 Shared/collar/1/seams IV.png",
-      "path": "assets/templates/Nike/Nike%2024-25%20Shared/collar/1/seams%20IV.png",
+      "src": "assets/templates/nike/nike 24-25 Shared/collar/1/seams IV.png",
+      "path": "assets/templates/nike/nike%2024-25%20shared/collar/1/seams%20iv.png",
       "originalPath": "collar/1/seams IV.png",
       "rawName": "seams IV.png",
       "name": "Seams IV",
@@ -326,8 +326,8 @@
         "collar_seams/seams/seams front iv.png",
         "collar_seams/collar/1/seams front iv.png"
       ],
-      "src": "assets/templates/Nike/Nike%2024-25%20Shared/collar/1/seams%20front%20IV.png",
-      "path": "assets/templates/Nike/Nike%2024-25%20Shared/collar/1/seams%20front%20IV.png",
+      "src": "assets/templates/nike/nike%2024-25%20shared/collar/1/seams%20front%20iv.png",
+      "path": "assets/templates/nike/nike%2024-25%20shared/collar/1/seams%20front%20iv.png",
       "originalPath": "collar/1/seams front IV.png",
       "rawName": "seams front IV.png",
       "name": "Seams Front IV",
@@ -372,5 +372,6 @@
   "collarSeamsFolderOpen": false,
   "_manualCollarSave": true,
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\nike\\nike_24-25_shared\\collar\\1\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\nike\\nike_24-25_shared\\collar\\1\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

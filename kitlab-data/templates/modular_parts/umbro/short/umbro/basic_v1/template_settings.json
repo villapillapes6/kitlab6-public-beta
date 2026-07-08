@@ -12,7 +12,7 @@
   "templateId": "modular_parts/umbro/short/umbro/basic_v1",
   "selectedTemplate": {
     "name": "Basic V1",
-    "path": "assets/templates/Umbro/Basic%20V1",
+    "path": "assets/templates/umbro/basic%20v1",
     "brand": "Umbro"
   },
   "selectedCollar": null,
@@ -30,8 +30,8 @@
         "short/hem.png",
         "short/short/detail/hem.png"
       ],
-      "src": "assets/templates/Umbro/Basic%20V1/short/detail/hem.png",
-      "path": "assets/templates/Umbro/Basic%20V1/short/detail/hem.png",
+      "src": "assets/templates/umbro/basic%20v1/short/detail/hem.png",
+      "path": "assets/templates/umbro/basic%20v1/short/detail/hem.png",
       "originalPath": "short/detail/hem.png",
       "rawName": "hem.png",
       "name": "Hem",
@@ -77,8 +77,8 @@
         "seams fj",
         "yqy51ffxowgmqoju9if"
       ],
-      "src": "assets/templates/Umbro/Basic%20V1/short/seams/seams%20FJ.png",
-      "path": "assets/templates/Umbro/Basic%20V1/short/seams/seams%20FJ.png",
+      "src": "assets/templates/umbro/basic%20v1/short/seams/seams%20fj.png",
+      "path": "assets/templates/umbro/basic%20v1/short/seams/seams%20fj.png",
       "originalPath": "short/seams/seams FJ.png",
       "rawName": "seams FJ.png",
       "name": "Seams FJ",
@@ -122,8 +122,8 @@
         "size iv",
         "z5u8wj16x7mqoju9iz"
       ],
-      "src": "assets/templates/Umbro/Basic%20V1/short/seams/size%20IV.png",
-      "path": "assets/templates/Umbro/Basic%20V1/short/seams/size%20IV.png",
+      "src": "assets/templates/umbro/basic%20v1/short/seams/size%20iv.png",
+      "path": "assets/templates/umbro/basic%20v1/short/seams/size%20iv.png",
       "originalPath": "short/seams/size IV.png",
       "rawName": "size IV.png",
       "name": "Size IV",
@@ -167,8 +167,8 @@
         "short iv final",
         "8v171thd7vumqoju9iz"
       ],
-      "src": "assets/templates/Umbro/Basic%20V1/short/seams/short%20IV%20final.png",
-      "path": "assets/templates/Umbro/Basic%20V1/short/seams/short%20IV%20final.png",
+      "src": "assets/templates/umbro/basic%20v1/short/seams/short%20iv%20final.png",
+      "path": "assets/templates/umbro/basic%20v1/short/seams/short%20iv%20final.png",
       "originalPath": "short/seams/short IV final.png",
       "rawName": "short IV final.png",
       "name": "Short IV Final",
@@ -212,8 +212,8 @@
         "short iv goma",
         "9f676wd39xmqoju9iz"
       ],
-      "src": "assets/templates/Umbro/Basic%20V1/short/seams/short%20IV%20goma.png",
-      "path": "assets/templates/Umbro/Basic%20V1/short/seams/short%20IV%20goma.png",
+      "src": "assets/templates/umbro/basic%20v1/short/seams/short%20iv%20goma.png",
+      "path": "assets/templates/umbro/basic%20v1/short/seams/short%20iv%20goma.png",
       "originalPath": "short/seams/short IV goma.png",
       "rawName": "short IV goma.png",
       "name": "Short IV Goma",
@@ -306,10 +306,11 @@
     "part": "short",
     "name": "Basic V1",
     "brand": "Umbro",
-    "path": "assets/templates/Umbro/Basic%20V1",
+    "path": "assets/templates/umbro/basic%20v1",
     "templateId": "umbro/basic_v1",
-    "thumb": "assets/templates/Umbro/Basic%20V1/short/thumbnail.png"
+    "thumb": "assets/templates/umbro/basic%20v1/short/thumbnail.png"
   },
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\umbro\\short\\umbro\\basic_v1\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\umbro\\short\\umbro\\basic_v1\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

@@ -32,8 +32,8 @@
         "short/detail/hem.png",
         "short/umbro 25-26/short/v1/detail/hem.png"
       ],
-      "src": "assets/templates/Umbro/umbro 25-26/short/v1/detail/hem.png",
-      "path": "assets/templates/Umbro/umbro 25-26/short/v1/detail/hem.png",
+      "src": "assets/templates/umbro/umbro 25-26/short/v1/detail/hem.png",
+      "path": "assets/templates/umbro/umbro 25-26/short/v1/detail/hem.png",
       "originalPath": "umbro 25-26/short/v1/detail/hem.png",
       "rawName": "hem.png",
       "name": "Hem",
@@ -83,8 +83,8 @@
         "short/seams fj.png",
         "short/umbro 25-26/short/v1/seams/seams fj.png"
       ],
-      "src": "assets/templates/Umbro/umbro 25-26/short/v1/seams/seams FJ.png",
-      "path": "assets/templates/Umbro/umbro 25-26/short/v1/seams/seams FJ.png",
+      "src": "assets/templates/umbro/umbro 25-26/short/v1/seams/seams FJ.png",
+      "path": "assets/templates/umbro/umbro 25-26/short/v1/seams/seams FJ.png",
       "originalPath": "umbro 25-26/short/v1/seams/seams FJ.png",
       "rawName": "seams FJ.png",
       "name": "Seams FJ",
@@ -132,8 +132,8 @@
         "short/short iv final.png",
         "short/umbro 25-26/short/v1/seams/short iv final.png"
       ],
-      "src": "assets/templates/Umbro/umbro 25-26/short/v1/seams/short IV final.png",
-      "path": "assets/templates/Umbro/umbro 25-26/short/v1/seams/short IV final.png",
+      "src": "assets/templates/umbro/umbro 25-26/short/v1/seams/short IV final.png",
+      "path": "assets/templates/umbro/umbro 25-26/short/v1/seams/short IV final.png",
       "originalPath": "umbro 25-26/short/v1/seams/short IV final.png",
       "rawName": "short IV final.png",
       "name": "Short IV Final",
@@ -181,8 +181,8 @@
         "short/short iv goma.png",
         "short/umbro 25-26/short/v1/seams/short iv goma.png"
       ],
-      "src": "assets/templates/Umbro/umbro 25-26/short/v1/seams/short IV goma.png",
-      "path": "assets/templates/Umbro/umbro 25-26/short/v1/seams/short IV goma.png",
+      "src": "assets/templates/umbro/umbro 25-26/short/v1/seams/short IV goma.png",
+      "path": "assets/templates/umbro/umbro 25-26/short/v1/seams/short IV goma.png",
       "originalPath": "umbro 25-26/short/v1/seams/short IV goma.png",
       "rawName": "short IV goma.png",
       "name": "Short IV Goma",
@@ -230,8 +230,8 @@
         "short/size iv.png",
         "short/umbro 25-26/short/v1/seams/size iv.png"
       ],
-      "src": "assets/templates/Umbro/umbro 25-26/short/v1/seams/size IV.png",
-      "path": "assets/templates/Umbro/umbro 25-26/short/v1/seams/size IV.png",
+      "src": "assets/templates/umbro/umbro 25-26/short/v1/seams/size IV.png",
+      "path": "assets/templates/umbro/umbro 25-26/short/v1/seams/size IV.png",
       "originalPath": "umbro 25-26/short/v1/seams/size IV.png",
       "rawName": "size IV.png",
       "name": "Size IV",
@@ -329,8 +329,9 @@
     "brand": "Umbro",
     "path": "assets/templates/umbro/umbro%2025-26/short/v1",
     "templateId": "umbro/umbro_25-26/short/v1",
-    "thumb": "assets/templates/Umbro/umbro 25-26/short/v1/thumbnail.png"
+    "thumb": "assets/templates/umbro/umbro 25-26/short/v1/thumbnail.png"
   },
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\umbro\\short\\umbro\\umbro_25-26\\short\\v1\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\umbro\\short\\umbro\\umbro_25-26\\short\\v1\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

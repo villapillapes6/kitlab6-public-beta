@@ -16,7 +16,7 @@
   "templateId": "modular_parts/adidas/socks/adidas/adidas_2026",
   "selectedTemplate": {
     "name": "Adidas 26/27",
-    "path": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+",
+    "path": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool+",
     "brand": "Adidas"
   },
   "shortVariant": "v1",
@@ -35,8 +35,8 @@
         "socks/seams fj.png",
         "socks/socks/seams/seams fj.png"
       ],
-      "src": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/socks/seams/seams%20FJ.png",
-      "path": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/socks/seams/seams%20FJ.png",
+      "src": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/socks/seams/seams%20fj.png",
+      "path": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/socks/seams/seams%20fj.png",
       "originalPath": "socks/seams/seams FJ.png",
       "rawName": "seams FJ.png",
       "name": "Seams FJ",
@@ -138,10 +138,11 @@
     "part": "socks",
     "name": "Adidas 26/27",
     "brand": "Adidas",
-    "path": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+",
+    "path": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool+",
     "templateId": "adidas/adidas_2026",
-    "thumb": "assets/templates/Adidas/Players/26-27/Adidas%2026-27%20Climacool+/socks/base/05.%20socks.png"
+    "thumb": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/socks/base/05.%20socks.png"
   },
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\adidas\\socks\\adidas\\adidas_2026\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\adidas\\socks\\adidas\\adidas_2026\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

@@ -12,7 +12,7 @@
   "templateId": "modular_parts/basic/short/basic/basic_v2",
   "selectedTemplate": {
     "name": "Basic V2",
-    "path": "assets/templates/Basic/Basic%20V2",
+    "path": "assets/templates/basic/basic%20v2",
     "brand": "Basic"
   },
   "selectedCollar": null,
@@ -30,8 +30,8 @@
         "short/short final.png",
         "short/short/details/short final.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V2/short/details/short%20final.png",
-      "path": "assets/templates/Basic/Basic%20V2/short/details/short%20final.png",
+      "src": "assets/templates/basic/basic%20v2/short/details/short%20final.png",
+      "path": "assets/templates/basic/basic%20v2/short/details/short%20final.png",
       "originalPath": "short/details/short final.png",
       "rawName": "short final.png",
       "name": "Short final",
@@ -70,8 +70,8 @@
         "short/size.png",
         "short/short/details/size.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V2/short/details/size.png",
-      "path": "assets/templates/Basic/Basic%20V2/short/details/size.png",
+      "src": "assets/templates/basic/basic%20v2/short/details/size.png",
+      "path": "assets/templates/basic/basic%20v2/short/details/size.png",
       "originalPath": "short/details/size.png",
       "rawName": "size.png",
       "name": "Size",
@@ -108,8 +108,8 @@
         "seams fj",
         "o390kunnnpmqii6org"
       ],
-      "src": "assets/templates/Basic/Basic%20V2/short/seams/seams%20FJ.png",
-      "path": "assets/templates/Basic/Basic%20V2/short/seams/seams%20FJ.png",
+      "src": "assets/templates/basic/basic%20v2/short/seams/seams%20fj.png",
+      "path": "assets/templates/basic/basic%20v2/short/seams/seams%20fj.png",
       "originalPath": "short/seams/seams FJ.png",
       "rawName": "seams FJ.png",
       "name": "Seams FJ",
@@ -144,8 +144,8 @@
         "short size iv",
         "6m4uwk8mtgmqii6org"
       ],
-      "src": "assets/templates/Basic/Basic%20V2/short/seams/short%20size%20IV.png",
-      "path": "assets/templates/Basic/Basic%20V2/short/seams/short%20size%20IV.png",
+      "src": "assets/templates/basic/basic%20v2/short/seams/short%20size%20iv.png",
+      "path": "assets/templates/basic/basic%20v2/short/seams/short%20size%20iv.png",
       "originalPath": "short/seams/short size IV.png",
       "rawName": "short size IV.png",
       "name": "Short size IV",
@@ -180,8 +180,8 @@
         "short iv final",
         "we7e144n5x8mqii6org"
       ],
-      "src": "assets/templates/Basic/Basic%20V2/short/seams/short%20IV%20final.png",
-      "path": "assets/templates/Basic/Basic%20V2/short/seams/short%20IV%20final.png",
+      "src": "assets/templates/basic/basic%20v2/short/seams/short%20iv%20final.png",
+      "path": "assets/templates/basic/basic%20v2/short/seams/short%20iv%20final.png",
       "originalPath": "short/seams/short IV final.png",
       "rawName": "short IV final.png",
       "name": "Short IV final",
@@ -216,8 +216,8 @@
         "short iv goma",
         "y79hiluubwmqii6org"
       ],
-      "src": "assets/templates/Basic/Basic%20V2/short/seams/short%20IV%20goma.png",
-      "path": "assets/templates/Basic/Basic%20V2/short/seams/short%20IV%20goma.png",
+      "src": "assets/templates/basic/basic%20v2/short/seams/short%20iv%20goma.png",
+      "path": "assets/templates/basic/basic%20v2/short/seams/short%20iv%20goma.png",
       "originalPath": "short/seams/short IV goma.png",
       "rawName": "short IV goma.png",
       "name": "Short IV goma",
@@ -274,10 +274,11 @@
     "part": "short",
     "name": "Basic V2",
     "brand": "Basic",
-    "path": "assets/templates/Basic/Basic%20V2",
+    "path": "assets/templates/basic/basic%20v2",
     "templateId": "basic/basic_v2",
-    "thumb": "assets/templates/Basic/Basic%20V2/short/thumbnail.png"
+    "thumb": "assets/templates/basic/basic%20v2/short/thumbnail.png"
   },
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\basic\\short\\basic\\basic_v2\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\basic\\short\\basic\\basic_v2\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

@@ -5,7 +5,7 @@
   "savedAt": "2026-06-22T01:38:39.660Z",
   "templateId": "adidas/adidas_trefoil_2026",
   "collarSettingsId": "adidas/adidas_trefoil_2026/collar/01_no",
-  "folderPath": "assets/templates/Adidas/Adidas%20Trefoil%202026/collar/01_NO",
+  "folderPath": "assets/templates/adidas/adidas%20trefoil%202026/collar/01_no",
   "id": "01_NO",
   "name": "Collar 01 NO",
   "key": "01_no",
@@ -22,8 +22,8 @@
         "collar/1/no/tights rubber band fusion opacidad.png",
         "collar/collar/01_no/tights rubber band fusion opacidad.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%20Trefoil%202026/collar/01_NO/tights%20rubber%20band%20fusion%20opacidad.png",
-      "path": "assets/templates/Adidas/Adidas%20Trefoil%202026/collar/01_NO/tights%20rubber%20band%20fusion%20opacidad.png",
+      "src": "assets/templates/adidas/adidas%20trefoil%202026/collar/01_no/tights%20rubber%20band%20fusion%20opacidad.png",
+      "path": "assets/templates/adidas/adidas%20trefoil%202026/collar/01_no/tights%20rubber%20band%20fusion%20opacidad.png",
       "originalPath": "collar/01_NO/tights rubber band fusion opacidad.png",
       "rawName": "tights rubber band fusion opacidad.png",
       "name": "Tights Rubber Band",
@@ -70,8 +70,8 @@
         "collar/1/no/tights rubber band 2 fusion opacidad.png",
         "collar/collar/01_no/tights rubber band 2 fusion opacidad.png"
       ],
-      "src": "assets/templates/Adidas/Adidas Trefoil 2026/collar/01_NO/tights rubber band 2 fusion opacidad.png",
-      "path": "assets/templates/Adidas/Adidas%20Trefoil%202026/collar/01_NO/tights%20rubber%20band%202%20fusion%20opacidad.png",
+      "src": "assets/templates/adidas/adidas Trefoil 2026/collar/01_NO/tights rubber band 2 fusion opacidad.png",
+      "path": "assets/templates/adidas/adidas%20trefoil%202026/collar/01_no/tights%20rubber%20band%202%20fusion%20opacidad.png",
       "originalPath": "collar/01_NO/tights rubber band 2 fusion opacidad.png",
       "rawName": "tights rubber band 2 fusion opacidad.png",
       "name": "Tights Rubber Band 2",
@@ -118,8 +118,8 @@
         "collar/1/no/border.png",
         "collar/collar/01_no/border.png"
       ],
-      "src": "assets/templates/Adidas/Adidas Trefoil 2026/collar/01_NO/border.png",
-      "path": "assets/templates/Adidas/Adidas%20Trefoil%202026/collar/01_NO/border.png",
+      "src": "assets/templates/adidas/adidas Trefoil 2026/collar/01_NO/border.png",
+      "path": "assets/templates/adidas/adidas%20trefoil%202026/collar/01_no/border.png",
       "originalPath": "collar/01_NO/border.png",
       "rawName": "border.png",
       "name": "Border",
@@ -168,8 +168,8 @@
         "collar/1/no/collar.png",
         "collar/collar/01_no/collar.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%20Trefoil%202026/collar/01_NO/collar.png",
-      "path": "assets/templates/Adidas/Adidas%20Trefoil%202026/collar/01_NO/collar.png",
+      "src": "assets/templates/adidas/adidas%20trefoil%202026/collar/01_no/collar.png",
+      "path": "assets/templates/adidas/adidas%20trefoil%202026/collar/01_no/collar.png",
       "originalPath": "collar/01_NO/collar.png",
       "rawName": "collar.png",
       "name": "Collar",
@@ -218,8 +218,8 @@
         "collar_seams/seams/seams 2 iv.png",
         "collar_seams/collar/01_no/seams 2 iv.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%20Trefoil%202026/collar/01_NO/seams%202%20IV.png",
-      "path": "assets/templates/Adidas/Adidas%20Trefoil%202026/collar/01_NO/seams%202%20IV.png",
+      "src": "assets/templates/adidas/adidas%20trefoil%202026/collar/01_no/seams%202%20iv.png",
+      "path": "assets/templates/adidas/adidas%20trefoil%202026/collar/01_no/seams%202%20iv.png",
       "originalPath": "collar/01_NO/seams 2 IV.png",
       "rawName": "seams 2 IV.png",
       "name": "Seams 2 IV",
@@ -268,8 +268,8 @@
         "collar_seams/seams/seams iv.png",
         "collar_seams/collar/01_no/seams iv.png"
       ],
-      "src": "assets/templates/Adidas/Adidas%20Trefoil%202026/collar/01_NO/seams%20IV.png",
-      "path": "assets/templates/Adidas/Adidas%20Trefoil%202026/collar/01_NO/seams%20IV.png",
+      "src": "assets/templates/adidas/adidas%20trefoil%202026/collar/01_no/seams%20iv.png",
+      "path": "assets/templates/adidas/adidas%20trefoil%202026/collar/01_no/seams%20iv.png",
       "originalPath": "collar/01_NO/seams IV.png",
       "rawName": "seams IV.png",
       "name": "Seams IV",
@@ -312,5 +312,6 @@
   "collarSeamsFolderOpen": false,
   "_manualCollarSave": true,
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\adidas\\adidas_trefoil_2026\\collar\\01_no\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\adidas\\adidas_trefoil_2026\\collar\\01_no\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

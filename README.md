@@ -1,1 +1,0 @@
-# kitlab6-public-beta

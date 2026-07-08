@@ -16,7 +16,7 @@
   "templateId": "modular_parts/macron/socks/macron/basic_v1",
   "selectedTemplate": {
     "name": "Basic V1",
-    "path": "assets/templates/Macron/Basic%20V1",
+    "path": "assets/templates/macron/basic%20v1",
     "brand": "Macron"
   },
   "selectedCollar": null,
@@ -32,8 +32,8 @@
         "seams fj",
         "uo9mlosxn6mqojrdj5"
       ],
-      "src": "assets/templates/Macron/Basic%20V1/socks/seams/seams%20FJ.png",
-      "path": "assets/templates/Macron/Basic%20V1/socks/seams/seams%20FJ.png",
+      "src": "assets/templates/macron/basic%20v1/socks/seams/seams%20fj.png",
+      "path": "assets/templates/macron/basic%20v1/socks/seams/seams%20fj.png",
       "originalPath": "socks/seams/seams FJ.png",
       "rawName": "seams FJ.png",
       "name": "Seams FJ",
@@ -126,10 +126,11 @@
     "part": "socks",
     "name": "Basic V1",
     "brand": "Macron",
-    "path": "assets/templates/Macron/Basic%20V1",
+    "path": "assets/templates/macron/basic%20v1",
     "templateId": "macron/basic_v1",
-    "thumb": "assets/templates/Macron/Basic%20V1/socks/thumbnail.png"
+    "thumb": "assets/templates/macron/basic%20v1/socks/thumbnail.png"
   },
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\macron\\socks\\macron\\basic_v1\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\macron\\socks\\macron\\basic_v1\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

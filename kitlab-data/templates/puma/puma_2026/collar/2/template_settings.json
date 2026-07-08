@@ -5,7 +5,7 @@
   "savedAt": "2026-06-08T02:12:13.559Z",
   "templateId": "puma/puma_2026",
   "collarSettingsId": "puma/puma_2026/collar/2",
-  "folderPath": "assets/templates/Puma/Puma%202026/collar/2",
+  "folderPath": "assets/templates/puma/puma%202026/collar/2",
   "id": "2",
   "name": "Collar 2",
   "key": "2",
@@ -22,8 +22,8 @@
         "collar/collar 2/rubber band fusion opacidad.png",
         "collar/collar/2/rubber band fusion opacidad.png"
       ],
-      "src": "assets/templates/Puma/Puma%202026/collar/2/Rubber%20Band%20fusion%20opacidad.png",
-      "path": "assets/templates/Puma/Puma%202026/collar/2/Rubber%20Band%20fusion%20opacidad.png",
+      "src": "assets/templates/puma/puma%202026/collar/2/rubber%20band%20fusion%20opacidad.png",
+      "path": "assets/templates/puma/puma%202026/collar/2/rubber%20band%20fusion%20opacidad.png",
       "originalPath": "collar/2/Rubber Band fusion opacidad.png",
       "rawName": "Rubber Band fusion opacidad.png",
       "name": "Rubber Band",
@@ -60,8 +60,8 @@
         "collar/collar 2/rubber band 2 fusion opacidad.png",
         "collar/collar/2/rubber band 2 fusion opacidad.png"
       ],
-      "src": "assets/templates/Puma/Puma%202026/collar/2/Rubber%20Band%202%20fusion%20opacidad.png",
-      "path": "assets/templates/Puma/Puma%202026/collar/2/Rubber%20Band%202%20fusion%20opacidad.png",
+      "src": "assets/templates/puma/puma%202026/collar/2/rubber%20band%202%20fusion%20opacidad.png",
+      "path": "assets/templates/puma/puma%202026/collar/2/rubber%20band%202%20fusion%20opacidad.png",
       "originalPath": "collar/2/Rubber Band 2 fusion opacidad.png",
       "rawName": "Rubber Band 2 fusion opacidad.png",
       "name": "Rubber Band 2",
@@ -98,8 +98,8 @@
         "collar/collar 2/detail back.png",
         "collar/collar/2/detail back.png"
       ],
-      "src": "assets/templates/Puma/Puma%202026/collar/2/detail%20back.png",
-      "path": "assets/templates/Puma/Puma%202026/collar/2/detail%20back.png",
+      "src": "assets/templates/puma/puma%202026/collar/2/detail%20back.png",
+      "path": "assets/templates/puma/puma%202026/collar/2/detail%20back.png",
       "originalPath": "collar/2/detail back.png",
       "rawName": "detail back.png",
       "name": "Detail Back",
@@ -138,8 +138,8 @@
         "collar/collar 2/border.png",
         "collar/collar/2/border.png"
       ],
-      "src": "assets/templates/Puma/Puma%202026/collar/2/border.png",
-      "path": "assets/templates/Puma/Puma%202026/collar/2/border.png",
+      "src": "assets/templates/puma/puma%202026/collar/2/border.png",
+      "path": "assets/templates/puma/puma%202026/collar/2/border.png",
       "originalPath": "collar/2/border.png",
       "rawName": "border.png",
       "name": "Border",
@@ -178,8 +178,8 @@
         "collar/collar 2/detail.png",
         "collar/collar/2/detail.png"
       ],
-      "src": "assets/templates/Puma/Puma%202026/collar/2/detail.png",
-      "path": "assets/templates/Puma/Puma%202026/collar/2/detail.png",
+      "src": "assets/templates/puma/puma%202026/collar/2/detail.png",
+      "path": "assets/templates/puma/puma%202026/collar/2/detail.png",
       "originalPath": "collar/2/detail.png",
       "rawName": "detail.png",
       "name": "Detail",
@@ -218,8 +218,8 @@
         "collar_seams/seams/seams 3 iv.png",
         "collar_seams/collar/2/seams 3 iv.png"
       ],
-      "src": "assets/templates/Puma/Puma%202026/collar/2/seams%203%20IV.png",
-      "path": "assets/templates/Puma/Puma%202026/collar/2/seams%203%20IV.png",
+      "src": "assets/templates/puma/puma%202026/collar/2/seams%203%20iv.png",
+      "path": "assets/templates/puma/puma%202026/collar/2/seams%203%20iv.png",
       "originalPath": "collar/2/seams 3 IV.png",
       "rawName": "seams 3 IV.png",
       "name": "Seams 3 Iv",
@@ -256,8 +256,8 @@
         "collar_seams/seams/seams iv.png",
         "collar_seams/collar/2/seams iv.png"
       ],
-      "src": "assets/templates/Puma/Puma%202026/collar/2/seams%20IV.png",
-      "path": "assets/templates/Puma/Puma%202026/collar/2/seams%20IV.png",
+      "src": "assets/templates/puma/puma%202026/collar/2/seams%20iv.png",
+      "path": "assets/templates/puma/puma%202026/collar/2/seams%20iv.png",
       "originalPath": "collar/2/seams IV.png",
       "rawName": "seams IV.png",
       "name": "Seams Iv",
@@ -288,5 +288,6 @@
   "collarSeamsFolderOpen": false,
   "_manualCollarSave": true,
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\puma\\puma_2026\\collar\\2\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\puma\\puma_2026\\collar\\2\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

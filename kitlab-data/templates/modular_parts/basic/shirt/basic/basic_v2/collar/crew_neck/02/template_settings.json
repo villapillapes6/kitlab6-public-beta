@@ -22,8 +22,8 @@
         "collar/02/tights rubber band fusion opacidad.png",
         "collar/collar/crew neck/02/tights rubber band fusion opacidad.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Crew%20Neck/02/tights%20rubber%20band%20fusion%20opacidad.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Crew%20Neck/02/tights%20rubber%20band%20fusion%20opacidad.png",
+      "src": "assets/templates/basic/basic%20v1/collar/crew%20neck/02/tights%20rubber%20band%20fusion%20opacidad.png",
+      "path": "assets/templates/basic/basic%20v1/collar/crew%20neck/02/tights%20rubber%20band%20fusion%20opacidad.png",
       "originalPath": "collar/Crew Neck/02/tights rubber band fusion opacidad.png",
       "rawName": "tights rubber band fusion opacidad.png",
       "name": "Tights rubber band fusion opacidad",
@@ -61,8 +61,8 @@
         "collar/02/detail.png",
         "collar/collar/crew neck/02/detail.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Crew%20Neck/02/detail.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Crew%20Neck/02/detail.png",
+      "src": "assets/templates/basic/basic%20v1/collar/crew%20neck/02/detail.png",
+      "path": "assets/templates/basic/basic%20v1/collar/crew%20neck/02/detail.png",
       "originalPath": "collar/Crew Neck/02/detail.png",
       "rawName": "detail.png",
       "name": "Detail",
@@ -102,8 +102,8 @@
         "collar_seams/seams/seams iv.png",
         "collar_seams/collar/crew neck/02/seams iv.png"
       ],
-      "src": "assets/templates/Basic/Basic%20V1/collar/Crew%20Neck/02/seams%20IV.png",
-      "path": "assets/templates/Basic/Basic%20V1/collar/Crew%20Neck/02/seams%20IV.png",
+      "src": "assets/templates/basic/basic%20v1/collar/crew%20neck/02/seams%20iv.png",
+      "path": "assets/templates/basic/basic%20v1/collar/crew%20neck/02/seams%20iv.png",
       "originalPath": "collar/Crew Neck/02/seams IV.png",
       "rawName": "seams IV.png",
       "name": "Seams IV",
@@ -135,5 +135,6 @@
   "collarSeamsFolderOpen": false,
   "_manualCollarSave": true,
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\basic\\shirt\\basic\\basic_v2\\collar\\crew_neck\\02\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\basic\\shirt\\basic\\basic_v2\\collar\\crew_neck\\02\\template_settings.json",
+  "_bundledInPublicBeta": true
 }

@@ -5,7 +5,7 @@
   "savedAt": "2026-06-29T20:11:30.046Z",
   "templateId": "nike/nike_25-26_v3",
   "collarSettingsId": "nike/nike_25-26_v3/collar/1",
-  "folderPath": "assets/templates/Nike/Nike%2025-26%20V3/collar/1",
+  "folderPath": "assets/templates/nike/nike%2025-26%20v3/collar/1",
   "id": "1",
   "name": "Collar 1",
   "key": "1",
@@ -21,8 +21,8 @@
         "collar/detail.png",
         "collar/collar/1/detail.png"
       ],
-      "src": "assets/templates/Nike/Nike%2025-26%20V3/collar/1/detail.png",
-      "path": "assets/templates/Nike/Nike%2025-26%20V3/collar/1/detail.png",
+      "src": "assets/templates/nike/nike%2025-26%20v3/collar/1/detail.png",
+      "path": "assets/templates/nike/nike%2025-26%20v3/collar/1/detail.png",
       "originalPath": "collar/1/detail.png",
       "rawName": "detail.png",
       "name": "Detail",
@@ -73,8 +73,8 @@
         "collar_seams/seams/seams 2 iv.png",
         "collar_seams/collar/1/seams 2 iv.png"
       ],
-      "src": "assets/templates/Nike/Nike%2025-26%20V3/collar/1/seams%202%20IV.png",
-      "path": "assets/templates/Nike/Nike%2025-26%20V3/collar/1/seams%202%20IV.png",
+      "src": "assets/templates/nike/nike%2025-26%20v3/collar/1/seams%202%20iv.png",
+      "path": "assets/templates/nike/nike%2025-26%20v3/collar/1/seams%202%20iv.png",
       "originalPath": "collar/1/seams 2 IV.png",
       "rawName": "seams 2 IV.png",
       "name": "Seams 2 IV",
@@ -125,8 +125,8 @@
         "collar_seams/seams/seams 3 iv.png",
         "collar_seams/collar/1/seams 3 iv.png"
       ],
-      "src": "assets/templates/Nike/Nike%2025-26%20V3/collar/1/seams%203%20IV.png",
-      "path": "assets/templates/Nike/Nike%2025-26%20V3/collar/1/seams%203%20IV.png",
+      "src": "assets/templates/nike/nike%2025-26%20v3/collar/1/seams%203%20iv.png",
+      "path": "assets/templates/nike/nike%2025-26%20v3/collar/1/seams%203%20iv.png",
       "originalPath": "collar/1/seams 3 IV.png",
       "rawName": "seams 3 IV.png",
       "name": "Seams 3 IV",
@@ -177,8 +177,8 @@
         "collar_seams/seams/seams iv.png",
         "collar_seams/collar/1/seams iv.png"
       ],
-      "src": "assets/templates/Nike/Nike%2025-26%20V3/collar/1/seams%20IV.png",
-      "path": "assets/templates/Nike/Nike%2025-26%20V3/collar/1/seams%20IV.png",
+      "src": "assets/templates/nike/nike%2025-26%20v3/collar/1/seams%20iv.png",
+      "path": "assets/templates/nike/nike%2025-26%20v3/collar/1/seams%20iv.png",
       "originalPath": "collar/1/seams IV.png",
       "rawName": "seams IV.png",
       "name": "Seams IV",
@@ -223,5 +223,6 @@
   "collarSeamsFolderOpen": false,
   "_manualCollarSave": true,
   "_savedByKitLabServer": true,
-  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\nike\\nike_25-26_v3\\collar\\1\\template_settings.json"
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\nike\\nike_25-26_v3\\collar\\1\\template_settings.json",
+  "_bundledInPublicBeta": true
 }
