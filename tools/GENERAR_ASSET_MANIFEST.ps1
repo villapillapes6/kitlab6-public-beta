@@ -1,0 +1,73 @@
+$ErrorActionPreference = "Stop"
+function Decode-HashU([string]$s) {
+  return [regex]::Replace($s, '#U([0-9a-fA-F]{4})', {
+    param($m)
+    return [string][char]([Convert]::ToInt32($m.Groups[1].Value, 16))
+  })
+}
+function Add-Dir($dirs, [string]$key) {
+  if (!$key) { return }
+  if (!$dirs.ContainsKey($key)) { $dirs[$key] = @{ folders = New-Object System.Collections.Generic.HashSet[string]; files = New-Object System.Collections.Generic.HashSet[string] } }
+}
+function Transform-Rel([string]$rel) {
+  $r = $rel.Replace('\','/').Trim('/')
+  if ($r.StartsWith('assets/templates/')) {
+    $tail = $r.Substring('assets/templates/'.Length)
+    $tail = (Decode-HashU $tail).ToLowerInvariant()
+    if ($tail.Length -gt 0) { return 'assets/templates/' + $tail }
+    return 'assets/templates'
+  }
+  return $r
+}
+$Root = Split-Path -Parent $PSScriptRoot
+$Assets = Join-Path $Root 'assets'
+if (!(Test-Path -LiteralPath $Assets)) { throw "No encuentro assets en $Root" }
+$Data = Join-Path $Root 'kitlab-data'
+New-Item -ItemType Directory -Force -Path $Data | Out-Null
+$dirs = @{}
+Add-Dir $dirs 'assets'
+$items = Get-ChildItem -LiteralPath $Assets -Recurse -Force
+foreach ($item in $items) {
+  $relRaw = 'assets/' + $item.FullName.Substring($Assets.Length).TrimStart('\','/').Replace('\','/')
+  $rel = Transform-Rel $relRaw
+  $parts = $rel.Split('/') | Where-Object { $_ -ne '' }
+  if ($parts.Count -eq 0) { continue }
+  if ($item.PSIsContainer) {
+    $dirKey = ($parts -join '/')
+    Add-Dir $dirs $dirKey
+    if ($parts.Count -gt 1) {
+      $parent = ($parts[0..($parts.Count-2)] -join '/')
+      Add-Dir $dirs $parent
+      [void]$dirs[$parent].folders.Add($parts[-1])
+    }
+  } else {
+    if ($parts.Count -gt 1) {
+      $parent = ($parts[0..($parts.Count-2)] -join '/')
+      Add-Dir $dirs $parent
+      [void]$dirs[$parent].files.Add($parts[-1])
+      for ($i=1; $i -lt ($parts.Count-1); $i++) {
+        $p = ($parts[0..($i-1)] -join '/')
+        $child = $parts[$i]
+        Add-Dir $dirs $p
+        [void]$dirs[$p].folders.Add($child)
+      }
+    }
+  }
+}
+$outDirs = @{}
+foreach ($key in ($dirs.Keys | Sort-Object)) {
+  $outDirs[$key] = @{
+    folders = @($dirs[$key].folders | Sort-Object)
+    files = @($dirs[$key].files | Sort-Object)
+  }
+}
+$out = [ordered]@{
+  version = '1.3.220-local'
+  generated = (Get-Date).ToString('s')
+  purpose = 'KitLab6 global static asset manifest generated locally'
+  dirs = $outDirs
+}
+$outPath = Join-Path $Data 'asset_manifest.json'
+$out | ConvertTo-Json -Depth 8 | Out-File -LiteralPath $outPath -Encoding UTF8
+Write-Host "Manifest generado:" -ForegroundColor Green
+Write-Host $outPath

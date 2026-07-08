@@ -2927,39 +2927,20 @@
 
   async function refreshInternalBrandsFromFolder() {
     try {
-      const response = await fetch("assets/brand/", { cache: "no-store" });
-      if (!response.ok) return [...INTERNAL_BRANDS].sort(compareBrandSponsorItems);
-      const html = await response.text();
-      const files = [];
-      const hrefRegex = /href=["']([^"']+\.png)["']/gi;
-      let match;
-      while ((match = hrefRegex.exec(html))) {
-        let fileName = decodeURIComponent(match[1].split("/").pop());
-        if (!fileName || fileName.startsWith(".")) continue;
-        files.push(fileName);
-      }
+      const listed = await listKitlabAssetDirectory(["assets", "brand"]);
+      const files = Array.isArray(listed?.files) ? listed.files.filter((f) => /\.(png|webp|jpg|jpeg|svg)$/i.test(f)) : [];
       const unique = [...new Set(files)].sort((a, b) => compareBrandSponsorItems(brandItemFromFileName(a), brandItemFromFileName(b)));
       if (unique.length) INTERNAL_BRANDS = unique.map(brandItemFromFileName).sort(compareBrandSponsorItems);
     } catch (error) {
-      // Folder listing is not available when opening by file://. Keep embedded fallback list.
+      // Keep embedded fallback list.
     }
     return [...INTERNAL_BRANDS].sort(compareBrandSponsorItems);
   }
 
   async function refreshInternalSponsorsFromFolder() {
-    // Sponsor gallery has an embedded manifest, so it works even if folder listing is blocked.
     try {
-      const response = await fetch("assets/sponsor/", { cache: "no-store" });
-      if (!response.ok) return [...INTERNAL_SPONSORS].sort(compareBrandSponsorItems);
-      const html = await response.text();
-      const files = [];
-      const hrefRegex = /href=["']([^"']+\.png)["']/gi;
-      let match;
-      while ((match = hrefRegex.exec(html))) {
-        let fileName = decodeURIComponent(match[1].split("/").pop());
-        if (!fileName || fileName.startsWith(".")) continue;
-        files.push(fileName);
-      }
+      const listed = await listKitlabAssetDirectory(["assets", "sponsor"]);
+      const files = Array.isArray(listed?.files) ? listed.files.filter((f) => /\.(png|webp|jpg|jpeg|svg)$/i.test(f)) : [];
       const unique = [...new Set(files)].sort((a, b) => compareBrandSponsorItems(sponsorItemFromFileName(a), sponsorItemFromFileName(b)));
       if (unique.length) INTERNAL_SPONSORS = unique.map(sponsorItemFromFileName).sort(compareBrandSponsorItems);
     } catch (error) {
@@ -3011,9 +2992,8 @@
 
   async function refreshArmbandRootFoldersFromDisk() {
     try {
-      const response = await fetch("assets/armband/", { cache: "no-store" });
-      if (!response.ok) return false;
-      const folders = parseDirectoryFolders(await response.text());
+      const listed = await listKitlabAssetDirectory(["assets", "armband"]);
+      const folders = Array.isArray(listed?.folders) ? listed.folders.filter(Boolean) : [];
       if (!folders.length) return false;
       armbandDiskScanAuthoritative = true;
       ARMBAND_DYNAMIC_CATEGORIES.clear();
@@ -3022,14 +3002,13 @@
         ARMBAND_DYNAMIC_CATEGORIES.add(folder);
         ARMBAND_DISK_CATEGORIES.add(folder);
       }
-      // The real folder list is now authoritative: removed category folders must disappear too.
+      // The manifest/list is authoritative: removed category folders must disappear too.
       for (let i = ARMBAND_ITEMS.length - 1; i >= 0; i--) {
         const cat = String(ARMBAND_ITEMS[i]?.category || "");
         if (cat && !ARMBAND_DISK_CATEGORIES.has(cat)) ARMBAND_ITEMS.splice(i, 1);
       }
       return true;
     } catch (error) {
-      // file:// cannot list folders. Keep embedded armband manifest.
       return false;
     }
   }
@@ -3038,19 +3017,16 @@
     const category = String(categoryName || "").trim();
     if (!category) return false;
     try {
-      const response = await fetch(encodePathParts(["assets", "armband", category]) + "/", { cache: "no-store" });
-      if (!response.ok) return false;
-      const files = parseDirectoryPngFiles(await response.text());
+      const listed = await listKitlabAssetDirectory(["assets", "armband", category]);
+      const files = Array.isArray(listed?.files) ? listed.files.filter((f) => /\.(png|webp|jpg|jpeg|svg)$/i.test(f)) : [];
       armbandDiskScanAuthoritative = true;
       ARMBAND_DYNAMIC_CATEGORIES.add(category);
       ARMBAND_DISK_CATEGORIES.add(category);
-      // v1.2.39: when a folder can be read from disk, its current contents are authoritative.
-      // This makes deleted PNGs disappear and newly copied PNGs appear every time Armband opens.
+      // The manifest/list is authoritative: deleted files disappear and new files appear after regenerating manifest.
       removeArmbandItemsForCategory(category);
       for (const fileName of files) ARMBAND_ITEMS.push(armbandFileItem(category, fileName));
       return true;
     } catch (error) {
-      // file:// cannot list folders. Keep embedded armband manifest.
       return false;
     }
   }
@@ -3212,13 +3188,9 @@
       try {
         TEAM_FLAG_FILE_MAP.clear();
         TEAM_FLAG_FILES.length = 0;
-        const response = await fetch("assets/flags/", { cache: "no-store" });
-        if (!response.ok) return;
-        const html = await response.text();
-        const hrefRegex = /href=["']([^"']+\.(?:png|webp|jpg|jpeg|svg))["']/gi;
-        let match;
-        while ((match = hrefRegex.exec(html))) {
-          const fileName = decodeURIComponent(String(match[1] || "").split("/").pop() || "");
+        const listed = await listKitlabAssetDirectory(["assets", "flags"]);
+        const fileNames = Array.isArray(listed?.files) ? listed.files : [];
+        for (const fileName of fileNames) {
           if (!fileName || fileName.startsWith(".")) continue;
           if (TEAM_FLAG_FILES.includes(fileName)) continue;
           TEAM_FLAG_FILES.push(fileName);
@@ -3231,7 +3203,7 @@
           if (file) country.flagSrc = encodePathParts(["assets", "flags", file]);
         }
       } catch (error) {
-        // file:// cannot list folders. Keep emoji flags.
+        // If static manifest is unavailable, keep emoji flags.
       } finally {
         teamFlagsScanned = true;
       }
@@ -8786,6 +8758,41 @@
 
   const kitlabAssetListCache = new Map();
 
+  // v1.3.220: global static asset manifest for Cloudflare/web-static galleries.
+  let kitlabStaticAssetManifestPromise = null;
+
+  function kitlabStaticAssetDirKey(pathSegments = []) {
+    const parts = Array.isArray(pathSegments) ? pathSegments.filter(Boolean).map((part) => String(part)) : [];
+    return parts.join("/").replace(/\\+/g, "/").replace(/^\/+|\/+$/g, "");
+  }
+
+  async function loadKitlabStaticAssetManifest() {
+    if (kitlabStaticAssetManifestPromise) return kitlabStaticAssetManifestPromise;
+    kitlabStaticAssetManifestPromise = (async () => {
+      try {
+        const response = await fetch(kitlabNoCacheUrl("kitlab-data/asset_manifest.json"), { cache: "no-store" });
+        if (!response.ok) return null;
+        const payload = await response.json();
+        return payload && payload.dirs ? payload : null;
+      } catch (_) {
+        return null;
+      }
+    })();
+    return kitlabStaticAssetManifestPromise;
+  }
+
+  async function listKitlabStaticAssetDirectory(pathSegments = []) {
+    const key = kitlabStaticAssetDirKey(pathSegments);
+    if (!key) return null;
+    const manifest = await loadKitlabStaticAssetManifest();
+    const entry = manifest?.dirs?.[key];
+    if (!entry) return null;
+    const byName = (a, b) => cleanPatternName(a).localeCompare(cleanPatternName(b), undefined, { sensitivity: "base" });
+    const folders = Array.isArray(entry.folders) ? [...new Set(entry.folders.filter(Boolean))].sort(byName) : [];
+    const files = Array.isArray(entry.files) ? [...new Set(entry.files.filter((f) => /\.(png|webp|jpg|jpeg|svg)$/i.test(f)))].sort(byName) : [];
+    return { folders, files };
+  }
+
   async function listKitlabAssetDirectory(pathSegments = []) {
     const parts = Array.isArray(pathSegments) ? pathSegments.filter(Boolean).map((part) => String(part)) : [];
     const key = parts.join("/");
@@ -8793,12 +8800,16 @@
     const byName = (a, b) => cleanPatternName(a).localeCompare(cleanPatternName(b), undefined, { sensitivity: "base" });
     const readPromise = (async () => {
       try {
+        const staticListed = await listKitlabStaticAssetDirectory(parts);
+        if (staticListed) return staticListed;
+      } catch (_) {}
+      try {
         const apiUrl = `/kitlab-api/list-assets?dir=${encodeURIComponent(key)}`;
         const response = await fetch(kitlabNoCacheUrl(apiUrl), { cache: "no-store" });
         if (response.ok) {
           const payload = await response.json();
           const folders = Array.isArray(payload?.folders) ? payload.folders.filter(Boolean) : [];
-          const files = Array.isArray(payload?.files) ? payload.files.filter((f) => /\.(png|webp|jpg|jpeg)$/i.test(f)) : [];
+          const files = Array.isArray(payload?.files) ? payload.files.filter((f) => /\.(png|webp|jpg|jpeg|svg)$/i.test(f)) : [];
           return { folders: [...new Set(folders)].sort(byName), files: [...new Set(files)].sort(byName) };
         }
       } catch (_) {}
