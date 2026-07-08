@@ -1,0 +1,165 @@
+{
+  "version": "1.0.0",
+  "kitlabBuild": "v1.3.208_basic_v1_polo_collar_2_no",
+  "saveScope": "modular_template_part_configuration",
+  "savedAt": "2026-07-07T17:10:31.849Z",
+  "pieceColors": {
+    "socks": {
+      "source": "#151515",
+      "target": "#151515"
+    },
+    "ankle": {
+      "source": "#e86818",
+      "target": "#151515"
+    }
+  },
+  "templateId": "modular_parts/basic/socks/basic/basic_v1",
+  "selectedTemplate": {
+    "name": "Basic V1",
+    "path": "assets/templates/basic/basic%20v1",
+    "brand": "Basic"
+  },
+  "shortVariant": "v1",
+  "selectedCollar": null,
+  "collarConfigurations": {},
+  "armband": null,
+  "templateLayers": [
+    {
+      "key": "basic/basic v1/socks/details/socks doblado.png",
+      "matchKeys": [
+        "basic/basic v1/socks/details/socks doblado.png",
+        "socks/details/socks doblado.png",
+        "socks doblado.png",
+        "socks doblado",
+        "51tb3vodi8jmrawmpgt",
+        "socks/socks doblado.png",
+        "socks/socks/details/socks doblado.png"
+      ],
+      "src": "assets/templates/basic/basic%20v1/socks/details/socks%20doblado.png",
+      "path": "assets/templates/basic/basic%20v1/socks/details/socks%20doblado.png",
+      "originalPath": "socks/details/socks doblado.png",
+      "rawName": "socks doblado.png",
+      "name": "Socks doblado",
+      "displayName": "",
+      "section": "socks",
+      "folder": "Details",
+      "modularPart": "socks",
+      "shortVariant": "",
+      "shortVariantName": "",
+      "orderIndex": 5,
+      "enabled": true,
+      "colorMap": {
+        "#707070": "#666666"
+      },
+      "userColorApplied": true,
+      "appliedChipColor": "#000000",
+      "detectedColor": "#707070",
+      "sourceColor": "#707070",
+      "blendMode": "source-over",
+      "opacity": 1,
+      "manualLab": false,
+      "inverted": false,
+      "manualInvertOverride": false,
+      "isUserPattern": false,
+      "isUserBaseDesign": false,
+      "isGeneratedStripe": false,
+      "stripeType": "",
+      "stripeDirection": "",
+      "stripeThickness": 0,
+      "stripePosition": null,
+      "stripePositionMode": "offset",
+      "stripePositionAuto": true,
+      "stripeGuideSrc": "",
+      "stripeControlsOpen": false,
+      "patternTeam": "",
+      "patternFolderPath": [],
+      "baseDesignFolderPath": []
+    },
+    {
+      "key": "basic/basic v1/socks/seams/seams fj.png",
+      "matchKeys": [
+        "basic/basic v1/socks/seams/seams fj.png",
+        "socks/seams/seams fj.png",
+        "seams fj.png",
+        "seams fj",
+        "6csqs304pdhmrawmph9"
+      ],
+      "src": "assets/templates/basic/basic%20v1/socks/seams/seams%20fj.png",
+      "path": "assets/templates/basic/basic%20v1/socks/seams/seams%20fj.png",
+      "originalPath": "socks/seams/seams FJ.png",
+      "rawName": "seams FJ.png",
+      "name": "Seams FJ",
+      "displayName": "",
+      "section": "",
+      "folder": "",
+      "modularPart": "socks",
+      "shortVariant": "",
+      "shortVariantName": "",
+      "orderIndex": 11,
+      "enabled": true,
+      "colorMap": {},
+      "userColorApplied": true,
+      "appliedChipColor": "#000000",
+      "detectedColor": "#151515",
+      "sourceColor": "#151515",
+      "blendMode": "overlay",
+      "opacity": 1,
+      "manualLab": true,
+      "inverted": false,
+      "manualInvertOverride": false,
+      "isUserPattern": false,
+      "isUserBaseDesign": false,
+      "isGeneratedStripe": false,
+      "stripeType": "",
+      "stripeDirection": "",
+      "stripeThickness": 0,
+      "stripePosition": null,
+      "stripePositionMode": "offset",
+      "stripePositionAuto": true,
+      "stripeGuideSrc": "",
+      "stripeControlsOpen": false,
+      "patternTeam": "",
+      "patternFolderPath": [],
+      "baseDesignFolderPath": []
+    }
+  ],
+  "templateDetailOpen": {
+    "shirt": {
+      "Details": false,
+      "Tights": false
+    },
+    "short": {
+      "Details": false
+    },
+    "socks": {
+      "Details": false
+    },
+    "collar": {}
+  },
+  "collarDetailsOpen": false,
+  "collarSeamsFolderOpen": false,
+  "logoModules": {
+    "socks": {
+      "selected": 0,
+      "side": "front",
+      "layers": []
+    }
+  },
+  "pieceVisible": {
+    "socks": true,
+    "ankle": true
+  },
+  "_manualTemplateSave": true,
+  "modularPart": "socks",
+  "modularSource": {
+    "part": "socks",
+    "name": "Basic V1",
+    "brand": "Basic",
+    "path": "assets/templates/basic/basic%20v1",
+    "templateId": "basic/basic_v1",
+    "thumb": "assets/templates/basic/basic%20v1/socks/thumbnail.png"
+  },
+  "_savedByKitLabServer": true,
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\basic\\socks\\basic\\basic_v1\\template_settings.json",
+  "_bundledInPublicBeta": true
+}

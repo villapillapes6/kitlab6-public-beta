@@ -1,0 +1,148 @@
+{
+  "version": "1.0.0",
+  "kitlabBuild": "v1.4.42_REBASED_ON_1_4_40_short_socks_only",
+  "saveScope": "modular_template_part_configuration",
+  "savedAt": "2026-07-04T01:41:33.822Z",
+  "pieceColors": {
+    "socks": {
+      "source": "#151515",
+      "target": "#151515"
+    },
+    "ankle": {
+      "source": "#e86818",
+      "target": "#151515"
+    }
+  },
+  "templateId": "modular_parts/adidas/socks/adidas/adidas_2026",
+  "selectedTemplate": {
+    "name": "Adidas 26/27",
+    "path": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool+",
+    "brand": "Adidas"
+  },
+  "shortVariant": "v1",
+  "selectedCollar": null,
+  "collarConfigurations": {},
+  "armband": null,
+  "templateLayers": [
+    {
+      "key": "adidas/players/26-27/adidas 26-27 climacool+/socks/seams/seams fj.png",
+      "matchKeys": [
+        "adidas/players/26-27/adidas 26-27 climacool+/socks/seams/seams fj.png",
+        "socks/seams/seams fj.png",
+        "seams fj.png",
+        "seams fj",
+        "l5o69mdnsgmr5ozaxz",
+        "socks/seams fj.png",
+        "socks/socks/seams/seams fj.png"
+      ],
+      "src": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/socks/seams/seams%20fj.png",
+      "path": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/socks/seams/seams%20fj.png",
+      "originalPath": "socks/seams/seams FJ.png",
+      "rawName": "seams FJ.png",
+      "name": "Seams FJ",
+      "displayName": "",
+      "section": "socks",
+      "folder": "",
+      "modularPart": "socks",
+      "shortVariant": "",
+      "shortVariantName": "",
+      "orderIndex": 29,
+      "enabled": true,
+      "colorMap": {},
+      "userColorApplied": true,
+      "appliedChipColor": "#000000",
+      "detectedColor": "#151515",
+      "sourceColor": "#151515",
+      "blendMode": "overlay",
+      "opacity": 1,
+      "manualLab": true,
+      "inverted": false,
+      "manualInvertOverride": false,
+      "isUserPattern": false,
+      "isUserBaseDesign": false,
+      "isGeneratedStripe": false,
+      "stripeType": "",
+      "stripeDirection": "",
+      "stripeThickness": 0,
+      "stripePosition": null,
+      "stripePositionMode": "offset",
+      "stripePositionAuto": true,
+      "stripeGuideSrc": "",
+      "stripeControlsOpen": false,
+      "patternTeam": "",
+      "patternFolderPath": [],
+      "baseDesignFolderPath": []
+    }
+  ],
+  "templateDetailOpen": {
+    "shirt": {
+      "Tights": false,
+      "Brand": false,
+      "Details": false,
+      "Fabric": false,
+      "Mesh": false
+    },
+    "short": {
+      "Tights": false,
+      "Details": false,
+      "Brand": false,
+      "Mesh": false
+    },
+    "socks": {
+      "Details": false
+    },
+    "collar": {}
+  },
+  "collarDetailsOpen": false,
+  "collarSeamsFolderOpen": false,
+  "logoModules": {
+    "socks": {
+      "selected": 0,
+      "side": "front",
+      "layers": [
+        {
+          "fileName": "Adidas",
+          "src": "data:image/png;base64,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",
+          "assetType": "brand",
+          "palette": [
+            "#000000"
+          ],
+          "colorMap": {
+            "#000000": "#f1f1f1"
+          },
+          "offsetX": 0,
+          "offsetY": 0,
+          "scaleX": 1.2,
+          "scaleY": 1.2,
+          "baseScaleX": 0.8,
+          "baseScaleY": 0.8,
+          "socksHeightPct": 90,
+          "side": "front",
+          "backOffsets": {},
+          "border": {
+            "enabled": false,
+            "color": "#ffffff",
+            "size": 2
+          }
+        }
+      ]
+    }
+  },
+  "pieceVisible": {
+    "socks": true,
+    "ankle": true
+  },
+  "_manualTemplateSave": true,
+  "modularPart": "socks",
+  "modularSource": {
+    "part": "socks",
+    "name": "Adidas 26/27",
+    "brand": "Adidas",
+    "path": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool+",
+    "templateId": "adidas/adidas_2026",
+    "thumb": "assets/templates/adidas/players/26-27/adidas%2026-27%20climacool%2B/socks/base/05.%20socks.png"
+  },
+  "_savedByKitLabServer": true,
+  "_userDataFolder": "C:\\Users\\elant\\Documents\\KitLab6\\UserData\\templates\\modular_parts\\adidas\\socks\\adidas\\adidas_2026\\template_settings.json",
+  "_bundledInPublicBeta": true
+}
