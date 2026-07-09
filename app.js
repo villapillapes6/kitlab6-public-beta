@@ -1,8 +1,8 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.243_template_gallery_progressive_hq_thumbs";
+  const KITLAB_BUILD_VERSION = "v1.3.244_template_gallery_no_flicker_hq_thumbs";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
-  console.log("KitLab6 thumb quality patch", "v1.3.243_template_gallery_progressive_hq_thumbs");
+  console.log("KitLab6 thumb quality no-flicker patch", "v1.3.244_template_gallery_no_flicker_hq_thumbs");
   const KITLAB_BASE_DESIGN_BUTTON_LOCKED = true; // v1.3.199: keep Base Design visible but blocked for beta until its placement rule is fixed.
 
   // Public beta UI hide list requested by Villa (2026-07-08).
@@ -3334,12 +3334,12 @@
   }
 
 
-  // v1.3.243 — Template Gallery progressive high-quality thumbnails.
-  // The public web needs the detail of original PNG template thumbnails, but loading
-  // every original PNG immediately makes the gallery feel slow. So cards start with
-  // the lightweight WebP thumbnail and silently upgrade visible cards to the original
-  // PNG in a small background queue. Result: fast gallery + sharp seams/details.
-  window.__KITLAB_TEMPLATE_GALLERY_THUMB_QUALITY_V243__ = true;
+  // v1.3.244 — Template Gallery no-flicker high-quality thumbnails.
+  // Users need template seams/details to be sharp, but the progressive WebP -> PNG
+  // swap from v1.3.243 caused visible blinking. This version avoids visible swapping:
+  // template cards render with their final original PNG thumbnail from the start,
+  // while keeping lazy/async image loading and WebP only as a fallback.
+  window.__KITLAB_TEMPLATE_GALLERY_THUMB_QUALITY_V244__ = true;
 
   function kitlabTemplateGalleryOriginalThumbSrc(src) {
     const raw = String(src || "").trim();
@@ -3385,7 +3385,9 @@
 
   function templatePerformanceThumbSrc(src) {
     const raw = String(src || "").trim();
-    return kitlabTemplateGalleryFastThumbSrc(raw) || raw;
+    // v1.3.244: return the final HQ thumbnail directly. Do not show WebP first
+    // and swap later, because that creates visible flicker in Template Gallery.
+    return kitlabTemplateGalleryOriginalThumbSrc(raw) || raw;
   }
 
   function templatePerformanceFallbacks(primary, original, fallbacks = []) {
@@ -3396,6 +3398,8 @@
       kitlabTemplateGalleryOriginalThumbSrc(original),
       kitlabTemplateGalleryOriginalThumbSrc(primary),
       original,
+      kitlabTemplateGalleryFastThumbSrc(original),
+      kitlabTemplateGalleryFastThumbSrc(primary),
       ...(Array.isArray(fallbacks) ? fallbacks : []),
     ].forEach((value) => {
       const clean = String(value || "").trim();
@@ -3465,54 +3469,19 @@
   })();
 
   function kitlabPrepareTemplateGalleryProgressiveThumb(img) {
-    if (!img || img.dataset.kitlabTemplateThumbProgressive === "1") return;
-    const currentAttr = img.getAttribute("src") || "";
-    const current = currentAttr || img.currentSrc || "";
-    const hq = kitlabTemplateGalleryOriginalThumbSrc(current);
-    if (!hq || hq === current || /^(data:|blob:|file:)/i.test(hq)) return;
-    img.dataset.kitlabTemplateThumbProgressive = "1";
-    img.dataset.kitlabHqTemplateThumb = hq;
-    img.decoding = "async";
-    img.loading = img.loading || "lazy";
-    try { img.fetchPriority = "low"; } catch (_) {}
-    if (!img.dataset.kitlabThumbQualityFallback) {
-      img.dataset.kitlabThumbQualityFallback = current;
-      img.addEventListener("error", () => {
-        const fallback = img.dataset.kitlabThumbQualityFallback;
-        if (fallback && img.getAttribute("src") !== fallback && img.dataset.kitlabHqTemplateThumbDone !== "error") {
-          img.setAttribute("src", fallback);
-        }
-      });
-    }
-    if (kitlabTemplateThumbHqObserver) kitlabTemplateThumbHqObserver.observe(img);
-    else kitlabQueueTemplateThumbHq(img);
+    // v1.3.244: intentionally disabled. Any visible WebP -> PNG replacement
+    // creates flicker. Cards now receive the final HQ source during render.
+    return;
   }
 
   function kitlabUpgradeTemplateGalleryThumbDom(root = document) {
-    const scope = root && root.querySelectorAll ? root : document;
-    const selector = ".internal-card.template-card img, .kitlab-modular-part-card img";
-    scope.querySelectorAll?.(selector).forEach(kitlabPrepareTemplateGalleryProgressiveThumb);
+    // v1.3.244: no DOM source swapping. Keeping this as a no-op preserves
+    // compatibility with any older calls without touching visible thumbnails.
+    return;
   }
 
-  if (!window.__KITLAB_TEMPLATE_GALLERY_THUMB_QUALITY_OBSERVER_V243__) {
-    window.__KITLAB_TEMPLATE_GALLERY_THUMB_QUALITY_OBSERVER_V243__ = true;
-    const scheduleTemplateThumbUpgrade = (() => {
-      let queued = false;
-      return () => {
-        if (queued) return;
-        queued = true;
-        requestAnimationFrame(() => {
-          queued = false;
-          kitlabUpgradeTemplateGalleryThumbDom(document);
-        });
-      };
-    })();
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", scheduleTemplateThumbUpgrade, { once: true });
-    } else {
-      scheduleTemplateThumbUpgrade();
-    }
-    new MutationObserver(scheduleTemplateThumbUpgrade).observe(document.documentElement, { childList: true, subtree: true });
+  if (!window.__KITLAB_TEMPLATE_GALLERY_THUMB_QUALITY_NO_FLICKER_V244__) {
+    window.__KITLAB_TEMPLATE_GALLERY_THUMB_QUALITY_NO_FLICKER_V244__ = true;
   }
 
   const TEMPLATE_FOLDER_FALLBACK_THUMB = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 96'%3E%3Cpath fill='white' d='M10 20h37l10 12h61v44c0 7-5 12-12 12H22c-7 0-12-5-12-12V20z'/%3E%3Cpath fill='white' opacity='.72' d='M10 28V18c0-6 4-10 10-10h30l10 12h48c6 0 10 4 10 10v8H10z'/%3E%3C/svg%3E";
