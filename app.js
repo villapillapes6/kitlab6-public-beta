@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.235_project_real_loading_progress";
+  const KITLAB_BUILD_VERSION = "v1.3.239_project_card_buttons_final";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   const KITLAB_BASE_DESIGN_BUTTON_LOCKED = true; // v1.3.199: keep Base Design visible but blocked for beta until its placement rule is fixed.
 
@@ -15921,7 +15921,8 @@
       const thumb = kit.preview ? `<img class="project-kit-thumb" src="${kit.preview}" alt="" />` : `<span class="project-kit-placeholder">EMPTY</span>`;
       const meta = projectKitTemplateName(kit);
       const id = escapeHtml(kit.id);
-      return `<div class="project-kit-row${activeClass}${emptyClass}" role="button" tabindex="0" draggable="true" data-project-kit-id="${id}">${thumb}<span class="project-kit-text"><span class="project-kit-name" data-project-kit-name="${id}" draggable="false" title="Double click to rename">${escapeHtml(kit.name || kit.id || "Kit")}</span><span class="project-kit-meta">${escapeHtml(meta)}</span></span><span class="project-kit-row-actions"><button type="button" class="project-kit-action-btn project-kit-duplicate-slot" data-project-kit-duplicate-slot="${id}" title="Create empty slot below" aria-label="Create empty slot below"><img src="./assets/ui/project_duplicate_white_v1208.png" alt="" /></button><button type="button" class="project-kit-action-btn project-kit-delete-slot" data-project-kit-delete-slot="${id}" title="Delete slot" aria-label="Delete slot"><img src="./assets/ui/project_delete_red_v1208.png" alt="" /></button></span></div>`;
+      const newKitIcon = `<svg aria-hidden="true" viewBox="0 0 512 512" style="width:15px;height:15px;display:block;pointer-events:none" fill="none" stroke="#ffffff" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"><path d="M128 30h188l68 68v316H128z"/><path d="M316 30v68h68"/><circle cx="360" cy="382" r="94" fill="none"/><path d="M360 326v112M304 382h112"/></svg>`;
+      return `<div class="project-kit-row${activeClass}${emptyClass}" role="button" tabindex="0" draggable="true" data-project-kit-id="${id}">${thumb}<span class="project-kit-text"><span class="project-kit-name" data-project-kit-name="${id}" draggable="false" title="Double click to rename">${escapeHtml(kit.name || kit.id || "Kit")}</span><span class="project-kit-meta">${escapeHtml(meta)}</span></span><span class="project-kit-row-actions"><button type="button" class="project-kit-action-btn project-kit-new-slot" data-project-kit-new-slot="${id}" title="New empty kit below" aria-label="New empty kit below">${newKitIcon}</button><button type="button" class="project-kit-action-btn project-kit-duplicate-kit" data-project-kit-duplicate-kit="${id}" title="Duplicate this kit" aria-label="Duplicate this kit"><img src="./assets/ui/project_duplicate_white_v1208.png" alt="" /></button><button type="button" class="project-kit-action-btn project-kit-delete-slot" data-project-kit-delete-slot="${id}" title="Delete slot" aria-label="Delete slot"><img src="./assets/ui/project_delete_red_v1208.png" alt="" /></button></span></div>`;
     }).join("");
   }
 
@@ -16184,6 +16185,52 @@
     return newKit;
   }
 
+  function duplicateProjectKitById(referenceKitId = "", makeActive = false) {
+    // v1.3.239: the per-card Duplicate button must clone the kit on that exact card.
+    // It must NOT create an empty card and must NOT serialize whichever kit happens to be active.
+    const project = kitlabProjectDraftMode ? normalizeKitlabProject(state.project) : ensureCurrentKitSaved({ capturePreview: false, renderPanel: false });
+    const sourceId = String(referenceKitId || "").toLowerCase();
+    const sourceKit = project.kits.find((item) => item.id === sourceId);
+    if (!sourceKit) return null;
+    const baseName = String(sourceKit.name || sourceKit.slot || sourceKit.id || "Kit").replace(/\s+/g, " ").trim() || "Kit";
+    const copyName = `${baseName} Copy`;
+    const id = makeUniqueProjectKitId(copyName, project.kits, copyName);
+    const newKit = {
+      id,
+      name: copyName,
+      slot: copyName,
+      settings: cloneKitlabProjectData(sourceKit.settings || sourceKit.data || null),
+      preview: sourceKit.preview || "",
+      savedAt: new Date().toISOString(),
+    };
+    project.kits.push(newKit);
+    const currentOrder = project.kitOrder.filter((item) => item !== id);
+    const refIndex = currentOrder.indexOf(sourceId);
+    if (refIndex >= 0) currentOrder.splice(refIndex + 1, 0, id);
+    else currentOrder.push(id);
+    project.kitOrder = currentOrder;
+
+    const cached = kitlabProjectRuntimeCache.get(sourceId);
+    if (cached) kitlabProjectRuntimeCache.set(id, cloneProjectRuntimeValue(cached));
+    else dropProjectKitRuntimeCache(id);
+
+    if (makeActive) project.activeKitId = id;
+    state.project = project;
+    kitlabProjectDraftMode = false;
+    if (makeActive) {
+      if (!newKit.settings) clearEditorForEmptyProjectKit();
+      else if (!restoreProjectKitRuntimeFromCache(id, newKit.settings)) {
+        // Keep this path safe; the user can click the duplicated card if it needs a cold restore.
+        setTimeout(() => switchProjectKit(id), 0);
+      }
+    }
+    renderProjectKitPanel();
+    setStatus(`Kit duplicated: ${baseName}`);
+    showToast(`Kit duplicated: ${baseName}`);
+    return newKit;
+  }
+
+
   function projectKitDragHasCurrentKit(event) {
     try {
       const types = Array.from(event?.dataTransfer?.types || []).map((type) => String(type || "").toLowerCase());
@@ -16314,9 +16361,8 @@
 
   function duplicateProjectKit() {
     const active = getActiveProjectKit();
-    const baseName = active?.name || "Kit";
-    const suggested = `${baseName} Copy`;
-    createProjectKitFromCurrent(suggested, true);
+    if (!active) return;
+    duplicateProjectKitById(active.id, true);
   }
 
   function setActiveProjectKitThumbnail() {
@@ -20284,11 +20330,25 @@
     if (els.deleteProjectKitBtn) els.deleteProjectKitBtn.addEventListener("click", deleteProjectKit);
     if (els.projectKitList) {
       els.projectKitList.addEventListener("click", (event) => {
-        const duplicateSlot = event.target?.closest?.("[data-project-kit-duplicate-slot]");
-        if (duplicateSlot) {
+        const newSlot = event.target?.closest?.("[data-project-kit-new-slot]");
+        if (newSlot) {
           event.preventDefault();
           event.stopPropagation();
-          createEmptyProjectKitAfter(duplicateSlot.dataset.projectKitDuplicateSlot || "");
+          createEmptyProjectKitAfter(newSlot.dataset.projectKitNewSlot || "");
+          return;
+        }
+        const duplicateKit = event.target?.closest?.("[data-project-kit-duplicate-kit]");
+        if (duplicateKit) {
+          event.preventDefault();
+          event.stopPropagation();
+          duplicateProjectKitById(duplicateKit.dataset.projectKitDuplicateKit || "", false);
+          return;
+        }
+        const legacyDuplicateSlot = event.target?.closest?.("[data-project-kit-duplicate-slot]");
+        if (legacyDuplicateSlot) {
+          event.preventDefault();
+          event.stopPropagation();
+          duplicateProjectKitById(legacyDuplicateSlot.dataset.projectKitDuplicateSlot || "", false);
           return;
         }
         const deleteSlot = event.target?.closest?.("[data-project-kit-delete-slot]");
