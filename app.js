@@ -1,7 +1,8 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.239_project_card_buttons_final";
+  const KITLAB_BUILD_VERSION = "v1.3.242_template_gallery_thumb_quality_real";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
+  console.log("KitLab6 thumb quality patch", "v1.3.242_template_gallery_thumb_quality_real");
   const KITLAB_BASE_DESIGN_BUTTON_LOCKED = true; // v1.3.199: keep Base Design visible but blocked for beta until its placement rule is fixed.
 
   // Public beta UI hide list requested by Villa (2026-07-08).
@@ -3333,36 +3334,106 @@
   }
 
 
-  // KITLAB6 PERFORMANCE v2 — template gallery lightweight thumbnails.
-  // If a WebP thumb exists under assets/thumbs/templates/..., the gallery uses it.
-  // Original template PNG thumbnails remain as fallback and render/export files are never touched.
+  // v1.3.242 — Template Gallery real high-quality thumbnails.
+  // Public web can receive lightweight assets/thumbs/templates/*.webp entries from
+  // the static/runtime thumbnail cache. Those are fast, but too soft for templates
+  // where the useful difference is a seam, collar edge, or subtle panel.
+  // Gallery cards are upgraded back to the original template thumbnail path:
+  //   assets/thumbs/templates/.../thumbnail(s).webp -> assets/templates/.../thumbnail(s).png
+  // Project cards/render/export remain untouched.
+  window.__KITLAB_TEMPLATE_GALLERY_THUMB_QUALITY_V242__ = true;
+  function kitlabTemplateGalleryOriginalThumbSrc(src) {
+    const raw = String(src || "").trim();
+    if (!raw || raw.startsWith("data:")) return raw;
+    const convertPath = (path) => String(path || "")
+      .replace(/\/assets\/thumbs\/templates\//i, "/assets/templates/")
+      .replace(/(^|\/)assets\/thumbs\/templates\//i, "$1assets/templates/")
+      .replace(/\.webp$/i, ".png");
+    try {
+      const url = new URL(raw, window.location.href);
+      const oldPath = url.pathname;
+      url.pathname = convertPath(url.pathname);
+      if (url.pathname === oldPath) return raw;
+      if (url.origin === window.location.origin) {
+        return url.pathname.replace(/^\/+/, "") + url.search + url.hash;
+      }
+      return url.toString();
+    } catch (_) {
+      const parts = raw.split(/([?#].*)/);
+      const path = parts[0] || "";
+      const suffix = parts.slice(1).join("");
+      const converted = convertPath(path);
+      return converted === path ? raw : converted + suffix;
+    }
+  }
+
   function templatePerformanceThumbSrc(src) {
     const raw = String(src || "").trim();
-    if (!raw || /^(data:|blob:|file:)/i.test(raw)) return raw;
-    const hashIndex = raw.indexOf("#");
-    const hash = hashIndex >= 0 ? raw.slice(hashIndex) : "";
-    const noHash = hashIndex >= 0 ? raw.slice(0, hashIndex) : raw;
-    const queryIndex = noHash.indexOf("?");
-    const base = queryIndex >= 0 ? noHash.slice(0, queryIndex) : noHash;
-    const query = queryIndex >= 0 ? noHash.slice(queryIndex) : "";
-    const normalized = base.replace(/^\.?\//, "");
-    if (!/^assets\/templates\//i.test(normalized)) return raw;
-    const thumbBase = normalized
-      .replace(/^assets\/templates\//i, "assets/thumbs/templates/")
-      .replace(/\.(png|jpg|jpeg|webp)$/i, ".webp");
-    return thumbBase + query + hash;
+    return kitlabTemplateGalleryOriginalThumbSrc(raw) || raw;
   }
 
   function templatePerformanceFallbacks(primary, original, fallbacks = []) {
     const out = [];
     const seen = new Set();
-    [primary, original, ...(Array.isArray(fallbacks) ? fallbacks : [])].forEach((value) => {
+    [
+      kitlabTemplateGalleryOriginalThumbSrc(original),
+      kitlabTemplateGalleryOriginalThumbSrc(primary),
+      primary,
+      original,
+      ...(Array.isArray(fallbacks) ? fallbacks : []),
+    ].forEach((value) => {
       const clean = String(value || "").trim();
       if (!clean || seen.has(clean)) return;
       seen.add(clean);
       out.push(clean);
     });
-    return out.slice(1);
+    const current = String(primary || "").trim();
+    return out.filter((value) => value !== current);
+  }
+
+  function kitlabUpgradeTemplateGalleryThumbDom(root = document) {
+    const scope = root && root.querySelectorAll ? root : document;
+    const selector = ".internal-card.template-card img, .kitlab-modular-part-card img";
+    scope.querySelectorAll?.(selector).forEach((img) => {
+      const currentAttr = img.getAttribute("src") || "";
+      const current = currentAttr || img.currentSrc || "";
+      const upgraded = templatePerformanceThumbSrc(current);
+      if (!upgraded || upgraded === currentAttr || upgraded === current) return;
+      if (!img.dataset.kitlabThumbQualityFallback) {
+        img.dataset.kitlabThumbQualityFallback = current;
+        img.addEventListener("error", () => {
+          const fallback = img.dataset.kitlabThumbQualityFallback;
+          if (fallback && img.getAttribute("src") !== fallback) {
+            img.setAttribute("src", fallback);
+          }
+        }, { once: true });
+      }
+      img.removeAttribute("srcset");
+      img.setAttribute("src", upgraded);
+      img.decoding = "async";
+      img.loading = img.loading || "lazy";
+    });
+  }
+
+  if (!window.__KITLAB_TEMPLATE_GALLERY_THUMB_QUALITY_OBSERVER_V242__) {
+    window.__KITLAB_TEMPLATE_GALLERY_THUMB_QUALITY_OBSERVER_V242__ = true;
+    const scheduleTemplateThumbUpgrade = (() => {
+      let queued = false;
+      return () => {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(() => {
+          queued = false;
+          kitlabUpgradeTemplateGalleryThumbDom(document);
+        });
+      };
+    })();
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", scheduleTemplateThumbUpgrade, { once: true });
+    } else {
+      scheduleTemplateThumbUpgrade();
+    }
+    new MutationObserver(scheduleTemplateThumbUpgrade).observe(document.documentElement, { childList: true, subtree: true });
   }
 
   const TEMPLATE_FOLDER_FALLBACK_THUMB = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 96'%3E%3Cpath fill='white' d='M10 20h37l10 12h61v44c0 7-5 12-12 12H22c-7 0-12-5-12-12V20z'/%3E%3Cpath fill='white' opacity='.72' d='M10 28V18c0-6 4-10 10-10h30l10 12h48c6 0 10 4 10 10v8H10z'/%3E%3C/svg%3E";
