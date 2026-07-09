@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.232_project_preload_runtime_cache";
+  const KITLAB_BUILD_VERSION = "v1.3.233_project_load_overlay_until_prewarm";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   const KITLAB_BASE_DESIGN_BUTTON_LOCKED = true; // v1.3.199: keep Base Design visible but blocked for beta until its placement rule is fixed.
 
@@ -710,6 +710,8 @@
   }
 
 
+  let templateLoadingOverlayToken = 0;
+
   function ensureTemplateLoadingOverlay() {
     let overlay = document.getElementById("templateLoadingOverlay");
     if (overlay) return overlay;
@@ -749,6 +751,8 @@
 
   function showTemplateLoadingScreen(templateName = "") {
     const overlay = ensureTemplateLoadingOverlay();
+    const token = ++templateLoadingOverlayToken;
+    overlay.dataset.loadingToken = String(token);
     overlay.hidden = false;
     overlay.classList.add("is-active");
     setTemplateLoadingProgress(0, templateName);
@@ -756,7 +760,11 @@
 
   function hideTemplateLoadingScreen() {
     const overlay = ensureTemplateLoadingOverlay();
+    const token = templateLoadingOverlayToken;
     window.setTimeout(() => {
+      // v1.3.233: template/project loads can immediately re-open the same overlay.
+      // Never let an old delayed hide close a newer project preload screen.
+      if (token !== templateLoadingOverlayToken) return;
       overlay.classList.remove("is-active");
       overlay.hidden = true;
     }, 180);
@@ -16448,7 +16456,7 @@
     cacheProjectKitRuntimeState(state.project);
   }
 
-  async function preloadAllProjectKitsRuntimeCache(project, preferredActiveId = "") {
+  async function preloadAllProjectKitsRuntimeCache(project, preferredActiveId = "", options = {}) {
     // v1.3.232: warm every Project kit once during the controlled project-load flow.
     // The old background prewarm was disabled because it could finish after the user had already started
     // editing another kit. This version is deliberately synchronous inside applyKitlabProject(): it fills the
@@ -16456,6 +16464,18 @@
     // the requested active kit at the end. Result: the first click on another Project kit should restore from
     // memory instead of running a visible full template-load process.
     const normalized = normalizeKitlabProject(project);
+    const loadingName = String(options.loadingName || "");
+    const progressStart = clamp(Number(options.progressStart ?? 72), 0, 99);
+    const progressEnd = clamp(Number(options.progressEnd ?? 97), progressStart, 99);
+    const updateProjectPreloadProgress = (done, total) => {
+      if (!loadingName || !total) return;
+      const pct = progressStart + ((progressEnd - progressStart) * (done / total));
+      setTemplateLoadingProgress(pct, loadingName);
+    };
+    if (loadingName) {
+      showTemplateLoadingScreen(loadingName);
+      setTemplateLoadingProgress(progressStart, loadingName);
+    }
     const requestedActiveId = String(preferredActiveId || normalized.activeKitId || "").toLowerCase();
     if (requestedActiveId && normalized.kits.some((kit) => kit.id === requestedActiveId)) {
       normalized.activeKitId = requestedActiveId;
@@ -16469,7 +16489,10 @@
       .filter(Boolean);
     const fallbackKits = orderedKits.length ? orderedKits : (Array.isArray(normalized.kits) ? normalized.kits : []);
     const kitsToWarm = fallbackKits.filter((kit) => String(kit?.id || "").toLowerCase() && String(kit?.id || "").toLowerCase() !== activeId);
-    if (!kitsToWarm.length) return normalized;
+    if (!kitsToWarm.length) {
+      updateProjectPreloadProgress(1, 1);
+      return normalized;
+    }
 
     const previousSwitching = kitlabProjectSwitching;
     const previousSuppressLoading = window.__kitlabSuppressTemplateLoadingScreen === true;
@@ -16479,12 +16502,17 @@
     window.__kitlabSuppressTemplateLoadingScreen = true;
 
     try {
+      let warmedCount = 0;
+      const warmTotal = kitsToWarm.length;
       for (const kit of kitsToWarm) {
         if (window.__kitlabProjectPrewarmToken !== prewarmToken) break;
         try {
           await preloadSingleProjectKitRuntimeCache(normalized, kit);
         } catch (error) {
           console.warn("Project kit prewarm skipped:", kit?.name || kit?.id || "Kit", error);
+        } finally {
+          warmedCount += 1;
+          updateProjectPreloadProgress(warmedCount, warmTotal);
         }
       }
     } finally {
@@ -16512,6 +16540,7 @@
     }
     state.project = normalized;
     renderProjectKitPanel();
+    if (loadingName) setTemplateLoadingProgress(98, loadingName);
     return normalized;
   }
 
@@ -16520,41 +16549,87 @@
       throw new Error("This is not a valid .kitlab6 project");
     }
     const normalized = normalizeKitlabProject(project);
-    kitlabProjectDraftMode = false;
-    const activeKit = normalized.kits.find((kit) => kit.id === normalized.activeKitId) || normalized.kits[0];
-    const saved = activeKit?.settings || activeKit?.data || null;
-    if (!saved || typeof saved !== "object") {
-      setCurrentKitlabProject(normalized, fileName || normalized.fileName || "", fileHandle);
-      clearEditorForEmptyProjectKit();
-      cacheProjectKitRuntimeState(normalized);
-      await preloadAllProjectKitsRuntimeCache(state.project, activeKit?.id || normalized.activeKitId);
-      setStatus(`Project loaded: ${kitlabProjectDisplayName(normalized.projectName || "Project", "Project")} / ${activeKit?.name || "Empty kit"}`);
-      return;
-    }
-    const templateItem = findTemplateForProjectSettings(saved);
-    if (!templateItem) {
-      const wanted = saved.selectedTemplate?.name || saved.templateId || "saved template";
-      throw new Error(`Template not found in this KitLab build: ${wanted}`);
-    }
     const projectDisplayName = fileName ? kitlabProjectNameFromFileName(fileName, normalized.projectName || "KitLab6 Project") : (normalized.projectName || "KitLab6 Project");
-    const pendingSettings = { ...saved, _manualTemplateSave: true, _loadedFromKitlabProject: true };
-    window.__kitlabPendingProjectSettings = pendingSettings;
-    window.__kitlabTemplateLoadingDisplayName = projectDisplayName;
-    normalized.projectName = normalized.projectName || projectDisplayName;
-    normalized.name = normalized.projectName;
-    normalized.fileName = fileName || normalized.fileName || "";
-    state.project = normalized;
-    renderProjectKitPanel();
-    await selectTemplateStyle(templateItem);
-    kitlabProjectFileHandle = fileHandle || null;
-    kitlabProjectFileName = fileName || `${kitlabProjectSlug(state.project.name, "KitLab6_Project")}.kitlab6`;
-    state.project.fileName = kitlabProjectFileName;
-    cacheProjectKitRuntimeState(state.project);
-    await preloadAllProjectKitsRuntimeCache(state.project, activeKit.id);
-    state.project.fileName = kitlabProjectFileName;
-    renderProjectKitPanel();
-    setStatus(`Project loaded: ${projectDisplayName} / ${activeKit.name || activeKit.id || "Kit"}`);
-    showToast(`Project loaded: ${projectDisplayName}`);
+    const projectLoadingName = `Project: ${projectDisplayName}`;
+    let projectLoadOverlayActive = false;
+    const keepProjectLoadOverlay = (pct = 4) => {
+      projectLoadOverlayActive = true;
+      showTemplateLoadingScreen(projectLoadingName);
+      setTemplateLoadingProgress(pct, projectLoadingName);
+    };
+    const finishProjectLoadOverlay = () => {
+      if (!projectLoadOverlayActive) return;
+      setTemplateLoadingProgress(100, projectLoadingName);
+      hideTemplateLoadingScreen();
+      projectLoadOverlayActive = false;
+    };
+    const failProjectLoadOverlay = () => {
+      if (!projectLoadOverlayActive) return;
+      const overlay = ensureTemplateLoadingOverlay();
+      ++templateLoadingOverlayToken;
+      overlay.classList.remove("is-active");
+      overlay.hidden = true;
+      projectLoadOverlayActive = false;
+    };
+
+    keepProjectLoadOverlay(3);
+    try {
+      kitlabProjectDraftMode = false;
+      const activeKit = normalized.kits.find((kit) => kit.id === normalized.activeKitId) || normalized.kits[0];
+      const saved = activeKit?.settings || activeKit?.data || null;
+      if (!saved || typeof saved !== "object") {
+        setCurrentKitlabProject(normalized, fileName || normalized.fileName || "", fileHandle);
+        clearEditorForEmptyProjectKit();
+        cacheProjectKitRuntimeState(normalized);
+        keepProjectLoadOverlay(28);
+        await preloadAllProjectKitsRuntimeCache(state.project, activeKit?.id || normalized.activeKitId, {
+          loadingName: projectLoadingName,
+          progressStart: 40,
+          progressEnd: 98,
+        });
+        setStatus(`Project loaded: ${kitlabProjectDisplayName(normalized.projectName || "Project", "Project")} / ${activeKit?.name || "Empty kit"}`);
+        finishProjectLoadOverlay();
+        return;
+      }
+      const templateItem = findTemplateForProjectSettings(saved);
+      if (!templateItem) {
+        const wanted = saved.selectedTemplate?.name || saved.templateId || "saved template";
+        throw new Error(`Template not found in this KitLab build: ${wanted}`);
+      }
+      const pendingSettings = { ...saved, _manualTemplateSave: true, _loadedFromKitlabProject: true };
+      window.__kitlabPendingProjectSettings = pendingSettings;
+      window.__kitlabTemplateLoadingDisplayName = projectDisplayName;
+      normalized.projectName = normalized.projectName || projectDisplayName;
+      normalized.name = normalized.projectName;
+      normalized.fileName = fileName || normalized.fileName || "";
+      state.project = normalized;
+      renderProjectKitPanel();
+      await selectTemplateStyle(templateItem);
+
+      // v1.3.233: selectTemplateStyle finishes its own template tracker before Project
+      // prewarming has completed. On the public web that briefly exposed a half-warmed
+      // project, so users could click kits while runtime caches were still missing.
+      // Re-open/keep the same branded loading screen until every Project kit is ready.
+      keepProjectLoadOverlay(72);
+
+      kitlabProjectFileHandle = fileHandle || null;
+      kitlabProjectFileName = fileName || `${kitlabProjectSlug(state.project.name, "KitLab6_Project")}.kitlab6`;
+      state.project.fileName = kitlabProjectFileName;
+      cacheProjectKitRuntimeState(state.project);
+      await preloadAllProjectKitsRuntimeCache(state.project, activeKit.id, {
+        loadingName: projectLoadingName,
+        progressStart: 74,
+        progressEnd: 98,
+      });
+      state.project.fileName = kitlabProjectFileName;
+      renderProjectKitPanel();
+      setStatus(`Project loaded: ${projectDisplayName} / ${activeKit.name || activeKit.id || "Kit"}`);
+      showToast(`Project loaded: ${projectDisplayName}`);
+      finishProjectLoadOverlay();
+    } catch (error) {
+      failProjectLoadOverlay();
+      throw error;
+    }
   }
 
   async function loadKitlabProject() {
