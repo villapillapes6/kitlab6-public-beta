@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.233_project_load_overlay_until_prewarm";
+  const KITLAB_BUILD_VERSION = "v1.3.234_project_loading_lock_until_prewarm";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   const KITLAB_BASE_DESIGN_BUTTON_LOCKED = true; // v1.3.199: keep Base Design visible but blocked for beta until its placement rule is fixed.
 
@@ -762,6 +762,17 @@
     const overlay = ensureTemplateLoadingOverlay();
     const token = templateLoadingOverlayToken;
     window.setTimeout(() => {
+      // v1.3.234: Project loading owns the overlay until project kit prewarm is complete.
+      // On the public web, the inner template loader can finish before Project runtime cache is ready;
+      // never let that inner loader close the screen early.
+      if (window.__kitlabProjectLoadingLock === true) {
+        const projectName = window.__kitlabProjectLoadingName || "";
+        const projectPct = clamp(Number(window.__kitlabProjectLoadingProgress || 0), 0, 98);
+        overlay.hidden = false;
+        overlay.classList.add("is-active");
+        if (projectName) setTemplateLoadingProgress(projectPct || 4, projectName);
+        return;
+      }
       // v1.3.233: template/project loads can immediately re-open the same overlay.
       // Never let an old delayed hide close a newer project preload screen.
       if (token !== templateLoadingOverlayToken) return;
@@ -16470,6 +16481,7 @@
     const updateProjectPreloadProgress = (done, total) => {
       if (!loadingName || !total) return;
       const pct = progressStart + ((progressEnd - progressStart) * (done / total));
+      window.__kitlabProjectLoadingProgress = pct;
       setTemplateLoadingProgress(pct, loadingName);
     };
     if (loadingName) {
@@ -16554,17 +16566,26 @@
     let projectLoadOverlayActive = false;
     const keepProjectLoadOverlay = (pct = 4) => {
       projectLoadOverlayActive = true;
+      window.__kitlabProjectLoadingLock = true;
+      window.__kitlabProjectLoadingName = projectLoadingName;
+      window.__kitlabProjectLoadingProgress = clamp(Number(pct) || 4, 0, 98);
       showTemplateLoadingScreen(projectLoadingName);
-      setTemplateLoadingProgress(pct, projectLoadingName);
+      setTemplateLoadingProgress(window.__kitlabProjectLoadingProgress, projectLoadingName);
     };
     const finishProjectLoadOverlay = () => {
       if (!projectLoadOverlayActive) return;
+      window.__kitlabProjectLoadingProgress = 100;
       setTemplateLoadingProgress(100, projectLoadingName);
+      window.__kitlabProjectLoadingLock = false;
+      window.__kitlabProjectLoadingName = "";
       hideTemplateLoadingScreen();
       projectLoadOverlayActive = false;
     };
     const failProjectLoadOverlay = () => {
       if (!projectLoadOverlayActive) return;
+      window.__kitlabProjectLoadingLock = false;
+      window.__kitlabProjectLoadingName = "";
+      window.__kitlabProjectLoadingProgress = 0;
       const overlay = ensureTemplateLoadingOverlay();
       ++templateLoadingOverlayToken;
       overlay.classList.remove("is-active");
@@ -16598,7 +16619,7 @@
       }
       const pendingSettings = { ...saved, _manualTemplateSave: true, _loadedFromKitlabProject: true };
       window.__kitlabPendingProjectSettings = pendingSettings;
-      window.__kitlabTemplateLoadingDisplayName = projectDisplayName;
+      window.__kitlabTemplateLoadingDisplayName = projectLoadingName;
       normalized.projectName = normalized.projectName || projectDisplayName;
       normalized.name = normalized.projectName;
       normalized.fileName = fileName || normalized.fileName || "";
