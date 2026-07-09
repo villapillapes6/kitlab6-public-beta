@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.223_team_static_manifest_fix";
+  const KITLAB_BUILD_VERSION = "v1.3.224_palette_copy_hex_fix";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   const KITLAB_BASE_DESIGN_BUTTON_LOCKED = true; // v1.3.199: keep Base Design visible but blocked for beta until its placement rule is fixed.
 
@@ -6296,7 +6296,7 @@
             </div>
             <div class="psh-hex-field">
               <span class="psh-hex-prefix" aria-hidden="true">#</span>
-              <input class="piece-hex-input psh-hex" type="text" inputmode="text" autocomplete="off" data-psh-hex-kind="${attrKind}" data-psh-hex-key="${attrKey}" value="${target.replace("#", "").toUpperCase()}" maxlength="6" spellcheck="false" title="HEX color without #, example 151515">
+              <input class="piece-hex-input psh-hex" type="text" inputmode="text" autocomplete="off" data-psh-hex-kind="${attrKind}" data-psh-hex-key="${attrKey}" value="${target.replace("#", "").toUpperCase()}" maxlength="7" spellcheck="false" title="HEX color, with or without #, example 151515">
               <button type="button" data-copy-picker-hex="${attrKind}|${attrKey}" title="Copy HEX">⧉</button>
             </div>
             <button type="button" class="psh-eyedrop icon-only" data-eyedropper-kind="${attrKind}" data-eyedropper-key="${attrKey}" title="Eyedropper"><img src="./assets/ui/eyedropper-red.png" alt="" /> Eyedropper</button>
@@ -19076,9 +19076,15 @@
 
       const copyHex = event.target.closest("[data-copy-picker-hex]");
       if (copyHex) {
+        event.preventDefault();
+        event.stopPropagation();
         const [kind, ...rest] = copyHex.dataset.copyPickerHex.split("|");
         const key = rest.join("|");
-        navigator.clipboard?.writeText((pickerDomCurrentHex(kind, key) || pickerCurrentHex(kind, key)).toUpperCase()).catch(() => {});
+        const hex = (pickerDomCurrentHex(kind, key) || pickerCurrentHex(kind, key)).toUpperCase();
+        const cleanHex = hex.replace(/^#/, "");
+        navigator.clipboard?.writeText(cleanHex).then(() => {
+          setStatus(`HEX copied: ${cleanHex}`);
+        }).catch(() => {});
         return;
       }
 
