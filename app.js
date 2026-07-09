@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.234_project_loading_lock_until_prewarm";
+  const KITLAB_BUILD_VERSION = "v1.3.235_project_real_loading_progress";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   const KITLAB_BASE_DESIGN_BUTTON_LOCKED = true; // v1.3.199: keep Base Design visible but blocked for beta until its placement rule is fixed.
 
@@ -735,7 +735,7 @@
     return overlay;
   }
 
-  function setTemplateLoadingProgress(value, templateName = "") {
+  function paintTemplateLoadingProgress(value, templateName = "") {
     const overlay = ensureTemplateLoadingOverlay();
     const rawPct = clamp(Number(value) || 0, 0, 100);
     const displayPct = clamp(Math.floor(rawPct + 0.0001), 0, 100);
@@ -747,6 +747,48 @@
     if (fill) fill.style.width = `${rawPct.toFixed(2)}%`;
     if (percent) percent.textContent = `${displayPct}%`;
     if (name) name.textContent = templateName ? String(templateName) : "";
+  }
+
+  function setProjectLoadingProgress(value, templateName = "") {
+    const projectName = String(templateName || window.__kitlabProjectLoadingName || "Project");
+    const current = clamp(Number(window.__kitlabProjectLoadingProgress || 0), 0, 100);
+    const next = clamp(Number(value) || 0, 0, 100);
+    const finalPct = Math.max(current, next);
+    window.__kitlabProjectLoadingName = projectName;
+    window.__kitlabProjectLoadingProgress = finalPct;
+    window.__kitlabProjectLoadingProgressWrite = true;
+    try { setTemplateLoadingProgress(finalPct, projectName); }
+    finally { window.__kitlabProjectLoadingProgressWrite = false; }
+  }
+
+  function setTemplateLoadingProgress(value, templateName = "") {
+    let rawPct = clamp(Number(value) || 0, 0, 100);
+    let displayName = templateName ? String(templateName) : "";
+
+    // v1.3.235: when a .kitlab6 project owns the loader, the bar must represent
+    // the whole project load, not an inner template load. Without this guard the
+    // template tracker can briefly paint 100%, then Project prewarm pulls it back.
+    // That looks broken and lets users think the project is ready too early.
+    if (window.__kitlabProjectLoadingLock === true) {
+      const projectName = String(window.__kitlabProjectLoadingName || displayName || "Project");
+      const current = clamp(Number(window.__kitlabProjectLoadingProgress || 0), 0, 100);
+      if (window.__kitlabProjectLoadingProgressWrite === true) {
+        rawPct = clamp(Number(window.__kitlabProjectLoadingProgress || rawPct), 0, 100);
+      } else {
+        const phaseStart = clamp(Number(window.__kitlabProjectLoadingPhaseStart || current || 0), 0, 100);
+        const phaseEnd = clamp(Number(window.__kitlabProjectLoadingPhaseEnd || 0), phaseStart, 100);
+        if (phaseEnd > phaseStart) {
+          const mappedPct = phaseStart + ((phaseEnd - phaseStart) * (rawPct / 100));
+          rawPct = Math.max(current, Math.min(phaseEnd, mappedPct));
+          window.__kitlabProjectLoadingProgress = rawPct;
+        } else {
+          rawPct = current;
+        }
+      }
+      displayName = projectName;
+    }
+
+    paintTemplateLoadingProgress(rawPct, displayName);
   }
 
   function showTemplateLoadingScreen(templateName = "") {
@@ -770,7 +812,7 @@
         const projectPct = clamp(Number(window.__kitlabProjectLoadingProgress || 0), 0, 98);
         overlay.hidden = false;
         overlay.classList.add("is-active");
-        if (projectName) setTemplateLoadingProgress(projectPct || 4, projectName);
+        if (projectName) setProjectLoadingProgress(projectPct || 4, projectName);
         return;
       }
       // v1.3.233: template/project loads can immediately re-open the same overlay.
@@ -16481,12 +16523,11 @@
     const updateProjectPreloadProgress = (done, total) => {
       if (!loadingName || !total) return;
       const pct = progressStart + ((progressEnd - progressStart) * (done / total));
-      window.__kitlabProjectLoadingProgress = pct;
-      setTemplateLoadingProgress(pct, loadingName);
+      setProjectLoadingProgress(pct, loadingName);
     };
     if (loadingName) {
       showTemplateLoadingScreen(loadingName);
-      setTemplateLoadingProgress(progressStart, loadingName);
+      setProjectLoadingProgress(progressStart, loadingName);
     }
     const requestedActiveId = String(preferredActiveId || normalized.activeKitId || "").toLowerCase();
     if (requestedActiveId && normalized.kits.some((kit) => kit.id === requestedActiveId)) {
@@ -16552,7 +16593,7 @@
     }
     state.project = normalized;
     renderProjectKitPanel();
-    if (loadingName) setTemplateLoadingProgress(98, loadingName);
+    if (loadingName) setProjectLoadingProgress(98, loadingName);
     return normalized;
   }
 
@@ -16565,17 +16606,23 @@
     const projectLoadingName = `Project: ${projectDisplayName}`;
     let projectLoadOverlayActive = false;
     const keepProjectLoadOverlay = (pct = 4) => {
+      const wasActive = projectLoadOverlayActive === true;
       projectLoadOverlayActive = true;
+      if (!wasActive) {
+        window.__kitlabProjectLoadingProgress = 0;
+        window.__kitlabProjectLoadingPhaseStart = 0;
+        window.__kitlabProjectLoadingPhaseEnd = 0;
+      }
       window.__kitlabProjectLoadingLock = true;
       window.__kitlabProjectLoadingName = projectLoadingName;
-      window.__kitlabProjectLoadingProgress = clamp(Number(pct) || 4, 0, 98);
       showTemplateLoadingScreen(projectLoadingName);
-      setTemplateLoadingProgress(window.__kitlabProjectLoadingProgress, projectLoadingName);
+      setProjectLoadingProgress(clamp(Number(pct) || 4, 0, 98), projectLoadingName);
     };
     const finishProjectLoadOverlay = () => {
       if (!projectLoadOverlayActive) return;
-      window.__kitlabProjectLoadingProgress = 100;
-      setTemplateLoadingProgress(100, projectLoadingName);
+      window.__kitlabProjectLoadingPhaseStart = 0;
+      window.__kitlabProjectLoadingPhaseEnd = 0;
+      setProjectLoadingProgress(100, projectLoadingName);
       window.__kitlabProjectLoadingLock = false;
       window.__kitlabProjectLoadingName = "";
       hideTemplateLoadingScreen();
@@ -16586,6 +16633,8 @@
       window.__kitlabProjectLoadingLock = false;
       window.__kitlabProjectLoadingName = "";
       window.__kitlabProjectLoadingProgress = 0;
+      window.__kitlabProjectLoadingPhaseStart = 0;
+      window.__kitlabProjectLoadingPhaseEnd = 0;
       const overlay = ensureTemplateLoadingOverlay();
       ++templateLoadingOverlayToken;
       overlay.classList.remove("is-active");
@@ -16625,7 +16674,16 @@
       normalized.fileName = fileName || normalized.fileName || "";
       state.project = normalized;
       renderProjectKitPanel();
-      await selectTemplateStyle(templateItem);
+      // Map the active template load into the Project loader instead of allowing
+      // the inner template tracker to paint its own 0→100 lifecycle.
+      window.__kitlabProjectLoadingPhaseStart = clamp(Number(window.__kitlabProjectLoadingProgress || 4), 0, 70);
+      window.__kitlabProjectLoadingPhaseEnd = 72;
+      try {
+        await selectTemplateStyle(templateItem);
+      } finally {
+        window.__kitlabProjectLoadingPhaseStart = 0;
+        window.__kitlabProjectLoadingPhaseEnd = 0;
+      }
 
       // v1.3.233: selectTemplateStyle finishes its own template tracker before Project
       // prewarming has completed. On the public web that briefly exposed a half-warmed
