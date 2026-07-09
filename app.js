@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.229_project_live_kit_cache_restore";
+  const KITLAB_BUILD_VERSION = "v1.3.232_project_preload_runtime_cache";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   const KITLAB_BASE_DESIGN_BUTTON_LOCKED = true; // v1.3.199: keep Base Design visible but blocked for beta until its placement rule is fixed.
 
@@ -15264,8 +15264,214 @@
     catch (_) { return value || null; }
   }
 
+  function decodeProjectTemplateIdentity(value = "") {
+    let out = String(value || "").replace(/\\/g, "/");
+    try { out = decodeURIComponent(out); }
+    catch (_) { out = out.replace(/%20/gi, " ").replace(/%2f/gi, "/"); }
+    return out;
+  }
+
   function normalizeProjectTemplateIdentity(value = "") {
-    return String(value || "").replace(/\\/g, "/").replace(/%20/g, " ").replace(/\s+/g, " ").trim().toLowerCase();
+    return decodeProjectTemplateIdentity(value)
+      .replace(/[\u2010-\u2015]/g, "-")
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase();
+  }
+
+  function normalizeProjectTemplateLookupText(value = "") {
+    return normalizeProjectTemplateIdentity(value)
+      .replace(/^assets\/templates\//, "")
+      .replace(/^\.\//, "")
+      .replace(/[:]+/g, " ")
+      .replace(/[\/_-]+/g, " ")
+      .replace(/\b(\d{2})\s*[\/-]\s*(\d{2})\b/g, "$1 $2")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function projectSettingsLayerPaths(saved = {}) {
+    const paths = [];
+    const push = (value) => {
+      const clean = normalizeProjectTemplateIdentity(value || "");
+      if (clean) paths.push(clean);
+    };
+    (Array.isArray(saved.templateLayers) ? saved.templateLayers : []).forEach((layer) => {
+      push(layer?.path || layer?.src || layer?.url || layer?.file || "");
+    });
+    const collectCollar = (obj) => {
+      if (!obj || typeof obj !== "object") return;
+      Object.values(obj).forEach((entry) => {
+        (Array.isArray(entry?.layers) ? entry.layers : []).forEach((layer) => push(layer?.path || layer?.src || ""));
+      });
+    };
+    collectCollar(saved.collarConfigurations || null);
+    return [...new Set(paths)];
+  }
+
+  function projectTemplateAssetRecords(item = null, part = "") {
+    const records = [];
+    const normalizedPart = String(part || "").toLowerCase();
+    const push = (meta, kind = "") => {
+      if (!meta || typeof meta !== "object") return;
+      const metaPart = String(meta.modularPart || meta.section || "").toLowerCase();
+      const original = String(meta.originalPath || meta.sourceName || meta.directiveSource || meta.path || "").toLowerCase();
+      if (normalizedPart) {
+        const belongs = metaPart === normalizedPart || original.startsWith(`${normalizedPart}/`) || original.includes(`/${normalizedPart}/`);
+        if (!belongs && !(normalizedPart === "shirt" && (metaPart === "collar" || original.includes("/collar/") || original.startsWith("collar/")))) return;
+      }
+      [meta.path, meta.src, meta.thumb].forEach((value) => {
+        const path = normalizeProjectTemplateIdentity(value || "");
+        if (path) records.push({ path, part: metaPart || normalizedPart, kind });
+      });
+    };
+    Object.values(item?.basePieces || {}).forEach((meta) => push(meta, "base"));
+    ["details", "seams", "transparency", "guides", "patterns"].forEach((key) => {
+      (Array.isArray(item?.[key]) ? item[key] : []).forEach((meta) => push(meta, key));
+    });
+    (Array.isArray(item?.collars) ? item.collars : []).forEach((collar) => {
+      [collar, ...(collar.details || []), ...(collar.seams || []), ...(collar.transparency || [])].forEach((meta) => push(meta, "collar"));
+    });
+    return records;
+  }
+
+  function projectTemplateLayerScore(item = null, saved = {}, part = "") {
+    const layerPaths = projectSettingsLayerPaths(saved);
+    if (!item || !layerPaths.length) return 0;
+    const root = normalizeProjectTemplateIdentity(item.path || "");
+    const records = projectTemplateAssetRecords(item, part);
+    const assetSet = new Set(records.map((record) => record.path));
+    let score = 0;
+    layerPaths.forEach((path) => {
+      if (!path) return;
+      if (assetSet.has(path)) score += 40;
+      if (root && path.startsWith(`${root}/`)) score += 12;
+      records.forEach((record) => {
+        if (record.path && path === record.path) score += 4;
+      });
+    });
+    return score;
+  }
+
+  function parseProjectModularPathSegments(path = "") {
+    const raw = String(path || "").replace(/\\/g, "/").trim();
+    if (!/^modular:\/\//i.test(raw)) return null;
+    const rest = raw.replace(/^modular:\/\//i, "");
+    const parts = rest.split("/");
+    if (parts.length < 4) return null;
+    const decode = (value) => decodeProjectTemplateIdentity(value).replace(/\s+/g, " ").trim();
+    return {
+      brand: decode(parts[0]),
+      shirt: decode(parts[1]),
+      short: decode(parts[2]),
+      socks: decode(parts.slice(3).join("/")),
+    };
+  }
+
+  function parseProjectModularNameSegments(name = "") {
+    const raw = decodeProjectTemplateIdentity(name || "").replace(/\s+/g, " ").trim();
+    const colon = raw.indexOf(":");
+    if (colon < 0 || !raw.includes("/")) return null;
+    const brand = raw.slice(0, colon).trim();
+    const parts = raw.slice(colon + 1).split("/").map((part) => part.trim()).filter(Boolean);
+    if (parts.length < 3) return null;
+    return { brand, shirt: parts[0], short: parts[1], socks: parts.slice(2).join("/") };
+  }
+
+  function projectTemplatePartNameScore(item = null, part = "", wantedName = "") {
+    if (!item || !wantedName) return 0;
+    const metaName = item.modularParts?.[part]?.name || item.name || "";
+    const itemNames = [metaName, item.galleryName, item.name, templateSeasonDisplayName(metaName || item.name || "")].filter(Boolean);
+    const wanted = normalizeProjectTemplateLookupText(wantedName);
+    let score = 0;
+    itemNames.forEach((name) => {
+      const normalized = normalizeProjectTemplateLookupText(name);
+      if (!normalized || !wanted) return;
+      if (normalized === wanted) score = Math.max(score, 100);
+      else if (normalized.includes(wanted) || wanted.includes(normalized)) score = Math.max(score, 55);
+    });
+    return score;
+  }
+
+  function findProjectTemplatePartItem(saved = {}, brand = "", part = "", wantedName = "") {
+    const wantedBrand = normalizeProjectTemplateLookupText(brand || saved?.selectedTemplate?.brand || "");
+    const candidates = INTERNAL_TEMPLATES.filter((item) => {
+      if (!item?.modularParts?.[part]) return false;
+      const itemBrand = normalizeProjectTemplateLookupText(item.brand || "");
+      return !wantedBrand || !itemBrand || itemBrand === wantedBrand;
+    });
+    let best = null;
+    let bestScore = -1;
+    candidates.forEach((item) => {
+      const score = projectTemplatePartNameScore(item, part, wantedName) + projectTemplateLayerScore(item, saved, part);
+      if (score > bestScore) { best = item; bestScore = score; }
+    });
+    return bestScore > 0 ? best : null;
+  }
+
+  function buildProjectModularCombinationForSettings(saved = {}, segments = null) {
+    const selected = saved?.selectedTemplate || {};
+    const parsedPath = parseProjectModularPathSegments(selected.path || "");
+    const parsedName = parseProjectModularNameSegments(selected.name || "");
+    const source = segments || parsedPath || parsedName || null;
+    const brand = cleanDisplayName(source?.brand || selected.brand || "Template");
+    if (!source || !brand) return null;
+
+    const itemForPart = {
+      shirt: findProjectTemplatePartItem(saved, brand, "shirt", source.shirt || ""),
+      short: findProjectTemplatePartItem(saved, brand, "short", source.short || ""),
+      socks: findProjectTemplatePartItem(saved, brand, "socks", source.socks || ""),
+    };
+    if (!itemForPart.shirt || !itemForPart.short || !itemForPart.socks) return null;
+
+    const shirtName = templateSeasonDisplayName(itemForPart.shirt.modularParts?.shirt?.name || itemForPart.shirt.name || source.shirt || "Shirt");
+    const shortName = templateSeasonDisplayName(itemForPart.short.modularParts?.short?.name || itemForPart.short.name || source.short || "Short");
+    const socksName = templateSeasonDisplayName(itemForPart.socks.modularParts?.socks?.name || itemForPart.socks.name || source.socks || "Socks");
+    const name = modularTemplateCombinationDisplayName(brand, shirtName, shortName, socksName);
+    const baseMap = { shirt: ["sleeve_short", "shirt", "sleeve_long"], short: ["short"], socks: ["socks", "ankle"] };
+    const combined = {
+      name,
+      brand,
+      path: `modular://${String(brand).toLowerCase()}/${encodeURIComponent(shirtName)}/${encodeURIComponent(shortName)}/${encodeURIComponent(socksName)}`,
+      thumb: itemForPart.shirt.modularParts?.shirt?.thumb || itemForPart.shirt.thumb || itemForPart.short.thumb || itemForPart.socks.thumb || "",
+      basePieces: {},
+      details: [],
+      seams: [],
+      transparency: [],
+      collars: Array.isArray(itemForPart.shirt.collars) ? itemForPart.shirt.collars.map((c) => ({ ...c })) : [],
+      guides: [],
+      patterns: [],
+      isModularCombination: true,
+      modularSelection: { brand, shirt: shirtName, short: shortName, socks: socksName },
+      modularPartSources: {
+        shirt: { part: "shirt", name: shirtName, brand: itemForPart.shirt.brand || brand, path: itemForPart.shirt.path || "", templateId: templateSettingsIdForItem(itemForPart.shirt), thumb: itemForPart.shirt.modularParts?.shirt?.thumb || itemForPart.shirt.thumb || "", sharedCollarSettingsBaseId: itemForPart.shirt.sharedCollarSettingsBaseId || itemForPart.shirt.collarSettingsBaseId || "" },
+        short: { part: "short", name: shortName, brand: itemForPart.short.brand || brand, path: itemForPart.short.path || "", templateId: templateSettingsIdForItem(itemForPart.short), thumb: itemForPart.short.modularParts?.short?.thumb || itemForPart.short.thumb || "" },
+        socks: { part: "socks", name: socksName, brand: itemForPart.socks.brand || brand, path: itemForPart.socks.path || "", templateId: templateSettingsIdForItem(itemForPart.socks), thumb: itemForPart.socks.modularParts?.socks?.thumb || itemForPart.socks.thumb || "" },
+      },
+    };
+    for (const part of MODULAR_TEMPLATE_PARTS) {
+      const item = itemForPart[part];
+      for (const pieceId of baseMap[part] || []) {
+        const basePiece = item.basePieces?.[pieceId];
+        if (basePiece) combined.basePieces[pieceId] = cloneTemplateMeta(basePiece, { modularPart: part });
+      }
+      combined.details.push(...(item.details || []).filter((x) => x.modularPart === part || x.section === part).map((x) => cloneTemplateMeta(x, { modularPart: part })));
+      combined.seams.push(...(item.seams || []).filter((x) => x.modularPart === part || x.section === part || String(x.originalPath || x.path || "").toLowerCase().startsWith(`${part}/`)).map((x) => cloneTemplateMeta(x, { modularPart: part })));
+      combined.transparency.push(...(item.transparency || []).filter((x) => x.modularPart === part || String(x.originalPath || x.path || "").toLowerCase().startsWith(`${part}/`)).map((x) => cloneTemplateMeta(x, { modularPart: part })));
+      combined.guides.push(...(item.guides || []).filter((x) => x.modularPart === part || x.section === part).map((x) => cloneTemplateMeta(x, { modularPart: part })));
+      combined.patterns.push(...(item.patterns || []).filter((x) => x.modularPart === part || x.section === part).map((x) => cloneTemplateMeta(x, { modularPart: part })));
+    }
+    return combined;
+  }
+
+  function findTemplateBySavedLayerPaths(saved = {}) {
+    let best = null;
+    let bestScore = 0;
+    INTERNAL_TEMPLATES.forEach((item) => {
+      const score = projectTemplateLayerScore(item, saved, "");
+      if (score > bestScore) { best = item; bestScore = score; }
+    });
+    return bestScore > 0 ? best : null;
   }
 
   function findTemplateForProjectSettings(saved = {}) {
@@ -15274,6 +15480,12 @@
     const wantedPath = normalizeProjectTemplateIdentity(selected.path || "");
     const wantedName = normalizeProjectTemplateIdentity(selected.name || "");
     const wantedBrand = normalizeProjectTemplateIdentity(selected.brand || "");
+
+    // v1.3.230: old Project files can store modular combinations as virtual paths such as
+    // modular://umbro/Umbro%2025%2F26%20V2/Basic/Umbro%2025%2F26%20V1. Those virtual items are
+    // not present in INTERNAL_TEMPLATES, so rebuild the combined kit from its shirt/short/socks parts.
+    const modularCombination = buildProjectModularCombinationForSettings(saved);
+    if (modularCombination) return modularCombination;
 
     // v1.3.228: Project cards are kits, not template-setting aliases.
     // Some templates intentionally share the same settings base/templateId. If templateId is used first,
@@ -15287,7 +15499,7 @@
         normalizeProjectTemplateIdentity(item.name || "") === wantedName;
     }) || INTERNAL_TEMPLATES.find((item) => {
       return wantedName && normalizeProjectTemplateIdentity(item.name || "") === wantedName;
-    }) || INTERNAL_TEMPLATES.find((item) => {
+    }) || findTemplateBySavedLayerPaths(saved) || INTERNAL_TEMPLATES.find((item) => {
       return wantedId && templateSettingsIdForItem(item) === wantedId;
     }) || null;
   }
@@ -15824,7 +16036,16 @@
         }
         window.__kitlabPendingProjectSettings = { ...saved, _manualTemplateSave: true, _loadedFromKitlabProject: true };
         window.__kitlabTemplateLoadingDisplayName = target.name || target.id || "Kit";
-        await selectTemplateStyle(templateItem);
+        // v1.3.231: cold Project kit switches may still need to load a template once,
+        // but Project must not black out the whole editor with the template loading screen.
+        // Keep the current kit visible until the requested kit is fully ready, then swap.
+        const previousProjectLoadingSuppression = window.__kitlabSuppressTemplateLoadingScreen === true;
+        window.__kitlabSuppressTemplateLoadingScreen = true;
+        try {
+          await selectTemplateStyle(templateItem);
+        } finally {
+          window.__kitlabSuppressTemplateLoadingScreen = previousProjectLoadingSuppression;
+        }
       }
 
       // If a future async switch supersedes this one, do not stamp the old load over the Project panel.
@@ -16228,16 +16449,66 @@
   }
 
   async function preloadAllProjectKitsRuntimeCache(project, preferredActiveId = "") {
-    // v1.3.225: disable background kit prewarming in the Project panel.
-    // The old prewarm loaded every project slot through selectTemplateStyle(), which mutates the live editor
-    // state (templateStyle, collar configuration, panels and caches). On Cloudflare/static builds those async
-    // loads can finish after the user is already editing another kit, so the Project panel could overwrite the
-    // current template configuration without an explicit user action.
-    // From now on, kits are restored only when the user explicitly selects that Project card.
+    // v1.3.232: warm every Project kit once during the controlled project-load flow.
+    // The old background prewarm was disabled because it could finish after the user had already started
+    // editing another kit. This version is deliberately synchronous inside applyKitlabProject(): it fills the
+    // live kit cache before the project is considered loaded, suppresses template loading blackouts, and restores
+    // the requested active kit at the end. Result: the first click on another Project kit should restore from
+    // memory instead of running a visible full template-load process.
     const normalized = normalizeKitlabProject(project);
     const requestedActiveId = String(preferredActiveId || normalized.activeKitId || "").toLowerCase();
     if (requestedActiveId && normalized.kits.some((kit) => kit.id === requestedActiveId)) {
       normalized.activeKitId = requestedActiveId;
+    }
+    const activeId = String(normalized.activeKitId || normalized.kitOrder?.[0] || normalized.kits?.[0]?.id || "").toLowerCase();
+    state.project = normalized;
+    renderProjectKitPanel();
+
+    const orderedKits = (Array.isArray(normalized.kitOrder) ? normalized.kitOrder : [])
+      .map((id) => normalized.kits.find((kit) => kit.id === id))
+      .filter(Boolean);
+    const fallbackKits = orderedKits.length ? orderedKits : (Array.isArray(normalized.kits) ? normalized.kits : []);
+    const kitsToWarm = fallbackKits.filter((kit) => String(kit?.id || "").toLowerCase() && String(kit?.id || "").toLowerCase() !== activeId);
+    if (!kitsToWarm.length) return normalized;
+
+    const previousSwitching = kitlabProjectSwitching;
+    const previousSuppressLoading = window.__kitlabSuppressTemplateLoadingScreen === true;
+    const prewarmToken = `${Date.now()}_${Math.random().toString(36).slice(2)}`;
+    window.__kitlabProjectPrewarmToken = prewarmToken;
+    kitlabProjectSwitching = true;
+    window.__kitlabSuppressTemplateLoadingScreen = true;
+
+    try {
+      for (const kit of kitsToWarm) {
+        if (window.__kitlabProjectPrewarmToken !== prewarmToken) break;
+        try {
+          await preloadSingleProjectKitRuntimeCache(normalized, kit);
+        } catch (error) {
+          console.warn("Project kit prewarm skipped:", kit?.name || kit?.id || "Kit", error);
+        }
+      }
+    } finally {
+      if (window.__kitlabProjectPrewarmToken === prewarmToken) window.__kitlabProjectPrewarmToken = "";
+      window.__kitlabSuppressTemplateLoadingScreen = previousSuppressLoading;
+      kitlabProjectSwitching = previousSwitching;
+    }
+
+    // Always put the editor back on the kit the user/project requested.
+    normalized.activeKitId = activeId || normalized.activeKitId;
+    state.project = normalized;
+    const activeKit = normalized.kits.find((kit) => kit.id === normalized.activeKitId) || normalized.kits[0];
+    const activeSaved = activeKit?.settings || activeKit?.data || null;
+    if (activeSaved && typeof activeSaved === "object") {
+      if (!restoreProjectKitRuntimeFromCache(activeKit.id, activeSaved)) {
+        if (activeTemplateActuallyMatchesSavedProjectKit(activeSaved)) {
+          await applyProjectKitSettingsOnCurrentTemplate(activeSaved, activeKit.name || activeKit.id || "Kit");
+        } else if (restoreProjectTemplateBaseRuntimeForSaved(activeSaved)) {
+          await applyProjectKitSettingsOnCurrentTemplate(activeSaved, activeKit.name || activeKit.id || "Kit");
+        }
+      }
+    } else if (activeKit) {
+      clearEditorForEmptyProjectKit();
+      cacheProjectKitRuntimeState(normalized);
     }
     state.project = normalized;
     renderProjectKitPanel();
