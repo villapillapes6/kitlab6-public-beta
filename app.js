@@ -1,8 +1,8 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.242_template_gallery_thumb_quality_real";
+  const KITLAB_BUILD_VERSION = "v1.3.243_template_gallery_progressive_hq_thumbs";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
-  console.log("KitLab6 thumb quality patch", "v1.3.242_template_gallery_thumb_quality_real");
+  console.log("KitLab6 thumb quality patch", "v1.3.243_template_gallery_progressive_hq_thumbs");
   const KITLAB_BASE_DESIGN_BUTTON_LOCKED = true; // v1.3.199: keep Base Design visible but blocked for beta until its placement rule is fixed.
 
   // Public beta UI hide list requested by Villa (2026-07-08).
@@ -3334,14 +3334,13 @@
   }
 
 
-  // v1.3.242 — Template Gallery real high-quality thumbnails.
-  // Public web can receive lightweight assets/thumbs/templates/*.webp entries from
-  // the static/runtime thumbnail cache. Those are fast, but too soft for templates
-  // where the useful difference is a seam, collar edge, or subtle panel.
-  // Gallery cards are upgraded back to the original template thumbnail path:
-  //   assets/thumbs/templates/.../thumbnail(s).webp -> assets/templates/.../thumbnail(s).png
-  // Project cards/render/export remain untouched.
-  window.__KITLAB_TEMPLATE_GALLERY_THUMB_QUALITY_V242__ = true;
+  // v1.3.243 — Template Gallery progressive high-quality thumbnails.
+  // The public web needs the detail of original PNG template thumbnails, but loading
+  // every original PNG immediately makes the gallery feel slow. So cards start with
+  // the lightweight WebP thumbnail and silently upgrade visible cards to the original
+  // PNG in a small background queue. Result: fast gallery + sharp seams/details.
+  window.__KITLAB_TEMPLATE_GALLERY_THUMB_QUALITY_V243__ = true;
+
   function kitlabTemplateGalleryOriginalThumbSrc(src) {
     const raw = String(src || "").trim();
     if (!raw || raw.startsWith("data:")) return raw;
@@ -3367,18 +3366,35 @@
     }
   }
 
+  function kitlabTemplateGalleryFastThumbSrc(src) {
+    const raw = String(src || "").trim();
+    if (!raw || /^(data:|blob:|file:)/i.test(raw)) return raw;
+    const hashIndex = raw.indexOf("#");
+    const hash = hashIndex >= 0 ? raw.slice(hashIndex) : "";
+    const noHash = hashIndex >= 0 ? raw.slice(0, hashIndex) : raw;
+    const queryIndex = noHash.indexOf("?");
+    const base = queryIndex >= 0 ? noHash.slice(0, queryIndex) : noHash;
+    const query = queryIndex >= 0 ? noHash.slice(queryIndex) : "";
+    const normalized = base.replace(/^\.?\//, "");
+    if (!/^assets\/templates\//i.test(normalized)) return raw;
+    const thumbBase = normalized
+      .replace(/^assets\/templates\//i, "assets/thumbs/templates/")
+      .replace(/\.(png|jpg|jpeg|webp)$/i, ".webp");
+    return thumbBase + query + hash;
+  }
+
   function templatePerformanceThumbSrc(src) {
     const raw = String(src || "").trim();
-    return kitlabTemplateGalleryOriginalThumbSrc(raw) || raw;
+    return kitlabTemplateGalleryFastThumbSrc(raw) || raw;
   }
 
   function templatePerformanceFallbacks(primary, original, fallbacks = []) {
     const out = [];
     const seen = new Set();
     [
+      primary,
       kitlabTemplateGalleryOriginalThumbSrc(original),
       kitlabTemplateGalleryOriginalThumbSrc(primary),
-      primary,
       original,
       ...(Array.isArray(fallbacks) ? fallbacks : []),
     ].forEach((value) => {
@@ -3391,32 +3407,95 @@
     return out.filter((value) => value !== current);
   }
 
+  const kitlabTemplateThumbHqQueue = [];
+  const kitlabTemplateThumbHqQueued = new WeakSet();
+  let kitlabTemplateThumbHqActive = 0;
+  const KITLAB_TEMPLATE_THUMB_HQ_CONCURRENCY = 2;
+
+  function kitlabPumpTemplateThumbHqQueue() {
+    while (kitlabTemplateThumbHqActive < KITLAB_TEMPLATE_THUMB_HQ_CONCURRENCY && kitlabTemplateThumbHqQueue.length) {
+      const img = kitlabTemplateThumbHqQueue.shift();
+      if (!img || !img.isConnected) continue;
+      const hq = img.dataset.kitlabHqTemplateThumb || "";
+      const current = img.getAttribute("src") || img.currentSrc || "";
+      if (!hq || current === hq || img.dataset.kitlabHqTemplateThumbDone === "1") continue;
+      kitlabTemplateThumbHqActive += 1;
+      const probe = new Image();
+      probe.decoding = "async";
+      probe.onload = () => {
+        kitlabTemplateThumbHqActive = Math.max(0, kitlabTemplateThumbHqActive - 1);
+        if (img.isConnected && img.dataset.kitlabHqTemplateThumb === hq) {
+          img.removeAttribute("srcset");
+          img.setAttribute("src", hq);
+          img.dataset.kitlabHqTemplateThumbDone = "1";
+          img.classList.add("kitlab-template-thumb-hq-ready");
+        }
+        kitlabPumpTemplateThumbHqQueue();
+      };
+      probe.onerror = () => {
+        kitlabTemplateThumbHqActive = Math.max(0, kitlabTemplateThumbHqActive - 1);
+        if (img.isConnected) img.dataset.kitlabHqTemplateThumbDone = "error";
+        kitlabPumpTemplateThumbHqQueue();
+      };
+      probe.src = hq;
+    }
+  }
+
+  function kitlabQueueTemplateThumbHq(img) {
+    if (!img || kitlabTemplateThumbHqQueued.has(img)) return;
+    const hq = img.dataset.kitlabHqTemplateThumb || "";
+    const current = img.getAttribute("src") || img.currentSrc || "";
+    if (!hq || current === hq || img.dataset.kitlabHqTemplateThumbDone) return;
+    kitlabTemplateThumbHqQueued.add(img);
+    kitlabTemplateThumbHqQueue.push(img);
+    const run = () => kitlabPumpTemplateThumbHqQueue();
+    if ("requestIdleCallback" in window) window.requestIdleCallback(run, { timeout: 450 });
+    else setTimeout(run, 80);
+  }
+
+  const kitlabTemplateThumbHqObserver = (() => {
+    if (!("IntersectionObserver" in window)) return null;
+    return new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        kitlabTemplateThumbHqObserver.unobserve(entry.target);
+        kitlabQueueTemplateThumbHq(entry.target);
+      });
+    }, { root: null, rootMargin: "260px 0px", threshold: 0.01 });
+  })();
+
+  function kitlabPrepareTemplateGalleryProgressiveThumb(img) {
+    if (!img || img.dataset.kitlabTemplateThumbProgressive === "1") return;
+    const currentAttr = img.getAttribute("src") || "";
+    const current = currentAttr || img.currentSrc || "";
+    const hq = kitlabTemplateGalleryOriginalThumbSrc(current);
+    if (!hq || hq === current || /^(data:|blob:|file:)/i.test(hq)) return;
+    img.dataset.kitlabTemplateThumbProgressive = "1";
+    img.dataset.kitlabHqTemplateThumb = hq;
+    img.decoding = "async";
+    img.loading = img.loading || "lazy";
+    try { img.fetchPriority = "low"; } catch (_) {}
+    if (!img.dataset.kitlabThumbQualityFallback) {
+      img.dataset.kitlabThumbQualityFallback = current;
+      img.addEventListener("error", () => {
+        const fallback = img.dataset.kitlabThumbQualityFallback;
+        if (fallback && img.getAttribute("src") !== fallback && img.dataset.kitlabHqTemplateThumbDone !== "error") {
+          img.setAttribute("src", fallback);
+        }
+      });
+    }
+    if (kitlabTemplateThumbHqObserver) kitlabTemplateThumbHqObserver.observe(img);
+    else kitlabQueueTemplateThumbHq(img);
+  }
+
   function kitlabUpgradeTemplateGalleryThumbDom(root = document) {
     const scope = root && root.querySelectorAll ? root : document;
     const selector = ".internal-card.template-card img, .kitlab-modular-part-card img";
-    scope.querySelectorAll?.(selector).forEach((img) => {
-      const currentAttr = img.getAttribute("src") || "";
-      const current = currentAttr || img.currentSrc || "";
-      const upgraded = templatePerformanceThumbSrc(current);
-      if (!upgraded || upgraded === currentAttr || upgraded === current) return;
-      if (!img.dataset.kitlabThumbQualityFallback) {
-        img.dataset.kitlabThumbQualityFallback = current;
-        img.addEventListener("error", () => {
-          const fallback = img.dataset.kitlabThumbQualityFallback;
-          if (fallback && img.getAttribute("src") !== fallback) {
-            img.setAttribute("src", fallback);
-          }
-        }, { once: true });
-      }
-      img.removeAttribute("srcset");
-      img.setAttribute("src", upgraded);
-      img.decoding = "async";
-      img.loading = img.loading || "lazy";
-    });
+    scope.querySelectorAll?.(selector).forEach(kitlabPrepareTemplateGalleryProgressiveThumb);
   }
 
-  if (!window.__KITLAB_TEMPLATE_GALLERY_THUMB_QUALITY_OBSERVER_V242__) {
-    window.__KITLAB_TEMPLATE_GALLERY_THUMB_QUALITY_OBSERVER_V242__ = true;
+  if (!window.__KITLAB_TEMPLATE_GALLERY_THUMB_QUALITY_OBSERVER_V243__) {
+    window.__KITLAB_TEMPLATE_GALLERY_THUMB_QUALITY_OBSERVER_V243__ = true;
     const scheduleTemplateThumbUpgrade = (() => {
       let queued = false;
       return () => {
