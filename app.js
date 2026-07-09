@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.225_project_panel_state_isolation";
+  const KITLAB_BUILD_VERSION = "v1.3.229_project_live_kit_cache_restore";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   const KITLAB_BASE_DESIGN_BUTTON_LOCKED = true; // v1.3.199: keep Base Design visible but blocked for beta until its placement rule is fixed.
 
@@ -15264,18 +15264,29 @@
     catch (_) { return value || null; }
   }
 
+  function normalizeProjectTemplateIdentity(value = "") {
+    return String(value || "").replace(/\\/g, "/").replace(/%20/g, " ").replace(/\s+/g, " ").trim().toLowerCase();
+  }
+
   function findTemplateForProjectSettings(saved = {}) {
+    const selected = saved?.selectedTemplate || {};
     const wantedId = String(saved.templateId || "").toLowerCase();
-    const wantedName = String(saved.selectedTemplate?.name || "").toLowerCase();
-    const wantedBrand = String(saved.selectedTemplate?.brand || "").toLowerCase();
+    const wantedPath = normalizeProjectTemplateIdentity(selected.path || "");
+    const wantedName = normalizeProjectTemplateIdentity(selected.name || "");
+    const wantedBrand = normalizeProjectTemplateIdentity(selected.brand || "");
+
+    // v1.3.228: Project cards are kits, not template-setting aliases.
+    // Some templates intentionally share the same settings base/templateId. If templateId is used first,
+    // Project can resolve a card to the wrong previous template and then apply this kit's colors on top of it.
+    // Prefer the real selected template identity/path first, then fall back to the shared settings id.
     return INTERNAL_TEMPLATES.find((item) => {
-      return wantedId && templateSettingsIdForItem(item) === wantedId;
+      return wantedPath && normalizeProjectTemplateIdentity(item.path || "") === wantedPath;
     }) || INTERNAL_TEMPLATES.find((item) => {
       return wantedBrand && wantedName &&
-        String(item.brand || "").toLowerCase() === wantedBrand &&
-        String(item.name || "").toLowerCase() === wantedName;
+        normalizeProjectTemplateIdentity(item.brand || "") === wantedBrand &&
+        normalizeProjectTemplateIdentity(item.name || "") === wantedName;
     }) || INTERNAL_TEMPLATES.find((item) => {
-      return wantedName && String(item.name || "").toLowerCase() === wantedName;
+      return wantedName && normalizeProjectTemplateIdentity(item.name || "") === wantedName;
     }) || INTERNAL_TEMPLATES.find((item) => {
       return wantedId && templateSettingsIdForItem(item) === wantedId;
     }) || null;
@@ -15364,6 +15375,22 @@
     const savedId = savedProjectKitTemplateId(saved);
     if (!currentId || !savedId) return false;
     return String(currentId).toLowerCase() === String(savedId).toLowerCase();
+  }
+
+  function activeTemplateActuallyMatchesSavedProjectKit(saved = null) {
+    const current = state.templateStyle?.selected || null;
+    const selected = saved?.selectedTemplate || null;
+    if (!current || !selected) return false;
+    const currentPath = normalizeProjectTemplateIdentity(current.path || "");
+    const savedPath = normalizeProjectTemplateIdentity(selected.path || "");
+    if (currentPath && savedPath) return currentPath === savedPath;
+    const currentBrand = normalizeProjectTemplateIdentity(current.brand || "");
+    const savedBrand = normalizeProjectTemplateIdentity(selected.brand || "");
+    const currentName = normalizeProjectTemplateIdentity(current.name || "");
+    const savedName = normalizeProjectTemplateIdentity(selected.name || "");
+    if (currentBrand && savedBrand && currentName && savedName) return currentBrand === savedBrand && currentName === savedName;
+    if (currentName && savedName) return currentName === savedName;
+    return activeTemplateMatchesSavedProjectKit(saved);
   }
 
   function captureProjectKitThumbnail() {
@@ -15490,10 +15517,41 @@
     return true;
   }
 
-  function restoreProjectKitRuntimeFromCache(kitId) {
+  function projectRuntimeCacheMatchesSavedKit(cached = null, saved = null) {
+    if (!cached || cached.empty || !saved || typeof saved !== "object") return true;
+    const runtimeSelected = cached?.state?.templateStyle?.selected || null;
+    const savedSelected = saved?.selectedTemplate || null;
+
+    const runtimePath = normalizeProjectTemplateIdentity(runtimeSelected?.path || "");
+    const savedPath = normalizeProjectTemplateIdentity(savedSelected?.path || "");
+    if (runtimePath && savedPath) return runtimePath === savedPath;
+
+    const runtimeBrand = normalizeProjectTemplateIdentity(runtimeSelected?.brand || "");
+    const savedBrand = normalizeProjectTemplateIdentity(savedSelected?.brand || "");
+    const runtimeName = normalizeProjectTemplateIdentity(runtimeSelected?.name || "");
+    const savedName = normalizeProjectTemplateIdentity(savedSelected?.name || "");
+    if (runtimeBrand && savedBrand && runtimeName && savedName) {
+      return runtimeBrand === savedBrand && runtimeName === savedName;
+    }
+    if (runtimeName && savedName) return runtimeName === savedName;
+
+    const runtimeId = String(cached.templateId || (runtimeSelected ? templateSettingsIdForItem(runtimeSelected) : "") || "").toLowerCase();
+    const savedId = savedProjectKitTemplateId(saved);
+    if (runtimeId && savedId) return runtimeId === savedId;
+    return true;
+  }
+
+  function restoreProjectKitRuntimeFromCache(kitId, expectedSaved = null) {
     const id = String(kitId || "").toLowerCase();
     const cached = id ? kitlabProjectRuntimeCache.get(id) : null;
     if (!cached) return false;
+    if (!projectRuntimeCacheMatchesSavedKit(cached, expectedSaved)) {
+      // v1.3.229: never restore a live Project kit cache if its template identity does not match
+      // the card's saved kit. This keeps the fast no-reload path without reviving the old
+      // "previous template image + new kit colors" bug.
+      kitlabProjectRuntimeCache.delete(id);
+      return false;
+    }
     if (cached.empty) {
       clearEditorForEmptyProjectKit();
       return true;
@@ -15729,6 +15787,10 @@
     if (!targetId || targetId === project.activeKitId) return;
     const target = project.kits.find((kit) => kit.id === targetId);
     if (!target) return;
+
+    const switchToken = `${Date.now()}_${Math.random().toString(36).slice(2)}`;
+    window.__kitlabProjectSwitchToken = switchToken;
+
     try {
       kitlabProjectSwitching = true;
       kitlabProjectDraftMode = false;
@@ -15736,42 +15798,56 @@
       state.project = project;
       renderProjectKitPanel();
 
-      // v1.0.90: if this kit was already opened in this session, restore the live runtime snapshot.
-      // No template loading overlay and no disk save. Disk is touched only by Save Project / Save As Project.
-      if (restoreProjectKitRuntimeFromCache(target.id)) {
-        setStatus(`Kit selected: ${target.name || target.id || "Kit"}`);
+      const saved = target.settings || target.data || null;
+      if (!saved || typeof saved !== "object") {
+        clearEditorForEmptyProjectKit();
+        cacheProjectKitRuntimeState(state.project);
+        setStatus(`Empty kit selected: ${target.name || target.id || "Kit"}`);
         renderProjectKitPanel();
         return;
       }
 
-      const saved = target.settings || target.data || null;
-      if (!saved) {
-        clearEditorForEmptyProjectKit();
-        cacheProjectKitRuntimeState(project);
-        setStatus(`Empty kit selected: ${target.name || target.id || "Kit"}`);
-        return;
-      }
-      if (activeTemplateMatchesSavedProjectKit(saved)) {
+      // v1.3.229: Project cards are live kit slots. First restore the exact in-memory kit snapshot.
+      // This is the normal fast path while the user is working: no full template reload and no gallery-style
+      // template selection. Full template loading is only a fallback for cold cards after refresh/project load.
+      if (restoreProjectKitRuntimeFromCache(target.id, saved)) {
+        setStatus(`Kit selected: ${target.name || target.id || "Kit"}`);
+      } else if (activeTemplateActuallyMatchesSavedProjectKit(saved)) {
         await applyProjectKitSettingsOnCurrentTemplate(saved, target.name || target.id || "Kit");
-        cacheProjectKitRuntimeState(project);
       } else if (restoreProjectTemplateBaseRuntimeForSaved(saved)) {
         await applyProjectKitSettingsOnCurrentTemplate(saved, target.name || target.id || "Kit");
-        cacheProjectKitRuntimeState(project);
       } else {
-        window.__kitlabSuppressTemplateLoadingScreen = true;
-        await applyKitlabProject(project, kitlabProjectFileName, kitlabProjectFileHandle);
-        cacheProjectKitRuntimeState(state.project);
-        window.__kitlabSuppressTemplateLoadingScreen = false;
+        const templateItem = findTemplateForProjectSettings(saved);
+        if (!templateItem) {
+          const wanted = saved.selectedTemplate?.name || saved.templateId || "saved template";
+          throw new Error(`Template not found in this KitLab build: ${wanted}`);
+        }
+        window.__kitlabPendingProjectSettings = { ...saved, _manualTemplateSave: true, _loadedFromKitlabProject: true };
+        window.__kitlabTemplateLoadingDisplayName = target.name || target.id || "Kit";
+        await selectTemplateStyle(templateItem);
       }
+
+      // If a future async switch supersedes this one, do not stamp the old load over the Project panel.
+      if (window.__kitlabProjectSwitchToken !== switchToken) return;
+
+      const refreshed = normalizeKitlabProject(state.project);
+      refreshed.activeKitId = target.id;
+      state.project = refreshed;
+      cacheProjectKitRuntimeState(state.project);
+      renderProjectKitPanel();
+      setStatus(`Kit selected: ${target.name || target.id || "Kit"}`);
     } catch (error) {
       console.error(error);
-      window.__kitlabSuppressTemplateLoadingScreen = false;
+      window.__kitlabPendingProjectSettings = null;
+      window.__kitlabTemplateLoadingDisplayName = "";
       setStatus(`Could not switch kit: ${error?.message || error}`);
       showToast(`Could not switch kit: ${error?.message || error}`);
     } finally {
-      kitlabProjectSwitching = false;
-      window.__kitlabSuppressTemplateLoadingScreen = false;
-      renderProjectKitPanel();
+      if (window.__kitlabProjectSwitchToken === switchToken) {
+        window.__kitlabProjectSwitchToken = "";
+        kitlabProjectSwitching = false;
+        renderProjectKitPanel();
+      }
     }
   }
 
@@ -15896,9 +15972,9 @@
         try {
           kitlabProjectSwitching = true;
           renderProjectKitPanel();
-          if (restoreProjectKitRuntimeFromCache(next.id)) {
+          if (restoreProjectKitRuntimeFromCache(next.id, next.settings)) {
             setStatus(`Kit selected: ${next.name || next.id || "Kit"}`);
-          } else if (activeTemplateMatchesSavedProjectKit(next.settings)) {
+          } else if (activeTemplateActuallyMatchesSavedProjectKit(next.settings)) {
             await applyProjectKitSettingsOnCurrentTemplate(next.settings, next.name || next.id || "Kit");
           } else if (restoreProjectTemplateBaseRuntimeForSaved(next.settings)) {
             await applyProjectKitSettingsOnCurrentTemplate(next.settings, next.name || next.id || "Kit");
@@ -15923,6 +15999,7 @@
     if (!state.templateStyle?.selected) {
       return createEmptyProjectKit(name, makeActive);
     }
+    const currentSnapshot = serializeCurrentKitlabKit(true);
     const project = ensureCurrentKitSaved({ capturePreview: false });
     const kitName = String(name || suggestedNextProjectKitName()).replace(/\s+/g, " ").trim() || suggestedNextProjectKitName();
     const activeKit = project.kits.find((kit) => kit.id === project.activeKitId) || project.kits[0];
@@ -15931,9 +16008,9 @@
       id,
       name: kitName,
       slot: kitName,
-      settings: cloneKitlabProjectData(activeKit?.settings || serializeCurrentKitlabKit(false)?.settings || null),
-      preview: "",
-      savedAt: new Date().toISOString(),
+      settings: cloneKitlabProjectData(currentSnapshot?.settings || activeKit?.settings || null),
+      preview: currentSnapshot?.preview || captureProjectKitThumbnail() || "",
+      savedAt: currentSnapshot?.savedAt || new Date().toISOString(),
     };
     project.kits.push(newKit);
     project.kitOrder.push(id);
@@ -15947,7 +16024,10 @@
   }
 
   function addProjectKit() {
-    createEmptyProjectKit(suggestedNextProjectKitName(), true);
+    // v1.3.227: Add Project Kit means "save the current kit as a new Project card".
+    // If no template is loaded yet, keep the old behaviour and create an empty slot.
+    if (state.templateStyle?.selected) createProjectKitFromCurrent(suggestedNextProjectKitName(), true);
+    else createEmptyProjectKit(suggestedNextProjectKitName(), true);
   }
 
   function duplicateProjectKit() {
@@ -15996,7 +16076,7 @@
       kitlabProjectSwitching = true;
       if (!next?.settings) {
         clearEditorForEmptyProjectKit();
-      } else if (activeTemplateMatchesSavedProjectKit(next.settings)) {
+      } else if (activeTemplateActuallyMatchesSavedProjectKit(next.settings)) {
         await applyProjectKitSettingsOnCurrentTemplate(next.settings, next.name || next.id || "Kit");
       } else if (restoreProjectTemplateBaseRuntimeForSaved(next.settings)) {
         await applyProjectKitSettingsOnCurrentTemplate(next.settings, next.name || next.id || "Kit");
