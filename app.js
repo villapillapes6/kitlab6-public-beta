@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.224_palette_copy_hex_fix";
+  const KITLAB_BUILD_VERSION = "v1.3.225_project_panel_state_isolation";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   const KITLAB_BASE_DESIGN_BUTTON_LOCKED = true; // v1.3.199: keep Base Design visible but blocked for beta until its placement rule is fixed.
 
@@ -16148,30 +16148,20 @@
   }
 
   async function preloadAllProjectKitsRuntimeCache(project, preferredActiveId = "") {
+    // v1.3.225: disable background kit prewarming in the Project panel.
+    // The old prewarm loaded every project slot through selectTemplateStyle(), which mutates the live editor
+    // state (templateStyle, collar configuration, panels and caches). On Cloudflare/static builds those async
+    // loads can finish after the user is already editing another kit, so the Project panel could overwrite the
+    // current template configuration without an explicit user action.
+    // From now on, kits are restored only when the user explicitly selects that Project card.
     const normalized = normalizeKitlabProject(project);
-    const originalActiveId = String(preferredActiveId || normalized.activeKitId || "").toLowerCase();
-    const ordered = normalized.kitOrder.map((id) => normalized.kits.find((kit) => kit.id === id)).filter(Boolean);
-    if (!ordered.length) return normalized;
-    const previousSuppress = window.__kitlabSuppressTemplateLoadingScreen === true;
-    window.__kitlabSuppressTemplateLoadingScreen = true;
-    try {
-      for (const kit of ordered) {
-        if (!kit || kit.id === originalActiveId) continue;
-        setStatus(`Preparing kit in memory: ${kit.name || kit.id || "Kit"}`);
-        await preloadSingleProjectKitRuntimeCache(normalized, kit);
-      }
-      normalized.activeKitId = originalActiveId || normalized.activeKitId;
-      state.project = normalized;
-      if (!restoreProjectKitRuntimeFromCache(normalized.activeKitId)) {
-        const active = normalized.kits.find((kit) => kit.id === normalized.activeKitId) || normalized.kits[0];
-        await preloadSingleProjectKitRuntimeCache(normalized, active);
-        restoreProjectKitRuntimeFromCache(normalized.activeKitId);
-      }
-      renderProjectKitPanel();
-      return normalizeKitlabProject(state.project);
-    } finally {
-      window.__kitlabSuppressTemplateLoadingScreen = previousSuppress;
+    const requestedActiveId = String(preferredActiveId || normalized.activeKitId || "").toLowerCase();
+    if (requestedActiveId && normalized.kits.some((kit) => kit.id === requestedActiveId)) {
+      normalized.activeKitId = requestedActiveId;
     }
+    state.project = normalized;
+    renderProjectKitPanel();
+    return normalized;
   }
 
   async function applyKitlabProject(project, fileName = "", fileHandle = null) {
