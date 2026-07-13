@@ -1,8 +1,18 @@
 ﻿{
     "version":  "1.3.220-local",
-    "generated":  "2026-07-13T23:05:55",
+    "generated":  "2026-07-13T23:21:09",
     "purpose":  "KitLab6 global static asset manifest generated locally",
     "dirs":  {
+                 "assets/templates/nike/nike gk worldcup 26-27/fabric":  {
+                                                                             "files":  [
+                                                                                           "shirt_aero-fit fusion opacidad.png",
+                                                                                           "short_aero-fit fusion opacidad.png",
+                                                                                           "short_sleeve_aero-fit fusion opacidad.png"
+                                                                                       ],
+                                                                             "folders":  [
+
+                                                                                         ]
+                                                                         },
                  "assets/templates/umbro/umbro gk 25-26/socks":  {
                                                                      "files":  [
                                                                                    "thumbnail.png",
@@ -918,18 +928,6 @@
 
                                                                                              ]
                                                                              },
-                 "assets/templates/nike/nike 24-25 shared/guide":  {
-                                                                       "files":  [
-                                                                                     "shirt back.png",
-                                                                                     "shirt front.png",
-                                                                                     "short hem.png",
-                                                                                     "short.png",
-                                                                                     "sleeve short.png"
-                                                                                 ],
-                                                                       "folders":  [
-
-                                                                                   ]
-                                                                   },
                  "assets/templates/puma/puma 26-27 v2 drycell/seams":  {
                                                                            "files":  [
                                                                                          "seams fj.png",
@@ -1847,6 +1845,15 @@
 
                                                                                       ]
                                                                       },
+                 "assets/team/Moldova":  {
+                                             "files":  [
+                                                           "FC Petrocub Hincesti.png",
+                                                           "FC Sheriff Tiraspol.png"
+                                                       ],
+                                             "folders":  [
+
+                                                         ]
+                                         },
                  "assets/templates/basic/basic v1/collar/slip neck/01":  {
                                                                              "files":  [
                                                                                            "detail apertura.png",
@@ -2072,15 +2079,15 @@
 
                                                     ]
                                     },
-                 "assets/team/Moldova":  {
-                                             "files":  [
-                                                           "FC Petrocub Hincesti.png",
-                                                           "FC Sheriff Tiraspol.png"
-                                                       ],
-                                             "folders":  [
+                 "assets/templates/nike/nike gk 26-27 dry-fit/mesh":  {
+                                                                          "files":  [
+                                                                                        "shirt axilas.png",
+                                                                                        "shirt_1.png"
+                                                                                    ],
+                                                                          "folders":  [
 
-                                                         ]
-                                         },
+                                                                                      ]
+                                                                      },
                  "assets/thumbs/templates/macron/macron gk 25-26/shirt":  {
                                                                               "files":  [
                                                                                             "thumbnail.webp"
@@ -3241,6 +3248,15 @@
 
                                                         ]
                                         },
+                 "assets/templates/nike/nike gk worldcup 26-27/brand":  {
+                                                                            "files":  [
+                                                                                          "shirt aero-fit.png",
+                                                                                          "shirt etiqueta no color.png"
+                                                                                      ],
+                                                                            "folders":  [
+
+                                                                                        ]
+                                                                        },
                  "assets/team/Bolivia":  {
                                              "files":  [
                                                            "ABB.png",
@@ -3870,6 +3886,23 @@
 
                                                        ]
                                        },
+                 "assets/templates/nike/nike gk worldcup 26-27":  {
+                                                                      "files":  [
+                                                                                    "thumbnail.png",
+                                                                                    "transparencia.png",
+                                                                                    "used_by.txt"
+                                                                                ],
+                                                                      "folders":  [
+                                                                                      "base",
+                                                                                      "brand",
+                                                                                      "collar",
+                                                                                      "details",
+                                                                                      "fabric",
+                                                                                      "mesh",
+                                                                                      "pattern",
+                                                                                      "seams"
+                                                                                  ]
+                                                                  },
                  "assets/templates/umbro/umbro 25-26/shirt/v2/details":  {
                                                                              "files":  [
                                                                                            "shirt cuffs.png",
@@ -3970,6 +4003,14 @@
 
                                                              ]
                                              },
+                 "assets/thumbs/templates/adidas/adidas 26-27 climacool":  {
+                                                                               "files":  [
+                                                                                             "thumbnail.webp"
+                                                                                         ],
+                                                                               "folders":  [
+                                                                                               "collar"
+                                                                                           ]
+                                                                           },
                  "assets/thumbs/templates/adidas/adidas 2026/collar/05":  {
                                                                               "files":  [
                                                                                             "thumbnail.webp"
@@ -4842,14 +4883,22 @@
 
                                                                    ]
                                                    },
-                 "assets/thumbs/templates/adidas/adidas 26-27 climacool":  {
-                                                                               "files":  [
-                                                                                             "thumbnail.webp"
-                                                                                         ],
-                                                                               "folders":  [
-                                                                                               "collar"
-                                                                                           ]
-                                                                           },
+                 "assets/templates/nike/nike gk 26-27 dry-fit":  {
+                                                                     "files":  [
+                                                                                   "template_defaults.json",
+                                                                                   "thumbnail.png",
+                                                                                   "transparencia.png",
+                                                                                   "used_by.txt"
+                                                                               ],
+                                                                     "folders":  [
+                                                                                     "base",
+                                                                                     "collar",
+                                                                                     "details",
+                                                                                     "mesh",
+                                                                                     "pattern",
+                                                                                     "seams"
+                                                                                 ]
+                                                                 },
                  "assets/thumbs/templates/adidas/adidas 26-27 climacool/collar/11_no":  {
                                                                                             "files":  [
                                                                                                           "thumbnail.webp"
@@ -5570,6 +5619,25 @@
 
                                                   ]
                                   },
+                 "assets/templates/nike/nike gk 26-27 dry-fit/seams":  {
+                                                                           "files":  [
+                                                                                         "seams fj.png",
+                                                                                         "shirt iv axilas.png",
+                                                                                         "shirt iv costados 2.png",
+                                                                                         "shirt iv costados.png",
+                                                                                         "shirt iv final.png",
+                                                                                         "shirt iv hombro.png",
+                                                                                         "short iv final.png",
+                                                                                         "short iv goma.png",
+                                                                                         "short seams fj.png",
+                                                                                         "short side iv.png",
+                                                                                         "sleeve short iv axila.png",
+                                                                                         "sleeve short iv cuff.png"
+                                                                                     ],
+                                                                           "folders":  [
+
+                                                                                       ]
+                                                                       },
                  "assets/thumbs/templates/macron/macron gk 25-26/short":  {
                                                                               "files":  [
                                                                                             "thumbnail.webp"
@@ -5714,6 +5782,7 @@
                                                                "nike 26-27 dry-fit",
                                                                "nike gk 2026",
                                                                "nike gk 25-26",
+                                                               "nike gk 26-27 dry-fit",
                                                                "nike gk worldcup 26-27",
                                                                "nike total 90 25-26"
                                                            ]
@@ -7891,6 +7960,14 @@
 
                                                            ]
                                            },
+                 "assets/templates/nike/nike gk 26-27 dry-fit/collar":  {
+                                                                            "files":  [
+
+                                                                                      ],
+                                                                            "folders":  [
+                                                                                            "1"
+                                                                                        ]
+                                                                        },
                  "assets/templates/umbro/umbro 25-26/shirt/v2/base":  {
                                                                           "files":  [
                                                                                         "01.sleeve short.png",
@@ -10096,16 +10173,15 @@
 
                                                                                       ]
                                                                       },
-                 "assets/templates/nike/nike gk worldcup 26-27/fabric":  {
-                                                                             "files":  [
-                                                                                           "shirt_aero-fit fusion opacidad.png",
-                                                                                           "short_aero-fit fusion opacidad.png",
-                                                                                           "short_sleeve_aero-fit fusion opacidad.png"
-                                                                                       ],
-                                                                             "folders":  [
+                 "assets/templates/joma":  {
+                                               "files":  [
 
-                                                                                         ]
-                                                                         },
+                                                         ],
+                                               "folders":  [
+                                                               "joma gk 26-27",
+                                                               "joma gk 26-27 v2"
+                                                           ]
+                                           },
                  "assets/team/Lithuania":  {
                                                "files":  [
                                                              "FK Kauno lgiris.png",
@@ -11233,15 +11309,31 @@
 
                                                                                  ]
                                                                  },
-                 "assets/templates/nike/nike gk worldcup 26-27/brand":  {
-                                                                            "files":  [
-                                                                                          "shirt aero-fit.png",
-                                                                                          "shirt etiqueta no color.png"
-                                                                                      ],
-                                                                            "folders":  [
+                 "assets/templates/nike/nike gk 26-27 dry-fit/base":  {
+                                                                          "files":  [
+                                                                                        "01.sleeve short.png",
+                                                                                        "02. shirt.png",
+                                                                                        "03. sleeve long.png",
+                                                                                        "04. short.png",
+                                                                                        "05. socks.png",
+                                                                                        "06. ankle.png"
+                                                                                    ],
+                                                                          "folders":  [
 
-                                                                                        ]
-                                                                        },
+                                                                                      ]
+                                                                      },
+                 "assets/templates/nike/nike 24-25 shared/guide":  {
+                                                                       "files":  [
+                                                                                     "shirt back.png",
+                                                                                     "shirt front.png",
+                                                                                     "short hem.png",
+                                                                                     "short.png",
+                                                                                     "sleeve short.png"
+                                                                                 ],
+                                                                       "folders":  [
+
+                                                                                   ]
+                                                                   },
                  "assets/templates/macron/macron gk 24-25/shirt/mesh":  {
                                                                             "files":  [
                                                                                           "shirt back fusion opacidad.png",
@@ -11296,6 +11388,19 @@
                  "assets/thumbs/templates/adidas/adidas 2026/collar/06":  {
                                                                               "files":  [
                                                                                             "thumbnail.webp"
+                                                                                        ],
+                                                                              "folders":  [
+
+                                                                                          ]
+                                                                          },
+                 "assets/templates/nike/nike gk 26-27 dry-fit/collar/1":  {
+                                                                              "files":  [
+                                                                                            "detail fusion opacidad.png",
+                                                                                            "detail.png",
+                                                                                            "seams iv 2.png",
+                                                                                            "seams iv.png",
+                                                                                            "thumbnail.png",
+                                                                                            "transparencia.png"
                                                                                         ],
                                                                               "folders":  [
 
@@ -11604,6 +11709,18 @@
 
                                                                        ]
                                                        },
+                 "assets/templates/nike/nike gk 26-27 dry-fit/details":  {
+                                                                             "files":  [
+                                                                                           "shirt axila 01.png",
+                                                                                           "shirt_detail_01.png",
+                                                                                           "shirt_trim.png",
+                                                                                           "sleeve_cuffs.png",
+                                                                                           "sleeve_long_sleeve_shadow.png"
+                                                                                       ],
+                                                                             "folders":  [
+
+                                                                                         ]
+                                                                         },
                  "assets/templates/puma/puma gk worldcup 2026/collar":  {
                                                                             "files":  [
 
@@ -11693,23 +11810,15 @@
 
                                                                                       ]
                                                                       },
-                 "assets/templates/nike/nike gk worldcup 26-27":  {
-                                                                      "files":  [
-                                                                                    "thumbnail.png",
-                                                                                    "transparencia.png",
-                                                                                    "used_by.txt"
-                                                                                ],
-                                                                      "folders":  [
-                                                                                      "base",
-                                                                                      "brand",
-                                                                                      "collar",
-                                                                                      "details",
-                                                                                      "fabric",
-                                                                                      "mesh",
-                                                                                      "pattern",
-                                                                                      "seams"
-                                                                                  ]
-                                                                  },
+                 "assets/templates/macron/basic/guide":  {
+                                                             "files":  [
+                                                                           "short hem.png",
+                                                                           "short.png"
+                                                                       ],
+                                                             "folders":  [
+
+                                                                         ]
+                                                         },
                  "assets/thumbs/templates/macron/basic":  {
                                                               "files":  [
                                                                             "thumbnail.webp"
@@ -12089,15 +12198,6 @@
                                                                                                      "button"
                                                                                                  ]
                                                                                  },
-                 "assets/templates/joma":  {
-                                               "files":  [
-
-                                                         ],
-                                               "folders":  [
-                                                               "joma gk 26-27",
-                                                               "joma gk 26-27 v2"
-                                                           ]
-                                           },
                  "assets/pattern/Universidad Catolica":  {
                                                              "files":  [
                                                                            "universidad_catolica_25_third.png"
@@ -12437,6 +12537,15 @@
 
                                                                       ]
                                                       },
+                 "assets/templates/nike/nike gk 26-27 dry-fit/pattern":  {
+                                                                             "files":  [
+                                                                                           "pattern 01.png",
+                                                                                           "pattern 02.png"
+                                                                                       ],
+                                                                             "folders":  [
+
+                                                                                         ]
+                                                                         },
                  "assets/thumbs/templates/adidas/adidas trefoil 2026/collar/01_no":  {
                                                                                          "files":  [
                                                                                                        "thumbnail.webp"
@@ -13519,15 +13628,6 @@
                                                                                     "collar"
                                                                                 ]
                                                                 },
-                 "assets/templates/macron/basic/guide":  {
-                                                             "files":  [
-                                                                           "short hem.png",
-                                                                           "short.png"
-                                                                       ],
-                                                             "folders":  [
-
-                                                                         ]
-                                                         },
                  "assets/templates/adidas/adidas gk trefoil 2026/base":  {
                                                                              "files":  [
                                                                                            "01. short sleeves.png",
