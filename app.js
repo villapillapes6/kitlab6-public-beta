@@ -1,8 +1,8 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.247_insert_adidas_26_27_climacool_with_config";
+  const KITLAB_BUILD_VERSION = "v1.3.248_fix_adidas_26_27_climacool_webready";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
-  console.log("KitLab6 template insert", "v1.3.247 Adidas 26/27 Climacool + config");
+  console.log("KitLab6 template insert", "v1.3.248 Adidas 26/27 Climacool WEB READY");
   console.log("KitLab6 thumb quality no-flicker patch", "v1.3.244_template_gallery_no_flicker_hq_thumbs");
   const KITLAB_BASE_DESIGN_BUTTON_LOCKED = true; // v1.3.199: keep Base Design visible but blocked for beta until its placement rule is fixed.
 
@@ -14797,6 +14797,50 @@
     });
   }
 
+
+  // v1.3.248: hard-normalize Adidas 26/27 Climacool saved/default settings for web paths.
+  // Windows local accepted mixed Adidas/adidas and 07_NO/07_no, but Cloudflare is case-sensitive.
+  function kitlabNormalizeAdidasClimacoolSettingsPayload(value) {
+    const rootLowerEncoded = "assets/templates/adidas/adidas%2026-27%20climacool";
+    const rootLowerPlain = "assets/templates/adidas/adidas 26-27 climacool";
+    const normalizeString = (raw) => {
+      let text = String(raw || "");
+      if (!text) return text;
+      text = text
+        .replace(/assets\/templates\/Adidas\/Adidas%2026-27%20Climacool/g, rootLowerEncoded)
+        .replace(/assets\/templates\/Adidas\/Adidas 26-27 Climacool/g, rootLowerPlain)
+        .replace(/assets\/templates\/adidas\/adidas%2026-27%20Climacool/g, rootLowerEncoded)
+        .replace(/assets\/templates\/adidas\/adidas 26-27 Climacool/g, rootLowerPlain)
+        .replace(/\/collar\/(0[7-9]|10|11)_NO(?=\/|$)/g, (m, n) => `/collar/${n}_no`)
+        .replace(/\/collar\/(0[7-9]|10|11)%5FNO(?=\/|$)/gi, (m, n) => `/collar/${n}_no`)
+        .replace(/pu#U00f1o/gi, "puno")
+        .replace(/pu%23U00f1o/gi, "puno")
+        .replace(/pu%C3%B1o/gi, "puno")
+        .replace(/puño/gi, "puno");
+      return text;
+    };
+    const walk = (node) => {
+      if (typeof node === "string") return normalizeString(node);
+      if (Array.isArray(node)) return node.map(walk);
+      if (node && typeof node === "object") {
+        Object.keys(node).forEach((key) => { node[key] = walk(node[key]); });
+      }
+      return node;
+    };
+    if (value && typeof value === "object") {
+      walk(value);
+      if (value.selectedTemplate && /adidas/i.test(String(value.selectedTemplate.brand || "")) && /26-27|26\/27/i.test(String(value.selectedTemplate.name || value.selectedTemplate.path || ""))) {
+        value.selectedTemplate.name = "Adidas 26-27 Climacool";
+        value.selectedTemplate.brand = "Adidas";
+        value.selectedTemplate.path = rootLowerEncoded;
+      }
+      if (value.selectedCollar && String(value.selectedCollar.id || "").match(/^(0[7-9]|10|11)_NO$/i)) {
+        value.selectedCollar.id = String(value.selectedCollar.id).toLowerCase();
+      }
+    }
+    return value;
+  }
+
   function templateSettingsPayloadShouldApply(saved) {
     return !!(saved && typeof saved === "object" && (
       saved._manualTemplateSave === true ||
@@ -17363,6 +17407,8 @@
       finishWithoutSettings();
       return;
     }
+
+    saved = kitlabNormalizeAdidasClimacoolSettingsPayload(saved);
 
     importSavedCollarConfigurations(saved);
 
