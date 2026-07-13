@@ -1,6 +1,6 @@
 ﻿{
     "version":  "1.3.220-local",
-    "generated":  "2026-07-13T19:54:13",
+    "generated":  "2026-07-13T23:05:55",
     "purpose":  "KitLab6 global static asset manifest generated locally",
     "dirs":  {
                  "assets/templates/umbro/umbro gk 25-26/socks":  {
@@ -827,6 +827,17 @@
 
                                                                                            ]
                                                                            },
+                 "assets/templates/nike/nike 26-27 dry-fit/short v2/seams":  {
+                                                                                 "files":  [
+                                                                                               "short final iv.png",
+                                                                                               "short side iv.png",
+                                                                                               "short side triangle 2 iv.png",
+                                                                                               "short side triangle iv.png"
+                                                                                           ],
+                                                                                 "folders":  [
+
+                                                                                             ]
+                                                                             },
                  "assets/templates/umbro/umbro gk 25-26/socks/base":  {
                                                                           "files":  [
                                                                                         "05. socks.png",
@@ -857,40 +868,15 @@
 
                                                                            ]
                                                            },
-                 "assets/team/Sweden":  {
-                                            "files":  [
-                                                          "AFC Eskilstuna.png",
-                                                          "AIK Fotboll.png",
-                                                          "BK H ken.png",
-                                                          "Degerfors IF.png",
-                                                          "Djurgardens IF Fotboll.png",
-                                                          "Falkenbergs FF.png",
-                                                          "GAIS.png",
-                                                          "Gefle IF.png",
-                                                          "GIF Sundsvall.png",
-                                                          "Halmstads BK.png",
-                                                          "Hammarby IF.png",
-                                                          "Helsingborgs IF.png",
-                                                          "IF Brommapojkarna.png",
-                                                          "IF Elfsborg.png",
-                                                          "IFK Goteborg.png",
-                                                          "IFK Norrkoping.png",
-                                                          "IFK Varnamo.png",
-                                                          "IK Sirius Fotboll.png",
-                                                          "Jonkopings S ra IF.png",
-                                                          "Kalmar FF.png",
-                                                          "Malmo FF.png",
-                                                          "Mjallby AIF.png",
-                                                          "OSK Fotboll.png",
-                                                          "Osters IF.png",
-                                                          "Ostersunds FK.png",
-                                                          "Varbergs BoIS.png",
-                                                          "VSK Fotboll.png"
-                                                      ],
-                                            "folders":  [
+                 "assets/templates/nike/nike 26-27 dry-fit/short v1":  {
+                                                                           "files":  [
+                                                                                         "short iv final.png",
+                                                                                         "short side iv.png"
+                                                                                     ],
+                                                                           "folders":  [
 
-                                                        ]
-                                        },
+                                                                                       ]
+                                                                       },
                  "assets/thumbs/templates/adidas/adidas 26-27 climacool/collar/06":  {
                                                                                          "files":  [
                                                                                                        "thumbnail.webp"
@@ -1697,6 +1683,14 @@
 
                                                                                     ]
                                                                     },
+                 "assets/thumbs/templates/basic/basic v1/collar/v neck/04":  {
+                                                                                 "files":  [
+                                                                                               "thumbnail.webp"
+                                                                                           ],
+                                                                                 "folders":  [
+
+                                                                                             ]
+                                                                             },
                  "assets/templates/umbro/umbro 25-26/short/v1/base":  {
                                                                           "files":  [
                                                                                         "04. short.png"
@@ -2364,6 +2358,18 @@
 
                                                                             ]
                                                             },
+                 "assets/templates/nike/nike 26-27 dry-fit/short v2/details":  {
+                                                                                   "files":  [
+                                                                                                 "short side triangle left 2.png",
+                                                                                                 "short side triangle left.png",
+                                                                                                 "short side triangle right 2.png",
+                                                                                                 "short side triangle right.png",
+                                                                                                 "short side.png"
+                                                                                             ],
+                                                                                   "folders":  [
+
+                                                                                               ]
+                                                                               },
                  "assets/templates/nike/nike gk 2026/pattern":  {
                                                                     "files":  [
                                                                                   "pattern 01.png",
@@ -3148,17 +3154,16 @@
 
                                                                               ]
                                                               },
-                 "assets/thumbs/templates/umbro/umbro gk 25-26":  {
-                                                                      "files":  [
+                 "assets/templates/nike/nike 26-27 dry-fit/short v2":  {
+                                                                           "files":  [
 
-                                                                                ],
-                                                                      "folders":  [
-                                                                                      "collar",
-                                                                                      "shirt",
-                                                                                      "short",
-                                                                                      "socks"
-                                                                                  ]
-                                                                  },
+                                                                                     ],
+                                                                           "folders":  [
+                                                                                           "details",
+                                                                                           "mesh",
+                                                                                           "seams"
+                                                                                       ]
+                                                                       },
                  "assets/thumbs/templates/joma/joma gk 26-27 v2/collar":  {
                                                                               "files":  [
 
@@ -3640,6 +3645,19 @@
                                                         "Team"
                                                     ]
                                     },
+                 "assets/templates/nike/nike 26-27 dry-fit/details":  {
+                                                                          "files":  [
+                                                                                        "shirt side.png",
+                                                                                        "shirt triangle back.png",
+                                                                                        "shirt triangle front.png",
+                                                                                        "sleeve short puno.png",
+                                                                                        "sleeve_long_sleeve_shadow.png",
+                                                                                        "socks doblado.png"
+                                                                                    ],
+                                                                          "folders":  [
+
+                                                                                      ]
+                                                                      },
                  "assets/team/Algeria":  {
                                              "files":  [
                                                            "CR Belouizdad.png",
@@ -3807,26 +3825,25 @@
 
                                                            ]
                                            },
-                 "assets/templates/adidas/adidas 25-26/details":  {
-                                                                      "files":  [
-                                                                                    "shirt side.png",
-                                                                                    "shirt underarm.png",
-                                                                                    "short line adidas.png",
-                                                                                    "short side.png",
-                                                                                    "sleeve short cuffs.png",
-                                                                                    "sleeve short front.png",
-                                                                                    "sleeve short line adidas.png",
-                                                                                    "sleeve short side.png",
-                                                                                    "sleeves_long_sleeve_shadow.png",
-                                                                                    "socks doblado.png",
-                                                                                    "socks lineas adidas.png",
-                                                                                    "socks triangle.png",
-                                                                                    "socks trim.png"
-                                                                                ],
-                                                                      "folders":  [
-
-                                                                                  ]
-                                                                  },
+                 "assets/templates/nike/nike 26-27 dry-fit":  {
+                                                                  "files":  [
+                                                                                "template_defaults.json",
+                                                                                "thumbnail.png",
+                                                                                "transparencia.png",
+                                                                                "used_by.txt"
+                                                                            ],
+                                                                  "folders":  [
+                                                                                  "base",
+                                                                                  "brand",
+                                                                                  "collar",
+                                                                                  "details",
+                                                                                  "guide",
+                                                                                  "mesh",
+                                                                                  "seams",
+                                                                                  "short v1",
+                                                                                  "short v2"
+                                                                              ]
+                                                              },
                  "assets/templates/puma/puma gk 2026 v2":  {
                                                                "files":  [
                                                                              "thumbnail.png",
@@ -4209,22 +4226,16 @@
 
                                                                         ]
                                                         },
-                 "assets/templates/puma/puma 26-27 v2 drycell":  {
-                                                                     "files":  [
-                                                                                   "thumbnail.png",
-                                                                                   "transparencia.png",
-                                                                                   "used_by.txt"
-                                                                               ],
-                                                                     "folders":  [
-                                                                                     "base",
-                                                                                     "brand",
-                                                                                     "details",
-                                                                                     "fabric",
-                                                                                     "guide",
-                                                                                     "seams",
-                                                                                     "tights"
-                                                                                 ]
-                                                                 },
+                 "assets/templates/nike/nike 26-27 dry-fit/mesh":  {
+                                                                       "files":  [
+                                                                                     "shirt back.png",
+                                                                                     "shirt side triangle.png",
+                                                                                     "shirt side.png"
+                                                                                 ],
+                                                                       "folders":  [
+
+                                                                                   ]
+                                                                   },
                  "assets/templates/adidas/adidas 2026/fabric":  {
                                                                     "files":  [
                                                                                   "shirt climacool fusion opacidad.png"
@@ -4566,17 +4577,25 @@
                                                                                              "1"
                                                                                          ]
                                                                          },
-                 "assets/pattern/Coventry City":  {
-                                                      "files":  [
-                                                                    "coventry_24_away.png",
-                                                                    "coventry_24_gk - 1.png",
-                                                                    "coventry_24_gk - 2.png",
-                                                                    "coventry_24_home.png"
-                                                                ],
-                                                      "folders":  [
+                 "assets/templates/nike/nike 26-27 dry-fit/seams":  {
+                                                                        "files":  [
+                                                                                      "seams fj.png",
+                                                                                      "shirt back iv.png",
+                                                                                      "shirt hombros front iv.png",
+                                                                                      "shirt iv final.png",
+                                                                                      "shirt side iv.png",
+                                                                                      "shirt sleeve short iv hombro.png",
+                                                                                      "shirt triangle back iv.png",
+                                                                                      "shirt triangle front iv.png",
+                                                                                      "short iv goma.png",
+                                                                                      "short seams fj.png",
+                                                                                      "sleeve short iv cuff.png",
+                                                                                      "sleeve short underarm iv.png"
+                                                                                  ],
+                                                                        "folders":  [
 
-                                                                  ]
-                                                  },
+                                                                                    ]
+                                                                    },
                  "assets/thumbs/templates/adidas/adidas 2026/collar/02":  {
                                                                               "files":  [
                                                                                             "thumbnail.webp"
@@ -5692,6 +5711,7 @@
                                                                "nike 25-26",
                                                                "nike 25-26 v2",
                                                                "nike 25-26 v3",
+                                                               "nike 26-27 dry-fit",
                                                                "nike gk 2026",
                                                                "nike gk 25-26",
                                                                "nike gk worldcup 26-27",
@@ -5716,28 +5736,15 @@
                                                                                                "collar"
                                                                                            ]
                                                                            },
-                 "assets/templates/nike/nike total 90 25-26/details":  {
-                                                                           "files":  [
-                                                                                         "shirt back curve.png",
-                                                                                         "shirt border back.png",
-                                                                                         "shirt border front.png",
-                                                                                         "shirt side.png",
-                                                                                         "short in.png",
-                                                                                         "short side triangle left 2.png",
-                                                                                         "short side triangle left.png",
-                                                                                         "short side triangle right 2.png",
-                                                                                         "short side triangle right.png",
-                                                                                         "short side.png",
-                                                                                         "shorts_mesh_waistband.png",
-                                                                                         "sleeve short cuffs.png",
-                                                                                         "sleeve short detail curve.png",
-                                                                                         "sleeve_long_sleeve_shadow.png",
-                                                                                         "socks doblado.png"
-                                                                                     ],
-                                                                           "folders":  [
+                 "assets/templates/nike/nike total 90 25-26/brand":  {
+                                                                         "files":  [
+                                                                                       "shirt dry-fit.png",
+                                                                                       "shirt etiqueta no color.png"
+                                                                                   ],
+                                                                         "folders":  [
 
-                                                                                       ]
-                                                                       },
+                                                                                     ]
+                                                                     },
                  "assets/templates/macron/macron gk 24-25/shirt/seams":  {
                                                                              "files":  [
                                                                                            "seams fj.png",
@@ -5849,6 +5856,15 @@
 
                                                                               ]
                                                               },
+                 "assets/templates/nike/nike total 90 25-26/mesh":  {
+                                                                        "files":  [
+                                                                                      "short side triangle.png",
+                                                                                      "short side.png"
+                                                                                  ],
+                                                                        "folders":  [
+
+                                                                                    ]
+                                                                    },
                  "assets/templates/adidas/adidas 26-27 climacool/collar/08_no":  {
                                                                                      "files":  [
                                                                                                    "border.png",
@@ -6545,22 +6561,20 @@
 
                                                                                               ]
                                                                               },
-                 "assets/templates/adidas/adidas 2026/collar/04":  {
-                                                                       "files":  [
-                                                                                     "border.png",
-                                                                                     "detail.png",
-                                                                                     "rubber band 2 fusion opacidad.png",
-                                                                                     "rubber band fusion opacidad.png",
-                                                                                     "seams 2 iv.png",
-                                                                                     "seams 3 iv.png",
-                                                                                     "seams iv.png",
-                                                                                     "thumbnail.png",
-                                                                                     "transparencia.png"
-                                                                                 ],
-                                                                       "folders":  [
+                 "assets/templates/puma/puma gk worldcup 2026/collar/1":  {
+                                                                              "files":  [
+                                                                                            "detail back.png",
+                                                                                            "detail.png",
+                                                                                            "seams back iv.png",
+                                                                                            "seams iv.png",
+                                                                                            "thumbnail.png",
+                                                                                            "tights fusion opacidad.png",
+                                                                                            "transparencia.png"
+                                                                                        ],
+                                                                              "folders":  [
 
-                                                                                   ]
-                                                                   },
+                                                                                          ]
+                                                                          },
                  "assets/thumbs/templates/nike/nike 2026/collar/4":  {
                                                                          "files":  [
                                                                                        "preview.webp",
@@ -6728,6 +6742,19 @@
 
                                                                         ]
                                                         },
+                 "assets/templates/nike/nike 26-27 dry-fit/base":  {
+                                                                       "files":  [
+                                                                                     "01.sleeve short.png",
+                                                                                     "02. shirt.png",
+                                                                                     "03. sleeve long.png",
+                                                                                     "04. short.png",
+                                                                                     "05. socks.png",
+                                                                                     "06. ankle.png"
+                                                                                 ],
+                                                                       "folders":  [
+
+                                                                                   ]
+                                                                   },
                  "assets/detalles":  {
                                          "files":  [
                                                        "ankle.png",
@@ -6976,6 +7003,17 @@
                                                                                        "seams"
                                                                                    ]
                                                                    },
+                 "assets/pattern/Coventry City":  {
+                                                      "files":  [
+                                                                    "coventry_24_away.png",
+                                                                    "coventry_24_gk - 1.png",
+                                                                    "coventry_24_gk - 2.png",
+                                                                    "coventry_24_home.png"
+                                                                ],
+                                                      "folders":  [
+
+                                                                  ]
+                                                  },
                  "assets/templates/nike/nike 24-25 shared/collar/1":  {
                                                                           "files":  [
                                                                                         "detail front.png",
@@ -7213,16 +7251,25 @@
                                                                                                    "02"
                                                                                                ]
                                                                                },
-                 "assets/templates/nike/nike total 90 25-26/short":  {
-                                                                         "files":  [
-                                                                                       "short side triangle left.png",
-                                                                                       "short side triangle right.png",
-                                                                                       "used_by.txt"
-                                                                                   ],
-                                                                         "folders":  [
+                 "assets/templates/nike/nike 26-27 dry-fit/brand":  {
+                                                                        "files":  [
+                                                                                      "shirt etiqueta no color.png"
+                                                                                  ],
+                                                                        "folders":  [
 
-                                                                                     ]
-                                                                     },
+                                                                                    ]
+                                                                    },
+                 "assets/templates/macron/macron gk 24-25/shirt/details":  {
+                                                                               "files":  [
+                                                                                             "shirt back.png",
+                                                                                             "shirt overlay size.png",
+                                                                                             "shirt size.png",
+                                                                                             "sleeve_long_sleeve_shadow.png"
+                                                                                         ],
+                                                                               "folders":  [
+
+                                                                                           ]
+                                                                           },
                  "assets/team/Germany":  {
                                              "files":  [
                                                            "1. FC Heidenheim.png",
@@ -7751,6 +7798,17 @@
                                                                                 ],
                                                                       "folders":  [
 
+                                                                                  ]
+                                                                  },
+                 "assets/thumbs/templates/umbro/umbro gk 25-26":  {
+                                                                      "files":  [
+
+                                                                                ],
+                                                                      "folders":  [
+                                                                                      "collar",
+                                                                                      "shirt",
+                                                                                      "short",
+                                                                                      "socks"
                                                                                   ]
                                                                   },
                  "assets/templates/nike/nike 24-25 shared/fabric":  {
@@ -8644,15 +8702,6 @@
 
                                                                         ]
                                                         },
-                 "assets/templates/nike/nike total 90 25-26/brand":  {
-                                                                         "files":  [
-                                                                                       "shirt dry-fit.png",
-                                                                                       "shirt etiqueta no color.png"
-                                                                                   ],
-                                                                         "folders":  [
-
-                                                                                     ]
-                                                                     },
                  "assets/templates/nike/nike gk 2026/seams":  {
                                                                   "files":  [
                                                                                 "seams fj.png",
@@ -8949,6 +8998,15 @@
 
                                                                                         ]
                                                                         },
+                 "assets/templates/nike/nike 26-27 dry-fit/short v2/mesh":  {
+                                                                                "files":  [
+                                                                                              "short side triangle.png",
+                                                                                              "short side.png"
+                                                                                          ],
+                                                                                "folders":  [
+
+                                                                                            ]
+                                                                            },
                  "assets/team/Azerbaijan":  {
                                                 "files":  [
                                                               "Gabala FK.png",
@@ -9546,16 +9604,19 @@
                                                                                      "seams"
                                                                                  ]
                                                                  },
-                 "assets/templates/puma/puma gk 2026 v2/tights":  {
-                                                                      "files":  [
-                                                                                    "shirt axilas.png",
-                                                                                    "short back.png",
-                                                                                    "socks base.png"
-                                                                                ],
-                                                                      "folders":  [
+                 "assets/templates/nike/nike 26-27 dry-fit/guide":  {
+                                                                        "files":  [
+                                                                                      "shirt back.png",
+                                                                                      "shirt front.png",
+                                                                                      "short hem.png",
+                                                                                      "short.png",
+                                                                                      "sleeve cuffs.png",
+                                                                                      "sleeve short.png"
+                                                                                  ],
+                                                                        "folders":  [
 
-                                                                                  ]
-                                                                  },
+                                                                                    ]
+                                                                    },
                  "assets/templates/nike/nike gk worldcup 26-27/mesh":  {
                                                                            "files":  [
                                                                                          "shirt axilas.png",
@@ -9644,14 +9705,22 @@
                                                                          "tights"
                                                                      ]
                                                      },
-                 "assets/thumbs/templates/basic/basic v1/collar/v neck/04":  {
-                                                                                 "files":  [
-                                                                                               "thumbnail.webp"
-                                                                                           ],
-                                                                                 "folders":  [
-
-                                                                                             ]
-                                                                             },
+                 "assets/templates/puma/puma 26-27 v2 drycell":  {
+                                                                     "files":  [
+                                                                                   "thumbnail.png",
+                                                                                   "transparencia.png",
+                                                                                   "used_by.txt"
+                                                                               ],
+                                                                     "folders":  [
+                                                                                     "base",
+                                                                                     "brand",
+                                                                                     "details",
+                                                                                     "fabric",
+                                                                                     "guide",
+                                                                                     "seams",
+                                                                                     "tights"
+                                                                                 ]
+                                                                 },
                  "assets/thumbs/templates/puma/puma 2026":  {
                                                                 "files":  [
                                                                               "thumbnail.webp"
@@ -10226,6 +10295,40 @@
 
                                                                                              ]
                                                                              },
+                 "assets/team/Sweden":  {
+                                            "files":  [
+                                                          "AFC Eskilstuna.png",
+                                                          "AIK Fotboll.png",
+                                                          "BK H ken.png",
+                                                          "Degerfors IF.png",
+                                                          "Djurgardens IF Fotboll.png",
+                                                          "Falkenbergs FF.png",
+                                                          "GAIS.png",
+                                                          "Gefle IF.png",
+                                                          "GIF Sundsvall.png",
+                                                          "Halmstads BK.png",
+                                                          "Hammarby IF.png",
+                                                          "Helsingborgs IF.png",
+                                                          "IF Brommapojkarna.png",
+                                                          "IF Elfsborg.png",
+                                                          "IFK Goteborg.png",
+                                                          "IFK Norrkoping.png",
+                                                          "IFK Varnamo.png",
+                                                          "IK Sirius Fotboll.png",
+                                                          "Jonkopings S ra IF.png",
+                                                          "Kalmar FF.png",
+                                                          "Malmo FF.png",
+                                                          "Mjallby AIF.png",
+                                                          "OSK Fotboll.png",
+                                                          "Osters IF.png",
+                                                          "Ostersunds FK.png",
+                                                          "Varbergs BoIS.png",
+                                                          "VSK Fotboll.png"
+                                                      ],
+                                            "folders":  [
+
+                                                        ]
+                                        },
                  "assets/pattern/FC Augsburg":  {
                                                     "files":  [
                                                                   "augsburg_25_away.png",
@@ -10248,6 +10351,16 @@
                                                                                      "seams"
                                                                                  ]
                                                                  },
+                 "assets/templates/nike/nike total 90 25-26/short":  {
+                                                                         "files":  [
+                                                                                       "short side triangle left.png",
+                                                                                       "short side triangle right.png",
+                                                                                       "used_by.txt"
+                                                                                   ],
+                                                                         "folders":  [
+
+                                                                                     ]
+                                                                     },
                  "assets/pattern/Sunderland AFC":  {
                                                        "files":  [
                                                                      "sunderland_25_away.png",
@@ -10257,6 +10370,14 @@
 
                                                                    ]
                                                    },
+                 "assets/thumbs/templates/puma/puma 2026/collar/2":  {
+                                                                         "files":  [
+                                                                                       "thumbnail.webp"
+                                                                                   ],
+                                                                         "folders":  [
+
+                                                                                     ]
+                                                                     },
                  "assets/templates/adidas/adidas 25-26/collar/01":  {
                                                                         "files":  [
                                                                                       "detail front.png",
@@ -10439,17 +10560,6 @@
 
                                                                                                      ]
                                                                                      },
-                 "assets/templates/macron/macron gk 24-25/shirt/details":  {
-                                                                               "files":  [
-                                                                                             "shirt back.png",
-                                                                                             "shirt overlay size.png",
-                                                                                             "shirt size.png",
-                                                                                             "sleeve_long_sleeve_shadow.png"
-                                                                                         ],
-                                                                               "folders":  [
-
-                                                                                           ]
-                                                                           },
                  "assets/pattern/National/gr_greece":  {
                                                            "files":  [
                                                                          "greece_24.png",
@@ -10655,14 +10765,45 @@
 
                                                                                         ]
                                                                         },
-                 "assets/thumbs/templates/puma/puma 2026/collar/2":  {
-                                                                         "files":  [
-                                                                                       "thumbnail.webp"
-                                                                                   ],
-                                                                         "folders":  [
+                 "assets/templates/puma/puma 26-27 drycell":  {
+                                                                  "files":  [
+                                                                                "thumbnail.png",
+                                                                                "transparencia.png",
+                                                                                "used_by.txt"
+                                                                            ],
+                                                                  "folders":  [
+                                                                                  "base",
+                                                                                  "brand",
+                                                                                  "collar",
+                                                                                  "details",
+                                                                                  "fabric",
+                                                                                  "guide",
+                                                                                  "seams",
+                                                                                  "tights"
+                                                                              ]
+                                                              },
+                 "assets/templates/nike/nike total 90 25-26/details":  {
+                                                                           "files":  [
+                                                                                         "shirt back curve.png",
+                                                                                         "shirt border back.png",
+                                                                                         "shirt border front.png",
+                                                                                         "shirt side.png",
+                                                                                         "short in.png",
+                                                                                         "short side triangle left 2.png",
+                                                                                         "short side triangle left.png",
+                                                                                         "short side triangle right 2.png",
+                                                                                         "short side triangle right.png",
+                                                                                         "short side.png",
+                                                                                         "shorts_mesh_waistband.png",
+                                                                                         "sleeve short cuffs.png",
+                                                                                         "sleeve short detail curve.png",
+                                                                                         "sleeve_long_sleeve_shadow.png",
+                                                                                         "socks doblado.png"
+                                                                                     ],
+                                                                           "folders":  [
 
-                                                                                     ]
-                                                                     },
+                                                                                       ]
+                                                                       },
                  "assets/templates/puma/puma 26-27 v2 drycell/tights":  {
                                                                             "files":  [
                                                                                           "shirt axilas.png",
@@ -11110,6 +11251,21 @@
 
                                                                                         ]
                                                                         },
+                 "assets/templates/nike/nike 26-27 dry-fit/collar/1":  {
+                                                                           "files":  [
+                                                                                         "detail front.png",
+                                                                                         "detail.png",
+                                                                                         "seams 2 iv.png",
+                                                                                         "seams 3 iv.png",
+                                                                                         "seams iv.png",
+                                                                                         "thumbnail.png",
+                                                                                         "tights rubber band fusion opacidad.png",
+                                                                                         "transparencia.png"
+                                                                                     ],
+                                                                           "folders":  [
+
+                                                                                       ]
+                                                                       },
                  "assets/templates/nike/nike gk 25-26/collar/1":  {
                                                                       "files":  [
                                                                                     "detail.png",
@@ -11161,15 +11317,22 @@
 
                                                           ]
                                           },
-                 "assets/templates/nike/nike total 90 25-26/mesh":  {
-                                                                        "files":  [
-                                                                                      "short side triangle.png",
-                                                                                      "short side.png"
-                                                                                  ],
-                                                                        "folders":  [
+                 "assets/templates/adidas/adidas 2026/collar/04":  {
+                                                                       "files":  [
+                                                                                     "border.png",
+                                                                                     "detail.png",
+                                                                                     "rubber band 2 fusion opacidad.png",
+                                                                                     "rubber band fusion opacidad.png",
+                                                                                     "seams 2 iv.png",
+                                                                                     "seams 3 iv.png",
+                                                                                     "seams iv.png",
+                                                                                     "thumbnail.png",
+                                                                                     "transparencia.png"
+                                                                                 ],
+                                                                       "folders":  [
 
-                                                                                    ]
-                                                                    },
+                                                                                   ]
+                                                                   },
                  "assets/templates/joma/joma gk 26-27 v2/seams":  {
                                                                       "files":  [
                                                                                     "seams fj.png",
@@ -12378,23 +12541,14 @@
 
                                                           ]
                                           },
-                 "assets/templates/puma/puma 26-27 drycell":  {
-                                                                  "files":  [
-                                                                                "thumbnail.png",
-                                                                                "transparencia.png",
-                                                                                "used_by.txt"
-                                                                            ],
-                                                                  "folders":  [
-                                                                                  "base",
-                                                                                  "brand",
-                                                                                  "collar",
-                                                                                  "details",
-                                                                                  "fabric",
-                                                                                  "guide",
-                                                                                  "seams",
-                                                                                  "tights"
-                                                                              ]
-                                                              },
+                 "assets/templates/nike/nike 26-27 dry-fit/collar":  {
+                                                                         "files":  [
+
+                                                                                   ],
+                                                                         "folders":  [
+                                                                                         "1"
+                                                                                     ]
+                                                                     },
                  "assets/templates/macron/macron gk 25-26/shirt/pattern":  {
                                                                                "files":  [
                                                                                              "shirt front pattern.png",
@@ -12676,6 +12830,26 @@
                                                                                         "seams"
                                                                                     ]
                                                                     },
+                 "assets/templates/adidas/adidas 25-26/details":  {
+                                                                      "files":  [
+                                                                                    "shirt side.png",
+                                                                                    "shirt underarm.png",
+                                                                                    "short line adidas.png",
+                                                                                    "short side.png",
+                                                                                    "sleeve short cuffs.png",
+                                                                                    "sleeve short front.png",
+                                                                                    "sleeve short line adidas.png",
+                                                                                    "sleeve short side.png",
+                                                                                    "sleeves_long_sleeve_shadow.png",
+                                                                                    "socks doblado.png",
+                                                                                    "socks lineas adidas.png",
+                                                                                    "socks triangle.png",
+                                                                                    "socks trim.png"
+                                                                                ],
+                                                                      "folders":  [
+
+                                                                                  ]
+                                                                  },
                  "assets/templates/adidas/adidas gk trefoil 2026":  {
                                                                         "files":  [
                                                                                       "thumbnail.png",
@@ -12926,20 +13100,6 @@
 
                                                                                         ]
                                                                         },
-                 "assets/templates/puma/puma gk worldcup 2026/collar/1":  {
-                                                                              "files":  [
-                                                                                            "detail back.png",
-                                                                                            "detail.png",
-                                                                                            "seams back iv.png",
-                                                                                            "seams iv.png",
-                                                                                            "thumbnail.png",
-                                                                                            "tights fusion opacidad.png",
-                                                                                            "transparencia.png"
-                                                                                        ],
-                                                                              "folders":  [
-
-                                                                                          ]
-                                                                          },
                  "assets/team/Spain":  {
                                            "files":  [
                                                          "AD Alcorcon.png",
@@ -13196,6 +13356,16 @@
                                                                  "macron gk 25-26"
                                                              ]
                                              },
+                 "assets/templates/puma/puma gk 2026 v2/tights":  {
+                                                                      "files":  [
+                                                                                    "shirt axilas.png",
+                                                                                    "short back.png",
+                                                                                    "socks base.png"
+                                                                                ],
+                                                                      "folders":  [
+
+                                                                                  ]
+                                                                  },
                  "assets/pattern/FC Bayern Munich":  {
                                                          "files":  [
                                                                        "bayern_25_away - 1.png",
