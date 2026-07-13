@@ -53,6 +53,7 @@
   // v1.3.210: public beta recovery. Disable stale generated manifests that point to old Basic/Adidas paths.
   const TEMPLATE_STYLE_MANIFESTS = [];
   window.__KITLAB_TEMPLATE_GALLERY_NAMES_V258__ = true;
+  window.__KITLAB_TEMPLATE_GALLERY_COLLAR_FIX_V260__ = true;
 
   const BASIC_COSTURAS_LAB_TEMPLATE = {"name":"Basic Costuras Lab","brand":"basic","path":"assets/templates/basic/basic%20costuras","thumb":"assets/templates/basic/basic%20costuras/thumbnails.png","details":[{"path":"assets/templates/basic/basic%20costuras/detalles/1.%20shirt%20final.png","name":"Shirt Final","folder":"detalles","section":"shirt","order":1,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false},{"path":"assets/templates/basic/basic%20costuras/detalles/2.%20sleeve%20short%20puno.png","name":"Sleeve Short Cuff","folder":"detalles","section":"shirt","order":2,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false},{"path":"assets/templates/basic/basic%20costuras/detalles/3.%20short%20final.png","name":"Short Final","folder":"detalles","section":"short","order":3,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false},{"path":"assets/templates/basic/basic%20costuras/detalles/4.%20socks%20doblado.png","name":"Socks Fold","folder":"detalles","section":"socks","order":4,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false},{"path":"assets/templates/basic/basic%20costuras/detalles/5.%20sleeve%20short.png","name":"Sleeve Short","folder":"detalles","section":"shirt","order":5,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false},{"path":"assets/templates/basic/basic%20costuras/detalles/6.%20shirt.png","name":"Shirt","folder":"detalles","section":"shirt","order":6,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false},{"path":"assets/templates/basic/basic%20costuras/detalles/7.%20sleeve%20long.png","name":"Sleeve Long","folder":"detalles","section":"shirt","order":7,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false},{"path":"assets/templates/basic/basic%20costuras/detalles/8.%20short.png","name":"Short","folder":"detalles","section":"short","order":8,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false},{"path":"assets/templates/basic/basic%20costuras/detalles/9.%20socks.png","name":"Socks","folder":"detalles","section":"socks","order":9,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false},{"path":"assets/templates/basic/basic%20costuras/detalles/10.%20ankle.png","name":"Ankle","folder":"detalles","section":"socks","order":10,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false}],"seams":[{"path":"assets/templates/basic/basic%20costuras/costuras/costuras_camiseta_iv_costados_axilas.png","name":"Seams Shirt IV Sides Armpits","manualLab":true,"iv":true,"fj":false,"order":0,"blendMode":"overlay","opacity":0.4,"inverted":false},{"path":"assets/templates/basic/basic%20costuras/costuras/costuras_camiseta_iv_final.png","name":"Seams Shirt IV Final","manualLab":true,"iv":true,"fj":false,"order":1,"blendMode":"overlay","opacity":0.4,"inverted":false},{"path":"assets/templates/basic/basic%20costuras/costuras/costuras_camiseta_iv_hombro_mangas.png","name":"Seams Shirt IV Shoulder Sleeves","manualLab":true,"iv":true,"fj":false,"order":2,"blendMode":"overlay","opacity":0.4,"inverted":false},{"path":"assets/templates/basic/basic%20costuras/costuras/costuras_camiseta_iv_hombros.png","name":"Seams Shirt IV Shoulders","manualLab":true,"iv":true,"fj":false,"order":3,"blendMode":"overlay","opacity":0.4,"inverted":false},{"path":"assets/templates/basic/basic%20costuras/costuras/costuras_fj.png","name":"Seams FJ","manualLab":true,"iv":false,"fj":true,"order":4,"blendMode":"overlay","opacity":1,"inverted":false},{"path":"assets/templates/basic/basic%20costuras/costuras/costuras_manga_corta_iv_pu_os.png","name":"Seams Sleeve Short IV Pu Os","manualLab":true,"iv":true,"fj":false,"order":5,"blendMode":"overlay","opacity":0.4,"inverted":false},{"path":"assets/templates/basic/basic%20costuras/costuras/costuras_pantalon_iv_costados.png","name":"Seams Shorts IV Sides","manualLab":true,"iv":true,"fj":false,"order":6,"blendMode":"overlay","opacity":0.4,"inverted":false},{"path":"assets/templates/basic/basic%20costuras/costuras/costuras_pantalon_iv_final.png","name":"Seams Shorts IV Final","manualLab":true,"iv":true,"fj":false,"order":7,"blendMode":"overlay","opacity":0.4,"inverted":false},{"path":"assets/templates/basic/basic%20costuras/costuras/costuras_pantalon_iv_goma.png","name":"Seams Shorts IV Waistband","manualLab":true,"iv":true,"fj":false,"order":8,"blendMode":"overlay","opacity":0.4,"inverted":false}],"transparency":[{"path":"assets/templates/basic/basic%20costuras/transparencia.png","name":"Transparency"}],"collars":[{"id":"BSC_COL_RND_001_crew_neck_basic","name":"Crew Neck Basic","thumb":"assets/templates/basic/basic%20costuras/collar/collar_thumbnails/bsc_col_rnd_001_crew_neck_basic.png","details":[{"path":"assets/templates/basic/basic%20costuras/collar/01_round_crew/crew_neck_basic/collar_base.png","name":"Base","folder":"Crew Neck Basic","section":"collar","order":1,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false}],"seams":[{"path":"assets/templates/basic/basic%20costuras/collar/01_round_crew/crew_neck_basic/collar_seams_iv.png","name":"Collar Seams IV","iv":true,"fj":false}],"transparency":[{"path":"assets/templates/basic/basic%20costuras/collar/01_round_crew/crew_neck_basic/collar_transparency.png","name":"Transparency"}]},{"id":"BSC_COL_VNK_001_v_neck_basic","name":"V-Neck Basic","thumb":"assets/templates/basic/basic%20costuras/collar/collar_thumbnails/bsc_col_vnk_001_v_neck_basic.png","details":[{"path":"assets/templates/basic/basic%20costuras/collar/02_v_neck/v_neck_basic/collar_base.png","name":"Base","folder":"V-Neck Basic","section":"collar","order":1,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false}],"seams":[{"path":"assets/templates/basic/basic%20costuras/collar/02_v_neck/v_neck_basic/collar_seams_iv.png","name":"Collar Seams IV","iv":true,"fj":false}],"transparency":[{"path":"assets/templates/basic/basic%20costuras/collar/02_v_neck/v_neck_basic/collar_transparency.png","name":"Transparency"}]},{"id":"BSC_COL_VNK_002_v_neck_center_cut","name":"V-Neck Center Cut","thumb":"assets/templates/basic/basic%20costuras/collar/collar_thumbnails/bsc_col_vnk_002_v_neck_center_cut.png","details":[{"path":"assets/templates/basic/basic%20costuras/collar/02_v_neck/v_neck_center_cut/collar_base.png","name":"Base","folder":"V-Neck Center Cut","section":"collar","order":1,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false}],"seams":[{"path":"assets/templates/basic/basic%20costuras/collar/02_v_neck/v_neck_center_cut/collar_seams_iv.png","name":"Collar Seams IV","iv":true,"fj":false}],"transparency":[{"path":"assets/templates/basic/basic%20costuras/collar/02_v_neck/v_neck_center_cut/collar_transparency.png","name":"Transparency"}]},{"id":"BSC_COL_VNK_003_v_neck_inner_trim","name":"V-Neck Inner Trim","thumb":"assets/templates/basic/basic%20costuras/collar/collar_thumbnails/bsc_col_vnk_003_v_neck_inner_trim.png","details":[{"path":"assets/templates/basic/basic%20costuras/collar/02_v_neck/v_neck_inner_trim/collar_base.png","name":"Base","folder":"V-Neck Inner Trim","section":"collar","order":1,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false},{"path":"assets/templates/basic/basic%20costuras/collar/02_v_neck/v_neck_inner_trim/collar_detail.png","name":"Inner Trim","folder":"V-Neck Inner Trim","section":"collar","order":2,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false}],"seams":[{"path":"assets/templates/basic/basic%20costuras/collar/02_v_neck/v_neck_inner_trim/collar_seams_iv_01.png","name":"Collar Seams IV 01","iv":true,"fj":false},{"path":"assets/templates/basic/basic%20costuras/collar/02_v_neck/v_neck_inner_trim/collar_seams_iv_02.png","name":"Collar Seams IV 02","iv":true,"fj":false}],"transparency":[{"path":"assets/templates/basic/basic%20costuras/collar/02_v_neck/v_neck_inner_trim/collar_transparency.png","name":"Transparency"}]}]};
   const BASIC_ZERO_TEMPLATE = {"name":"Basic","brand":"basic","path":"assets/templates/basic/basic","thumb":"assets/templates/basic/basic/thumbnails.png","basePieces":{"sleeve_short":{"path":"assets/templates/basic/basic/base/01.sleeve%20short.png","name":"Sleeve Short","order":1,"rawName":"01.sleeve short.png","originalPath":"base/01.sleeve short.png"},"shirt":{"path":"assets/templates/basic/basic/base/02.%20shirt.png","name":"Shirt","order":2,"rawName":"02. shirt.png","originalPath":"base/02. shirt.png"},"sleeve_long":{"path":"assets/templates/basic/basic/base/03.%20sleeve%20long.png","name":"Sleeve Long","order":3,"rawName":"03. sleeve long.png","originalPath":"base/03. sleeve long.png"},"short":{"path":"assets/templates/basic/basic/base/04.%20short.png","name":"Short","order":4,"rawName":"04. short.png","originalPath":"base/04. short.png"},"socks":{"path":"assets/templates/basic/basic/base/05.%20socks.png","name":"Socks","order":5,"rawName":"05. socks.png","originalPath":"base/05. socks.png"},"ankle":{"path":"assets/templates/basic/basic/base/06.%20ankle.png","name":"Ankle","order":6,"rawName":"06. ankle.png","originalPath":"base/06. ankle.png"}},"details":[{"path":"assets/templates/basic/basic/details/shirt%20final.png","name":"Shirt Final","folder":"Details","section":"shirt","order":1,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false,"rawName":"shirt final.png","originalPath":"details/shirt final.png"},{"path":"assets/templates/basic/basic/details/sleeve%20short%20puno.png","name":"Sleeve Short Puno","folder":"Details","section":"shirt","order":2,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false,"rawName":"sleeve short puno.png","originalPath":"details/sleeve short puno.png"},{"path":"assets/templates/basic/basic/details/short%20final.png","name":"Short Final","folder":"Details","section":"short","order":3,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false,"rawName":"short final.png","originalPath":"details/short final.png"},{"path":"assets/templates/basic/basic/details/socks%20doblado.png","name":"Socks Doblado","folder":"Details","section":"socks","order":4,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false,"rawName":"socks doblado.png","originalPath":"details/socks doblado.png"},{"path":"assets/templates/basic/basic/details/sleeve_long_sleeve_shadow.png","name":"Sleeve Long Sleeve Shadow","folder":"Details","section":"shirt","order":5,"blend":true,"opacityCtl":true,"opacity":0.55,"noColor":true,"rawName":"sleeve_long_sleeve_shadow.png","originalPath":"details/sleeve_long_sleeve_shadow.png","blendMode":"multiply"}],"seams":[{"path":"assets/templates/basic/basic/seams/seams_fj.png","name":"Seams FJ","iv":false,"fj":true,"manualLab":true,"blendMode":"overlay","opacity":1,"order":1,"rawName":"seams_FJ.png","originalPath":"seams/seams_FJ.png"},{"path":"assets/templates/basic/basic/seams/shirt%20iv%20costados.png","name":"Shirt IV Costados","iv":true,"fj":false,"manualLab":true,"blendMode":"overlay","opacity":0.4,"order":2,"rawName":"shirt IV costados.png","originalPath":"seams/shirt IV costados.png"},{"path":"assets/templates/basic/basic/seams/shirt%20iv%20final.png","name":"Shirt IV Final","iv":true,"fj":false,"manualLab":true,"blendMode":"overlay","opacity":0.4,"order":3,"rawName":"shirt IV final.png","originalPath":"seams/shirt IV final.png"},{"path":"assets/templates/basic/basic/seams/shirt%20iv%20hombro.png","name":"Shirt IV Hombro","iv":true,"fj":false,"manualLab":true,"blendMode":"overlay","opacity":0.4,"order":4,"rawName":"shirt IV hombro.png","originalPath":"seams/shirt IV hombro.png"},{"path":"assets/templates/basic/basic/seams/shirt%20sleeve%20short%20iv%20hombro.png","name":"Shirt Sleeve Short IV Hombro","iv":true,"fj":false,"manualLab":true,"blendMode":"overlay","opacity":0.4,"order":5,"rawName":"shirt sleeve short IV hombro.png","originalPath":"seams/shirt sleeve short IV hombro.png"},{"path":"assets/templates/basic/basic/seams/short%20iv%20costados.png","name":"Short IV Costados","iv":true,"fj":false,"manualLab":true,"blendMode":"overlay","opacity":0.4,"order":6,"rawName":"short IV costados.png","originalPath":"seams/short IV costados.png"},{"path":"assets/templates/basic/basic/seams/short%20iv%20final.png","name":"Short IV Final","iv":true,"fj":false,"manualLab":true,"blendMode":"overlay","opacity":0.4,"order":7,"rawName":"short IV final.png","originalPath":"seams/short IV final.png"},{"path":"assets/templates/basic/basic/seams/short%20iv%20goma.png","name":"Short IV Goma","iv":true,"fj":false,"manualLab":true,"blendMode":"overlay","opacity":0.4,"order":8,"rawName":"short IV goma.png","originalPath":"seams/short IV goma.png"},{"path":"assets/templates/basic/basic/seams/sleeve%20short%20cuffs%20fj.png","name":"Sleeve Short Cuffs FJ","iv":false,"fj":true,"manualLab":true,"blendMode":"overlay","opacity":1,"order":9,"rawName":"sleeve short cuffs FJ.png","originalPath":"seams/sleeve short cuffs FJ.png"},{"path":"assets/templates/basic/basic/seams/sleeve%20short%20iv%20axilas.png","name":"Sleeve Short IV Axilas","iv":true,"fj":false,"manualLab":true,"blendMode":"overlay","opacity":0.4,"order":10,"rawName":"sleeve short IV axilas.png","originalPath":"seams/sleeve short IV axilas.png"},{"path":"assets/templates/basic/basic/seams/sleeve%20short%20iv%20cuff.png","name":"Sleeve Short IV Cuff","iv":true,"fj":false,"manualLab":true,"blendMode":"overlay","opacity":0.4,"order":11,"rawName":"sleeve short IV cuff.png","originalPath":"seams/sleeve short IV cuff.png"}],"transparency":[{"path":"assets/templates/basic/basic/transparencia.png","name":"Transparencia","rawName":"transparencia.png","originalPath":"transparencia.png"}],"collars":[{"id":"Crew Neck/01","name":"01","category":"Crew Neck","folder":"Crew Neck/01","thumb":"assets/templates/basic/basic/collar/crew%20neck/01/thumbnail.png","details":[{"path":"assets/templates/basic/basic/collar/crew%20neck/01/detail.png","name":"Detail","folder":"Crew Neck 01","section":"collar","order":1,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false,"rawName":"detail.png","originalPath":"collar/Crew Neck/01/detail.png"},{"path":"assets/templates/basic/basic/collar/crew%20neck/01/tights%20rubber%20band%20fusion%20opacidad.png","name":"Tights Rubber Band Fusion Opacidad","folder":"Crew Neck 01","section":"collar","order":2,"blend":true,"opacityCtl":true,"opacity":1,"noColor":true,"rawName":"tights rubber band fusion opacidad.png","originalPath":"collar/Crew Neck/01/tights rubber band fusion opacidad.png"}],"seams":[{"path":"assets/templates/basic/basic/collar/crew%20neck/01/seams%20iv.png","name":"Seams IV","iv":true,"fj":false,"manualLab":true,"blendMode":"overlay","opacity":1,"order":1,"rawName":"seams IV.png","originalPath":"collar/Crew Neck/01/seams IV.png"}],"transparency":[{"path":"assets/templates/basic/basic/collar/crew%20neck/01/transparencia.png","name":"Transparencia","rawName":"transparencia.png","originalPath":"collar/Crew Neck/01/transparencia.png"}]},{"id":"Crew Neck/02","name":"02","category":"Crew Neck","folder":"Crew Neck/02","thumb":"assets/templates/basic/basic/collar/crew%20neck/02/thumbnail.png","details":[{"path":"assets/templates/basic/basic/collar/crew%20neck/02/detail.png","name":"Detail","folder":"Crew Neck 02","section":"collar","order":1,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false,"rawName":"detail.png","originalPath":"collar/Crew Neck/02/detail.png"},{"path":"assets/templates/basic/basic/collar/crew%20neck/02/tights%20rubber%20band%20fusion%20opacidad.png","name":"Tights Rubber Band Fusion Opacidad","folder":"Crew Neck 02","section":"collar","order":2,"blend":true,"opacityCtl":true,"opacity":1,"noColor":true,"rawName":"tights rubber band fusion opacidad.png","originalPath":"collar/Crew Neck/02/tights rubber band fusion opacidad.png"}],"seams":[{"path":"assets/templates/basic/basic/collar/crew%20neck/02/seams%20iv.png","name":"Seams IV","iv":true,"fj":false,"manualLab":true,"blendMode":"overlay","opacity":1,"order":1,"rawName":"seams IV.png","originalPath":"collar/Crew Neck/02/seams IV.png"}],"transparency":[{"path":"assets/templates/basic/basic/collar/crew%20neck/02/transparencia.png","name":"Transparencia","rawName":"transparencia.png","originalPath":"collar/Crew Neck/02/transparencia.png"}]},{"id":"V Neck/01","name":"01","category":"V Neck","folder":"V Neck/01","thumb":"assets/templates/basic/basic/collar/v%20neck/01/thumbnail.png","details":[{"path":"assets/templates/basic/basic/collar/v%20neck/01/detail.png","name":"Detail","folder":"V Neck 01","section":"collar","order":1,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false,"rawName":"detail.png","originalPath":"collar/V Neck/01/detail.png"},{"path":"assets/templates/basic/basic/collar/v%20neck/01/rubber%20band%20fusion%20opacidad.png","name":"Rubber Band Fusion Opacidad","folder":"V Neck 01","section":"collar","order":2,"blend":true,"opacityCtl":true,"opacity":1,"noColor":true,"rawName":"rubber band fusion opacidad.png","originalPath":"collar/V Neck/01/rubber band fusion opacidad.png"}],"seams":[{"path":"assets/templates/basic/basic/collar/v%20neck/01/seams%202%20iv.png","name":"Seams 2 IV","iv":true,"fj":false,"manualLab":true,"blendMode":"overlay","opacity":1,"order":1,"rawName":"seams 2 IV.png","originalPath":"collar/V Neck/01/seams 2 IV.png"},{"path":"assets/templates/basic/basic/collar/v%20neck/01/seams%20iv.png","name":"Seams IV","iv":true,"fj":false,"manualLab":true,"blendMode":"overlay","opacity":1,"order":2,"rawName":"seams IV.png","originalPath":"collar/V Neck/01/seams IV.png"}],"transparency":[{"path":"assets/templates/basic/basic/collar/v%20neck/01/transparencia.png","name":"Transparencia","rawName":"transparencia.png","originalPath":"collar/V Neck/01/transparencia.png"}]},{"id":"V Neck/02","name":"02","category":"V Neck","folder":"V Neck/02","thumb":"assets/templates/basic/basic/collar/v%20neck/02/thumbnail.png","details":[{"path":"assets/templates/basic/basic/collar/v%20neck/02/detail.png","name":"Detail","folder":"V Neck 02","section":"collar","order":1,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false,"rawName":"detail.png","originalPath":"collar/V Neck/02/detail.png"},{"path":"assets/templates/basic/basic/collar/v%20neck/02/border.png","name":"Border","folder":"V Neck 02","section":"collar","order":2,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false,"rawName":"border.png","originalPath":"collar/V Neck/02/border.png"},{"path":"assets/templates/basic/basic/collar/v%20neck/02/rubber%20band%20fusion%20opacidad.png","name":"Rubber Band Fusion Opacidad","folder":"V Neck 02","section":"collar","order":3,"blend":true,"opacityCtl":true,"opacity":1,"noColor":true,"rawName":"rubber band fusion opacidad.png","originalPath":"collar/V Neck/02/rubber band fusion opacidad.png"}],"seams":[{"path":"assets/templates/basic/basic/collar/v%20neck/02/seams%202%20iv.png","name":"Seams 2 IV","iv":true,"fj":false,"manualLab":true,"blendMode":"overlay","opacity":1,"order":1,"rawName":"seams 2 IV.png","originalPath":"collar/V Neck/02/seams 2 IV.png"},{"path":"assets/templates/basic/basic/collar/v%20neck/02/seams%20iv.png","name":"Seams IV","iv":true,"fj":false,"manualLab":true,"blendMode":"overlay","opacity":1,"order":2,"rawName":"seams IV.png","originalPath":"collar/V Neck/02/seams IV.png"}],"transparency":[{"path":"assets/templates/basic/basic/collar/v%20neck/02/transparencia.png","name":"Transparencia","rawName":"transparencia.png","originalPath":"collar/V Neck/02/transparencia.png"}]},{"id":"V Neck/03","name":"03","category":"V Neck","folder":"V Neck/03","thumb":"assets/templates/basic/basic/collar/v%20neck/03/thumbnail.png","details":[{"path":"assets/templates/basic/basic/collar/v%20neck/03/detail.png","name":"Detail","folder":"V Neck 03","section":"collar","order":1,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false,"rawName":"detail.png","originalPath":"collar/V Neck/03/detail.png"}],"seams":[{"path":"assets/templates/basic/basic/collar/v%20neck/03/seams%20iv.png","name":"Seams IV","iv":true,"fj":false,"manualLab":true,"blendMode":"overlay","opacity":1,"order":1,"rawName":"seams IV.png","originalPath":"collar/V Neck/03/seams IV.png"}],"transparency":[{"path":"assets/templates/basic/basic/collar/v%20neck/03/transparencia.png","name":"Transparencia","rawName":"transparencia.png","originalPath":"collar/V Neck/03/transparencia.png"}]},{"id":"V Neck/04","name":"04","category":"V Neck","folder":"V Neck/04","thumb":"assets/templates/basic/basic/collar/v%20neck/04/thumbnail.png","details":[{"path":"assets/templates/basic/basic/collar/v%20neck/04/detail.png","name":"Detail","folder":"V Neck 04","section":"collar","order":1,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false,"rawName":"detail.png","originalPath":"collar/V Neck/04/detail.png"},{"path":"assets/templates/basic/basic/collar/v%20neck/04/border%202.png","name":"Border 2","folder":"V Neck 04","section":"collar","order":2,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false,"rawName":"border 2.png","originalPath":"collar/V Neck/04/border 2.png"},{"path":"assets/templates/basic/basic/collar/v%20neck/04/border.png","name":"Border","folder":"V Neck 04","section":"collar","order":3,"blend":false,"opacityCtl":false,"opacity":1,"noColor":false,"rawName":"border.png","originalPath":"collar/V Neck/04/border.png"},{"path":"assets/templates/basic/basic/collar/v%20neck/04/rubber%20band%20fusion%20opacidad.png","name":"Rubber Band Fusion Opacidad","folder":"V Neck 04","section":"collar","order":4,"blend":true,"opacityCtl":true,"opacity":1,"noColor":true,"rawName":"rubber band fusion opacidad.png","originalPath":"collar/V Neck/04/rubber band fusion opacidad.png"}],"seams":[{"path":"assets/templates/basic/basic/collar/v%20neck/04/seams%202%20iv.png","name":"Seams 2 IV","iv":true,"fj":false,"manualLab":true,"blendMode":"overlay","opacity":1,"order":1,"rawName":"seams 2 IV.png","originalPath":"collar/V Neck/04/seams 2 IV.png"},{"path":"assets/templates/basic/basic/collar/v%20neck/04/seams%20iv.png","name":"Seams IV","iv":true,"fj":false,"manualLab":true,"blendMode":"overlay","opacity":1,"order":2,"rawName":"seams IV.png","originalPath":"collar/V Neck/04/seams IV.png"}],"transparency":[{"path":"assets/templates/basic/basic/collar/v%20neck/04/transparencia.png","name":"Transparencia","rawName":"transparencia.png","originalPath":"collar/V Neck/04/transparencia.png"}]}],"guides":[{"path":"assets/templates/basic/basic/guide/shirt%20back.png","name":"Shirt Back","rawName":"shirt back.png","originalPath":"guide/shirt back.png"},{"path":"assets/templates/basic/basic/guide/shirt%20front.png","name":"Shirt Front","rawName":"shirt front.png","originalPath":"guide/shirt front.png"},{"path":"assets/templates/basic/basic/guide/sleeve%20short.png","name":"Sleeve Short","rawName":"sleeve short.png","originalPath":"guide/sleeve short.png"}],"collarCategories":["Crew Neck","V Neck","Polo Collar","Henley Button","Slip Neck","Asymetric Collar","Hybrid Special"]};
@@ -2396,6 +2397,9 @@
     if (/assets\/templates\/nike\/nike\s+23-24\s+shared(?:\/|$)/i.test(path)) return "Nike 23/24";
     if (/assets\/templates\/nike\/nike\s+24-25\s+shared(?:\/|$)/i.test(path)) return "Nike 24/25";
     if (/assets\/templates\/nike\/nike\s+gk\s+worldcup\s+26-27(?:\/|$)/i.test(path)) return "Nike GK Worldcup 2026";
+    // v1.3.260: only the existing Players / Adidas 2026 card receives this visible name.
+    // Do not rename either Adidas GK card or any physical folder/internal id.
+    if (/assets\/templates\/adidas\/adidas\s+2026(?:\/|$)/i.test(path)) return "Adidas 26/27";
     if (/assets\/templates\/puma\/puma\s+gk\s+worldcup\s+2026(?:\/|$)/i.test(path)) return "Puma GK Worldcup 2026";
     return "";
   }
@@ -2430,12 +2434,14 @@
   function templateTechnologyLabelOverride(itemOrName) {
     if (!itemOrName || typeof itemOrName !== "object") return null;
     const path = decodeTemplateNameText(itemOrName.path || "").replace(/\\/g, "/").toLowerCase();
+    // v1.3.260: the second existing Players / Adidas card is Climacool+.
+    if (/assets\/templates\/adidas\/adidas\s+2026(?:\/|$)/i.test(path)) return "Climacool+";
     if (/assets\/templates\/nike\/nike\s+26-27\s+dry-fit(?:\/|$)/i.test(path)) return "Dri-FIT";
     if (/assets\/templates\/nike\/nike\s+gk\s+26-27\s+dry-fit(?:\/|$)/i.test(path)) return "Dri-FIT";
     if (/assets\/templates\/nike\/nike\s+gk\s+2026(?:\/|$)/i.test(path)) return "Aero-FIT";
     if (/assets\/templates\/nike\/nike\s+gk\s+worldcup\s+26-27(?:\/|$)/i.test(path)) return "Aero-FIT";
     if (/assets\/templates\/nike\/nike\s+gk\s+25-26(?:\/|$)/i.test(path)) return "Dri-FIT";
-    if (/assets\/templates\/puma\/puma\s+gk\s+worldcup\s+2026(?:\/|$)/i.test(path)) return "";
+    if (/assets\/templates\/puma\/puma\s+gk\s+worldcup\s+2026(?:\/|$)/i.test(path)) return "Ultraweave";
     return null;
   }
 
@@ -4844,19 +4850,52 @@
   // Keep the exact recorded thumb first, then try the real folder/id casing used on disk.
   // This matters on the public web, where 07_NO and 07_no are different paths.
   function collarThumbnailCandidates(item = {}) {
-    const seen = new Set();
-    const out = [];
-    const add = (value) => {
+    // v1.3.260: every collar gallery card must try the real thumbnail PNG from
+    // its own collar folder before any old detail/border/preview fallback.
+    // This repairs old manifests without renaming files or touching layers.
+    const primarySeen = new Set();
+    const fallbackSeen = new Set();
+    const primary = [];
+    const fallbacks = [];
+    const addPrimary = (value) => {
       const raw = String(value || "").trim();
-      if (!raw || seen.has(raw)) return;
-      seen.add(raw);
-      out.push(raw);
+      if (!raw || primarySeen.has(raw)) return;
+      primarySeen.add(raw);
+      fallbackSeen.delete(raw);
+      primary.push(raw);
     };
-    const selected = state.templateStyle?.selected || getActiveTemplateManifest() || {};
-    const root = String(selected?.path || "").replace(/\/+$/, "");
+    const addFallback = (value) => {
+      const raw = String(value || "").trim();
+      if (!raw || primarySeen.has(raw) || fallbackSeen.has(raw)) return;
+      fallbackSeen.add(raw);
+      fallbacks.push(raw);
+    };
+    const thumbNames = ["thumbnail.png", "thumbnail.PNG", "thumbnails.png", "thumbnails.PNG"];
+    const cleanAssetPath = (value) => String(value || "").trim().split(/[?#]/, 1)[0];
+    const addSiblingThumbnails = (value) => {
+      const clean = cleanAssetPath(value);
+      const slash = clean.lastIndexOf("/");
+      if (slash <= 0) return;
+      const parent = clean.slice(0, slash);
+      for (const thumbName of thumbNames) addPrimary(`${parent}/${thumbName}`);
+    };
 
-    // The manifest's explicit thumbnail is the primary source.
-    add(item?.thumb);
+    const selected = state.templateStyle?.selected || getActiveTemplateManifest() || {};
+    const roots = [];
+    const rootSeen = new Set();
+    const addRoot = (value) => {
+      const raw = String(value || "").trim().replace(/\/+$/, "");
+      if (!raw || rootSeen.has(raw)) return;
+      rootSeen.add(raw);
+      roots.push(raw);
+    };
+    addRoot(selected?.path);
+
+    // Even when an old manifest points to detail.png/border.png, its parent is
+    // still the exact collar folder. Derive thumbnail.png from that parent first.
+    addSiblingThumbnails(item?.thumb);
+    addSiblingThumbnails(item?.src);
+    addSiblingThumbnails(item?.path);
 
     const folderSeen = new Set();
     const folders = [];
@@ -4866,8 +4905,6 @@
       folderSeen.add(raw);
       folders.push(raw);
     };
-
-    // `folder` can be normalized for web-safe paths while `id` keeps the real disk casing.
     addFolder(item?.folder);
     addFolder(item?.id);
 
@@ -4876,51 +4913,61 @@
     if (Array.isArray(item?.seams)) scanPaths.push(...item.seams);
     if (Array.isArray(item?.transparency)) scanPaths.push(...item.transparency);
 
+    const scanKnownPath = (value) => {
+      const clean = cleanAssetPath(value);
+      if (!clean) return;
+      addSiblingThumbnails(clean);
+      const match = clean.match(/^(.*)\/collar\/(.+)\/[^/]+$/i);
+      if (match) {
+        addRoot(match[1]);
+        addFolder(match[2]);
+      }
+    };
+
     for (const meta of scanPaths) {
       const originalPath = String(meta?.originalPath || "").replace(/^\/+/, "");
       const originalParts = originalPath.split("/").filter(Boolean);
       const collarIndex = originalParts.findIndex((part) => String(part).toLowerCase() === "collar");
-      if (collarIndex >= 0 && originalParts[collarIndex + 1]) addFolder(originalParts[collarIndex + 1]);
+      if (collarIndex >= 0 && originalParts.length > collarIndex + 2) {
+        // Keep the complete nested folder, e.g. "Polo Collar/01", not just "Polo Collar".
+        addFolder(originalParts.slice(collarIndex + 1, -1).join("/"));
+      }
+      scanKnownPath(meta?.path || meta?.src || "");
     }
 
-    if (root) {
+    for (const root of roots) {
       for (const folder of folders) {
         const encodedFolder = encodePathParts(folder);
         const uriFolder = encodeURI(folder).replace(/%2F/g, "/");
-        for (const thumbName of ["thumbnail.png", "thumbnail.PNG", "thumbnails.png", "thumbnails.PNG"]) {
-          add(`${root}/collar/${encodedFolder}/${thumbName}`);
-          add(`${root}/collar/${uriFolder}/${thumbName}`);
-          add(`${root}/collar/${folder}/${thumbName}`);
+        for (const thumbName of thumbNames) {
+          addPrimary(`${root}/collar/${encodedFolder}/${thumbName}`);
+          addPrimary(`${root}/collar/${uriFolder}/${thumbName}`);
+          addPrimary(`${root}/collar/${folder}/${thumbName}`);
         }
       }
     }
 
     for (const meta of scanPaths) {
       const originalPath = String(meta?.originalPath || "").replace(/^\/+/, "");
-      const path = String(meta?.path || meta?.src || "");
-      if (root && originalPath) {
+      if (originalPath) {
         const parent = originalPath.split("/").slice(0, -1).join("/");
         if (parent) {
-          for (const thumbName of ["thumbnail.png", "thumbnail.PNG", "thumbnails.png", "thumbnails.PNG"]) {
-            add(`${root}/${encodePathParts(parent)}/${thumbName}`);
-            add(`${root}/${parent}/${thumbName}`);
-          }
-        }
-      }
-      if (path) {
-        const parent = path.split("/").slice(0, -1).join("/");
-        if (parent) {
-          for (const thumbName of ["thumbnail.png", "thumbnail.PNG", "thumbnails.png", "thumbnails.PNG"]) {
-            add(`${parent}/${thumbName}`);
+          for (const root of roots) {
+            for (const thumbName of thumbNames) {
+              addPrimary(`${root}/${encodePathParts(parent)}/${thumbName}`);
+              addPrimary(`${root}/${parent}/${thumbName}`);
+            }
           }
         }
       }
     }
 
-    // Final compatibility fallbacks for old/incomplete collar packs.
-    add(item?.src);
-    add(item?.path);
-    return out;
+    // Exact manifest values remain as compatibility fallbacks for packs that
+    // genuinely use preview.png or another legacy image and have no thumbnail.png.
+    addFallback(item?.thumb);
+    addFallback(item?.src);
+    addFallback(item?.path);
+    return [...primary, ...fallbacks];
   }
 
   function currentInternalItems() {
@@ -17801,11 +17848,9 @@
       }
       const cardsHtml = items.map((item, idx) => {
         const rawThumbCandidates = collarThumbnailCandidates(item);
-        const selectedPath = String(state.templateStyle?.selected?.path || "");
-        const isAdidas2627Climacool = /adidas(?:%20| )26-27(?:%20| )climacool/i.test(selectedPath);
-        const thumbCandidates = isAdidas2627Climacool
-          ? rawThumbCandidates.map((src) => withAssetCacheBust(src))
-          : rawThumbCandidates;
+        // v1.3.260: avoid a stale cached 404/old detail image after deploying newly
+        // detected collar thumbnail.png files on the public Cloudflare web.
+        const thumbCandidates = rawThumbCandidates.map((src) => withAssetCacheBust(src));
         const img = thumbCandidates[0] || TEMPLATE_FOLDER_FALLBACK_THUMB || "";
         const fallbackList = thumbCandidates.slice(1);
         const displayName = collarVisibleName(item, idx);
