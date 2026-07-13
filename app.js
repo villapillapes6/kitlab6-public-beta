@@ -1,8 +1,8 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.251_insert_adidas_26_27_climacool_collars_fixed";
+  const KITLAB_BUILD_VERSION = "v1.3.252_adidas_26_27_collar_thumbnails_web";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
-  console.log("KitLab6 template insert", "v1.3.251 Adidas 26/27 Climacool COLLARS FIXED");
+  console.log("KitLab6 template insert", "v1.3.252 Adidas 26/27 Climacool COLLAR THUMBNAILS WEB");
   console.log("KitLab6 thumb quality no-flicker patch", "v1.3.244_template_gallery_no_flicker_hq_thumbs");
   const KITLAB_BASE_DESIGN_BUTTON_LOCKED = true; // v1.3.199: keep Base Design visible but blocked for beta until its placement rule is fixed.
 
@@ -4772,8 +4772,9 @@
   }
 
 
-  // v1.1.52: Collar gallery thumbnails must come from each collar folder's own thumbnail.png.
-  // Do not use detail/seam PNGs as the primary gallery image. Fallbacks only protect old/incomplete packs.
+  // v1.3.252: Collar gallery thumbnails come from each collar folder's own thumbnail.png.
+  // Keep the exact recorded thumb first, then try the real folder/id casing used on disk.
+  // This matters on the public web, where 07_NO and 07_no are different paths.
   function collarThumbnailCandidates(item = {}) {
     const seen = new Set();
     const out = [];
@@ -4785,22 +4786,47 @@
     };
     const selected = state.templateStyle?.selected || getActiveTemplateManifest() || {};
     const root = String(selected?.path || "").replace(/\/+$/, "");
-    const folder = String(item?.folder || item?.id || item?.name || "").trim();
 
-    if (root && folder) {
-      const encodedFolder = encodePathParts(folder);
-      const uriFolder = encodeURI(folder).replace(/%2F/g, "/");
-      for (const thumbName of ["thumbnail.png", "thumbnail.PNG", "thumbnails.png", "thumbnails.PNG"]) {
-        add(`${root}/collar/${encodedFolder}/${thumbName}`);
-        add(`${root}/collar/${uriFolder}/${thumbName}`);
-        add(`${root}/collar/${folder}/${thumbName}`);
-      }
-    }
+    // The manifest's explicit thumbnail is the primary source.
+    add(item?.thumb);
+
+    const folderSeen = new Set();
+    const folders = [];
+    const addFolder = (value) => {
+      const raw = String(value || "").trim().replace(/^collar\//i, "").replace(/\/+$/, "");
+      if (!raw || folderSeen.has(raw)) return;
+      folderSeen.add(raw);
+      folders.push(raw);
+    };
+
+    // `folder` can be normalized for web-safe paths while `id` keeps the real disk casing.
+    addFolder(item?.folder);
+    addFolder(item?.id);
 
     const scanPaths = [];
     if (Array.isArray(item?.details)) scanPaths.push(...item.details);
     if (Array.isArray(item?.seams)) scanPaths.push(...item.seams);
     if (Array.isArray(item?.transparency)) scanPaths.push(...item.transparency);
+
+    for (const meta of scanPaths) {
+      const originalPath = String(meta?.originalPath || "").replace(/^\/+/, "");
+      const originalParts = originalPath.split("/").filter(Boolean);
+      const collarIndex = originalParts.findIndex((part) => String(part).toLowerCase() === "collar");
+      if (collarIndex >= 0 && originalParts[collarIndex + 1]) addFolder(originalParts[collarIndex + 1]);
+    }
+
+    if (root) {
+      for (const folder of folders) {
+        const encodedFolder = encodePathParts(folder);
+        const uriFolder = encodeURI(folder).replace(/%2F/g, "/");
+        for (const thumbName of ["thumbnail.png", "thumbnail.PNG", "thumbnails.png", "thumbnails.PNG"]) {
+          add(`${root}/collar/${encodedFolder}/${thumbName}`);
+          add(`${root}/collar/${uriFolder}/${thumbName}`);
+          add(`${root}/collar/${folder}/${thumbName}`);
+        }
+      }
+    }
+
     for (const meta of scanPaths) {
       const originalPath = String(meta?.originalPath || "").replace(/^\/+/, "");
       const path = String(meta?.path || meta?.src || "");
@@ -4823,8 +4849,7 @@
       }
     }
 
-    // Fallbacks only. Primary image above is always thumbnail.png from the collar folder.
-    add(item?.thumb);
+    // Final compatibility fallbacks for old/incomplete collar packs.
     add(item?.src);
     add(item?.path);
     return out;
@@ -17707,7 +17732,12 @@
         }).join("")}</div>`;
       }
       const cardsHtml = items.map((item, idx) => {
-        const thumbCandidates = collarThumbnailCandidates(item);
+        const rawThumbCandidates = collarThumbnailCandidates(item);
+        const selectedPath = String(state.templateStyle?.selected?.path || "");
+        const isAdidas2627Climacool = /adidas(?:%20| )26-27(?:%20| )climacool/i.test(selectedPath);
+        const thumbCandidates = isAdidas2627Climacool
+          ? rawThumbCandidates.map((src) => withAssetCacheBust(src))
+          : rawThumbCandidates;
         const img = thumbCandidates[0] || TEMPLATE_FOLDER_FALLBACK_THUMB || "";
         const fallbackList = thumbCandidates.slice(1);
         const displayName = collarVisibleName(item, idx);
