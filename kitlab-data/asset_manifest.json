@@ -1,6 +1,6 @@
 ﻿{
     "version":  "1.3.262-web-dynamic-daily-assets",
-    "generated":  "2026-07-19T12:34:53.9426764Z",
+    "generated":  "2026-07-19T12:54:09.0384675Z",
     "purpose":  "KitLab6 static catalog: dynamic Pattern, Team, Brand, Sponsor and TXT; templates remain controlled in app.js",
     "dynamicRoots":  {
                          "assets/pattern":  {
@@ -4864,6 +4864,22 @@
                   "assets/templates/basic/basic v1/collar/slip neck/01/seams iv.png",
                   "assets/templates/basic/basic v1/collar/slip neck/01/thumbnail.png",
                   "assets/templates/basic/basic v1/collar/slip neck/01/transparencia.png",
+                  "assets/templates/basic/basic v1/collar/slip neck/02/collar_settings.json",
+                  "assets/templates/basic/basic v1/collar/slip neck/02/detail border.png",
+                  "assets/templates/basic/basic v1/collar/slip neck/02/detail collar.png",
+                  "assets/templates/basic/basic v1/collar/slip neck/02/detail front.png",
+                  "assets/templates/basic/basic v1/collar/slip neck/02/seams 2 iv.png",
+                  "assets/templates/basic/basic v1/collar/slip neck/02/seams front iv.png",
+                  "assets/templates/basic/basic v1/collar/slip neck/02/seams iv.png",
+                  "assets/templates/basic/basic v1/collar/slip neck/02/thumbnail.png",
+                  "assets/templates/basic/basic v1/collar/slip neck/02/transparencia.png",
+                  "assets/templates/basic/basic v1/collar/slip neck/03/collar_settings.json",
+                  "assets/templates/basic/basic v1/collar/slip neck/03/detail collar.png",
+                  "assets/templates/basic/basic v1/collar/slip neck/03/detail front.png",
+                  "assets/templates/basic/basic v1/collar/slip neck/03/seams front iv.png",
+                  "assets/templates/basic/basic v1/collar/slip neck/03/seams iv.png",
+                  "assets/templates/basic/basic v1/collar/slip neck/03/thumbnail.png",
+                  "assets/templates/basic/basic v1/collar/slip neck/03/transparencia.png",
                   "assets/templates/basic/basic v1/collar/v neck/01/detail.png",
                   "assets/templates/basic/basic v1/collar/v neck/01/rubber band fusion opacidad.png",
                   "assets/templates/basic/basic v1/collar/v neck/01/seams 2 iv.png",
@@ -4889,6 +4905,21 @@
                   "assets/templates/basic/basic v1/collar/v neck/04/seams iv.png",
                   "assets/templates/basic/basic v1/collar/v neck/04/thumbnail.png",
                   "assets/templates/basic/basic v1/collar/v neck/04/transparencia.png",
+                  "assets/templates/basic/basic v1/collar/v neck/05/collar_settings.json",
+                  "assets/templates/basic/basic v1/collar/v neck/05/detail collar.png",
+                  "assets/templates/basic/basic v1/collar/v neck/05/rubber band fusion opacidad.png",
+                  "assets/templates/basic/basic v1/collar/v neck/05/seams 2 iv.png",
+                  "assets/templates/basic/basic v1/collar/v neck/05/seams 3 iv.png",
+                  "assets/templates/basic/basic v1/collar/v neck/05/seams iv.png",
+                  "assets/templates/basic/basic v1/collar/v neck/05/thumbnail.png",
+                  "assets/templates/basic/basic v1/collar/v neck/05/transparencia.png",
+                  "assets/templates/basic/basic v1/collar/v neck/06/collar_settings.json",
+                  "assets/templates/basic/basic v1/collar/v neck/06/detail collar.png",
+                  "assets/templates/basic/basic v1/collar/v neck/06/seams front 2 iv.png",
+                  "assets/templates/basic/basic v1/collar/v neck/06/seams front iv.png",
+                  "assets/templates/basic/basic v1/collar/v neck/06/seams iv.png",
+                  "assets/templates/basic/basic v1/collar/v neck/06/thumbnail.png",
+                  "assets/templates/basic/basic v1/collar/v neck/06/transparencia.png",
                   "assets/templates/basic/basic v1/guide/socks stripes.png",
                   "assets/templates/basic/basic v1/shirt/base/01.sleeve short.png",
                   "assets/templates/basic/basic v1/shirt/base/02. shirt.png",
@@ -14459,7 +14490,9 @@
                                                                      },
                  "assets/templates/basic/basic v1/collar/slip neck":  {
                                                                           "folders":  [
-                                                                                          "01"
+                                                                                          "01",
+                                                                                          "02",
+                                                                                          "03"
                                                                                       ],
                                                                           "files":  [
 
@@ -14481,12 +14514,44 @@
                                                                                            "transparencia.png"
                                                                                        ]
                                                                          },
+                 "assets/templates/basic/basic v1/collar/slip neck/02":  {
+                                                                             "folders":  [
+
+                                                                                         ],
+                                                                             "files":  [
+                                                                                           "collar_settings.json",
+                                                                                           "detail border.png",
+                                                                                           "detail collar.png",
+                                                                                           "detail front.png",
+                                                                                           "seams 2 iv.png",
+                                                                                           "seams front iv.png",
+                                                                                           "seams iv.png",
+                                                                                           "thumbnail.png",
+                                                                                           "transparencia.png"
+                                                                                       ]
+                                                                         },
+                 "assets/templates/basic/basic v1/collar/slip neck/03":  {
+                                                                             "folders":  [
+
+                                                                                         ],
+                                                                             "files":  [
+                                                                                           "collar_settings.json",
+                                                                                           "detail collar.png",
+                                                                                           "detail front.png",
+                                                                                           "seams front iv.png",
+                                                                                           "seams iv.png",
+                                                                                           "thumbnail.png",
+                                                                                           "transparencia.png"
+                                                                                       ]
+                                                                         },
                  "assets/templates/basic/basic v1/collar/v neck":  {
                                                                        "folders":  [
                                                                                        "01",
                                                                                        "02",
                                                                                        "03",
-                                                                                       "04"
+                                                                                       "04",
+                                                                                       "05",
+                                                                                       "06"
                                                                                    ],
                                                                        "files":  [
 
@@ -14540,6 +14605,35 @@
                                                                                         "detail.png",
                                                                                         "rubber band fusion opacidad.png",
                                                                                         "seams 2 iv.png",
+                                                                                        "seams iv.png",
+                                                                                        "thumbnail.png",
+                                                                                        "transparencia.png"
+                                                                                    ]
+                                                                      },
+                 "assets/templates/basic/basic v1/collar/v neck/05":  {
+                                                                          "folders":  [
+
+                                                                                      ],
+                                                                          "files":  [
+                                                                                        "collar_settings.json",
+                                                                                        "detail collar.png",
+                                                                                        "rubber band fusion opacidad.png",
+                                                                                        "seams 2 iv.png",
+                                                                                        "seams 3 iv.png",
+                                                                                        "seams iv.png",
+                                                                                        "thumbnail.png",
+                                                                                        "transparencia.png"
+                                                                                    ]
+                                                                      },
+                 "assets/templates/basic/basic v1/collar/v neck/06":  {
+                                                                          "folders":  [
+
+                                                                                      ],
+                                                                          "files":  [
+                                                                                        "collar_settings.json",
+                                                                                        "detail collar.png",
+                                                                                        "seams front 2 iv.png",
+                                                                                        "seams front iv.png",
                                                                                         "seams iv.png",
                                                                                         "thumbnail.png",
                                                                                         "transparencia.png"
