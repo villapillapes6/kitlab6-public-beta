@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.262_dynamic_daily_assets_web";
+  const KITLAB_BUILD_VERSION = "v1.3.264_polo_collar_configuration_load_fix_web";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   console.log("KitLab6 dynamic daily assets", "v1.3.262 Pattern / Team / Brand / Sponsor / TXT manifest");
   console.log("KitLab6 thumb quality no-flicker patch", "v1.3.244_template_gallery_no_flicker_hq_thumbs");
@@ -14603,10 +14603,22 @@
   }
 
   function collarFolderPathForItem(item = state.templateStyle?.selectedCollar) {
+    // Use the exact physical thumbnail directory first. Rebuilding the path from
+    // item.folder changed the real lowercase web path (polo collar) into the
+    // display-cased path (Polo Collar), which works on Windows but returns 404 on
+    // the case-sensitive public web and prevented collar_settings.json from loading.
+    const thumbPath = String(item?.thumb || "")
+      .replace(/\\/g, "/")
+      .replace(/[?#].*$/, "")
+      .trim();
+    if (thumbPath && thumbPath.toLowerCase().includes("/collar/")) {
+      const slashIndex = thumbPath.lastIndexOf("/");
+      if (slashIndex > 0) return thumbPath.slice(0, slashIndex);
+    }
+
     const folder = String(item?.folder || item?.id || item?.name || "").trim();
     if (!folder) return "";
     const assetPaths = [
-      item?.thumb,
       ...(Array.isArray(item?.details) ? item.details.map((meta) => meta?.path || meta?.src || "") : []),
       ...(Array.isArray(item?.seams) ? item.seams.map((meta) => meta?.path || meta?.src || "") : []),
       ...(Array.isArray(item?.transparency) ? item.transparency.map((meta) => meta?.path || meta?.src || "") : []),

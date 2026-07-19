@@ -118,7 +118,7 @@ if ($null -ne $manifest) {
 if (Test-Path -LiteralPath $AppPath) {
   $app = Get-Content -LiteralPath $AppPath -Raw -Encoding UTF8
   $needles = @(
-    'v1.3.262_dynamic_daily_assets_web',
+    'KitLab6 dynamic daily assets',
     'kitlab-data/asset_manifest.json',
     'refreshKitlabStaticAssetManifest',
     'refreshTeamRootFoldersFromManifest',
