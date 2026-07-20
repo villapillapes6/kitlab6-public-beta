@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.266_basic_v1_slip_v_neck_collars_web";
+  const KITLAB_BUILD_VERSION = "v1.3.267_copy_logos_web";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   console.log("KitLab6 dynamic daily assets", "v1.3.262 Pattern / Team / Brand / Sponsor / TXT manifest");
   console.log("KitLab6 thumb quality no-flicker patch", "v1.3.244_template_gallery_no_flicker_hq_thumbs");
@@ -684,6 +684,9 @@
     logoModuleBody: document.getElementById("logoModuleBody"),
     sponsorModuleBtn: document.getElementById("sponsorModuleBtn"),
     sponsorModuleBody: document.getElementById("sponsorModuleBody"),
+    logosCopyControl: document.getElementById("logosCopyControl"),
+    copyLogosBtn: document.getElementById("copyLogosBtn"),
+    copyLogosMenu: document.getElementById("logosCopyMenu"),
     brandGalleryTitle: document.getElementById("brandGalleryTitle"),
     templateGalleryBtn: document.getElementById("templateGalleryBtn"),
     selectedTemplateName: document.getElementById("selectedTemplateName"),
@@ -16345,6 +16348,210 @@
       const newKitIcon = `<svg aria-hidden="true" viewBox="0 0 512 512" style="width:15px;height:15px;display:block;pointer-events:none" fill="none" stroke="#ffffff" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"><path d="M128 30h188l68 68v316H128z"/><path d="M316 30v68h68"/><circle cx="360" cy="382" r="94" fill="none"/><path d="M360 326v112M304 382h112"/></svg>`;
       return `<div class="project-kit-row${activeClass}${emptyClass}" role="button" tabindex="0" draggable="true" data-project-kit-id="${id}">${thumb}<span class="project-kit-text"><span class="project-kit-name" data-project-kit-name="${id}" draggable="false" title="Double click to rename">${escapeHtml(kit.name || kit.id || "Kit")}</span><span class="project-kit-meta">${escapeHtml(meta)}</span></span><span class="project-kit-row-actions"><button type="button" class="project-kit-action-btn project-kit-new-slot" data-project-kit-new-slot="${id}" title="New empty kit below" aria-label="New empty kit below">${newKitIcon}</button><button type="button" class="project-kit-action-btn project-kit-duplicate-kit" data-project-kit-duplicate-kit="${id}" title="Duplicate this kit" aria-label="Duplicate this kit"><img src="./assets/ui/project_duplicate_white_v1208.png" alt="" /></button><button type="button" class="project-kit-action-btn project-kit-delete-slot" data-project-kit-delete-slot="${id}" title="Delete slot" aria-label="Delete slot"><img src="./assets/ui/project_delete_red_v1208.png" alt="" /></button></span></div>`;
     }).join("");
+    syncLogosCopyControl(project);
+  }
+
+  function savedLogoModulesFromProjectKit(kit = null) {
+    const saved = kit?.settings || kit?.data || null;
+    const modules = saved?.logoModules || saved?.brandModules || null;
+    return modules && typeof modules === "object" ? modules : null;
+  }
+
+  function savedLogoModulesHaveLayers(modules = null) {
+    if (!modules || typeof modules !== "object") return false;
+    return Object.keys(BRAND_PARTS).some((part) => Array.isArray(modules?.[part]?.layers) && modules[part].layers.length > 0);
+  }
+
+  function serializeRuntimeLogoModules(brandState = null) {
+    if (!brandState || typeof brandState !== "object") return null;
+    const out = {};
+    for (const part of Object.keys(BRAND_PARTS)) {
+      const group = brandState[part] || {};
+      out[part] = {
+        selected: Number(group.selected || 0),
+        side: group.side || undefined,
+        layers: (group.layers || []).map((layer) => ({
+          fileName: layer.fileName || "",
+          src: layer.src || layer.image?.src || "",
+          assetType: layer.assetType || assetTypeForPart(part),
+          palette: Array.isArray(layer.palette) ? layer.palette : [],
+          colorMap: layer.colorMap || {},
+          offsetX: Number(layer.offsetX || 0),
+          offsetY: Number(layer.offsetY || 0),
+          scaleX: Number(layer.scaleX || 1),
+          scaleY: Number(layer.scaleY || 1),
+          baseScaleX: Number(layer.baseScaleX || 1),
+          baseScaleY: Number(layer.baseScaleY || 1),
+          socksHeightPct: Number(layer.socksHeightPct ?? 80),
+          side: part === "socks" ? (layer.side === "back" ? "back" : "front") : undefined,
+          backOffsets: layer.backOffsets || {},
+          border: layer.border || { enabled: false, color: "#ffffff", size: 2 },
+        })).filter((layer) => layer.src),
+      };
+    }
+    return out;
+  }
+
+  function logoModulesFromProjectKit(kit = null) {
+    const savedModules = savedLogoModulesFromProjectKit(kit);
+    if (savedLogoModulesHaveLayers(savedModules)) return savedModules;
+    const kitId = String(kit?.id || "").toLowerCase();
+    const cachedBrand = kitId ? kitlabProjectRuntimeCache.get(kitId)?.state?.brand : null;
+    const runtimeModules = serializeRuntimeLogoModules(cachedBrand);
+    if (savedLogoModulesHaveLayers(runtimeModules)) return runtimeModules;
+    return savedModules || runtimeModules || null;
+  }
+
+  function getLogosCopyMenuElement() {
+    const menu = els.copyLogosMenu || document.getElementById("logosCopyMenu");
+    if (menu && !els.copyLogosMenu) els.copyLogosMenu = menu;
+    return menu || null;
+  }
+
+  function activeProjectKitIdFromRightPanel(projectValue = state.project) {
+    const project = normalizeKitlabProject(projectValue);
+    const activeRow = els.projectKitList?.querySelector?.("[data-project-kit-id].active");
+    return String(activeRow?.dataset?.projectKitId || project.activeKitId || "").toLowerCase();
+  }
+
+  function projectLogoCopySourceKits(projectValue = state.project) {
+    const project = normalizeKitlabProject(projectValue);
+    const activeId = activeProjectKitIdFromRightPanel(project);
+    const panelIds = els.projectKitList
+      ? Array.from(els.projectKitList.querySelectorAll("[data-project-kit-id]"))
+        .map((row) => String(row.dataset.projectKitId || "").toLowerCase())
+        .filter(Boolean)
+      : [];
+    const orderedIds = panelIds.length ? panelIds : project.kitOrder.map((id) => String(id || "").toLowerCase());
+    return orderedIds
+      .map((id) => project.kits.find((kit) => String(kit.id || "").toLowerCase() === id))
+      .filter((kit) => kit && String(kit.id || "").toLowerCase() !== activeId);
+  }
+
+  function ensureLogosCopyMenuPortal() {
+    const menu = getLogosCopyMenuElement();
+    if (!menu) return null;
+    if (menu.parentElement !== document.body) document.body.appendChild(menu);
+    return menu;
+  }
+
+  function positionLogosCopyMenu() {
+    const menu = getLogosCopyMenuElement();
+    if (!els.copyLogosBtn || !menu || menu.hidden) return;
+    const buttonRect = els.copyLogosBtn.getBoundingClientRect();
+    const menuRect = menu.getBoundingClientRect();
+    const gap = 7;
+    const viewportGap = 10;
+    const width = Math.max(1, menuRect.width || 230);
+    let left = buttonRect.left + (buttonRect.width / 2) - (width / 2);
+    left = Math.max(viewportGap, Math.min(left, window.innerWidth - width - viewportGap));
+    let top = buttonRect.top - menuRect.height - gap;
+    if (top < viewportGap) top = buttonRect.bottom + gap;
+    menu.style.left = `${Math.round(left)}px`;
+    menu.style.top = `${Math.round(top)}px`;
+  }
+
+  function closeLogosCopyMenu() {
+    const menu = getLogosCopyMenuElement();
+    if (menu) {
+      menu.hidden = true;
+      menu.style.display = "";
+      menu.style.visibility = "";
+      menu.style.left = "";
+      menu.style.top = "";
+    }
+    if (els.copyLogosBtn) els.copyLogosBtn.setAttribute("aria-expanded", "false");
+  }
+
+  function syncLogosCopyControl(projectValue = state.project) {
+    if (!els.copyLogosBtn) return;
+    const isCopying = els.copyLogosBtn.dataset.copying === "1";
+    els.copyLogosBtn.disabled = isCopying;
+    const sources = projectLogoCopySourceKits(projectValue);
+    els.copyLogosBtn.title = isCopying
+      ? "Copying Logos"
+      : (sources.length ? "Copy the complete Logos block from another project kit" : "Show kits available for copying Logos");
+    if (isCopying) closeLogosCopyMenu();
+  }
+
+  function openLogosCopyMenu() {
+    if (!els.copyLogosBtn || els.copyLogosBtn.dataset.copying === "1") return;
+    const menu = ensureLogosCopyMenuPortal();
+    if (!menu) return;
+
+    let project;
+    try {
+      project = state.templateStyle?.selected && kitlabProjectDraftMode !== true
+        ? ensureCurrentKitSaved({ capturePreview: false, renderPanel: false })
+        : normalizeKitlabProject(state.project);
+    } catch (error) {
+      console.warn("Copy Logos menu project refresh failed; using current project state:", error);
+      project = normalizeKitlabProject(state.project);
+    }
+
+    const sources = projectLogoCopySourceKits(project);
+    if (!sources.length) {
+      menu.innerHTML = '<div class="logos-copy-menu-title">Copy Logos from</div><div class="logos-copy-empty">There are no other kits in the right panel.</div>';
+    } else {
+      const sourceRows = sources.map((kit) => {
+        const hasLogos = savedLogoModulesHaveLayers(logoModulesFromProjectKit(kit));
+        const name = kit.name || kit.id || "Kit";
+        return `<button type="button" class="logos-copy-source-btn${hasLogos ? "" : " is-empty"}" role="menuitem" data-copy-logos-from-kit="${escapeAttr(kit.id)}" title="${hasLogos ? `Copy Logos from ${escapeAttr(name)}` : `${escapeAttr(name)} has no Logos`}" ${hasLogos ? "" : "disabled"}><span>${escapeHtml(name)}</span>${hasLogos ? "" : '<small>No Logos</small>'}</button>`;
+      }).join("");
+      menu.innerHTML = `<div class="logos-copy-menu-title">Copy Logos from</div>${sourceRows}`;
+    }
+
+    menu.hidden = false;
+    menu.style.display = "block";
+    menu.style.visibility = "visible";
+    els.copyLogosBtn.setAttribute("aria-expanded", "true");
+    positionLogosCopyMenu();
+  }
+
+  function toggleLogosCopyMenu() {
+    const menu = getLogosCopyMenuElement();
+    if (!menu || menu.hidden) openLogosCopyMenu();
+    else closeLogosCopyMenu();
+  }
+
+  async function copyCompleteLogosBlockFromProjectKit(sourceKitId = "") {
+    if (!els.copyLogosBtn || els.copyLogosBtn.dataset.copying === "1") return;
+    let project = ensureCurrentKitSaved({ capturePreview: false, renderPanel: false });
+    const target = project.kits.find((kit) => kit.id === project.activeKitId) || null;
+    const sourceId = String(sourceKitId || "").toLowerCase();
+    const source = project.kits.find((kit) => kit.id === sourceId) || null;
+    const sourceModules = logoModulesFromProjectKit(source);
+    if (!target || !source || source.id === target.id || !savedLogoModulesHaveLayers(sourceModules)) {
+      closeLogosCopyMenu();
+      showToast("That kit has no Logos to copy");
+      return;
+    }
+
+    closeLogosCopyMenu();
+    els.copyLogosBtn.dataset.copying = "1";
+    els.copyLogosBtn.disabled = true;
+    els.copyLogosBtn.textContent = "Copying…";
+    try {
+      const independentModules = cloneKitlabProjectData(sourceModules);
+      invalidateInteractionRenderCache("brand");
+      await applySavedLogoModules({ logoModules: independentModules }, { exactProjectRestore: true });
+      invalidateInteractionRenderCache("brand");
+      scheduleBrandInteractionRender({ accurate: true, accurateDelayMs: 120 });
+
+      project = ensureCurrentKitSaved({ capturePreview: false, renderPanel: false });
+      state.project = project;
+      renderProjectKitPanel();
+      setStatus(`Logos copied from ${source.name || source.id} to ${target.name || target.id}`);
+      showToast(`Logos copied from ${source.name || source.id}`);
+    } catch (error) {
+      console.error("Copy Logos failed:", error);
+      setStatus(`Could not copy Logos: ${error?.message || error}`);
+      showToast("Could not copy Logos");
+    } finally {
+      els.copyLogosBtn.dataset.copying = "0";
+      els.copyLogosBtn.textContent = "Copy";
+      syncLogosCopyControl(state.project);
+    }
   }
 
   function cleanupProjectKitDragClasses() {
@@ -18973,6 +19180,48 @@
     }
     if (els.templateGalleryBtn && !els.templateGalleryBtn.dataset.boundTemplate) { els.templateGalleryBtn.dataset.boundTemplate = "1"; els.templateGalleryBtn.addEventListener("click", () => { openGallery("template"); }); }
     if (els.collarGalleryBtn && !els.collarGalleryBtn.dataset.boundCollar) { els.collarGalleryBtn.dataset.boundCollar = "1"; els.collarGalleryBtn.addEventListener("click", () => { if (!state.templateStyle.selected) { setStatus("Load a template before selecting collar"); return; } openGallery("collar"); }); }
+    if (els.copyLogosBtn && !els.copyLogosBtn.dataset.boundCopyLogos) {
+      els.copyLogosBtn.dataset.boundCopyLogos = "1";
+      els.copyLogosBtn.addEventListener("pointerdown", (event) => {
+        if (event.button !== undefined && event.button !== 0) return;
+        event.preventDefault();
+        event.stopPropagation();
+        toggleLogosCopyMenu();
+      }, true);
+      els.copyLogosBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+      }, true);
+      els.copyLogosBtn.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        event.stopPropagation();
+        toggleLogosCopyMenu();
+      }, true);
+    }
+    document.addEventListener("click", (event) => {
+      const sourceBtn = event.target?.closest?.("[data-copy-logos-from-kit]");
+      if (sourceBtn) {
+        event.preventDefault();
+        event.stopPropagation();
+        copyCompleteLogosBlockFromProjectKit(sourceBtn.dataset.copyLogosFromKit || "");
+        return;
+      }
+      const menu = getLogosCopyMenuElement();
+      const insideControl = els.logosCopyControl?.contains(event.target);
+      const insideMenu = menu?.contains(event.target);
+      if (!insideControl && !insideMenu) closeLogosCopyMenu();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+      const menu = getLogosCopyMenuElement();
+      if (!menu || menu.hidden) return;
+      event.preventDefault();
+      closeLogosCopyMenu();
+      els.copyLogosBtn?.focus({ preventScroll: true });
+    });
+    window.addEventListener("resize", positionLogosCopyMenu);
+    document.addEventListener("scroll", positionLogosCopyMenu, true);
     if (els.internalBrandGrid && !els.internalBrandGrid.dataset.boundGalleryClicks) {
       els.internalBrandGrid.dataset.boundGalleryClicks = "1";
       els.internalBrandGrid.addEventListener("click", (event) => {

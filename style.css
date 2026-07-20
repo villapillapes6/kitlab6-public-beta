@@ -7709,3 +7709,134 @@ input:disabled,
 #exportTemplateSettingsBtn {
   display: none !important;
 }
+
+/* v1.3.267: Copy the complete Logos block from another kit in the right panel. */
+.logos-copy-control {
+  position: relative;
+  z-index: 80;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -3px 0 10px;
+  overflow: visible !important;
+}
+
+.logos-copy-btn {
+  min-width: 72px;
+  padding: 5px 10px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 8px;
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.82);
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform .14s ease, background .14s ease, border-color .14s ease, color .14s ease;
+}
+
+.logos-copy-btn:hover:not(:disabled),
+.logos-copy-btn[aria-expanded="true"] {
+  transform: scale(1.04);
+  border-color: rgba(240,181,21,.8);
+  background: rgba(240,181,21,.14);
+}
+
+.logos-copy-btn:disabled {
+  cursor: default;
+  opacity: .38;
+  transform: none;
+}
+
+.logos-copy-menu {
+  position: fixed;
+  z-index: 2147483000;
+  left: 0;
+  top: 0;
+  transform: none;
+  width: min(230px, calc(100vw - 28px));
+  padding: 7px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 10px;
+  background: rgba(20,22,38,.98);
+  box-shadow: 0 12px 30px rgba(0,0,0,.42);
+  overflow: hidden;
+  pointer-events: auto;
+  isolation: isolate;
+}
+
+.logos-copy-menu[hidden] {
+  display: none !important;
+}
+
+.logos-copy-menu-title {
+  padding: 3px 6px 7px;
+  color: rgba(255,255,255,.55);
+  font-size: 9px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: .08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.logos-copy-source-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  min-height: 30px;
+  margin: 0;
+  padding: 7px 9px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: rgba(255,255,255,.9);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: left;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.logos-copy-source-btn + .logos-copy-source-btn {
+  margin-top: 3px;
+}
+
+.logos-copy-source-btn:hover,
+.logos-copy-source-btn:focus-visible {
+  outline: none;
+  background: rgba(240,181,21,.16);
+  color: #ffcb43;
+}
+
+.logos-copy-source-btn small {
+  flex: 0 0 auto;
+  color: rgba(255,255,255,.42);
+  font-size: 8px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.logos-copy-source-btn:disabled {
+  cursor: default;
+  opacity: .52;
+}
+
+.logos-copy-source-btn:disabled:hover {
+  background: transparent;
+  color: rgba(255,255,255,.9);
+}
+
+.logos-copy-empty {
+  padding: 8px 7px;
+  color: rgba(255,255,255,.52);
+  font-size: 10px;
+  line-height: 1.3;
+  text-align: center;
+}
+
