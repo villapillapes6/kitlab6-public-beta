@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.267_copy_logos_web";
+  const KITLAB_BUILD_VERSION = "v1.3.268_pattern_project_restore";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   console.log("KitLab6 dynamic daily assets", "v1.3.262 Pattern / Team / Brand / Sponsor / TXT manifest");
   console.log("KitLab6 thumb quality no-flicker patch", "v1.3.244_template_gallery_no_flicker_hq_thumbs");
@@ -10289,10 +10289,11 @@
     }
   }
 
-  function ensureSavedUserPatternLayers(savedLayers = []) {
+  async function ensureSavedUserPatternLayers(savedLayers = []) {
     const savedPatterns = savedLayers.filter((layer) => layer && layer.isUserPattern === true && (layer.src || layer.key));
-    if (!savedPatterns.length) return;
+    if (!savedPatterns.length) return [];
     const existingKeys = new Set(allTemplateEditableLayers().map(templateLayerStateKey));
+    const pendingLoads = [];
     for (const saved of savedPatterns) {
       const src = saved.src || saved.key;
       if (!src || existingKeys.has(String(src))) continue;
@@ -10305,6 +10306,7 @@
         pathParts: Array.isArray(saved.patternFolderPath) ? [...saved.patternFolderPath, String(src).split("/").pop()] : [],
       };
       const layer = createUserPatternLayer(item, null);
+      layer.loaded = false;
       layer.enabled = saved.enabled !== false;
       layer.opacity = Number(saved.opacity ?? 1);
       layer.blendMode = saved.blendMode || "source-over";
@@ -10323,23 +10325,34 @@
       layer._templateChipColor = restoredPatternColor;
       state.templateStyle.details[targetSection].push(layer);
       existingKeys.add(String(src));
-      loadImagePromise(src).then(async (loaded) => {
-        if (!loaded?.image) return;
+      pendingLoads.push((async () => {
+        const loaded = await loadImagePromise(src);
+        if (!loaded?.image) {
+          console.warn("Saved Pattern ignored because its PNG could not load:", src);
+          return false;
+        }
         layer.image = loaded.image;
         layer.src = loaded.src || src;
         layer.path = layer.src;
+        layer.loaded = true;
         await loadPatternGuidesForLayer(layer);
-        normalizeAllPatternBelowFabric();
-        renderTemplateDetailPanels();
-        render();
-      }).catch((error) => console.warn("Saved Pattern ignored:", error));
+        return true;
+      })());
     }
+    const restored = await Promise.all(pendingLoads);
+    if (pendingLoads.length) {
+      normalizeAllPatternBelowFabric();
+      renderTemplateDetailPanels();
+      render({ immediate: true });
+    }
+    return restored;
   }
 
-  function ensureSavedUserBaseDesignLayers(savedLayers = []) {
+  async function ensureSavedUserBaseDesignLayers(savedLayers = []) {
     const savedDesigns = savedLayers.filter((layer) => layer && layer.isUserBaseDesign === true && (layer.src || layer.key));
-    if (!savedDesigns.length) return;
+    if (!savedDesigns.length) return [];
     const existingKeys = new Set(allTemplateEditableLayers().map(templateLayerStateKey));
+    const pendingLoads = [];
     for (const saved of savedDesigns) {
       const src = saved.src || saved.key;
       if (!src || existingKeys.has(String(src))) continue;
@@ -10350,6 +10363,7 @@
         pathParts: Array.isArray(saved.baseDesignFolderPath) ? [...saved.baseDesignFolderPath, String(src).split("/").pop()] : (Array.isArray(saved.patternFolderPath) ? [...saved.patternFolderPath, String(src).split("/").pop()] : []),
       };
       const layer = createUserPatternLayer({ ...item, folder: "Base Design", order: 850, isUserPattern: false, isUserBaseDesign: true }, null);
+      layer.loaded = false;
       layer.enabled = saved.enabled !== false;
       layer.opacity = Number(saved.opacity ?? 1);
       layer.blendMode = saved.blendMode || "source-over";
@@ -10368,17 +10382,27 @@
       layer._templateChipColor = restoredDesignColor;
       state.templateStyle.details.shirt.push(layer);
       existingKeys.add(String(src));
-      loadImagePromise(src).then(async (loaded) => {
-        if (!loaded?.image) return;
+      pendingLoads.push((async () => {
+        const loaded = await loadImagePromise(src);
+        if (!loaded?.image) {
+          console.warn("Saved Base Design ignored because its PNG could not load:", src);
+          return false;
+        }
         layer.image = loaded.image;
         layer.src = loaded.src || src;
         layer.path = layer.src;
+        layer.loaded = true;
         await loadPatternGuidesForLayer(layer);
-        normalizeAllPatternBelowFabric();
-        renderTemplateDetailPanels();
-        render();
-      }).catch((error) => console.warn("Saved Base Design ignored:", error));
+        return true;
+      })());
     }
+    const restored = await Promise.all(pendingLoads);
+    if (pendingLoads.length) {
+      normalizeAllPatternBelowFabric();
+      renderTemplateDetailPanels();
+      render({ immediate: true });
+    }
+    return restored;
   }
 
   function guideImageInfo(guide) {
@@ -15343,13 +15367,13 @@
     });
   }
 
-  function applySavedTemplateEditableLayers(saved) {
+  async function applySavedTemplateEditableLayers(saved) {
     const savedLayers = Array.isArray(saved?.templateLayers) ? saved.templateLayers : [];
     if (!savedLayers.length) return;
 
     ensureSavedGeneratedStripeLayers(savedLayers);
-    ensureSavedUserPatternLayers(savedLayers);
-    ensureSavedUserBaseDesignLayers(savedLayers);
+    await ensureSavedUserPatternLayers(savedLayers);
+    await ensureSavedUserBaseDesignLayers(savedLayers);
     const savedByKey = applySavedLayerStatesToLayerList(savedLayers, allTemplateEditableLayers());
     sortTemplateLayerListBySaved(state.templateStyle.details.shirt, savedByKey);
     sortTemplateLayerListBySaved(state.templateStyle.details.short, savedByKey);
@@ -17905,7 +17929,7 @@
       }
 
       if (saved.shortVariant) state.templateStyle.shortVariant = String(saved.shortVariant || "v1").toLowerCase();
-      applySavedTemplateEditableLayers(saved);
+      await applySavedTemplateEditableLayers(saved);
       state.templateDetailOpen = saved.templateDetailOpen || state.templateDetailOpen;
       state.collarDetailsOpen = saved.collarDetailsOpen === true;
       state.collarSeamsFolderOpen = false;
