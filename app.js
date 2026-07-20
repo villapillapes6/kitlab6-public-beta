@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.268_pattern_project_restore";
+  const KITLAB_BUILD_VERSION = "v1.3.272_socks_stripes_project_restore";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   console.log("KitLab6 dynamic daily assets", "v1.3.262 Pattern / Team / Brand / Sponsor / TXT manifest");
   console.log("KitLab6 thumb quality no-flicker patch", "v1.3.244_template_gallery_no_flicker_hq_thumbs");
@@ -10253,10 +10253,18 @@
   }
 
 
-  function ensureSavedGeneratedStripeLayers(savedLayers = []) {
-    const savedStripes = (Array.isArray(savedLayers) ? savedLayers : []).filter((layer) => layer && layer.isGeneratedStripe === true);
-    if (!savedStripes.length) return;
+  function clearSavedSocksStripeLayersForExactProjectRestore(saved = {}) {
+    const exactProjectRestore = saved?._loadedFromKitlabProject === true || saved?._savedInsideKitlabProject === true;
+    if (!exactProjectRestore || !state.templateStyle?.details) return;
+    const list = Array.isArray(state.templateStyle.details.socks) ? state.templateStyle.details.socks : [];
+    state.templateStyle.details.socks = list.filter((layer) => !(isGeneratedStripeLayer(layer) && (layer.stripeType || "socks") === "socks"));
+  }
+
+  async function ensureSavedGeneratedStripeLayers(savedLayers = []) {
+    const savedStripes = (Array.isArray(savedLayers) ? savedLayers : []).filter((layer) => layer && (layer.isGeneratedStripe === true || /^generated:\/+stripe\//i.test(String(layer.src || layer.path || layer.key || ""))));
+    if (!savedStripes.length) return [];
     const existingKeys = new Set(allTemplateEditableLayers().map(templateLayerStateKey).map(normalizeLayerSettingsMatchKey));
+    const pendingSocksLoads = [];
     for (const saved of savedStripes) {
       const key = saved.key || saved.path || saved.src || `generated://stripe/${saved.stripeType || "socks"}/${saved.name || Date.now()}`;
       const normalizedKey = normalizeLayerSettingsMatchKey(key);
@@ -10272,6 +10280,7 @@
         color: saved.appliedChipColor || saved.colorMap?.[generatedStripeLayerSourceColor()] || generatedStripeLayerSourceColor(),
         stripeThickness: saved.stripeThickness || saved.thickness,
         stripePosition: saved.stripePosition,
+        stripePositionMode: saved.stripePositionMode || "offset",
         stripePositionAuto: saved.stripePositionAuto !== false,
         stripeGuideSrc: saved.stripeGuideSrc || "",
         stripeControlsOpen: saved.stripeControlsOpen === true,
@@ -10282,11 +10291,22 @@
       const section = layer.section || (type === "sleeve_cuffs" ? "shirt" : (type === "short_hem" ? "short" : "socks"));
       state.templateStyle.details[section].push(layer);
       if (normalizedKey) existingKeys.add(normalizedKey);
-      hydrateGeneratedStripeLayerGuide(layer).then(() => {
+      const hydration = hydrateGeneratedStripeLayerGuide(layer).then((info) => {
+        if (!info) console.warn("Saved generated stripe restored without guide:", layer.stripeGuideSrc || layer.name || key);
         renderTemplateDetailPanels();
         render({ immediate: true });
-      }).catch((error) => console.warn("Generated stripe guide ignored:", error));
+        return info;
+      }).catch((error) => {
+        console.warn("Generated stripe guide ignored:", error);
+        return null;
+      });
+      // Only Socks Stripes is part of this fix. It must finish before the Project
+      // kit is copied into the live runtime cache; the other generated tools keep
+      // the exact v1.3.268 background behavior.
+      if (type === "socks") pendingSocksLoads.push(hydration);
     }
+    if (pendingSocksLoads.length) await Promise.all(pendingSocksLoads);
+    return pendingSocksLoads;
   }
 
   async function ensureSavedUserPatternLayers(savedLayers = []) {
@@ -11370,9 +11390,64 @@
     return null;
   }
 
+  let sharedSocksStripeGuideResourcePromise = null;
+
+  function savedSocksStripeGuideCandidates(layer = {}) {
+    const activeCandidates = activeTemplateStripeGuideCandidates("socks");
+    const compatibilityCandidates = [
+      "assets/templates/basic/basic%20v1/guide/socks%20stripes.png",
+      "./assets/templates/basic/basic%20v1/guide/socks%20stripes.png",
+      "assets/templates/Basic/Basic%20V1/guide/socks%20stripes.png",
+      "./assets/templates/Basic/Basic%20V1/guide/socks%20stripes.png",
+      "assets/templates/Basic/Basic V1/guide/socks stripes.png",
+      layer.stripeGuideSrc,
+      ...(Array.isArray(layer.stripeGuideCandidates) ? layer.stripeGuideCandidates : []),
+    ];
+    // Current lowercase web-safe paths are tried first. Mixed-case paths remain
+    // only for compatibility with older .kitlab6 files such as this project.
+    return [...new Set([...activeCandidates, ...compatibilityCandidates].filter(Boolean))];
+  }
+
+  async function loadSharedSocksStripeGuideResource(layer = {}) {
+    if (!sharedSocksStripeGuideResourcePromise) {
+      sharedSocksStripeGuideResourcePromise = (async () => {
+        const candidates = savedSocksStripeGuideCandidates(layer);
+        const loaded = await loadFirstExistingImage(candidates);
+        if (!loaded?.image) return null;
+        const probe = {
+          isGeneratedStripe: true,
+          stripeType: "socks",
+          guideImage: loaded.image,
+          _stripeGuideImage: loaded.image,
+          _stripeGuideInfo: null,
+        };
+        const info = computeStripeGuideInfo(probe);
+        if (!info) return null;
+        return { image: loaded.image, src: loaded.src || candidates[0], info };
+      })();
+    }
+    const resource = await sharedSocksStripeGuideResourcePromise;
+    if (!resource) sharedSocksStripeGuideResourcePromise = null;
+    return resource;
+  }
+
   async function hydrateGeneratedStripeLayerGuide(layer = {}) {
     if (!isGeneratedStripeLayer(layer)) return null;
     if (layer.guideImage || layer._stripeGuideImage) return computeStripeGuideInfo(layer);
+
+    if ((layer.stripeType || "socks") === "socks") {
+      const resource = await loadSharedSocksStripeGuideResource(layer);
+      if (!resource?.image || !resource?.info) return null;
+      layer.stripeGuideSrc = resource.src || layer.stripeGuideSrc || "";
+      layer.guideImage = resource.image;
+      layer._stripeGuideImage = resource.image;
+      layer._stripeGuideInfo = resource.info;
+      const info = resource.info;
+      layer.stripeThickness = clamp(Number(layer.stripeThickness || 5), 1, generatedStripeMaxThickness("socks", layer, info));
+      normalizeGeneratedStripePositionToOffset(layer, info);
+      return info;
+    }
+
     const candidates = [layer.stripeGuideSrc, ...(Array.isArray(layer.stripeGuideCandidates) ? layer.stripeGuideCandidates : []), ...activeTemplateStripeGuideCandidates(layer.stripeType || "socks")].filter(Boolean);
     const loaded = await loadFirstExistingImage([...new Set(candidates)]);
     if (!loaded?.image) return null;
@@ -15371,7 +15446,8 @@
     const savedLayers = Array.isArray(saved?.templateLayers) ? saved.templateLayers : [];
     if (!savedLayers.length) return;
 
-    ensureSavedGeneratedStripeLayers(savedLayers);
+    clearSavedSocksStripeLayersForExactProjectRestore(saved);
+    await ensureSavedGeneratedStripeLayers(savedLayers);
     await ensureSavedUserPatternLayers(savedLayers);
     await ensureSavedUserBaseDesignLayers(savedLayers);
     const savedByKey = applySavedLayerStatesToLayerList(savedLayers, allTemplateEditableLayers());
