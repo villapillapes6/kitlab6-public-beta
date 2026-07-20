@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.268_pattern_project_restore";
+  const KITLAB_BUILD_VERSION = "v1.3.269_dynamic_stripes_project_restore";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   console.log("KitLab6 dynamic daily assets", "v1.3.262 Pattern / Team / Brand / Sponsor / TXT manifest");
   console.log("KitLab6 thumb quality no-flicker patch", "v1.3.244_template_gallery_no_flicker_hq_thumbs");
@@ -10253,10 +10253,11 @@
   }
 
 
-  function ensureSavedGeneratedStripeLayers(savedLayers = []) {
+  async function ensureSavedGeneratedStripeLayers(savedLayers = []) {
     const savedStripes = (Array.isArray(savedLayers) ? savedLayers : []).filter((layer) => layer && layer.isGeneratedStripe === true);
-    if (!savedStripes.length) return;
+    if (!savedStripes.length) return [];
     const existingKeys = new Set(allTemplateEditableLayers().map(templateLayerStateKey).map(normalizeLayerSettingsMatchKey));
+    const pendingLoads = [];
     for (const saved of savedStripes) {
       const key = saved.key || saved.path || saved.src || `generated://stripe/${saved.stripeType || "socks"}/${saved.name || Date.now()}`;
       const normalizedKey = normalizeLayerSettingsMatchKey(key);
@@ -10282,11 +10283,23 @@
       const section = layer.section || (type === "sleeve_cuffs" ? "shirt" : (type === "short_hem" ? "short" : "socks"));
       state.templateStyle.details[section].push(layer);
       if (normalizedKey) existingKeys.add(normalizedKey);
-      hydrateGeneratedStripeLayerGuide(layer).then(() => {
-        renderTemplateDetailPanels();
-        render({ immediate: true });
-      }).catch((error) => console.warn("Generated stripe guide ignored:", error));
+      pendingLoads.push((async () => {
+        try {
+          const guideInfo = await hydrateGeneratedStripeLayerGuide(layer);
+          if (!guideInfo) console.warn("Saved generated stripe restored without guide:", layer.stripeGuideSrc || layer.name || key);
+          return Boolean(guideInfo);
+        } catch (error) {
+          console.warn("Generated stripe guide ignored:", error);
+          return false;
+        }
+      })());
     }
+    const restored = await Promise.all(pendingLoads);
+    if (pendingLoads.length) {
+      renderTemplateDetailPanels();
+      render({ immediate: true });
+    }
+    return restored;
   }
 
   async function ensureSavedUserPatternLayers(savedLayers = []) {
@@ -15371,7 +15384,7 @@
     const savedLayers = Array.isArray(saved?.templateLayers) ? saved.templateLayers : [];
     if (!savedLayers.length) return;
 
-    ensureSavedGeneratedStripeLayers(savedLayers);
+    await ensureSavedGeneratedStripeLayers(savedLayers);
     await ensureSavedUserPatternLayers(savedLayers);
     await ensureSavedUserBaseDesignLayers(savedLayers);
     const savedByKey = applySavedLayerStatesToLayerList(savedLayers, allTemplateEditableLayers());
