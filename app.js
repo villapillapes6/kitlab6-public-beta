@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.270_dynamic_stripes_self_heal_restore";
+  const KITLAB_BUILD_VERSION = "v1.3.271_stable_project_load_rollback";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   console.log("KitLab6 dynamic daily assets", "v1.3.262 Pattern / Team / Brand / Sponsor / TXT manifest");
   console.log("KitLab6 thumb quality no-flicker patch", "v1.3.244_template_gallery_no_flicker_hq_thumbs");
@@ -8202,39 +8202,11 @@
       });
   }
 
-  function ensureGeneratedStripeLayerGuideLoaded(layer) {
-    if (!layer || !isGeneratedStripeLayer(layer)) return;
-    if (computeStripeGuideInfo(layer)) return;
-    if (layer._stripeGuideLoading === true) return;
-    layer._stripeGuideLoading = true;
-    Promise.resolve(hydrateGeneratedStripeLayerGuide(layer))
-      .then((info) => {
-        layer._stripeGuideLoading = false;
-        if (!info) return;
-        layer._renderCache = null;
-        layer._renderCacheKey = "";
-        invalidateBodySectionDetailsCache(layer.section || "all");
-        try { renderTemplateDetailPanels(); } catch (_) {}
-        try { render({ immediate: true }); } catch (_) {}
-      })
-      .catch((error) => {
-        layer._stripeGuideLoading = false;
-        console.warn("Generated stripe guide could not be loaded:", error);
-      });
-  }
-
   function drawOneTemplateLayer(layer) {
     enforceButtonShineWhiteLayer(layer);
     enforceRetroFixedBlackShadowLayer(layer);
     if (!layer?.enabled) return;
-    if (isGeneratedStripeLayer(layer)) {
-      if (!computeStripeGuideInfo(layer)) {
-        ensureGeneratedStripeLayerGuideLoaded(layer);
-        return;
-      }
-      drawGeneratedStripeLayer(layer, { clipToCurrentAlpha: true });
-      return;
-    }
+    if (isGeneratedStripeLayer(layer)) { drawGeneratedStripeLayer(layer, { clipToCurrentAlpha: true }); return; }
     if (templateLayerUsesGuidedPatternEngine(layer)) { markGuidedPatternLayerKind(layer); ensureGuidedPatternLayerGuidesLoaded(layer); drawUserPatternLayer(layer); return; }
     if (!layer.image) return;
     const canvas = templateLayerColorApply(layer);
@@ -10281,82 +10253,40 @@
   }
 
 
-  async function ensureSavedGeneratedStripeLayers(savedLayers = []) {
-    const savedStripes = (Array.isArray(savedLayers) ? savedLayers : []).filter((layer) => layer && (layer.isGeneratedStripe === true || /^generated:\/\/stripe\//i.test(String(layer.src || layer.path || layer.key || ""))));
-    if (!savedStripes.length) return [];
-
-    const currentLayers = allTemplateEditableLayers();
-    const existingByKey = new Map();
-    for (const layer of currentLayers) {
-      if (!isGeneratedStripeLayer(layer)) continue;
-      for (const key of templateLayerSettingsMatchKeys(layer)) {
-        const normalized = normalizeLayerSettingsMatchKey(key);
-        if (normalized && !existingByKey.has(normalized)) existingByKey.set(normalized, layer);
-      }
-    }
-
-    const pendingLoads = [];
+  function ensureSavedGeneratedStripeLayers(savedLayers = []) {
+    const savedStripes = (Array.isArray(savedLayers) ? savedLayers : []).filter((layer) => layer && layer.isGeneratedStripe === true);
+    if (!savedStripes.length) return;
+    const existingKeys = new Set(allTemplateEditableLayers().map(templateLayerStateKey).map(normalizeLayerSettingsMatchKey));
     for (const saved of savedStripes) {
       const key = saved.key || saved.path || saved.src || `generated://stripe/${saved.stripeType || "socks"}/${saved.name || Date.now()}`;
-      const savedMatchKeys = [
-        ...(Array.isArray(saved.matchKeys) ? saved.matchKeys : []),
-        ...templateLayerSettingsMatchKeys(saved),
-        key,
-      ].map(normalizeLayerSettingsMatchKey).filter(Boolean);
-      let layer = savedMatchKeys.map((matchKey) => existingByKey.get(matchKey)).find(Boolean) || null;
+      const normalizedKey = normalizeLayerSettingsMatchKey(key);
+      if (normalizedKey && existingKeys.has(normalizedKey)) continue;
       const type = saved.stripeType === "sleeve_cuffs" ? "sleeve_cuffs" : (saved.stripeType === "short_hem" ? "short_hem" : "socks");
-
-      if (!layer) {
-        layer = createGeneratedStripeLayer(type, {
-          key,
-          path: key,
-          name: saved.displayName || saved.name || stripeLayerDisplayBaseName(type),
-          displayName: saved.displayName || saved.name || stripeLayerDisplayBaseName(type),
-          enabled: saved.enabled !== false,
-          colorMap: saved.colorMap || {},
-          color: saved.appliedChipColor || saved.colorMap?.[generatedStripeLayerSourceColor()] || generatedStripeLayerSourceColor(),
-          stripeThickness: saved.stripeThickness || saved.thickness,
-          stripePosition: saved.stripePosition,
-          stripePositionMode: saved.stripePositionMode || "offset",
-          stripePositionAuto: saved.stripePositionAuto !== false,
-          stripeGuideSrc: saved.stripeGuideSrc || "",
-          stripeControlsOpen: saved.stripeControlsOpen === true,
-          blendMode: saved.blendMode || "source-over",
-          opacity: Number(saved.opacity ?? 1),
-          order: Number(saved.orderIndex ?? 875),
-        });
-        const section = layer.section || (type === "sleeve_cuffs" ? "shirt" : (type === "short_hem" ? "short" : "socks"));
-        if (!state.templateStyle.details) state.templateStyle.details = { shirt: [], short: [], socks: [] };
-        if (!Array.isArray(state.templateStyle.details[section])) state.templateStyle.details[section] = [];
-        state.templateStyle.details[section].push(layer);
-        for (const matchKey of savedMatchKeys) existingByKey.set(matchKey, layer);
-      } else {
-        // Existing rows must also be hydrated. This is the case the previous fix
-        // skipped, leaving a visible UI row with no drawable guide.
-        layer.stripeType = type;
-        layer.stripeGuideSrc = saved.stripeGuideSrc || layer.stripeGuideSrc || "";
-        layer.stripeGuideCandidates = activeTemplateStripeGuideCandidates(type);
-      }
-
-      pendingLoads.push((async () => {
-        try {
-          const guideInfo = await hydrateGeneratedStripeLayerGuide(layer);
-          if (!guideInfo) console.warn("Saved generated stripe restored without guide:", layer.stripeGuideSrc || layer.name || key);
-          return Boolean(guideInfo);
-        } catch (error) {
-          console.warn("Generated stripe guide ignored:", error);
-          return false;
-        }
-      })());
+      const layer = createGeneratedStripeLayer(type, {
+        key,
+        path: key,
+        name: saved.displayName || saved.name || stripeLayerDisplayBaseName(type),
+        displayName: saved.displayName || saved.name || stripeLayerDisplayBaseName(type),
+        enabled: saved.enabled !== false,
+        colorMap: saved.colorMap || {},
+        color: saved.appliedChipColor || saved.colorMap?.[generatedStripeLayerSourceColor()] || generatedStripeLayerSourceColor(),
+        stripeThickness: saved.stripeThickness || saved.thickness,
+        stripePosition: saved.stripePosition,
+        stripePositionAuto: saved.stripePositionAuto !== false,
+        stripeGuideSrc: saved.stripeGuideSrc || "",
+        stripeControlsOpen: saved.stripeControlsOpen === true,
+        blendMode: saved.blendMode || "source-over",
+        opacity: Number(saved.opacity ?? 1),
+        order: Number(saved.orderIndex ?? 875),
+      });
+      const section = layer.section || (type === "sleeve_cuffs" ? "shirt" : (type === "short_hem" ? "short" : "socks"));
+      state.templateStyle.details[section].push(layer);
+      if (normalizedKey) existingKeys.add(normalizedKey);
+      hydrateGeneratedStripeLayerGuide(layer).then(() => {
+        renderTemplateDetailPanels();
+        render({ immediate: true });
+      }).catch((error) => console.warn("Generated stripe guide ignored:", error));
     }
-
-    const restored = await Promise.all(pendingLoads);
-    if (pendingLoads.length) {
-      invalidateBodySectionDetailsCache("all");
-      renderTemplateDetailPanels();
-      render({ immediate: true });
-    }
-    return restored;
   }
 
   async function ensureSavedUserPatternLayers(savedLayers = []) {
@@ -11442,28 +11372,11 @@
 
   async function hydrateGeneratedStripeLayerGuide(layer = {}) {
     if (!isGeneratedStripeLayer(layer)) return null;
-
-    // A Project/runtime cache can preserve the stripe row while losing or keeping an
-    // unusable guide reference. Only short-circuit when the current guide really
-    // produces valid geometry; otherwise clear it and reload from the active template.
-    if (layer.guideImage || layer._stripeGuideImage) {
-      const existingInfo = computeStripeGuideInfo(layer);
-      if (existingInfo) return existingInfo;
-      layer.guideImage = null;
-      layer._stripeGuideImage = null;
-      layer._stripeGuideInfo = null;
-    }
-
-    const candidates = [
-      layer.stripeGuideSrc,
-      ...(Array.isArray(layer.stripeGuideCandidates) ? layer.stripeGuideCandidates : []),
-      ...activeTemplateStripeGuideCandidates(layer.stripeType || "socks"),
-    ].filter(Boolean);
-    const uniqueCandidates = [...new Set(candidates)];
-    const loaded = await loadFirstExistingImage(uniqueCandidates);
+    if (layer.guideImage || layer._stripeGuideImage) return computeStripeGuideInfo(layer);
+    const candidates = [layer.stripeGuideSrc, ...(Array.isArray(layer.stripeGuideCandidates) ? layer.stripeGuideCandidates : []), ...activeTemplateStripeGuideCandidates(layer.stripeType || "socks")].filter(Boolean);
+    const loaded = await loadFirstExistingImage([...new Set(candidates)]);
     if (!loaded?.image) return null;
-    layer.stripeGuideSrc = loaded.src || uniqueCandidates[0] || "";
-    layer.stripeGuideCandidates = activeTemplateStripeGuideCandidates(layer.stripeType || "socks");
+    layer.stripeGuideSrc = loaded.src || candidates[0];
     layer.guideImage = loaded.image;
     layer._stripeGuideImage = loaded.image;
     layer._stripeGuideInfo = null;
@@ -15458,18 +15371,10 @@
     const savedLayers = Array.isArray(saved?.templateLayers) ? saved.templateLayers : [];
     if (!savedLayers.length) return;
 
-    await ensureSavedGeneratedStripeLayers(savedLayers);
+    ensureSavedGeneratedStripeLayers(savedLayers);
     await ensureSavedUserPatternLayers(savedLayers);
     await ensureSavedUserBaseDesignLayers(savedLayers);
     const savedByKey = applySavedLayerStatesToLayerList(savedLayers, allTemplateEditableLayers());
-
-    // ApplySavedLayerStates can update the guide source/type after the first hydration.
-    // Revalidate every generated layer once more before the Project is cached.
-    await Promise.all(generatedStripeLayers().map(async (layer) => {
-      try { return await hydrateGeneratedStripeLayerGuide(layer); }
-      catch (error) { console.warn("Generated stripe final restore ignored:", error); return null; }
-    }));
-
     sortTemplateLayerListBySaved(state.templateStyle.details.shirt, savedByKey);
     sortTemplateLayerListBySaved(state.templateStyle.details.short, savedByKey);
     normalizeNikeTotal90SideTriangleSections();
@@ -15658,23 +15563,9 @@
     updateOverlayUi();
   }
 
-  function clearProjectRestorableDynamicTemplateLayers() {
-    if (!state.templateStyle?.details) return;
-    for (const section of ["shirt", "short", "socks"]) {
-      const list = Array.isArray(state.templateStyle.details[section]) ? state.templateStyle.details[section] : [];
-      state.templateStyle.details[section] = list.filter((layer) => {
-        if (isGeneratedStripeLayer(layer)) return false;
-        if (layer?.isUserPattern === true || layer?.isUserBaseDesign === true) return false;
-        return true;
-      });
-    }
-    invalidateBodySectionDetailsCache("all");
-  }
-
   function resetEditableRuntimeBeforeExactProjectRestore(saved = {}) {
     // v1.0.94: when switching/loading kits, never inherit editable state from the previous kit.
     // Template assets/details remain from the selected template; only user-editable runtime state is reset.
-    clearProjectRestorableDynamicTemplateLayers();
     resetAllLogoModulesRuntimeState();
     state.armband = { item: null, image: null, src: "", name: "" };
     state.overlay = { image: null, src: "", name: "", side: "left", size: 100, x: 0, y: 0, controlsOpen: false };
