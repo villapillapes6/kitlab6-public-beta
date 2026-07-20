@@ -1,11 +1,11 @@
 ﻿{
     "version":  "1.3.262-web-dynamic-daily-assets",
-    "generated":  "2026-07-19T12:54:09.0384675Z",
+    "generated":  "2026-07-20T23:13:03.8359255Z",
     "purpose":  "KitLab6 static catalog: dynamic Pattern, Team, Brand, Sponsor and TXT; templates remain controlled in app.js",
     "dynamicRoots":  {
                          "assets/pattern":  {
                                                 "mode":  "manifest-authoritative",
-                                                "imageFiles":  509,
+                                                "imageFiles":  533,
                                                 "directFolders":  [
                                                                       "1. FC Heidenheim",
                                                                       "1. FC K#U00f6ln",
@@ -36,6 +36,8 @@
                                                                       "Brentford FC",
                                                                       "Bristol City FC",
                                                                       "Burnley FC",
+                                                                      "CA Osasuna",
+                                                                      "CD Leganes",
                                                                       "CD Tenerife",
                                                                       "Celtic FC",
                                                                       "CF Montr#U00e9al",
@@ -56,6 +58,7 @@
                                                                       "Crystal Palace FC",
                                                                       "DC United",
                                                                       "Deportivo Alav#U00e9s",
+                                                                      "Deportivo de A Coruna",
                                                                       "Derby County FC",
                                                                       "Eintracht Frankfurt",
                                                                       "Elche CF",
@@ -89,6 +92,7 @@
                                                                       "Liverpool FC",
                                                                       "Los Angeles FC",
                                                                       "Los Angeles Galaxy",
+                                                                      "Malaga CF",
                                                                       "Manchester City FC",
                                                                       "Manchester United FC",
                                                                       "Middlesbrough FC",
@@ -112,7 +116,11 @@
                                                                       "Racing Club de Lens",
                                                                       "Rayo Vallecano",
                                                                       "RB Leipzig",
+                                                                      "RCD Espanyol",
+                                                                      "RCD Mallorca",
+                                                                      "Real Jaen",
                                                                       "Real Madrid CF",
+                                                                      "Real Oviedo",
                                                                       "Real Salt Lake",
                                                                       "Red Bull Bragantino",
                                                                       "San Diego FC",
@@ -121,6 +129,7 @@
                                                                       "Sociedade Esportiva Palmeiras",
                                                                       "Sport Club Internacional",
                                                                       "Sport Lisboa e Benfica",
+                                                                      "Sporting de Gijon",
                                                                       "Sporting Kansas City",
                                                                       "Stade Rennais FC",
                                                                       "Stoke City FC",
@@ -1281,6 +1290,9 @@
                   "assets/pattern/Burnley FC/burnley_25_away.png",
                   "assets/pattern/Burnley FC/burnley_25_home.png",
                   "assets/pattern/Burnley FC/burnley_25_third.png",
+                  "assets/pattern/CA Osasuna/osasuna_26_home.png",
+                  "assets/pattern/CA Osasuna/osauna_26_away.png",
+                  "assets/pattern/CD Leganes/leganes_26_home.png",
                   "assets/pattern/CD Tenerife/tenerife_24_home.png",
                   "assets/pattern/Celtic FC/celtic_25_home.png",
                   "assets/pattern/Celtic FC/celtic_25_third.png",
@@ -1334,6 +1346,11 @@
                   "assets/pattern/Deportivo Alav#U00e9s/alaves_25_third - 3.png",
                   "assets/pattern/Deportivo Alav#U00e9s/alaves_25_third - 4.png",
                   "assets/pattern/Deportivo Alav#U00e9s/alaves_25_third - 5.png",
+                  "assets/pattern/Deportivo Alav#U00e9s/alaves_26_away.png",
+                  "assets/pattern/Deportivo Alav#U00e9s/alaves_26_home_1.png",
+                  "assets/pattern/Deportivo Alav#U00e9s/alaves_26_home_2.png",
+                  "assets/pattern/Deportivo Alav#U00e9s/alaves_26_third.png",
+                  "assets/pattern/Deportivo de A Coruna/deportivo_a_coruna_26_home.png",
                   "assets/pattern/Derby County FC/derby_24_away.png",
                   "assets/pattern/Derby County FC/derby_24_third.png",
                   "assets/pattern/Eintracht Frankfurt/frankfurt_25_third.png",
@@ -1407,6 +1424,7 @@
                   "assets/pattern/Galatasaray SK/galatasaray_24_third_2.png",
                   "assets/pattern/Galatasaray SK/galatasaray_25_third.png",
                   "assets/pattern/Girona FC/girona_24_home.png",
+                  "assets/pattern/Girona FC/girona_26_away.png",
                   "assets/pattern/Girona FC/girona_26_home.png",
                   "assets/pattern/Granada CF/granada_24_fourth.png",
                   "assets/pattern/Grenoble Foot 38/grenoble_foot_24_home.png",
@@ -1439,6 +1457,8 @@
                   "assets/pattern/Los Angeles Galaxy/la_galaxy_24_home.png",
                   "assets/pattern/Los Angeles Galaxy/la_galaxy_26_home - 1.png",
                   "assets/pattern/Los Angeles Galaxy/la_galaxy_26_home - 2.png",
+                  "assets/pattern/Malaga CF/malaga_26_home_1.png",
+                  "assets/pattern/Malaga CF/malaga_26_home_2.png",
                   "assets/pattern/Manchester City FC/man_city_23_away.png",
                   "assets/pattern/Manchester City FC/man_city_23_home.png",
                   "assets/pattern/Manchester City FC/man_city_24_third.png",
@@ -1662,8 +1682,17 @@
                   "assets/pattern/RB Leipzig/leipzig_25_home - 1.png",
                   "assets/pattern/RB Leipzig/leipzig_25_home - 2.png",
                   "assets/pattern/RB Leipzig/leipzig_25_third.png",
+                  "assets/pattern/RCD Espanyol/espanyol_26_home_1.png",
+                  "assets/pattern/RCD Espanyol/espanyol_26_home_2.png",
+                  "assets/pattern/RCD Espanyol/espanyol_26_third.png",
+                  "assets/pattern/RCD Mallorca/mallorca_26_away.png",
+                  "assets/pattern/Real Jaen/jaen_26_home.png",
                   "assets/pattern/Real Madrid CF/real_madrid_25_away.png",
                   "assets/pattern/Real Madrid CF/real_madrid_25_third.png",
+                  "assets/pattern/Real Oviedo/oviedo_26_away.png",
+                  "assets/pattern/Real Oviedo/oviedo_26_home.png",
+                  "assets/pattern/Real Oviedo/oviedo_26_third_1.png",
+                  "assets/pattern/Real Oviedo/oviedo_26_third_2.png",
                   "assets/pattern/Real Salt Lake/real_sl_24_home.png",
                   "assets/pattern/Real Salt Lake/real_sl_25_away - 1.png",
                   "assets/pattern/Real Salt Lake/real_sl_25_away - 2.png",
@@ -1676,6 +1705,10 @@
                   "assets/pattern/Sociedade Esportiva Palmeiras/palmeiras_home_25.png",
                   "assets/pattern/Sport Club Internacional/internacional_25_away.png",
                   "assets/pattern/Sport Lisboa e Benfica/benfica_25_away.png",
+                  "assets/pattern/Sporting de Gijon/sporting_de_gijon_26_away.png",
+                  "assets/pattern/Sporting de Gijon/sporting_de_gijon_26_home_1.png",
+                  "assets/pattern/Sporting de Gijon/sporting_de_gijon_26_home_2.png",
+                  "assets/pattern/Sporting de Gijon/sporting_de_gijon_26_home_3.png",
                   "assets/pattern/Sporting Kansas City/sporting_kc_24_away.png",
                   "assets/pattern/Sporting Kansas City/sporting_kc_25_home.png",
                   "assets/pattern/Stade Rennais FC/stade_rennais_25_away.png",
@@ -7494,6 +7527,8 @@
                                                         "Brentford FC",
                                                         "Bristol City FC",
                                                         "Burnley FC",
+                                                        "CA Osasuna",
+                                                        "CD Leganes",
                                                         "CD Tenerife",
                                                         "Celtic FC",
                                                         "CF Montr#U00e9al",
@@ -7514,6 +7549,7 @@
                                                         "Crystal Palace FC",
                                                         "DC United",
                                                         "Deportivo Alav#U00e9s",
+                                                        "Deportivo de A Coruna",
                                                         "Derby County FC",
                                                         "Eintracht Frankfurt",
                                                         "Elche CF",
@@ -7547,6 +7583,7 @@
                                                         "Liverpool FC",
                                                         "Los Angeles FC",
                                                         "Los Angeles Galaxy",
+                                                        "Malaga CF",
                                                         "Manchester City FC",
                                                         "Manchester United FC",
                                                         "Middlesbrough FC",
@@ -7570,7 +7607,11 @@
                                                         "Racing Club de Lens",
                                                         "Rayo Vallecano",
                                                         "RB Leipzig",
+                                                        "RCD Espanyol",
+                                                        "RCD Mallorca",
+                                                        "Real Jaen",
                                                         "Real Madrid CF",
+                                                        "Real Oviedo",
                                                         "Real Salt Lake",
                                                         "Red Bull Bragantino",
                                                         "San Diego FC",
@@ -7579,6 +7620,7 @@
                                                         "Sociedade Esportiva Palmeiras",
                                                         "Sport Club Internacional",
                                                         "Sport Lisboa e Benfica",
+                                                        "Sporting de Gijon",
                                                         "Sporting Kansas City",
                                                         "Stade Rennais FC",
                                                         "Stoke City FC",
@@ -7894,6 +7936,23 @@
                                                                  "burnley_25_third.png"
                                                              ]
                                                },
+                 "assets/pattern/CA Osasuna":  {
+                                                   "folders":  [
+
+                                                               ],
+                                                   "files":  [
+                                                                 "osasuna_26_home.png",
+                                                                 "osauna_26_away.png"
+                                                             ]
+                                               },
+                 "assets/pattern/CD Leganes":  {
+                                                   "folders":  [
+
+                                                               ],
+                                                   "files":  [
+                                                                 "leganes_26_home.png"
+                                                             ]
+                                               },
                  "assets/pattern/CD Tenerife":  {
                                                     "folders":  [
 
@@ -8084,7 +8143,19 @@
                                                                             "alaves_25_third - 2.png",
                                                                             "alaves_25_third - 3.png",
                                                                             "alaves_25_third - 4.png",
-                                                                            "alaves_25_third - 5.png"
+                                                                            "alaves_25_third - 5.png",
+                                                                            "alaves_26_away.png",
+                                                                            "alaves_26_home_1.png",
+                                                                            "alaves_26_home_2.png",
+                                                                            "alaves_26_third.png"
+                                                                        ]
+                                                          },
+                 "assets/pattern/Deportivo de A Coruna":  {
+                                                              "folders":  [
+
+                                                                          ],
+                                                              "files":  [
+                                                                            "deportivo_a_coruna_26_home.png"
                                                                         ]
                                                           },
                  "assets/pattern/Derby County FC":  {
@@ -8305,6 +8376,7 @@
                                                               ],
                                                   "files":  [
                                                                 "girona_24_home.png",
+                                                                "girona_26_away.png",
                                                                 "girona_26_home.png"
                                                             ]
                                               },
@@ -8423,6 +8495,15 @@
                                                                          "la_galaxy_26_home - 2.png"
                                                                      ]
                                                        },
+                 "assets/pattern/Malaga CF":  {
+                                                  "folders":  [
+
+                                                              ],
+                                                  "files":  [
+                                                                "malaga_26_home_1.png",
+                                                                "malaga_26_home_2.png"
+                                                            ]
+                                              },
                  "assets/pattern/Manchester City FC":  {
                                                            "folders":  [
 
@@ -9159,6 +9240,32 @@
                                                                  "leipzig_25_third.png"
                                                              ]
                                                },
+                 "assets/pattern/RCD Espanyol":  {
+                                                     "folders":  [
+
+                                                                 ],
+                                                     "files":  [
+                                                                   "espanyol_26_home_1.png",
+                                                                   "espanyol_26_home_2.png",
+                                                                   "espanyol_26_third.png"
+                                                               ]
+                                                 },
+                 "assets/pattern/RCD Mallorca":  {
+                                                     "folders":  [
+
+                                                                 ],
+                                                     "files":  [
+                                                                   "mallorca_26_away.png"
+                                                               ]
+                                                 },
+                 "assets/pattern/Real Jaen":  {
+                                                  "folders":  [
+
+                                                              ],
+                                                  "files":  [
+                                                                "jaen_26_home.png"
+                                                            ]
+                                              },
                  "assets/pattern/Real Madrid CF":  {
                                                        "folders":  [
 
@@ -9168,6 +9275,17 @@
                                                                      "real_madrid_25_third.png"
                                                                  ]
                                                    },
+                 "assets/pattern/Real Oviedo":  {
+                                                    "folders":  [
+
+                                                                ],
+                                                    "files":  [
+                                                                  "oviedo_26_away.png",
+                                                                  "oviedo_26_home.png",
+                                                                  "oviedo_26_third_1.png",
+                                                                  "oviedo_26_third_2.png"
+                                                              ]
+                                                },
                  "assets/pattern/Real Salt Lake":  {
                                                        "folders":  [
 
@@ -9236,6 +9354,17 @@
                                                                              "benfica_25_away.png"
                                                                          ]
                                                            },
+                 "assets/pattern/Sporting de Gijon":  {
+                                                          "folders":  [
+
+                                                                      ],
+                                                          "files":  [
+                                                                        "sporting_de_gijon_26_away.png",
+                                                                        "sporting_de_gijon_26_home_1.png",
+                                                                        "sporting_de_gijon_26_home_2.png",
+                                                                        "sporting_de_gijon_26_home_3.png"
+                                                                    ]
+                                                      },
                  "assets/pattern/Sporting Kansas City":  {
                                                              "folders":  [
 
