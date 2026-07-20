@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.272_socks_stripes_project_restore";
+  const KITLAB_BUILD_VERSION = "v1.3.273_pattern_team_folder_thumbnails";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   console.log("KitLab6 dynamic daily assets", "v1.3.262 Pattern / Team / Brand / Sponsor / TXT manifest");
   console.log("KitLab6 thumb quality no-flicker patch", "v1.3.244_template_gallery_no_flicker_hq_thumbs");
@@ -9370,19 +9370,28 @@
     if (patternTeamThumbIndexPromise) return patternTeamThumbIndexPromise;
     patternTeamThumbIndexPromise = (async () => {
       const map = new Map();
+      const manifestKeys = new Set();
       const add = (name, url) => {
         const key = normalizeAssetMatchKey(cleanPatternName(name));
         if (key && url && !map.has(key)) map.set(key, url);
+      };
+      const addManifest = (name, url) => {
+        const key = normalizeAssetMatchKey(cleanPatternName(name));
+        if (!key || !url || manifestKeys.has(key)) return;
+        // The live manifest must replace old embedded #Uxxxx filenames. Those
+        // compatibility names describe the right team but are not physical web URLs.
+        map.set(key, url);
+        manifestKeys.add(key);
       };
       (INTERNAL_TEAMS || []).forEach((item) => {
         add(item.name || item.file, item.src);
         add(cleanBrandFileName(item.file || ""), item.src);
       });
       const root = await listKitlabAssetDirectory(["assets", "team"]);
-      (root.files || []).forEach((file) => add(file, encodePathParts(["assets", "team", file])));
+      (root.files || []).forEach((file) => addManifest(file, encodePathParts(["assets", "team", file])));
       for (const folder of (root.folders || [])) {
         const listed = await listKitlabAssetDirectory(["assets", "team", folder]);
-        (listed.files || []).forEach((file) => add(file, encodePathParts(["assets", "team", folder, file])));
+        (listed.files || []).forEach((file) => addManifest(file, encodePathParts(["assets", "team", folder, file])));
       }
       return map;
     })();
@@ -9405,13 +9414,8 @@
     }
     const wanted = normalizeAssetMatchKey(clean || original);
     if (wanted) {
-      const exact = (INTERNAL_TEAMS || []).find((item) => normalizeAssetMatchKey(item.name || item.file || "") === wanted);
-      if (exact?.src) candidates.push(exact.src);
-      const loose = (INTERNAL_TEAMS || []).find((item) => {
-        const key = normalizeAssetMatchKey(item.name || item.file || "");
-        return key && (key.includes(wanted) || wanted.includes(key));
-      });
-      if (loose?.src) candidates.push(loose.src);
+      // Prefer the live manifest. It contains the exact physical Unicode/casing used
+      // by the server and also knows teams added after app.js was published.
       try {
         const index = await loadPatternTeamThumbIndex();
         const indexedExact = index.get(wanted);
@@ -9423,6 +9427,13 @@
           }
         }
       } catch (_) {}
+      const exact = (INTERNAL_TEAMS || []).find((item) => normalizeAssetMatchKey(item.name || item.file || "") === wanted);
+      if (exact?.src) candidates.push(exact.src);
+      const loose = (INTERNAL_TEAMS || []).find((item) => {
+        const key = normalizeAssetMatchKey(item.name || item.file || "");
+        return key && (key.includes(wanted) || wanted.includes(key));
+      });
+      if (loose?.src) candidates.push(loose.src);
     }
     candidates.push(PATTERN_FOLDER_FALLBACK_THUMB);
     return uniquePatternUrls(candidates.map((url) => kitlabDynamicAssetUrl(url)));
@@ -9972,25 +9983,41 @@
     return listKitlabAssetDirectory(["assets", "pattern", ...parts]);
   }
 
+  // v1.3.273: keep the manifest-aware Pattern gallery implementation active.
+  // An older duplicate of this function used only the embedded INTERNAL_TEAMS list,
+  // so newly added teams and filenames containing accents/Unicode fell back to the
+  // generic folder icon. Root Pattern folders now resolve their shield through the
+  // live Team manifest and keep a fallback chain for legacy encoded filenames.
   async function refreshPatternGalleryFolder(pathStack = state.patternGalleryPath || []) {
     const parts = patternPathParts(pathStack);
     const listed = await listAssetFolder(parts);
-    const folders = listed.folders.map((folder) => ({
-      type: "folder",
-      name: cleanPatternName(folder),
-      folder,
-      pathParts: [...parts, folder],
-      thumb: findTeamThumbForPatternFolder(folder),
-    }));
-    const files = listed.files.map((file) => ({
-      type: "file",
-      name: cleanPatternName(file),
-      file,
-      pathParts: [...parts, file],
-      src: patternAssetUrl([...parts, file]),
-      thumb: patternAssetUrl([...parts, file]),
-      team: cleanPatternName(parts[parts.length - 1] || "Pattern"),
-    }));
+    let folders = [];
+    if (!parts.length) {
+      folders = await Promise.all((listed.folders || []).map(async (folder) => {
+        const shields = await patternTeamShieldCandidates(folder);
+        return {
+          type: "folder",
+          name: cleanPatternName(folder),
+          folder,
+          pathParts: [folder],
+          thumb: shields[0],
+          thumbFallbacks: shields.slice(1),
+        };
+      }));
+    } else {
+      folders = await Promise.all((listed.folders || []).map((folder) => resolvePatternFolderItem(parts, folder)));
+    }
+    const files = (listed.files || [])
+      .filter((file) => !isPatternThumbFile(file))
+      .map((file) => ({
+        type: "file",
+        name: cleanPatternName(file),
+        file,
+        pathParts: [...parts, file],
+        src: patternAssetUrl([...parts, file]),
+        thumb: patternAssetUrl([...parts, file]),
+        team: cleanPatternName(parts[0] || parts[parts.length - 1] || "Pattern"),
+      }));
     state.patternGalleryItems = [...folders, ...files];
     return state.patternGalleryItems;
   }
