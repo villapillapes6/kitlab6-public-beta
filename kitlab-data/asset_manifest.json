@@ -1,6 +1,6 @@
 ﻿{
     "version":  "1.3.262-web-dynamic-daily-assets",
-    "generated":  "2026-07-20T23:13:03.8359255Z",
+    "generated":  "2026-07-20T23:38:22.8400404Z",
     "purpose":  "KitLab6 static catalog: dynamic Pattern, Team, Brand, Sponsor and TXT; templates remain controlled in app.js",
     "dynamicRoots":  {
                          "assets/pattern":  {
@@ -57,8 +57,8 @@
                                                                       "Cruzeiro Esporte Clube",
                                                                       "Crystal Palace FC",
                                                                       "DC United",
+                                                                      "Deportivo a Coruna",
                                                                       "Deportivo Alav#U00e9s",
-                                                                      "Deportivo de A Coruna",
                                                                       "Derby County FC",
                                                                       "Eintracht Frankfurt",
                                                                       "Elche CF",
@@ -1340,6 +1340,7 @@
                   "assets/pattern/Crystal Palace FC/crystal_palace_25_third.png",
                   "assets/pattern/DC United/dc_25_away - 1.png",
                   "assets/pattern/DC United/dc_25_away - 2.png",
+                  "assets/pattern/Deportivo a Coruna/deportivo_a_coruna_26_home.png",
                   "assets/pattern/Deportivo Alav#U00e9s/alaves_24_away.png",
                   "assets/pattern/Deportivo Alav#U00e9s/alaves_25_third - 1.png",
                   "assets/pattern/Deportivo Alav#U00e9s/alaves_25_third - 2.png",
@@ -1350,7 +1351,6 @@
                   "assets/pattern/Deportivo Alav#U00e9s/alaves_26_home_1.png",
                   "assets/pattern/Deportivo Alav#U00e9s/alaves_26_home_2.png",
                   "assets/pattern/Deportivo Alav#U00e9s/alaves_26_third.png",
-                  "assets/pattern/Deportivo de A Coruna/deportivo_a_coruna_26_home.png",
                   "assets/pattern/Derby County FC/derby_24_away.png",
                   "assets/pattern/Derby County FC/derby_24_third.png",
                   "assets/pattern/Eintracht Frankfurt/frankfurt_25_third.png",
@@ -3772,8 +3772,8 @@
                   "assets/team/Spain/Coruxo FC.png",
                   "assets/team/Spain/CP Villarrobledo.png",
                   "assets/team/Spain/Cultural Leonesa.png",
+                  "assets/team/Spain/Deportivo a Coruna.png",
                   "assets/team/Spain/Deportivo Alaves.png",
-                  "assets/team/Spain/Deportivo de A Coruna.png",
                   "assets/team/Spain/Deportivo de la Coruna.png",
                   "assets/team/Spain/DUX Internacional de Madrid.png",
                   "assets/team/Spain/Elche CF.png",
@@ -7548,8 +7548,8 @@
                                                         "Cruzeiro Esporte Clube",
                                                         "Crystal Palace FC",
                                                         "DC United",
+                                                        "Deportivo a Coruna",
                                                         "Deportivo Alav#U00e9s",
-                                                        "Deportivo de A Coruna",
                                                         "Derby County FC",
                                                         "Eintracht Frankfurt",
                                                         "Elche CF",
@@ -8133,6 +8133,14 @@
                                                                 "dc_25_away - 2.png"
                                                             ]
                                               },
+                 "assets/pattern/Deportivo a Coruna":  {
+                                                           "folders":  [
+
+                                                                       ],
+                                                           "files":  [
+                                                                         "deportivo_a_coruna_26_home.png"
+                                                                     ]
+                                                       },
                  "assets/pattern/Deportivo Alav#U00e9s":  {
                                                               "folders":  [
 
@@ -8148,14 +8156,6 @@
                                                                             "alaves_26_home_1.png",
                                                                             "alaves_26_home_2.png",
                                                                             "alaves_26_third.png"
-                                                                        ]
-                                                          },
-                 "assets/pattern/Deportivo de A Coruna":  {
-                                                              "folders":  [
-
-                                                                          ],
-                                                              "files":  [
-                                                                            "deportivo_a_coruna_26_home.png"
                                                                         ]
                                                           },
                  "assets/pattern/Derby County FC":  {
@@ -12369,8 +12369,8 @@
                                                          "Coruxo FC.png",
                                                          "CP Villarrobledo.png",
                                                          "Cultural Leonesa.png",
+                                                         "Deportivo a Coruna.png",
                                                          "Deportivo Alaves.png",
-                                                         "Deportivo de A Coruna.png",
                                                          "Deportivo de la Coruna.png",
                                                          "DUX Internacional de Madrid.png",
                                                          "Elche CF.png",
