@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.281_individual_logo_copy_icon_visual_match_fix";
+  const KITLAB_BUILD_VERSION = "v1.3.282_logo_border_alpha_geometry_fix";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   console.log("KitLab6 dynamic daily assets", "v1.3.262 Pattern / Team / Brand / Sponsor / TXT manifest");
   console.log("KitLab6 thumb quality no-flicker patch", "v1.3.244_template_gallery_no_flicker_hq_thumbs");
@@ -13512,40 +13512,64 @@
     const paletteKey = `${logoColorModeForLayer(layer)}|${(layer.palette || []).map(normalizeHexColor).join(",")}`;
     const borderKey = layer.border ? `${layer.border.enabled ? 1 : 0}|${normalizeHexColor(layer.border.color || "#ffffff")}|${Number(layer.border.size) || 0}` : "";
     const sourceKey = String(layer.src || layer.image?.src || layer.fileName || "");
-    const cacheKey = `${mode}|${sourceKey}|${paletteKey}|${colorKey}|${mode === "border" ? borderKey : ""}`;
+    // TEAM logos switch from raw-file geometry to trimmed alpha geometry while Border is enabled.
+    // Keep that state in the logo cache key so toggling Border cannot reuse an incompatible image.
+    const borderGeometryKey = mode === "logo" && layer.border?.enabled ? "trim-for-border" : "raw-ok";
+    const cacheKey = `${mode}|${sourceKey}|${paletteKey}|${colorKey}|${borderGeometryKey}|${mode === "border" ? borderKey : ""}`;
     layer._processedImageCache = layer._processedImageCache || {};
     const cached = layer._processedImageCache[mode];
     if (cached && cached.key === cacheKey && cached.image) return cached.image;
 
-    // TEAM PNGs are local files inside assets/team/ and can be selected from nested country folders.
-    // They must behave like Brand visually, but when opened from file:// Chrome can block getImageData().
-    // For TEAM with no recolor/border, draw the PNG directly into the TEAM guide slot and do not read pixels.
-    if ((layer.assetType || "brand") === "team" && mode === "logo" && !Object.keys(layer.colorMap || {}).length) {
+    // TEAM PNGs can contain large transparent margins. Drawing the original file directly is safe
+    // only while Border is disabled. When Border is enabled, Logo and Border MUST use the exact
+    // same trimmed alpha geometry; otherwise the border is fitted at a different scale and becomes
+    // a large white blob instead of following the crest silhouette.
+    if (
+      (layer.assetType || "brand") === "team"
+      && mode === "logo"
+      && !Object.keys(layer.colorMap || {}).length
+      && !layer.border?.enabled
+    ) {
       layer._processedImageCache[mode] = { key: cacheKey, image: layer.image };
       return layer.image;
     }
 
-    const off = document.createElement("canvas");
-    off.width = layer.image.naturalWidth || layer.image.width;
-    off.height = layer.image.naturalHeight || layer.image.height;
-    const octx = off.getContext("2d");
-    octx.drawImage(layer.image, 0, 0);
-
-    try {
-      if (mode === "border") {
+    // Border is generated from the already processed/trimmed logo. This guarantees identical canvas
+    // dimensions, alpha mask, palette result and transparent bounds for both images. The final stroke
+    // is still drawn outside the logo in destination pixels, so Border Size remains visually stable.
+    if (mode === "border") {
+      try {
+        const logoImage = processedImage(layer, "logo");
+        const off = document.createElement("canvas");
+        off.width = logoImage?.width || logoImage?.naturalWidth || 1;
+        off.height = logoImage?.height || logoImage?.naturalHeight || 1;
+        const octx = off.getContext("2d", { willReadFrequently: true });
+        octx.drawImage(logoImage, 0, 0, off.width, off.height);
         const { r, g, b } = hexToRgb(layer.border.color);
         const data = octx.getImageData(0, 0, off.width, off.height);
         for (let i = 0; i < data.data.length; i += 4) {
           data.data[i] = r;
           data.data[i + 1] = g;
           data.data[i + 2] = b;
+          // Alpha remains exactly the logo alpha: no rectangle, no fill over transparency.
         }
         octx.putImageData(data, 0, 0);
-        const result = trimTransparentCanvas(off);
-        layer._processedImageCache[mode] = { key: cacheKey, image: result };
-        return result;
+        layer._processedImageCache[mode] = { key: cacheKey, image: off };
+        return off;
+      } catch (error) {
+        console.warn("Logo border alpha processing skipped; drawing original PNG:", error);
+        layer._processedImageCache[mode] = { key: cacheKey, image: layer.image };
+        return layer.image;
       }
+    }
 
+    const off = document.createElement("canvas");
+    off.width = layer.image.naturalWidth || layer.image.width;
+    off.height = layer.image.naturalHeight || layer.image.height;
+    const octx = off.getContext("2d", { willReadFrequently: true });
+    octx.drawImage(layer.image, 0, 0);
+
+    try {
       applyPaletteColorMap(octx, off, layer);
       const result = trimTransparentCanvas(off);
       layer._processedImageCache[mode] = { key: cacheKey, image: result };
