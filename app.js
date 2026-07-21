@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.276_logo_color_swatches_only_test";
+  const KITLAB_BUILD_VERSION = "v1.3.279_individual_logo_copy_runtime_ui_fix";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   console.log("KitLab6 dynamic daily assets", "v1.3.262 Pattern / Team / Brand / Sponsor / TXT manifest");
   console.log("KitLab6 thumb quality no-flicker patch", "v1.3.244_template_gallery_no_flicker_hq_thumbs");
@@ -14230,6 +14230,109 @@
     }).join("");
   }
 
+  const INDIVIDUAL_LOGO_COPY_ICON_DATA_URI = "data:image/png;base64,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";
+
+  function individualLogoCopyButtonHtml(part, index) {
+    const key = `${part}:${index}`;
+    return `<button type="button" class="icon-btn logo-row-icon-btn logo-layer-copy-btn" data-copy-logo-layer="${escapeAttr(key)}" title="Copy this logo layer from another kit" aria-label="Copy this logo layer from another kit" aria-haspopup="menu" aria-expanded="false"><img src="${INDIVIDUAL_LOGO_COPY_ICON_DATA_URI}" alt="" aria-hidden="true" /></button>`;
+  }
+
+  function ensureIndividualLogoCopyRuntimeStyle() {
+    if (document.getElementById("kitlab-individual-logo-copy-runtime-v1379")) return;
+    const style = document.createElement("style");
+    style.id = "kitlab-individual-logo-copy-runtime-v1379";
+    style.textContent = `
+      /* v1.3.279 — runtime UI so the individual Copy control does not depend on a changed index.html or an external asset. */
+      [data-section-panel="logos"] .part-row.has-file {
+        grid-template-columns: 25px 25px 25px max-content 28px minmax(0, 1fr) auto 24px 20px !important;
+      }
+      [data-section-panel="logos"] .part-row:not(.has-file) {
+        grid-template-columns: 25px 25px max-content minmax(0, 1fr) !important;
+      }
+      [data-section-panel="logos"] .logo-layer-copy-btn {
+        position: relative !important;
+        overflow: visible !important;
+      }
+      [data-section-panel="logos"] .logo-layer-copy-btn > img {
+        display: block !important;
+        width: 23px !important;
+        height: 23px !important;
+        max-width: 23px !important;
+        max-height: 23px !important;
+        object-fit: contain !important;
+        filter: drop-shadow(0 1px 1px rgba(0,0,0,0.35)) !important;
+        pointer-events: none !important;
+      }
+      [data-section-panel="logos"] .part-row:not(.has-file) .logo-layer-copy-btn {
+        display: none !important;
+      }
+      #logoLayerCopyMenu {
+        position: fixed !important;
+        z-index: 2147483000 !important;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function ensureIndividualLogoCopyMenuElement() {
+    let menu = document.getElementById("logoLayerCopyMenu");
+    if (menu) return menu;
+    menu = document.createElement("div");
+    menu.id = "logoLayerCopyMenu";
+    menu.className = "logos-copy-menu";
+    menu.setAttribute("role", "menu");
+    menu.setAttribute("aria-label", "Copy logo layer from kit");
+    menu.hidden = true;
+    const control = document.getElementById("logosCopyControl");
+    const generalButton = document.getElementById("copyLogosBtn");
+    if (control) control.insertBefore(menu, generalButton || null);
+    else document.body.appendChild(menu);
+    return menu;
+  }
+
+  function normalizeIndividualLogoCopyButton(button, part, index) {
+    if (!button) return null;
+    const key = `${part}:${index}`;
+    button.type = "button";
+    button.classList.add("icon-btn", "logo-row-icon-btn", "logo-layer-copy-btn");
+    button.dataset.copyLogoLayer = key;
+    button.title = "Copy this logo layer from another kit";
+    button.setAttribute("aria-label", "Copy this logo layer from another kit");
+    button.setAttribute("aria-haspopup", "menu");
+    if (!button.hasAttribute("aria-expanded")) button.setAttribute("aria-expanded", "false");
+    let image = button.querySelector("img");
+    if (!image) {
+      button.replaceChildren();
+      image = document.createElement("img");
+      button.appendChild(image);
+    }
+    image.src = INDIVIDUAL_LOGO_COPY_ICON_DATA_URI;
+    image.alt = "";
+    image.setAttribute("aria-hidden", "true");
+    return button;
+  }
+
+  function ensureIndividualLogoCopyUi() {
+    ensureIndividualLogoCopyRuntimeStyle();
+    ensureIndividualLogoCopyMenuElement();
+
+    document.querySelectorAll('[data-section-panel="logos"] .part-row[data-part]').forEach((row) => {
+      const part = String(row.dataset.part || "");
+      if (!BRAND_PARTS[part]) return;
+      const extraKey = String(row.dataset.brandExtraLayerRow || "");
+      const index = extraKey ? Number(extraKey.split(":")[1]) : 0;
+      if (!Number.isInteger(index) || index < 0) return;
+      let button = Array.from(row.children).find((child) => child?.matches?.('[data-copy-logo-layer]')) || null;
+      if (!button) {
+        const wrapper = document.createElement("div");
+        wrapper.innerHTML = individualLogoCopyButtonHtml(part, index);
+        button = wrapper.firstElementChild;
+        row.insertBefore(button, row.firstElementChild);
+      }
+      normalizeIndividualLogoCopyButton(button, part, index);
+    });
+  }
+
   function updateFileNames() {
     document.querySelectorAll(".part-row[data-part]:not(.brand-extra-layer-row)").forEach((rowEl) => {
       const part = rowEl.dataset.part;
@@ -14271,6 +14374,7 @@
     const rowState = layer ? " has-file" : " is-empty";
     return `
       <div class="part-row brand-extra-layer-row${rowState}" data-brand-extra-layer-row="${part}:${index}" data-logo-layer-select="${part}:${index}">
+        ${individualLogoCopyButtonHtml(part, index)}
         <button class="icon-btn logo-row-icon-btn logo-upload-btn" data-upload-layer="${part}:${index}" title="Upload external PNG"><img src="./assets/ui/Disco_duro_white_v0924.png?v=0924" alt="" /></button>
         <button class="icon-btn logo-row-icon-btn logo-gallery-btn" data-gallery-layer="${part}:${index}" title="Internal ${escapeAttr(gallerySearchMainName(assetTypeForPart(part)))}"><img src="./assets/ui/Carpeta_white_v0924.png?v=0924" alt="" /></button>
         <button class="part-name" data-part-layer-toggle="${part}:${index}">${escapeHtml(displayName)}</button>
@@ -14322,6 +14426,7 @@
   function updateAllBrandUI() {
     updateFileNames();
     renderLogoExtraLayerRows();
+    ensureIndividualLogoCopyUi();
     updateBrandModuleVisibility();
     updateLogoModuleVisibility();
     updateSponsorModuleVisibility();
@@ -16861,6 +16966,7 @@
 
   function openLogosCopyMenu() {
     if (!els.copyLogosBtn || els.copyLogosBtn.dataset.copying === "1") return;
+    closeLogoLayerCopyMenu();
     const menu = ensureLogosCopyMenuPortal();
     if (!menu) return;
 
@@ -16897,6 +17003,157 @@
     const menu = getLogosCopyMenuElement();
     if (!menu || menu.hidden) openLogosCopyMenu();
     else closeLogosCopyMenu();
+  }
+
+  let logoLayerCopyContext = null;
+  let logoLayerCopyBusy = false;
+
+  function getLogoLayerCopyMenuElement() {
+    return ensureIndividualLogoCopyMenuElement();
+  }
+
+  function ensureLogoLayerCopyMenuPortal() {
+    const menu = getLogoLayerCopyMenuElement();
+    if (!menu) return null;
+    if (menu.parentElement !== document.body) document.body.appendChild(menu);
+    return menu;
+  }
+
+  function savedLogoLayerFromProjectKit(kit, part, layerIndex) {
+    const modules = logoModulesFromProjectKit(kit);
+    const layer = modules?.[part]?.layers?.[Number(layerIndex)];
+    return layer && layer.src ? layer : null;
+  }
+
+  function positionLogoLayerCopyMenu() {
+    const menu = getLogoLayerCopyMenuElement();
+    const button = logoLayerCopyContext?.button;
+    if (!menu || !button || menu.hidden || !button.isConnected) return;
+    const buttonRect = button.getBoundingClientRect();
+    const menuRect = menu.getBoundingClientRect();
+    const gap = 7;
+    const viewportGap = 10;
+    const width = Math.max(1, menuRect.width || 230);
+    let left = buttonRect.left + (buttonRect.width / 2) - (width / 2);
+    left = Math.max(viewportGap, Math.min(left, window.innerWidth - width - viewportGap));
+    let top = buttonRect.top - menuRect.height - gap;
+    if (top < viewportGap) top = buttonRect.bottom + gap;
+    menu.style.left = `${Math.round(left)}px`;
+    menu.style.top = `${Math.round(top)}px`;
+  }
+
+  function closeLogoLayerCopyMenu(options = {}) {
+    const menu = getLogoLayerCopyMenuElement();
+    const focusButton = options.focus === true ? logoLayerCopyContext?.button : null;
+    if (menu) {
+      menu.hidden = true;
+      menu.style.display = "";
+      menu.style.visibility = "";
+      menu.style.left = "";
+      menu.style.top = "";
+    }
+    document.querySelectorAll('[data-copy-logo-layer][aria-expanded="true"]').forEach((button) => button.setAttribute("aria-expanded", "false"));
+    logoLayerCopyContext = null;
+    if (focusButton?.isConnected) focusButton.focus({ preventScroll: true });
+  }
+
+  function openLogoLayerCopyMenu(button, part, layerIndex) {
+    if (!button || logoLayerCopyBusy || !BRAND_PARTS[part]) return;
+    const safeIndex = Number(layerIndex);
+    if (!Number.isInteger(safeIndex) || safeIndex < 0) return;
+    const menu = ensureLogoLayerCopyMenuPortal();
+    if (!menu) return;
+
+    closeLogosCopyMenu();
+    closeLogoLayerCopyMenu();
+
+    let project;
+    try {
+      project = state.templateStyle?.selected && kitlabProjectDraftMode !== true
+        ? ensureCurrentKitSaved({ capturePreview: false, renderPanel: false })
+        : normalizeKitlabProject(state.project);
+    } catch (error) {
+      console.warn("Individual Logo copy menu project refresh failed; using current project state:", error);
+      project = normalizeKitlabProject(state.project);
+    }
+
+    logoLayerCopyContext = { button, part, index: safeIndex };
+    const sources = projectLogoCopySourceKits(project);
+    const targetLabel = BRAND_PARTS[part]?.label || partNoun(part) || "Logo";
+    if (!sources.length) {
+      menu.innerHTML = `<div class="logos-copy-menu-title">Copy ${escapeHtml(targetLabel)} from</div><div class="logos-copy-empty">There are no other kits in the right panel.</div>`;
+    } else {
+      const sourceRows = sources.map((kit) => {
+        const sourceLayer = savedLogoLayerFromProjectKit(kit, part, safeIndex);
+        const hasLayer = !!sourceLayer;
+        const name = kit.name || kit.id || "Kit";
+        return `<button type="button" class="logos-copy-source-btn${hasLayer ? "" : " is-empty"}" role="menuitem" data-copy-logo-layer-from-kit="${escapeAttr(kit.id)}" title="${hasLayer ? `Copy this row from ${escapeAttr(name)}` : `${escapeAttr(name)} has no logo in this row`}" ${hasLayer ? "" : "disabled"}><span>${escapeHtml(name)}</span>${hasLayer ? "" : "<small>No Logo</small>"}</button>`;
+      }).join("");
+      menu.innerHTML = `<div class="logos-copy-menu-title">Copy ${escapeHtml(targetLabel)} from</div>${sourceRows}`;
+    }
+
+    menu.hidden = false;
+    menu.style.display = "block";
+    menu.style.visibility = "visible";
+    button.setAttribute("aria-expanded", "true");
+    positionLogoLayerCopyMenu();
+  }
+
+  function toggleLogoLayerCopyMenu(button, part, layerIndex) {
+    const current = logoLayerCopyContext;
+    const menu = getLogoLayerCopyMenuElement();
+    const sameRow = current && current.button === button && current.part === part && current.index === Number(layerIndex);
+    if (sameRow && menu && !menu.hidden) closeLogoLayerCopyMenu({ focus: true });
+    else openLogoLayerCopyMenu(button, part, layerIndex);
+  }
+
+  async function copySingleLogoLayerFromProjectKit(sourceKitId = "") {
+    if (logoLayerCopyBusy || !logoLayerCopyContext) return;
+    const { part, index } = logoLayerCopyContext;
+    let project = ensureCurrentKitSaved({ capturePreview: false, renderPanel: false });
+    const activeId = activeProjectKitIdFromRightPanel(project);
+    const target = project.kits.find((kit) => String(kit.id || "").toLowerCase() === activeId) || null;
+    const sourceId = String(sourceKitId || "").toLowerCase();
+    const source = project.kits.find((kit) => String(kit.id || "").toLowerCase() === sourceId) || null;
+    const savedLayer = source ? savedLogoLayerFromProjectKit(source, part, index) : null;
+    if (!target || !source || String(source.id || "").toLowerCase() === activeId || !savedLayer) {
+      closeLogoLayerCopyMenu();
+      showToast("That kit has no logo in this row");
+      return;
+    }
+
+    logoLayerCopyBusy = true;
+    closeLogoLayerCopyMenu();
+    try {
+      const independentSavedLayer = cloneKitlabProjectData(savedLayer);
+      const restoredLayer = await restoreSavedLogoLayer(part, independentSavedLayer);
+      if (!restoredLayer) throw new Error("The logo image could not be restored");
+
+      const group = getPart(part);
+      if (index > group.layers.length) throw new Error("The destination row no longer exists");
+      if (index === group.layers.length) group.layers.push(restoredLayer);
+      else group.layers[index] = restoredLayer;
+      group.selected = index;
+      state.expandedParts[part] = true;
+
+      invalidateInteractionRenderCache("brand");
+      updateAllBrandUI();
+      render();
+      scheduleBrandInteractionRender({ accurate: true, accurateDelayMs: 120 });
+
+      project = ensureCurrentKitSaved({ capturePreview: false, renderPanel: false });
+      state.project = project;
+      renderProjectKitPanel();
+      const rowLabel = BRAND_PARTS[part]?.label || partNoun(part) || "Logo";
+      setStatus(`${rowLabel} copied from ${source.name || source.id} to ${target.name || target.id}`);
+      showToast(`${rowLabel} copied from ${source.name || source.id}`);
+    } catch (error) {
+      console.error("Individual Logo row copy failed:", error);
+      setStatus(`Could not copy this Logo row: ${error?.message || error}`);
+      showToast("Could not copy this Logo row");
+    } finally {
+      logoLayerCopyBusy = false;
+    }
   }
 
   async function copyCompleteLogosBlockFromProjectKit(sourceKitId = "") {
@@ -19567,6 +19824,16 @@
     }
     if (els.templateGalleryBtn && !els.templateGalleryBtn.dataset.boundTemplate) { els.templateGalleryBtn.dataset.boundTemplate = "1"; els.templateGalleryBtn.addEventListener("click", () => { openGallery("template"); }); }
     if (els.collarGalleryBtn && !els.collarGalleryBtn.dataset.boundCollar) { els.collarGalleryBtn.dataset.boundCollar = "1"; els.collarGalleryBtn.addEventListener("click", () => { if (!state.templateStyle.selected) { setStatus("Load a template before selecting collar"); return; } openGallery("collar"); }); }
+    document.addEventListener("pointerdown", (event) => {
+      const button = event.target?.closest?.("[data-copy-logo-layer]");
+      if (!button) return;
+      if (event.button !== undefined && event.button !== 0) return;
+      event.preventDefault();
+      event.stopPropagation();
+      const [part, index] = String(button.dataset.copyLogoLayer || "").split(":");
+      toggleLogoLayerCopyMenu(button, part, Number(index));
+    }, true);
+
     if (els.copyLogosBtn && !els.copyLogosBtn.dataset.boundCopyLogos) {
       els.copyLogosBtn.dataset.boundCopyLogos = "1";
       els.copyLogosBtn.addEventListener("pointerdown", (event) => {
@@ -19587,6 +19854,19 @@
       }, true);
     }
     document.addEventListener("click", (event) => {
+      const layerSourceBtn = event.target?.closest?.("[data-copy-logo-layer-from-kit]");
+      if (layerSourceBtn) {
+        event.preventDefault();
+        event.stopPropagation();
+        copySingleLogoLayerFromProjectKit(layerSourceBtn.dataset.copyLogoLayerFromKit || "");
+        return;
+      }
+      const layerCopyBtn = event.target?.closest?.("[data-copy-logo-layer]");
+      if (layerCopyBtn) {
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
       const sourceBtn = event.target?.closest?.("[data-copy-logos-from-kit]");
       if (sourceBtn) {
         event.preventDefault();
@@ -19598,17 +19878,34 @@
       const insideControl = els.logosCopyControl?.contains(event.target);
       const insideMenu = menu?.contains(event.target);
       if (!insideControl && !insideMenu) closeLogosCopyMenu();
+
+      const layerMenu = getLogoLayerCopyMenuElement();
+      const insideLayerMenu = layerMenu?.contains(event.target);
+      const insideLayerAnchor = logoLayerCopyContext?.button?.contains?.(event.target);
+      if (!insideLayerMenu && !insideLayerAnchor) closeLogoLayerCopyMenu();
     });
     document.addEventListener("keydown", (event) => {
       if (event.key !== "Escape") return;
-      const menu = getLogosCopyMenuElement();
-      if (!menu || menu.hidden) return;
+      const generalMenu = getLogosCopyMenuElement();
+      const layerMenu = getLogoLayerCopyMenuElement();
+      const generalOpen = !!generalMenu && !generalMenu.hidden;
+      const layerOpen = !!layerMenu && !layerMenu.hidden;
+      if (!generalOpen && !layerOpen) return;
       event.preventDefault();
-      closeLogosCopyMenu();
-      els.copyLogosBtn?.focus({ preventScroll: true });
+      if (layerOpen) closeLogoLayerCopyMenu({ focus: true });
+      if (generalOpen) {
+        closeLogosCopyMenu();
+        els.copyLogosBtn?.focus({ preventScroll: true });
+      }
     });
-    window.addEventListener("resize", positionLogosCopyMenu);
-    document.addEventListener("scroll", positionLogosCopyMenu, true);
+    window.addEventListener("resize", () => {
+      positionLogosCopyMenu();
+      positionLogoLayerCopyMenu();
+    });
+    document.addEventListener("scroll", () => {
+      positionLogosCopyMenu();
+      positionLogoLayerCopyMenu();
+    }, true);
     if (els.internalBrandGrid && !els.internalBrandGrid.dataset.boundGalleryClicks) {
       els.internalBrandGrid.dataset.boundGalleryClicks = "1";
       els.internalBrandGrid.addEventListener("click", (event) => {
@@ -21612,6 +21909,7 @@
   safeBootCall("imported templates", loadImportedTemplateManifests);
   safeBootCall("gallery", renderInternalBrandGrid);
   safeBootCall("close gallery", closeGallery);
+  safeBootCall("individual logo copy ui", ensureIndividualLogoCopyUi);
   safeBootCall("brand ui", updateAllBrandUI);
   safeBootCall("events", bindEvents);
   safeBootCall("section", () => setActiveSection("settings"));
