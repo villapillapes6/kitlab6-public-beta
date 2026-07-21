@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.275_logo_auto_1_2_color_test";
+  const KITLAB_BUILD_VERSION = "v1.3.276_logo_color_swatches_only_test";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   console.log("KitLab6 dynamic daily assets", "v1.3.262 Pattern / Team / Brand / Sponsor / TXT manifest");
   console.log("KitLab6 thumb quality no-flicker patch", "v1.3.244_template_gallery_no_flicker_hq_thumbs");
@@ -13133,7 +13133,7 @@
 
   function paletteInputHtml(part, layer, layerIndex) {
     return `
-      <div class="layer-title-palette">${logoColorModeBadgeHtml(layer)}${paletteSwatchesHtml(part, layer, layerIndex)}</div>
+      <div class="layer-title-palette">${paletteSwatchesHtml(part, layer, layerIndex)}</div>
       ${palettePopoversHtml(part, layer, layerIndex)}
     `;
   }
@@ -14219,17 +14219,15 @@
 
   function rowPaletteSwatchesHtml(part, layer, layerIndex) {
     if (!layer) return "";
-    const badge = logoColorModeBadgeHtml(layer);
-    if (!layerAllowsLogoColor(part, layer) || !Array.isArray(layer.palette) || !layer.palette.length) return badge;
+    if (!layerAllowsLogoColor(part, layer) || !Array.isArray(layer.palette) || !layer.palette.length) return "";
     const colorMap = layer.colorMap || {};
-    const swatches = layer.palette.map((sourceColor) => {
+    return layer.palette.map((sourceColor) => {
       const source = normalizeHexColor(sourceColor);
       const current = normalizeHexColor(colorMap[source] || source);
       const key = `${part}|${layerIndex}|${source}`;
       const changed = current !== source ? " original-changed" : "";
       return `<button type="button" class="palette-color-swatch logo-row-color-swatch${changed}" data-open-logo-picker="${escapeAttr(key)}" style="background:${current}" title="${source} → ${current}"></button>`;
     }).join("");
-    return `${badge}${swatches}`;
   }
 
   function updateFileNames() {
