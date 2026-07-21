@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.279_individual_logo_copy_runtime_ui_fix";
+  const KITLAB_BUILD_VERSION = "v1.3.280_individual_logo_copy_all_rows_icon_align_fix";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   console.log("KitLab6 dynamic daily assets", "v1.3.262 Pattern / Team / Brand / Sponsor / TXT manifest");
   console.log("KitLab6 thumb quality no-flicker patch", "v1.3.244_template_gallery_no_flicker_hq_thumbs");
@@ -14230,7 +14230,7 @@
     }).join("");
   }
 
-  const INDIVIDUAL_LOGO_COPY_ICON_DATA_URI = "data:image/png;base64,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";
+  const INDIVIDUAL_LOGO_COPY_ICON_DATA_URI = "data:image/png;base64,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";
 
   function individualLogoCopyButtonHtml(part, index) {
     const key = `${part}:${index}`;
@@ -14238,33 +14238,36 @@
   }
 
   function ensureIndividualLogoCopyRuntimeStyle() {
-    if (document.getElementById("kitlab-individual-logo-copy-runtime-v1379")) return;
+    if (document.getElementById("kitlab-individual-logo-copy-runtime-v1380")) return;
     const style = document.createElement("style");
-    style.id = "kitlab-individual-logo-copy-runtime-v1379";
+    style.id = "kitlab-individual-logo-copy-runtime-v1380";
     style.textContent = `
-      /* v1.3.279 — runtime UI so the individual Copy control does not depend on a changed index.html or an external asset. */
+      /* v1.3.280 — Copy is available on every Logo row; icon is white and visually aligned with Upload and Folder. */
       [data-section-panel="logos"] .part-row.has-file {
         grid-template-columns: 25px 25px 25px max-content 28px minmax(0, 1fr) auto 24px 20px !important;
       }
       [data-section-panel="logos"] .part-row:not(.has-file) {
-        grid-template-columns: 25px 25px max-content minmax(0, 1fr) !important;
+        grid-template-columns: 25px 25px 25px minmax(42px, 1fr) !important;
       }
       [data-section-panel="logos"] .logo-layer-copy-btn {
         position: relative !important;
         overflow: visible !important;
       }
+      [data-section-panel="logos"] .logo-layer-copy-btn {
+        display: grid !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        place-items: center !important;
+      }
       [data-section-panel="logos"] .logo-layer-copy-btn > img {
         display: block !important;
-        width: 23px !important;
-        height: 23px !important;
-        max-width: 23px !important;
-        max-height: 23px !important;
+        width: 18px !important;
+        height: 18px !important;
+        max-width: 18px !important;
+        max-height: 18px !important;
         object-fit: contain !important;
         filter: drop-shadow(0 1px 1px rgba(0,0,0,0.35)) !important;
         pointer-events: none !important;
-      }
-      [data-section-panel="logos"] .part-row:not(.has-file) .logo-layer-copy-btn {
-        display: none !important;
       }
       #logoLayerCopyMenu {
         position: fixed !important;

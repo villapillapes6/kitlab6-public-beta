@@ -2356,7 +2356,7 @@
       font-variant-numeric: tabular-nums !important;
     }
   </style>
-  <script src="./app.js?v=1.3.279_individual_logo_copy_runtime_ui_fix"></script>
+  <script src="./app.js?v=1.3.280_individual_logo_copy_all_rows_icon_align_fix"></script>
   <script>
     // v1.1.75: social icons open links without native title/status hover text.
     // v1.2.03: UV/Guide stay hidden by default; modular Brand/Armband settings are per part.
@@ -2454,32 +2454,44 @@
   </style>
 
 
-  <style id="kitlab-individual-logo-copy-v1379-compat">
-    /* v1.3.279 compatibility styles; runtime app.js injects and normalizes the actual controls. */
+  <style id="kitlab-individual-logo-copy-v1380-compat">
+    /* v1.3.280 compatibility styles: Copy is visible on empty and loaded Logo rows. */
     [data-section-panel="logos"] .part-row,
     [data-section-panel="logos"] .part-row:not(.has-file) {
       grid-template-columns: 25px 25px 25px max-content 28px minmax(0, 1fr) auto 24px 20px !important;
     }
     [data-section-panel="logos"] .part-row:not(.has-file) {
-      grid-template-columns: 25px 25px 25px max-content minmax(0, 1fr) !important;
+      grid-template-columns: 25px 25px 25px minmax(42px, 1fr) !important;
     }
     [data-section-panel="logos"] .logo-layer-copy-btn {
       position: relative !important;
       overflow: visible !important;
     }
+    [data-section-panel="logos"] .logo-layer-copy-btn {
+      display: grid !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      place-items: center !important;
+    }
     [data-section-panel="logos"] .logo-layer-copy-glyph {
       display: block !important;
-      width: 23px !important;
-      height: 23px !important;
-      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPwAAAD8CAYAAABTq8lnAAAGrElEQVR42u3dT6ildR3H8c/3zB3/kUILzTERkciSRJxNNBToItsogrtw0R9wYQsL3LhxVSGIKIm7gkqG3Iqr2kSLpBEU/FOgmIogDoliE8ww5L335+KONJvUmXueP+f5vV47Eeac+31+b37POfd5nlthFlprqyS/T3JXkouS7Jz5XyvT2ZftJEeT3FtVH/U+jLIeZhF7M4XRbFXVTq8/vN1j2tBvEfv4O35r7bt2eMaO/ftJ/mASk7mqqo4LnjFi/1WS+0xi4sVf1d36d0o/fuxPi302x+JROzxDLrAXkhw2Cbv8VLYc8tFiP57kSpNA8MuPfTvJAZNA8MuP3a/dmA1f2okdwSN2BI/YETxiR/Bih5nxLf16Ql/lf7ezgh1+wbFviR36iP2yNo2nTD9prT2830Ha4fm8i+2GJCcmevnrHIEkyY1GIPgxYr81yT8mfAuXOQpJkkuMQPBDx/7jJH+e+G34zsD6PS++pT+32H+b5IcmgeCXH/ufktxmEgh++bEfS/JNk0Dwy4/9ZHw5hOC7iH0nvhhC8F3E7rp4FsfuJXYEL/YBfcmUcUrfR+wHq2rbCQR2+OXHflFVbZs0dviFx97jnzRC8HMMvZLsih3BLz/2C5OcFruzu7FeKsm3quo5n+HHP8iHxM7IKsmxM8/duFTw48V+fZJ3xc6E/tNaOyL44WP/XpJXxc4MPNtau1jww8X+syR/FDszckrww8T+dJLHBnyJHbFznmvzGsGvd6DHktw54Ev8u6pcz8B5n9oLfn2x/zPDPrji5ar6ojXLPlw95ottLTj2U0mG/FLkL1V1q/XKJlktNPadgWN/XOxsoq0Fxj70lVP3VNVvLB0Ev/zYj1TV3ywbBL/82L9WVa9ZMgh++bF/oapOWi4IfvmxH/TgCgTfR+yrqvI8KhZjtaGh1xhPqRF7F3ay9xCUs4/15znuuxn4Fms7/F7slyQ5OXTsOujDfi+L3rRHmq82LPbLxQ4dBN9aO5zkPbHDwoNvrd2d5AWxw8KDb609lOSo2GH/tmYe+zNJ7hjwJbar6qBlgOCnj/3FJDcN+BLvV9XllgCCnz7295IMGeOrVfV1hx+f4aeP/dTAsT8pdgQ/j9hbhn9wxQ8cdgQ/j9iHdH9V/dQhx2f45cf+lap6w+FG8AuP3e/YYSbBj3Hjwabd3ACL/AwvROgkeLFDJ8GLHToJvrX2jpFDPzv8l418LTxUk3kHf+YBFqzHBUbA3Hf4Xxr32uwYAXMP/nrjXhsXE7ERn+FZj1eMgLkH79dx6/OAEWCH7+V8vuptU2DuwfuiaT1+ZwRsQvAHjHstu/uPTAGn9H3E7tt5BN+B18VOj8Gf7ujYvJ/kJ2f+iu1XLVXWYaP+emxVXeyQgVN6QPCA4EHwgOABwQOCBwQPCB4QPCB4QPCA4AHBg+ABwQOCBwQPCB4QPCB4QPCA4AHBA4IHwRsBCB4QPCB4QPCA4AHBA4IHBA8IHhA8IHgQPCB4QPCA4AHBA4IHBA8IHhA8IHhA8CB4QPCA4AHBA4IHBA8IHhA8IHhA8IDgQfCA4AHBA4IHBA8IHhA8IHhA8IDgAcGD4AHBA4IHBA8IHhA8IHhA8IDgAcEDggcED4IHBA8IHhA8IHhA8IDgAcEDggcEDwgeBA8IHhA8IHhA8IDgAcEDggcEDwgeEDwIHhA8IHhA8IDgAcEDggcEDwgeEDwgeBA8bKT/GoHg6ccFRiB4QPAs0LYRCJ5+nDACwdOPt43g3Gxt0pttrTWHDOzwwMyCtztDR8EfMG4QPOAzPCB4YCOC3zFu6Cf4D40b+gn+HeOGadVYL9RaO5TkXSNnVgFU1T7XdZv6Pcxyh6+q45YXM/OgU/ph/dwaY0a7+y+c0g9/au8SW+bgyqr61xzW8yJP6af44eD/+M46YndKf27R/9q6Y4q1V1V/7fbnn/oNtNa+neSRJDcn2c3eY4s+uU9/Haf/q+w93fSDJNeu4d97K8kV2bs3YHcOM+xc+5R1XUlOJzma5L6qagOs3406pe9qsW7awcGaWsQpPdDRZ3hA8IDgAcEDggcEDwgeBA8IHhA8IHhA8IDggTFsGcH5aa2dfc81HRzys/9jiHvrBT/P0D2Tj2zqMnBKDz7DA4IHBA8IHhA8IHhA8IDgAcF/picdcmbmiTFfrLvrwF0ay9w23TGvy+/xlP7v1hgz8dLYN+F0eaeXXZ45mOIPk64MGvpZg6vOB36bpcfIbp9yw7HT7Z3ir5IcTvKNJCey95yAVZLd+NUl+/dmkufn8NCMjwFvbo85eAWrWgAAAABJRU5ErkJggg==") !important;
+      width: 18px !important;
+      height: 18px !important;
+      background-image: url("data:image/png;base64,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") !important;
       background-position: center !important;
       background-repeat: no-repeat !important;
       background-size: contain !important;
-      pointer-events: none !important;
       filter: drop-shadow(0 1px 1px rgba(0,0,0,0.35)) !important;
+      pointer-events: none !important;
     }
-    [data-section-panel="logos"] .part-row:not(.has-file) .logo-layer-copy-btn {
-      visibility: hidden !important;
+    [data-section-panel="logos"] .logo-layer-copy-btn > img {
+      display: block !important;
+      width: 18px !important;
+      height: 18px !important;
+      max-width: 18px !important;
+      max-height: 18px !important;
+      object-fit: contain !important;
+      filter: drop-shadow(0 1px 1px rgba(0,0,0,0.35)) !important;
       pointer-events: none !important;
     }
     #logoLayerCopyMenu {
