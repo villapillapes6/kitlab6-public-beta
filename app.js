@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.282_logo_border_alpha_geometry_fix";
+  const KITLAB_BUILD_VERSION = "v1.3.284_logo_border_supersampled_smooth_fix";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   console.log("KitLab6 dynamic daily assets", "v1.3.262 Pattern / Team / Brand / Sponsor / TXT manifest");
   console.log("KitLab6 thumb quality no-flicker patch", "v1.3.244_template_gallery_no_flicker_hq_thumbs");
@@ -13652,6 +13652,86 @@
     drawImageWithTransform(image, rightBox, "rotate_90_cw_flip_hv", borderImage, border);
   }
 
+  function smoothLogoBorderComposite(image, borderImage, drawWidth, drawHeight, border) {
+    const width = Math.max(1, Number(drawWidth) || 1);
+    const height = Math.max(1, Number(drawHeight) || 1);
+    const radius = Math.max(1, Math.min(10, Number(border?.size) || 1));
+    const supersample = 3;
+    const pad = radius + 2;
+    const totalWidth = width + pad * 2;
+    const totalHeight = height + pad * 2;
+    const cacheWidth = Math.round(width * 10) / 10;
+    const cacheHeight = Math.round(height * 10) / 10;
+    const cacheKey = `${cacheWidth}|${cacheHeight}|${radius}`;
+
+    borderImage._kitlabSmoothBorderCache = borderImage._kitlabSmoothBorderCache || new Map();
+    const cached = borderImage._kitlabSmoothBorderCache.get(cacheKey);
+    if (cached?.canvas) return cached;
+
+    const high = document.createElement("canvas");
+    high.width = Math.max(1, Math.ceil(totalWidth * supersample));
+    high.height = Math.max(1, Math.ceil(totalHeight * supersample));
+    const hctx = high.getContext("2d");
+    hctx.imageSmoothingEnabled = true;
+    hctx.imageSmoothingQuality = "high";
+
+    const originX = pad * supersample;
+    const originY = pad * supersample;
+    const scaledWidth = width * supersample;
+    const scaledHeight = height * supersample;
+
+    // Build a rounded dilation of the logo alpha at 3x resolution. Several circular
+    // rings with sub-pixel spacing create a continuous exterior stroke without the
+    // square stair-steps produced by integer offset stamping.
+    hctx.drawImage(borderImage, originX, originY, scaledWidth, scaledHeight);
+    const ringCount = radius <= 2 ? 2 : 3;
+    for (let ringIndex = 1; ringIndex <= ringCount; ringIndex += 1) {
+      const ringRadius = radius * (ringIndex / ringCount);
+      const steps = Math.max(24, Math.ceil((Math.PI * 2 * ringRadius) / 0.38));
+      for (let step = 0; step < steps; step += 1) {
+        const angle = (step / steps) * Math.PI * 2;
+        const offsetX = Math.cos(angle) * ringRadius * supersample;
+        const offsetY = Math.sin(angle) * ringRadius * supersample;
+        hctx.drawImage(borderImage, originX + offsetX, originY + offsetY, scaledWidth, scaledHeight);
+      }
+    }
+
+    // The logo is composited on top before downsampling, so the final edge keeps a
+    // single clean antialiased transition instead of many visible stamped contours.
+    hctx.drawImage(image, originX, originY, scaledWidth, scaledHeight);
+
+    const output = document.createElement("canvas");
+    output.width = Math.max(1, Math.ceil(totalWidth));
+    output.height = Math.max(1, Math.ceil(totalHeight));
+    const octx = output.getContext("2d");
+    octx.imageSmoothingEnabled = true;
+    octx.imageSmoothingQuality = "high";
+    octx.drawImage(high, 0, 0, high.width, high.height, 0, 0, output.width, output.height);
+
+    const result = { canvas: output, pad, drawWidth: totalWidth, drawHeight: totalHeight };
+    borderImage._kitlabSmoothBorderCache.set(cacheKey, result);
+    if (borderImage._kitlabSmoothBorderCache.size > 16) {
+      const oldestKey = borderImage._kitlabSmoothBorderCache.keys().next().value;
+      borderImage._kitlabSmoothBorderCache.delete(oldestKey);
+    }
+    return result;
+  }
+
+  function drawLogoImageWithBorder(image, borderImage, border, dx, dy, drawWidth, drawHeight) {
+    if (!borderImage || !border?.enabled || Number(border.size) <= 0) {
+      ctx.drawImage(image, dx, dy, drawWidth, drawHeight);
+      return;
+    }
+    const composite = smoothLogoBorderComposite(image, borderImage, drawWidth, drawHeight, border);
+    ctx.drawImage(
+      composite.canvas,
+      dx - composite.pad,
+      dy - composite.pad,
+      composite.drawWidth,
+      composite.drawHeight
+    );
+  }
+
   function drawImageWithTransformStretch(image, box, transform, borderImage, border, layer = null) {
     const cx = box.x + box.w / 2;
     const cy = box.y + box.h / 2;
@@ -13682,18 +13762,7 @@
     const dx = -drawW / 2;
     const dy = -drawH / 2;
 
-    if (borderImage && border.enabled && border.size > 0) {
-      const radius = Math.max(1, Math.min(10, Number(border.size)));
-      for (let ox = -radius; ox <= radius; ox += 1) {
-        for (let oy = -radius; oy <= radius; oy += 1) {
-          if (ox === 0 && oy === 0) continue;
-          if ((ox * ox + oy * oy) > radius * radius) continue;
-          ctx.drawImage(borderImage, dx + ox, dy + oy, drawW, drawH);
-        }
-      }
-    }
-
-    ctx.drawImage(image, dx, dy, drawW, drawH);
+    drawLogoImageWithBorder(image, borderImage, border, dx, dy, drawW, drawH);
     ctx.restore();
   }
 
@@ -13721,18 +13790,7 @@
     const dx = -fit.w / 2;
     const dy = -fit.h / 2;
 
-    if (borderImage && border.enabled && border.size > 0) {
-      const radius = Math.max(1, Math.min(10, Number(border.size)));
-      for (let ox = -radius; ox <= radius; ox += 1) {
-        for (let oy = -radius; oy <= radius; oy += 1) {
-          if (ox === 0 && oy === 0) continue;
-          if ((ox * ox + oy * oy) > radius * radius) continue;
-          ctx.drawImage(borderImage, dx + ox, dy + oy, fit.w, fit.h);
-        }
-      }
-    }
-
-    ctx.drawImage(image, dx, dy, fit.w, fit.h);
+    drawLogoImageWithBorder(image, borderImage, border, dx, dy, fit.w, fit.h);
     ctx.restore();
   }
 
@@ -14122,7 +14180,9 @@
       const [activePart, indexRaw] = String(current.key || "").split("|");
       if (activePart !== part) return "";
       const layer = getLayerByIndex(part, indexRaw);
-      if (!layer || !layerAllowsLogoColor(part, layer)) return "";
+      // Border color is independent from the logo color mode. Even multicolor/original logos
+      // must always be able to open the Border palette and choose any stroke color.
+      if (!layer) return "";
       if (!layer.border) layer.border = { enabled: true, color: "#ffffff", size: 2 };
       const currentHex = normalizeHexColor(layer.border.color || "#ffffff");
       return `<div class="logo-picker-only-popover border-picker-only-popover">${photoshopPickerHtml("border", current.key, currentHex, "Border color")}</div>`;
