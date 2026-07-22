@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.284_logo_border_supersampled_smooth_fix";
+  const KITLAB_BUILD_VERSION = "v1.3.285_exact_saved_collar_restore_fix";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   console.log("KitLab6 dynamic daily assets", "v1.3.262 Pattern / Team / Brand / Sponsor / TXT manifest");
   console.log("KitLab6 thumb quality no-flicker patch", "v1.3.244_template_gallery_no_flicker_hq_thumbs");
@@ -15043,26 +15043,57 @@
     return seeded;
   }
 
+  function normalizeCollarRestoreIdentity(value = "") {
+    return String(value || "")
+      .replace(/\\/g, "/")
+      .replace(/%20/gi, " ")
+      .replace(/\s*\/\s*/g, "/")
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase();
+  }
+
+  // Project restore must prioritize the complete collar ID (for example "V Neck/01").
+  // Many collar categories reuse visible names such as "01", so name fallback is only safe
+  // for old projects that genuinely do not contain an ID.
   function selectedCollarMatchesSaved(saved) {
     const wanted = saved?.selectedCollar;
     if (!wanted) return true;
     const current = state.templateStyle?.selectedCollar;
     if (!current) return false;
-    const wantedId = String(wanted.id || "").toLowerCase();
-    const wantedName = String(wanted.name || "").toLowerCase();
-    return (wantedId && String(current.id || "").toLowerCase() === wantedId) ||
-      (wantedName && String(current.name || "").toLowerCase() === wantedName);
+    const wantedId = normalizeCollarRestoreIdentity(wanted.id || wanted.folder || "");
+    const currentId = normalizeCollarRestoreIdentity(current.id || current.folder || "");
+    if (wantedId) return Boolean(currentId && currentId === wantedId);
+    const wantedName = normalizeCollarRestoreIdentity(wanted.name || "");
+    return Boolean(wantedName && normalizeCollarRestoreIdentity(current.name || "") === wantedName);
   }
 
   function findSavedCollar(saved) {
     const wanted = saved?.selectedCollar;
     if (!wanted) return null;
-    const wantedId = String(wanted.id || "").toLowerCase();
-    const wantedName = String(wanted.name || "").toLowerCase();
-    return INTERNAL_COLLARS.find((item) => (
-      (wantedId && String(item.id || "").toLowerCase() === wantedId) ||
-      (wantedName && String(item.name || "").toLowerCase() === wantedName)
-    )) || null;
+    const collars = getActiveTemplateCollarOptions();
+    const wantedId = normalizeCollarRestoreIdentity(wanted.id || wanted.folder || "");
+    if (wantedId) {
+      return collars.find((item) => normalizeCollarRestoreIdentity(item.id || item.folder || "") === wantedId) || null;
+    }
+
+    // Backwards compatibility for old projects without an ID. Prefer category/folder hints when present;
+    // only then fall back to the visible name, which can be ambiguous across collar categories.
+    const wantedName = normalizeCollarRestoreIdentity(wanted.name || "");
+    const wantedCategory = normalizeCollarRestoreIdentity(wanted.category || "");
+    const wantedFolder = normalizeCollarRestoreIdentity(wanted.folder || "");
+    if (wantedFolder) {
+      const byFolder = collars.find((item) => normalizeCollarRestoreIdentity(item.folder || "") === wantedFolder);
+      if (byFolder) return byFolder;
+    }
+    if (wantedCategory && wantedName) {
+      const byCategoryAndName = collars.find((item) =>
+        normalizeCollarRestoreIdentity(item.category || "") === wantedCategory &&
+        normalizeCollarRestoreIdentity(item.name || "") === wantedName
+      );
+      if (byCategoryAndName) return byCategoryAndName;
+    }
+    return collars.find((item) => wantedName && normalizeCollarRestoreIdentity(item.name || "") === wantedName) || null;
   }
 
   function templateSettingsStableIdFromValue(value = "template") {
@@ -15957,13 +15988,15 @@
     const configs = saved?.collarConfigurations || saved?.collars || state.templateStyle?.collarConfigurations || {};
     if (!configs || typeof configs !== "object") return null;
     const key = collarConfigurationKey(collar);
-    const wantedId = String(collar.id || "").toLowerCase();
-    const wantedName = String(collar.name || "").toLowerCase();
+    const wantedId = normalizeCollarRestoreIdentity(collar.id || collar.folder || "");
+    const wantedName = normalizeCollarRestoreIdentity(collar.name || "");
     return configs[key] || Object.values(configs).find((cfg) => {
       if (!cfg || typeof cfg !== "object") return false;
-      return (wantedId && String(cfg.id || "").toLowerCase() === wantedId) ||
-        (wantedName && String(cfg.name || "").toLowerCase() === wantedName) ||
-        (key && String(cfg.key || "").toLowerCase() === key);
+      const cfgKey = String(cfg.key || "").toLowerCase();
+      if (key && cfgKey === key) return true;
+      const cfgId = normalizeCollarRestoreIdentity(cfg.id || cfg.folder || "");
+      if (wantedId) return Boolean(cfgId && cfgId === wantedId);
+      return Boolean(wantedName && normalizeCollarRestoreIdentity(cfg.name || "") === wantedName);
     }) || null;
   }
 
