@@ -1,6 +1,6 @@
 ﻿{
     "version":  "1.3.262-web-dynamic-daily-assets",
-    "generated":  "2026-07-20T23:38:22.8400404Z",
+    "generated":  "2026-07-23T14:33:51.6567925Z",
     "purpose":  "KitLab6 static catalog: dynamic Pattern, Team, Brand, Sponsor and TXT; templates remain controlled in app.js",
     "dynamicRoots":  {
                          "assets/pattern":  {
@@ -40,7 +40,7 @@
                                                                       "CD Leganes",
                                                                       "CD Tenerife",
                                                                       "Celtic FC",
-                                                                      "CF Montr#U00e9al",
+                                                                      "CF Montreal",
                                                                       "Charlotte FC",
                                                                       "Chelsea FC",
                                                                       "Chicago Fire FC",
@@ -75,7 +75,7 @@
                                                                       "FC Shakhtar Donetsk",
                                                                       "FC St. Pauli",
                                                                       "FC Twente",
-                                                                      "Fenerbah#U00e7e SK",
+                                                                      "Fenerbah SK",
                                                                       "Feyenoord Rotterdam",
                                                                       "Fulham FC",
                                                                       "Galatasaray SK",
@@ -1296,7 +1296,7 @@
                   "assets/pattern/CD Tenerife/tenerife_24_home.png",
                   "assets/pattern/Celtic FC/celtic_25_home.png",
                   "assets/pattern/Celtic FC/celtic_25_third.png",
-                  "assets/pattern/CF Montr#U00e9al/montreal_24_away.png",
+                  "assets/pattern/CF Montreal/montreal_24_away.png",
                   "assets/pattern/Charlotte FC/charlotte_24_home - 1.png",
                   "assets/pattern/Charlotte FC/charlotte_24_home - 2.png",
                   "assets/pattern/Charlotte FC/charlotte_25_away.png",
@@ -1411,11 +1411,11 @@
                   "assets/pattern/FC Twente/twente_25_away - 2.png",
                   "assets/pattern/FC Twente/twente_25_away - 3.png",
                   "assets/pattern/FC Twente/twente_25_home.png",
-                  "assets/pattern/Fenerbah#U00e7e SK/fenerbahce_23_away.png",
-                  "assets/pattern/Fenerbah#U00e7e SK/fenerbahce_23_third.png",
-                  "assets/pattern/Fenerbah#U00e7e SK/fenerbahce_24_away_1.png",
-                  "assets/pattern/Fenerbah#U00e7e SK/fenerbahce_24_away_2.png",
-                  "assets/pattern/Fenerbah#U00e7e SK/fenerbahce_24_third.png",
+                  "assets/pattern/Fenerbah SK/fenerbahce_23_away.png",
+                  "assets/pattern/Fenerbah SK/fenerbahce_23_third.png",
+                  "assets/pattern/Fenerbah SK/fenerbahce_24_away_1.png",
+                  "assets/pattern/Fenerbah SK/fenerbahce_24_away_2.png",
+                  "assets/pattern/Fenerbah SK/fenerbahce_24_third.png",
                   "assets/pattern/Feyenoord Rotterdam/feyenoord_25_away.png",
                   "assets/pattern/Feyenoord Rotterdam/feyenoord_25_third.png",
                   "assets/pattern/Fulham FC/fulham_25_home.png",
@@ -4039,7 +4039,7 @@
                   "assets/team/United States/Austin Bold FC.png",
                   "assets/team/United States/Austin FC.png",
                   "assets/team/United States/Birmingham Legion FC.png",
-                  "assets/team/United States/CF Montr l.png",
+                  "assets/team/United States/CF Montreal.png",
                   "assets/team/United States/Charleston Battery.png",
                   "assets/team/United States/Charlotte FC.png",
                   "assets/team/United States/Charlotte Independence.png",
@@ -4790,6 +4790,7 @@
                   "assets/templates/adidas/adidas trefoil 2026/seams/short front iv.png",
                   "assets/templates/adidas/adidas trefoil 2026/seams/short goma iv.png",
                   "assets/templates/adidas/adidas trefoil 2026/seams/sleeve short puño iv.png",
+                  "assets/templates/adidas/adidas trefoil 2026/template_defaults.json",
                   "assets/templates/adidas/adidas trefoil 2026/thumbnail.png",
                   "assets/templates/adidas/adidas trefoil 2026/tights/short lineas adidas.png",
                   "assets/templates/adidas/adidas trefoil 2026/tights/sleeve short lineas adidas.png",
@@ -6655,6 +6656,7 @@
                   "assets/ui/Carpeta_white.png",
                   "assets/ui/Carpeta_white_v0923.png",
                   "assets/ui/Carpeta_white_v0924.png",
+                  "assets/ui/Copiar_logos_white_v1377.png",
                   "assets/ui/credits_castolo.png",
                   "assets/ui/credits_kit_man_cal.png",
                   "assets/ui/credits_pes_logos.png",
@@ -7531,7 +7533,7 @@
                                                         "CD Leganes",
                                                         "CD Tenerife",
                                                         "Celtic FC",
-                                                        "CF Montr#U00e9al",
+                                                        "CF Montreal",
                                                         "Charlotte FC",
                                                         "Chelsea FC",
                                                         "Chicago Fire FC",
@@ -7566,7 +7568,7 @@
                                                         "FC Shakhtar Donetsk",
                                                         "FC St. Pauli",
                                                         "FC Twente",
-                                                        "Fenerbah#U00e7e SK",
+                                                        "Fenerbah SK",
                                                         "Feyenoord Rotterdam",
                                                         "Fulham FC",
                                                         "Galatasaray SK",
@@ -7970,14 +7972,14 @@
                                                                 "celtic_25_third.png"
                                                             ]
                                               },
-                 "assets/pattern/CF Montr#U00e9al":  {
-                                                         "folders":  [
+                 "assets/pattern/CF Montreal":  {
+                                                    "folders":  [
 
-                                                                     ],
-                                                         "files":  [
-                                                                       "montreal_24_away.png"
-                                                                   ]
-                                                     },
+                                                                ],
+                                                    "files":  [
+                                                                  "montreal_24_away.png"
+                                                              ]
+                                                },
                  "assets/pattern/Charlotte FC":  {
                                                      "folders":  [
 
@@ -8330,18 +8332,18 @@
                                                                 "twente_25_home.png"
                                                             ]
                                               },
-                 "assets/pattern/Fenerbah#U00e7e SK":  {
-                                                           "folders":  [
+                 "assets/pattern/Fenerbah SK":  {
+                                                    "folders":  [
 
-                                                                       ],
-                                                           "files":  [
-                                                                         "fenerbahce_23_away.png",
-                                                                         "fenerbahce_23_third.png",
-                                                                         "fenerbahce_24_away_1.png",
-                                                                         "fenerbahce_24_away_2.png",
-                                                                         "fenerbahce_24_third.png"
-                                                                     ]
-                                                       },
+                                                                ],
+                                                    "files":  [
+                                                                  "fenerbahce_23_away.png",
+                                                                  "fenerbahce_23_third.png",
+                                                                  "fenerbahce_24_away_1.png",
+                                                                  "fenerbahce_24_away_2.png",
+                                                                  "fenerbahce_24_third.png"
+                                                              ]
+                                                },
                  "assets/pattern/Feyenoord Rotterdam":  {
                                                             "folders":  [
 
@@ -12748,7 +12750,7 @@
                                                                  "Austin Bold FC.png",
                                                                  "Austin FC.png",
                                                                  "Birmingham Legion FC.png",
-                                                                 "CF Montr l.png",
+                                                                 "CF Montreal.png",
                                                                  "Charleston Battery.png",
                                                                  "Charlotte FC.png",
                                                                  "Charlotte Independence.png",
@@ -14227,6 +14229,7 @@
                                                                                      "tights"
                                                                                  ],
                                                                      "files":  [
+                                                                                   "template_defaults.json",
                                                                                    "thumbnail.png",
                                                                                    "transparencia.png",
                                                                                    "used_by.txt"
@@ -21007,6 +21010,7 @@
                                                  "Carpeta_white.png",
                                                  "Carpeta_white_v0923.png",
                                                  "Carpeta_white_v0924.png",
+                                                 "Copiar_logos_white_v1377.png",
                                                  "credits_castolo.png",
                                                  "credits_kit_man_cal.png",
                                                  "credits_pes_logos.png",
