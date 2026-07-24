@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.287_web_staging_local_features";
+  const KITLAB_BUILD_VERSION = "v1.3.287_web_production_local_features";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
 
   function notifyKitLabCanvasUpdated() {
@@ -1448,7 +1448,7 @@
   let brandStaticBuildInProgress = false;
   let suppressBrandLayersForStaticCache = false;
 
-  // Web Staging v1.3.287: reusable Logo-only canvases.
+  // Web v1.3.287: reusable Logo-only canvases.
   let brandInstantLiveCanvas = null;
   let brandInstantWrinkledCanvas = null;
 

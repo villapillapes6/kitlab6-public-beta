@@ -1,9 +1,9 @@
 (() => {
   "use strict";
 
-  const MAIN_MODEL_URL = "./assets/3d/kitlab6_collar_yes_short.glb?v=1.3.287-web-staging";
-  const SHIRT_NO_MODEL_URL = "./assets/3d/shirt_collar_no.glb?v=1.3.287-web-staging";
-  const ARMBAND_MODEL_URL = "./assets/3d/kitlab6_armband.glb?v=1.3.287-web-staging";
+  const MAIN_MODEL_URL = "./assets/3d/kitlab6_collar_yes_short.glb?v=1.3.287-production";
+  const SHIRT_NO_MODEL_URL = "./assets/3d/shirt_collar_no.glb?v=1.3.287-production";
+  const ARMBAND_MODEL_URL = "./assets/3d/kitlab6_armband.glb?v=1.3.287-production";
   const ARMBAND_CAMERA_YAW = Math.PI / 2;     // Approved fixed camera: H 90°
   const ARMBAND_CAMERA_PITCH = -Math.PI / 2; // Approved fixed camera: V -90°
   const MAIN_FRAMING_COMPAT_Y = 0.12460509975392142;

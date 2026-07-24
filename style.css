@@ -7916,7 +7916,7 @@ input:disabled,
   text-align: center;
 }
 
-/* v1.3.287_web_staging_local_features: public 3D preview base. */
+/* v1.3.287_web_production_local_features: public 3D preview base. */
 #canvasWrap { position: relative !important; }
 
 .kitlab-view-mode-switch {
