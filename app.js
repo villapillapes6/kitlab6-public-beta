@@ -1,12 +1,20 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.288_3d_viewer_only_first_test";
+  const KITLAB_BUILD_VERSION = "v1.3.289_collar_yes_no_atomic_first_test";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
 
 
   function notifyKitLabCanvasUpdated() {
     try {
       window.dispatchEvent(new CustomEvent("kitlab:canvas-updated"));
+    } catch (_) {}
+  }
+
+  function notifyKitLabCollarRenderReady(collarName = "") {
+    try {
+      window.dispatchEvent(new CustomEvent("kitlab:collar-render-ready", {
+        detail: { name: String(collarName || "").trim() },
+      }));
     } catch (_) {}
   }
   console.log("KitLab6 dynamic daily assets", "v1.3.262 Pattern / Team / Brand / Sponsor / TXT manifest");
@@ -7928,6 +7936,16 @@
     ];
   }
 
+  function preloadCollarSettingsNow(item) {
+    if (!item || item.isCollarCategory) return;
+    try {
+      const key = collarSettingsId(item);
+      if (!key) return;
+      cacheJsonPromise(`${key}:folder`, () => loadCollarSettingsFromFolder(item));
+      cacheJsonPromise(`${key}:user`, () => loadCollarSettingsFromUserFolder(item));
+    } catch (_) {}
+  }
+
   // v1.1.32: smart collar preloading.
   // Do not preload 50+ full collars at once. Warm the first visible/hovered collars first,
   // one or two image loads at a time, so first user selection feels fast without saturating Chrome.
@@ -8000,7 +8018,8 @@
 
   function preloadCollarItemNow(item) {
     if (!item || item.isCollarCategory) return;
-    // Hover/soon-to-click: do not cancel the background queue, just put this collar in cache now.
+    // Warm images and collar settings without cancelling the web preload queue.
+    preloadCollarSettingsNow(item);
     for (const meta of collarItemAssetMetas(item)) {
       loadCollarImageWithFallback(meta, item, { silent: true }).catch(() => null);
     }
@@ -8128,6 +8147,8 @@
     // Collar changes do not affect the body/base cache. Rebuilding the whole 2048 body cache
     // here made first collar selection feel much slower, especially with large collar libraries.
     render({ immediate: true });
+    // Swap the 3D texture and Shirt geometry only after this complete collar render.
+    notifyKitLabCollarRenderReady(visibleCollarName);
     renderTemplateDetailPanels();
     try {
       if (state.project?.activeKitId) {
