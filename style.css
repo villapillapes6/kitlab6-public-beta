@@ -6343,58 +6343,134 @@ button.palette-color-swatch.template-palette-swatch[data-open-piece-picker] {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: clamp(24px, 3.6vw, 68px);
+  overflow: hidden;
   background: #000;
   color: #fff;
-  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 .template-loading-overlay[hidden] {
   display: none !important;
 }
 .template-loading-box {
-  width: min(430px, 64vw);
-  transform: translateY(-2vh);
+  width: min(1500px, 92vw);
+  transform: translateY(-1vh);
 }
 .template-loading-topline {
+  width: min(1040px, 73%);
+  min-height: clamp(62px, 6vw, 88px);
+  margin: 0 0 14px -5.5%;
+  padding: 10px clamp(28px, 3vw, 48px);
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 18px;
-  margin-bottom: 8px;
-  font-weight: 900;
-  letter-spacing: -0.6px;
-  line-height: 1;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  color: #050505;
+  background: #a3a8a6;
+  border: 0;
+  box-shadow: none;
 }
 .template-loading-title {
-  font-size: 30px;
-  text-transform: uppercase;
+  width: 100%;
+  overflow: hidden;
+  color: #050505;
+  font-size: clamp(24px, 2.65vw, 44px);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: .105em;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-transform: none;
+  text-shadow: none;
 }
-.template-loading-percent {
-  min-width: 72px;
-  text-align: right;
-  font-size: 28px;
+.template-loading-panel {
+  position: relative;
+  min-height: clamp(340px, 34vw, 460px);
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: clamp(48px, 5vw, 76px) clamp(48px, 6vw, 92px) clamp(44px, 4.8vw, 72px);
+  border: clamp(6px, .5vw, 9px) solid #fff;
+  background: #4c4e55;
+  box-shadow: none;
+}
+.template-loading-kind,
+.template-loading-message {
+  overflow: hidden;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: .14em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-shadow: none;
+}
+.template-loading-kind {
+  color: #2debf2;
+  font-size: clamp(30px, 3.15vw, 52px);
+}
+.template-loading-message {
+  margin-top: clamp(14px, 1.5vw, 22px);
+  color: #fff;
+  font-size: clamp(26px, 2.85vw, 46px);
 }
 .template-loading-bar {
-  height: 20px;
-  border-radius: 999px;
+  width: 91%;
+  height: clamp(24px, 2.55vw, 36px);
+  margin: clamp(68px, 7.8vw, 108px) auto 0;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.58);
+  border: 0;
+  border-radius: 0;
+  background: #303238;
+  box-shadow: none;
 }
 .template-loading-fill {
+  position: relative;
   width: 0%;
   height: 100%;
-  border-radius: inherit;
-  background: #fff;
-  transition: width 16ms linear;
+  overflow: hidden;
+  border-radius: 0;
+  background: var(--kitlab-gold, #F0B515);
+  box-shadow: none;
+  transition: none;
+  will-change: width;
 }
-.template-loading-name {
-  margin-top: 10px;
-  min-height: 14px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-align: center;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.62);
+.template-loading-fill::after {
+  content: none;
+  display: none;
+}
+@media (max-width: 900px) {
+  .template-loading-overlay { padding: 18px; }
+  .template-loading-box { width: min(96vw, 900px); }
+  .template-loading-topline {
+    width: 88%;
+    min-height: 56px;
+    margin-left: -2%;
+    padding-inline: 18px;
+  }
+  .template-loading-title { font-size: clamp(19px, 4.2vw, 31px); }
+  .template-loading-panel {
+    min-height: 265px;
+    padding: 38px 28px 34px;
+  }
+  .template-loading-kind { font-size: clamp(24px, 5vw, 38px); }
+  .template-loading-message { font-size: clamp(20px, 4.5vw, 34px); }
+  .template-loading-bar {
+    width: 94%;
+    margin-top: 56px;
+  }
+}
+@media (max-height: 720px) and (min-width: 901px) {
+  .template-loading-box { width: min(1320px, 90vw); }
+  .template-loading-topline { min-height: 54px; margin-bottom: 10px; }
+  .template-loading-title { font-size: clamp(22px, 2.25vw, 36px); }
+  .template-loading-panel {
+    min-height: 280px;
+    padding-top: 38px;
+    padding-bottom: 34px;
+  }
+  .template-loading-kind { font-size: clamp(27px, 2.8vw, 42px); }
+  .template-loading-message { font-size: clamp(23px, 2.5vw, 38px); }
+  .template-loading-bar { margin-top: 54px; }
 }
 
 /* v1.0.32: start screen keeps the original preview background color; only the image is inserted */
@@ -7840,3 +7916,82 @@ input:disabled,
   text-align: center;
 }
 
+/* KitLab6 Web v1.3.287 FIRST TEST — strict flat PES6 loader. No gradients, highlights, glows or decorative circles. */
+#templateLoadingOverlay,
+#templateLoadingOverlay .template-loading-box,
+#templateLoadingOverlay .template-loading-topline,
+#templateLoadingOverlay .template-loading-panel,
+#templateLoadingOverlay .template-loading-title,
+#templateLoadingOverlay .template-loading-kind,
+#templateLoadingOverlay .template-loading-message,
+#templateLoadingOverlay .template-loading-bar,
+#templateLoadingOverlay .template-loading-fill {
+  background-image: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+  border-radius: 0 !important;
+}
+
+#templateLoadingOverlay::before,
+#templateLoadingOverlay::after,
+#templateLoadingOverlay *::before,
+#templateLoadingOverlay *::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+#templateLoadingOverlay.template-loading-overlay {
+  background-color: #000000 !important;
+  background: #000000 !important;
+}
+
+#templateLoadingOverlay .template-loading-box {
+  transform: none !important;
+}
+
+#templateLoadingOverlay .template-loading-topline {
+  background-color: #a3a8a6 !important;
+  background: #a3a8a6 !important;
+  border: 0 !important;
+}
+
+#templateLoadingOverlay .template-loading-panel {
+  background-color: #4c4e55 !important;
+  background: #4c4e55 !important;
+  border-color: #ffffff !important;
+  border-style: solid !important;
+}
+
+#templateLoadingOverlay .template-loading-kind {
+  color: #2debf2 !important;
+}
+
+#templateLoadingOverlay .template-loading-title {
+  color: #050505 !important;
+}
+
+#templateLoadingOverlay .template-loading-message {
+  color: #ffffff !important;
+}
+
+#templateLoadingOverlay .template-loading-bar {
+  background-color: #303238 !important;
+  background: #303238 !important;
+  border: 0 !important;
+}
+
+#templateLoadingOverlay .template-loading-fill {
+  background-color: #f0b515 !important;
+  background: #f0b515 !important;
+  border: 0 !important;
+}

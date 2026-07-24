@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.286_adidas_trefoil_mesh_cuff_opacity_exact_fix";
+  const KITLAB_BUILD_VERSION = "v1.3.287_pes6_loader_only_first_test";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
   console.log("KitLab6 dynamic daily assets", "v1.3.262 Pattern / Team / Brand / Sponsor / TXT manifest");
   console.log("KitLab6 thumb quality no-flicker patch", "v1.3.244_template_gallery_no_flicker_hq_thumbs");
@@ -729,6 +729,60 @@
 
 
   let templateLoadingOverlayToken = 0;
+  let templateLoadingAnimationFrame = 0;
+  let templateLoadingStartedAt = 0;
+  let templateLoadingLastFrameAt = 0;
+  let templateLoadingVisualPct = 0;
+  let templateLoadingTargetPct = 0;
+  let templateLoadingHideRequested = false;
+  let templateLoadingHideToken = 0;
+  let templateLoadingActiveName = "";
+  let templateLoadingActiveKind = "template";
+
+  function templateLoadingNow() {
+    return (window.performance && typeof performance.now === "function") ? performance.now() : Date.now();
+  }
+
+  function templateLoadingCleanName(value = "") {
+    const clean = String(value || "")
+      .replace(/^\s*(?:Project|Template)\s*:\s*/i, "")
+      .trim();
+    return clean || "KitLab6";
+  }
+
+  function templateLoadingResolveKind(explicitKind = "") {
+    if (window.__kitlabProjectLoadingLock === true) return "project";
+    const normalized = String(explicitKind || "").trim().toLowerCase();
+    if (normalized === "project") return "project";
+    if (normalized === "template") return "template";
+    return templateLoadingActiveKind === "project" ? "project" : "template";
+  }
+
+  function templateLoadingItemIsModular(item = {}) {
+    const path = String(item?.path || "").trim();
+    return item?.isModularCombination === true
+      || /^modular:\/\//i.test(path)
+      || !!item?.modularSelection
+      || !!item?.modularPartSources;
+  }
+
+  function templateLoadingModularBrand(item = {}) {
+    let brand = cleanDisplayName(item?.brand || item?.modularSelection?.brand || "");
+    if (!brand) {
+      const path = String(item?.path || "").trim();
+      const match = path.match(/^modular:\/\/([^/]+)/i);
+      if (match?.[1]) {
+        try { brand = cleanDisplayName(decodeURIComponent(match[1])); }
+        catch (_) { brand = cleanDisplayName(match[1]); }
+      }
+    }
+    return brand || "Template";
+  }
+
+  function templateLoadingNameForTemplateItem(item = {}, requestedName = "") {
+    if (templateLoadingItemIsModular(item)) return templateLoadingModularBrand(item);
+    return templateLoadingCleanName(requestedName || templateGalleryDisplayName(item));
+  }
 
   function ensureTemplateLoadingOverlay() {
     let overlay = document.getElementById("templateLoadingOverlay");
@@ -738,37 +792,131 @@
     overlay.className = "template-loading-overlay";
     overlay.hidden = true;
     overlay.innerHTML = `
-      <div class="template-loading-box" role="status" aria-live="polite">
+      <div class="template-loading-box" role="status" aria-live="polite" aria-atomic="true">
         <div class="template-loading-topline">
-          <span class="template-loading-title">LOADING...</span>
-          <span class="template-loading-percent" data-template-loading-percent>0%</span>
+          <span class="template-loading-title" data-template-loading-title>Load KitLab6</span>
         </div>
-        <div class="template-loading-bar" aria-hidden="true">
-          <div class="template-loading-fill" data-template-loading-fill></div>
+        <div class="template-loading-panel">
+          <div class="template-loading-kind" data-template-loading-kind>Template</div>
+          <div class="template-loading-message" data-template-loading-message>Loading KitLab6...</div>
+          <div class="template-loading-bar" role="progressbar" aria-label="Loading" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="template-loading-fill" data-template-loading-fill></div>
+          </div>
         </div>
-        <div class="template-loading-name" data-template-loading-name></div>
       </div>
     `;
     document.body.appendChild(overlay);
     return overlay;
   }
 
-  function paintTemplateLoadingProgress(value, templateName = "") {
+  function updateTemplateLoadingCopy(name = "", kind = "template") {
+    const overlay = ensureTemplateLoadingOverlay();
+    const cleanName = templateLoadingCleanName(name);
+    const resolvedKind = templateLoadingResolveKind(kind);
+    const title = overlay.querySelector("[data-template-loading-title]");
+    const kindLabel = overlay.querySelector("[data-template-loading-kind]");
+    const message = overlay.querySelector("[data-template-loading-message]");
+    if (title) title.textContent = `Load ${cleanName}`;
+    if (kindLabel) kindLabel.textContent = resolvedKind === "project" ? "Project" : "Template";
+    if (message) message.textContent = `Loading ${cleanName}...`;
+    overlay.dataset.loadingKind = resolvedKind;
+    overlay.dataset.loadingName = cleanName;
+    templateLoadingActiveName = cleanName;
+    templateLoadingActiveKind = resolvedKind;
+  }
+
+  function paintTemplateLoadingProgress(value, templateName = "", loadingKind = "") {
     const overlay = ensureTemplateLoadingOverlay();
     const rawPct = clamp(Number(value) || 0, 0, 100);
-    const displayPct = clamp(Math.floor(rawPct + 0.0001), 0, 100);
     const fill = overlay.querySelector("[data-template-loading-fill]");
-    const percent = overlay.querySelector("[data-template-loading-percent]");
-    const name = overlay.querySelector("[data-template-loading-name]");
-    // Keep the bar itself on sub-percent values so it moves fluidly,
-    // while the number follows the exact same visual value from 0 to 100.
-    if (fill) fill.style.width = `${rawPct.toFixed(2)}%`;
-    if (percent) percent.textContent = `${displayPct}%`;
-    if (name) name.textContent = templateName ? String(templateName) : "";
+    const bar = overlay.querySelector(".template-loading-bar");
+    if (fill) fill.style.width = `${rawPct.toFixed(3)}%`;
+    if (bar) bar.setAttribute("aria-valuenow", String(Math.floor(rawPct + 0.0001)));
+    updateTemplateLoadingCopy(templateName || templateLoadingActiveName, loadingKind || templateLoadingActiveKind);
+  }
+
+  function stopTemplateLoadingAnimation() {
+    if (templateLoadingAnimationFrame) window.cancelAnimationFrame(templateLoadingAnimationFrame);
+    templateLoadingAnimationFrame = 0;
+  }
+
+  function finalizeTemplateLoadingHide(token) {
+    const overlay = ensureTemplateLoadingOverlay();
+    window.setTimeout(() => {
+      if (token !== templateLoadingOverlayToken) return;
+      if (window.__kitlabProjectLoadingLock === true) {
+        templateLoadingHideRequested = false;
+        return;
+      }
+      overlay.classList.remove("is-active");
+      overlay.hidden = true;
+      templateLoadingHideRequested = false;
+      stopTemplateLoadingAnimation();
+    }, 150);
+  }
+
+  function runTemplateLoadingAnimation(frameNow) {
+    templateLoadingAnimationFrame = 0;
+    const overlay = ensureTemplateLoadingOverlay();
+    if (overlay.hidden || !overlay.classList.contains("is-active")) return;
+
+    const now = Number(frameNow) || templateLoadingNow();
+    if (!templateLoadingStartedAt) templateLoadingStartedAt = now;
+    if (!templateLoadingLastFrameAt) templateLoadingLastFrameAt = now;
+    const elapsed = Math.max(0, now - templateLoadingStartedAt);
+    const dt = clamp(now - templateLoadingLastFrameAt, 1, 64);
+    templateLoadingLastFrameAt = now;
+
+    // Continuous PES-style motion: real loading steps can accelerate the bar,
+    // while this time curve keeps it advancing smoothly between those steps.
+    // It approaches the end ever more slowly and never visually freezes.
+    const continuousFloor = Math.min(96.6, 96.6 * (1 - Math.exp(-elapsed / 9000)));
+    const finishing = templateLoadingTargetPct >= 100;
+    const desired = finishing ? 100 : Math.max(templateLoadingTargetPct, continuousFloor);
+    const responseMs = finishing ? 115 : 245;
+    const smoothing = 1 - Math.exp(-dt / responseMs);
+    let nextVisual = templateLoadingVisualPct + ((desired - templateLoadingVisualPct) * smoothing);
+
+    if (!finishing && nextVisual <= templateLoadingVisualPct + 0.0005) {
+      const minAdvance = Math.max(0.0015, 0.014 * Math.exp(-elapsed / 14000)) * (dt / 16.667);
+      nextVisual = Math.min(96.6, templateLoadingVisualPct + minAdvance);
+    }
+
+    templateLoadingVisualPct = clamp(Math.max(templateLoadingVisualPct, nextVisual), 0, 100);
+    paintTemplateLoadingProgress(templateLoadingVisualPct, templateLoadingActiveName, templateLoadingActiveKind);
+
+    if (finishing && templateLoadingVisualPct >= 99.94) {
+      templateLoadingVisualPct = 100;
+      paintTemplateLoadingProgress(100, templateLoadingActiveName, templateLoadingActiveKind);
+      if (templateLoadingHideRequested) finalizeTemplateLoadingHide(templateLoadingHideToken);
+      return;
+    }
+
+    templateLoadingAnimationFrame = window.requestAnimationFrame(runTemplateLoadingAnimation);
+  }
+
+  function ensureTemplateLoadingAnimation() {
+    if (!templateLoadingAnimationFrame) {
+      templateLoadingAnimationFrame = window.requestAnimationFrame(runTemplateLoadingAnimation);
+    }
+  }
+
+  function queueTemplateLoadingProgress(value, templateName = "", loadingKind = "") {
+    const overlay = ensureTemplateLoadingOverlay();
+    const rawPct = clamp(Number(value) || 0, 0, 100);
+    const cleanName = templateLoadingCleanName(templateName || templateLoadingActiveName);
+    const resolvedKind = templateLoadingResolveKind(loadingKind || templateLoadingActiveKind);
+    templateLoadingTargetPct = Math.max(templateLoadingTargetPct, rawPct);
+    updateTemplateLoadingCopy(cleanName, resolvedKind);
+    if (overlay.hidden) {
+      paintTemplateLoadingProgress(rawPct, cleanName, resolvedKind);
+      return;
+    }
+    ensureTemplateLoadingAnimation();
   }
 
   function setProjectLoadingProgress(value, templateName = "") {
-    const projectName = String(templateName || window.__kitlabProjectLoadingName || "Project");
+    const projectName = templateLoadingCleanName(templateName || window.__kitlabProjectLoadingName || "Project");
     const current = clamp(Number(window.__kitlabProjectLoadingProgress || 0), 0, 100);
     const next = clamp(Number(value) || 0, 0, 100);
     const finalPct = Math.max(current, next);
@@ -781,14 +929,13 @@
 
   function setTemplateLoadingProgress(value, templateName = "") {
     let rawPct = clamp(Number(value) || 0, 0, 100);
-    let displayName = templateName ? String(templateName) : "";
+    let displayName = templateLoadingCleanName(templateName || templateLoadingActiveName);
+    let loadingKind = templateLoadingResolveKind();
 
-    // v1.3.235: when a .kitlab6 project owns the loader, the bar must represent
-    // the whole project load, not an inner template load. Without this guard the
-    // template tracker can briefly paint 100%, then Project prewarm pulls it back.
-    // That looks broken and lets users think the project is ready too early.
+    // When a .kitlab6 project owns the loader, the bar represents the whole
+    // project load instead of an inner template load.
     if (window.__kitlabProjectLoadingLock === true) {
-      const projectName = String(window.__kitlabProjectLoadingName || displayName || "Project");
+      const projectName = templateLoadingCleanName(window.__kitlabProjectLoadingName || displayName || "Project");
       const current = clamp(Number(window.__kitlabProjectLoadingProgress || 0), 0, 100);
       if (window.__kitlabProjectLoadingProgressWrite === true) {
         rawPct = clamp(Number(window.__kitlabProjectLoadingProgress || rawPct), 0, 100);
@@ -804,128 +951,98 @@
         }
       }
       displayName = projectName;
+      loadingKind = "project";
     }
 
-    paintTemplateLoadingProgress(rawPct, displayName);
+    queueTemplateLoadingProgress(rawPct, displayName, loadingKind);
   }
 
-  function showTemplateLoadingScreen(templateName = "") {
+  function showTemplateLoadingScreen(templateName = "", loadingKind = "") {
     const overlay = ensureTemplateLoadingOverlay();
+    const cleanName = templateLoadingCleanName(templateName || templateLoadingActiveName);
+    const resolvedKind = templateLoadingResolveKind(loadingKind);
+    const wasHidden = overlay.hidden || !overlay.classList.contains("is-active");
+    const sameLoad = !wasHidden
+      && templateLoadingActiveName === cleanName
+      && templateLoadingActiveKind === resolvedKind;
     const token = ++templateLoadingOverlayToken;
     overlay.dataset.loadingToken = String(token);
     overlay.hidden = false;
     overlay.classList.add("is-active");
-    setTemplateLoadingProgress(0, templateName);
+    templateLoadingHideRequested = false;
+
+    if (!sameLoad) {
+      stopTemplateLoadingAnimation();
+      templateLoadingStartedAt = templateLoadingNow();
+      templateLoadingLastFrameAt = templateLoadingStartedAt;
+      templateLoadingVisualPct = 0;
+      templateLoadingTargetPct = 0;
+      paintTemplateLoadingProgress(0, cleanName, resolvedKind);
+    } else {
+      updateTemplateLoadingCopy(cleanName, resolvedKind);
+    }
+    ensureTemplateLoadingAnimation();
   }
 
   function hideTemplateLoadingScreen() {
     const overlay = ensureTemplateLoadingOverlay();
     const token = templateLoadingOverlayToken;
-    window.setTimeout(() => {
-      // v1.3.234: Project loading owns the overlay until project kit prewarm is complete.
-      // On the public web, the inner template loader can finish before Project runtime cache is ready;
-      // never let that inner loader close the screen early.
-      if (window.__kitlabProjectLoadingLock === true) {
-        const projectName = window.__kitlabProjectLoadingName || "";
-        const projectPct = clamp(Number(window.__kitlabProjectLoadingProgress || 0), 0, 98);
-        overlay.hidden = false;
-        overlay.classList.add("is-active");
-        if (projectName) setProjectLoadingProgress(projectPct || 4, projectName);
-        return;
-      }
-      // v1.3.233: template/project loads can immediately re-open the same overlay.
-      // Never let an old delayed hide close a newer project preload screen.
-      if (token !== templateLoadingOverlayToken) return;
-      overlay.classList.remove("is-active");
-      overlay.hidden = true;
-    }, 180);
+
+    // Project prewarming owns the overlay until every kit is ready.
+    if (window.__kitlabProjectLoadingLock === true) {
+      const projectName = templateLoadingCleanName(window.__kitlabProjectLoadingName || templateLoadingActiveName || "Project");
+      const projectPct = clamp(Number(window.__kitlabProjectLoadingProgress || 0), 0, 98);
+      overlay.hidden = false;
+      overlay.classList.add("is-active");
+      updateTemplateLoadingCopy(projectName, "project");
+      if (projectName) setProjectLoadingProgress(projectPct || 4, projectName);
+      return;
+    }
+
+    templateLoadingHideRequested = true;
+    templateLoadingHideToken = token;
+    templateLoadingTargetPct = 100;
+    ensureTemplateLoadingAnimation();
   }
 
   function makeTemplateLoadingTracker(templateName, totalSteps = 1) {
     if (window.__kitlabSuppressTemplateLoadingScreen === true) {
       return { set() {}, step() {}, finish() {}, fail() {} };
     }
-    // v1.0.60: smooth loading. Actual completed tasks still define the target,
-    // but the visible bar and number glide frame-by-frame from 0 to 100 instead
-    // of jumping directly to the next task percentage.
     const safeTotal = Math.max(1, Number(totalSteps) || 1);
-    const startedAt = (window.performance && performance.now) ? performance.now() : Date.now();
+    const startedAt = templateLoadingNow();
     const minVisibleMs = 900;
     let completed = 0;
-    let visualPct = 0;
-    let targetPct = 0;
-    let rafId = 0;
     let finishTimer = 0;
-    let finishing = false;
-    showTemplateLoadingScreen(templateName);
+    showTemplateLoadingScreen(templateName, "template");
 
-    const nowMs = () => (window.performance && performance.now) ? performance.now() : Date.now();
-
-    const tick = () => {
-      rafId = 0;
-      const diff = targetPct - visualPct;
-      if (diff > 0.015) {
-        const finishMode = finishing || targetPct >= 100;
-        const step = finishMode
-          ? Math.max(0.22, diff * 0.045)
-          : Math.max(0.10, diff * 0.030);
-        visualPct = Math.min(targetPct, visualPct + step);
-      } else {
-        visualPct = targetPct;
-      }
-      setTemplateLoadingProgress(visualPct, templateName);
-
-      if (finishing && visualPct >= 99.985) {
-        visualPct = 100;
-        setTemplateLoadingProgress(100, templateName);
-        hideTemplateLoadingScreen();
-        return;
-      }
-      if (visualPct < targetPct - 0.015 || finishing) rafId = window.requestAnimationFrame(tick);
-    };
-
-    const ensureTick = () => {
-      if (!rafId) rafId = window.requestAnimationFrame(tick);
-    };
-
-    const commit = (pct) => {
-      const nextPct = clamp(Number(pct) || 0, 0, 100);
-      targetPct = Math.max(targetPct, nextPct);
-      ensureTick();
-    };
-
+    const commit = (pct) => setTemplateLoadingProgress(clamp(Number(pct) || 0, 0, 100), templateName);
     const set = (pct) => commit(pct);
-
     const step = (units = 1) => {
       completed = Math.min(safeTotal, completed + Math.max(0, Number(units) || 1));
-      // Keep the last few percent for saved settings, cache building and final render.
-      const pct = Math.min(96, (completed / safeTotal) * 96);
-      commit(pct);
+      commit(Math.min(96, (completed / safeTotal) * 96));
     };
-
     const finish = () => {
       completed = safeTotal;
-      const elapsed = nowMs() - startedAt;
-      const startFinish = () => {
-        finishing = true;
+      const elapsed = templateLoadingNow() - startedAt;
+      const finishNow = () => {
         commit(100);
+        hideTemplateLoadingScreen();
       };
-      if (elapsed < minVisibleMs) {
-        finishTimer = window.setTimeout(startFinish, minVisibleMs - elapsed);
-      } else {
-        startFinish();
-      }
+      if (elapsed < minVisibleMs) finishTimer = window.setTimeout(finishNow, minVisibleMs - elapsed);
+      else finishNow();
     };
-
     const fail = () => {
-      if (rafId) window.cancelAnimationFrame(rafId);
       if (finishTimer) window.clearTimeout(finishTimer);
       const overlay = ensureTemplateLoadingOverlay();
+      ++templateLoadingOverlayToken;
+      templateLoadingHideRequested = false;
+      stopTemplateLoadingAnimation();
       overlay.classList.remove("is-active");
       overlay.hidden = true;
     };
-    setTemplateLoadingProgress(0, templateName);
-    ensureTick();
+
+    commit(0);
     return { set, step, finish, fail };
   }
 
@@ -7480,7 +7597,10 @@
       // ordering/UI cache/settings/final preparation tasks
       4
     );
-    const templateLoadingDisplayName = window.__kitlabTemplateLoadingDisplayName || templateGalleryDisplayName(item);
+    const requestedTemplateLoadingDisplayName = window.__kitlabTemplateLoadingDisplayName || "";
+    const templateLoadingDisplayName = window.__kitlabProjectLoadingLock === true
+      ? (requestedTemplateLoadingDisplayName || templateGalleryDisplayName(item))
+      : templateLoadingNameForTemplateItem(item, requestedTemplateLoadingDisplayName);
     window.__kitlabTemplateLoadingDisplayName = "";
     const loadingTracker = makeTemplateLoadingTracker(templateLoadingDisplayName, progressTotal);
 
@@ -17981,7 +18101,7 @@
       setProjectLoadingProgress(pct, loadingName);
     };
     if (loadingName) {
-      showTemplateLoadingScreen(loadingName);
+      showTemplateLoadingScreen(loadingName, "project");
       setProjectLoadingProgress(progressStart, loadingName);
     }
     const requestedActiveId = String(preferredActiveId || normalized.activeKitId || "").toLowerCase();
@@ -18070,7 +18190,7 @@
       }
       window.__kitlabProjectLoadingLock = true;
       window.__kitlabProjectLoadingName = projectLoadingName;
-      showTemplateLoadingScreen(projectLoadingName);
+      showTemplateLoadingScreen(projectLoadingName, "project");
       setProjectLoadingProgress(clamp(Number(pct) || 4, 0, 98), projectLoadingName);
     };
     const finishProjectLoadOverlay = () => {
