@@ -6343,134 +6343,58 @@ button.palette-color-swatch.template-palette-swatch[data-open-piece-picker] {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(24px, 3.6vw, 68px);
-  overflow: hidden;
   background: #000;
   color: #fff;
-  font-family: "Arial Rounded MT Bold", "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-family: Inter, Arial, Helvetica, sans-serif;
 }
 .template-loading-overlay[hidden] {
   display: none !important;
 }
 .template-loading-box {
-  width: min(1500px, 92vw);
-  transform: translateY(-1vh);
+  width: min(430px, 64vw);
+  transform: translateY(-2vh);
 }
 .template-loading-topline {
-  width: min(1040px, 73%);
-  min-height: clamp(62px, 6vw, 88px);
-  margin: 0 0 14px -5.5%;
-  padding: 10px clamp(28px, 3vw, 48px);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  color: #050505;
-  background: #a3a8a6;
-  border: 0;
-  box-shadow: none;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 8px;
+  font-weight: 900;
+  letter-spacing: -0.6px;
+  line-height: 1;
 }
 .template-loading-title {
-  width: 100%;
-  overflow: hidden;
-  color: #050505;
-  font-size: clamp(24px, 2.65vw, 44px);
-  font-weight: 900;
-  line-height: 1.08;
-  letter-spacing: .105em;
-  text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-transform: none;
-  text-shadow: none;
+  font-size: 30px;
+  text-transform: uppercase;
 }
-.template-loading-panel {
-  position: relative;
-  min-height: clamp(340px, 34vw, 460px);
-  overflow: hidden;
-  box-sizing: border-box;
-  padding: clamp(48px, 5vw, 76px) clamp(48px, 6vw, 92px) clamp(44px, 4.8vw, 72px);
-  border: clamp(6px, .5vw, 9px) solid #fff;
-  background: #4c4e55;
-  box-shadow: none;
-}
-.template-loading-kind,
-.template-loading-message {
-  overflow: hidden;
-  font-weight: 900;
-  line-height: 1.15;
-  letter-spacing: .14em;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-shadow: none;
-}
-.template-loading-kind {
-  color: #2debf2;
-  font-size: clamp(30px, 3.15vw, 52px);
-}
-.template-loading-message {
-  margin-top: clamp(14px, 1.5vw, 22px);
-  color: #fff;
-  font-size: clamp(26px, 2.85vw, 46px);
+.template-loading-percent {
+  min-width: 72px;
+  text-align: right;
+  font-size: 28px;
 }
 .template-loading-bar {
-  width: 91%;
-  height: clamp(24px, 2.55vw, 36px);
-  margin: clamp(68px, 7.8vw, 108px) auto 0;
+  height: 20px;
+  border-radius: 999px;
   overflow: hidden;
-  border: 0;
-  border-radius: 0;
-  background: #303238;
-  box-shadow: none;
+  background: rgba(255, 255, 255, 0.58);
 }
 .template-loading-fill {
-  position: relative;
   width: 0%;
   height: 100%;
-  overflow: hidden;
-  border-radius: 0;
-  background: var(--kitlab-gold, #F0B515);
-  box-shadow: none;
-  transition: none;
-  will-change: width;
+  border-radius: inherit;
+  background: #fff;
+  transition: width 16ms linear;
 }
-.template-loading-fill::after {
-  content: none;
-  display: none;
-}
-@media (max-width: 900px) {
-  .template-loading-overlay { padding: 18px; }
-  .template-loading-box { width: min(96vw, 900px); }
-  .template-loading-topline {
-    width: 88%;
-    min-height: 56px;
-    margin-left: -2%;
-    padding-inline: 18px;
-  }
-  .template-loading-title { font-size: clamp(19px, 4.2vw, 31px); }
-  .template-loading-panel {
-    min-height: 265px;
-    padding: 38px 28px 34px;
-  }
-  .template-loading-kind { font-size: clamp(24px, 5vw, 38px); }
-  .template-loading-message { font-size: clamp(20px, 4.5vw, 34px); }
-  .template-loading-bar {
-    width: 94%;
-    margin-top: 56px;
-  }
-}
-@media (max-height: 720px) and (min-width: 901px) {
-  .template-loading-box { width: min(1320px, 90vw); }
-  .template-loading-topline { min-height: 54px; margin-bottom: 10px; }
-  .template-loading-title { font-size: clamp(22px, 2.25vw, 36px); }
-  .template-loading-panel {
-    min-height: 280px;
-    padding-top: 38px;
-    padding-bottom: 34px;
-  }
-  .template-loading-kind { font-size: clamp(27px, 2.8vw, 42px); }
-  .template-loading-message { font-size: clamp(23px, 2.5vw, 38px); }
-  .template-loading-bar { margin-top: 54px; }
+.template-loading-name {
+  margin-top: 10px;
+  min-height: 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
 }
 
 /* v1.0.32: start screen keeps the original preview background color; only the image is inserted */
@@ -7916,86 +7840,3 @@ input:disabled,
   text-align: center;
 }
 
-/* v1.3.287_web_production_local_features: public 3D preview base. */
-#canvasWrap { position: relative !important; }
-
-.kitlab-view-mode-switch {
-  position: absolute;
-  top: 14px;
-  right: 16px;
-  z-index: 70;
-  display: inline-flex;
-  align-items: center;
-  padding: 3px;
-  gap: 3px;
-  border: 1px solid rgba(255,255,255,.18);
-  border-radius: 8px;
-  background: rgba(18,22,31,.92);
-}
-
-.kitlab-view-mode-btn {
-  min-width: 48px;
-  height: 29px;
-  padding: 0 12px;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  background: transparent;
-  color: rgba(255,255,255,.82);
-  font-size: 12px;
-  font-weight: 900;
-  cursor: pointer;
-}
-
-.kitlab-view-mode-btn:hover:not(:disabled) {
-  border-color: rgba(240,181,21,.64);
-  color: #fff;
-}
-
-.kitlab-view-mode-btn.active {
-  border-color: #F0B515;
-  background: #F0B515;
-  color: #20243a;
-}
-
-.kitlab-view-mode-btn:disabled { opacity: .38; cursor: default; }
-
-.kitlab3d-stage {
-  position: absolute;
-  inset: 0;
-  z-index: 12;
-  overflow: hidden;
-  background: #313658;
-}
-
-.kitlab3d-stage[hidden] { display: none !important; }
-
-#kitlab3dCanvas {
-  display: block;
-  width: 100%;
-  height: 100%;
-  cursor: grab;
-  touch-action: none;
-  user-select: none;
-  background: #313658;
-}
-
-#kitlab3dCanvas:active { cursor: grabbing; }
-
-.kitlab3d-loading,
-.kitlab3d-error {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
-  padding: 10px 14px;
-  border: 1px solid rgba(255,255,255,.16);
-  border-radius: 8px;
-  background: rgba(11,14,20,.9);
-  color: rgba(255,255,255,.9);
-  font-size: 12px;
-  font-weight: 800;
-  pointer-events: none;
-}
-
-.kitlab3d-error { color: #ff7777; }
