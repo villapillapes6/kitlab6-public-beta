@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.289_collar_yes_no_atomic_first_test";
+  const KITLAB_BUILD_VERSION = "v1.3.290_preserve_2d_3d_views_first_test";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
 
 
@@ -982,6 +982,21 @@
       && templateLoadingActiveKind === resolvedKind;
     const token = ++templateLoadingOverlayToken;
     overlay.dataset.loadingToken = String(token);
+
+    if (wasHidden) {
+      // New Template or Project: approved default 2D view.
+      // Manual 2D/3D switching never passes through this path.
+      reset2DPreviewViewForNewContent();
+      try {
+        window.dispatchEvent(new CustomEvent("kitlab:content-load-start", {
+          detail: {
+            kind: resolvedKind,
+            name: cleanName,
+          },
+        }));
+      } catch (_) {}
+    }
+
     overlay.hidden = false;
     overlay.classList.add("is-active");
     templateLoadingHideRequested = false;
@@ -2082,11 +2097,72 @@
     wrap.scrollTop = newStageTop + relY * newDisplaySize - (event.clientY - wrapRect.top);
   }
 
+  const saved2DPreviewView = {
+    zoom: 1,
+    scrollLeft: 0,
+    scrollTop: 0,
+    valid: false,
+  };
+
+  function capture2DPreviewView() {
+    saved2DPreviewView.zoom = Number(state.view.zoom) || 1;
+    saved2DPreviewView.scrollLeft = Number(els.canvasWrap?.scrollLeft) || 0;
+    saved2DPreviewView.scrollTop = Number(els.canvasWrap?.scrollTop) || 0;
+    saved2DPreviewView.valid = true;
+  }
+
+  function restore2DPreviewView() {
+    if (!saved2DPreviewView.valid || !els.canvasWrap) return;
+
+    state.view.zoom = clamp(
+      Number(saved2DPreviewView.zoom) || 1,
+      state.view.minZoom || 1,
+      state.view.maxZoom || 8
+    );
+    applyCanvasZoom();
+
+    const restoreExactScroll = () => {
+      els.canvasWrap.scrollLeft = saved2DPreviewView.scrollLeft;
+      els.canvasWrap.scrollTop = saved2DPreviewView.scrollTop;
+    };
+
+    // Restore twice after hidden -> visible layout to preserve the exact point.
+    requestAnimationFrame(() => {
+      applyCanvasZoom();
+      restoreExactScroll();
+      requestAnimationFrame(restoreExactScroll);
+    });
+  }
+
+  function reset2DPreviewViewForNewContent() {
+    state.view.zoom = 1;
+    recalcBaseCanvasSize();
+    applyCanvasZoom();
+
+    requestAnimationFrame(() => {
+      centerView();
+      saved2DPreviewView.zoom = state.view.zoom;
+      saved2DPreviewView.scrollLeft = Number(els.canvasWrap?.scrollLeft) || 0;
+      saved2DPreviewView.scrollTop = Number(els.canvasWrap?.scrollTop) || 0;
+      saved2DPreviewView.valid = true;
+    });
+  }
+
+  // Public bridge used only by kitlab3d.js.
+  window.KitLab6PreviewView = Object.freeze({
+    capture2D: capture2DPreviewView,
+    restore2D: restore2DPreviewView,
+    reset2DForContentLoad: reset2DPreviewViewForNewContent,
+  });
+
   function resetZoom() {
     state.view.zoom = 1;
     recalcBaseCanvasSize();
     applyCanvasZoom();
-    requestAnimationFrame(centerView);
+    requestAnimationFrame(() => {
+      centerView();
+      capture2DPreviewView();
+    });
     setStatus("Zoom reset");
   }
 

@@ -1,9 +1,9 @@
 (() => {
   "use strict";
 
-  const MAIN_MODEL_URL = "./assets/3d/kitlab6_collar_yes_short.glb?v=1.3.289-collar-yes-no-atomic-first-test";
-  const SHIRT_NO_MODEL_URL = "./assets/3d/shirt_collar_no.glb?v=1.3.289-collar-yes-no-atomic-first-test";
-  const ARMBAND_MODEL_URL = "./assets/3d/kitlab6_armband.glb?v=1.3.289-collar-yes-no-atomic-first-test";
+  const MAIN_MODEL_URL = "./assets/3d/kitlab6_collar_yes_short.glb?v=1.3.290-preserve-2d-3d-views-first-test";
+  const SHIRT_NO_MODEL_URL = "./assets/3d/shirt_collar_no.glb?v=1.3.290-preserve-2d-3d-views-first-test";
+  const ARMBAND_MODEL_URL = "./assets/3d/kitlab6_armband.glb?v=1.3.290-preserve-2d-3d-views-first-test";
   const ARMBAND_CAMERA_YAW = Math.PI / 2;     // Approved fixed camera: H 90°
   const ARMBAND_CAMERA_PITCH = -Math.PI / 2; // Approved fixed camera: V -90°
   const MAIN_FRAMING_COMPAT_Y = 0.12460509975392142;
@@ -221,11 +221,31 @@
     setStatus(message);
   }
 
-  function switchTo2d() {
+  function freezeCurrent3DView() {
+    if (!initialized) return;
+    if (cameraTransition) {
+      updateCameraTransition();
+      cameraTransition = null;
+    }
+    if (activeModel === "main") {
+      rotations.main.yaw = yaw;
+      rotations.main.pitch = pitch;
+    } else {
+      rotations.armband.yaw = yaw;
+      rotations.armband.pitch = pitch;
+    }
+  }
+
+  function switchTo2d(options = {}) {
+    const restore2D = options.restore2D !== false;
+    freezeCurrent3DView();
     active3d = false;
     stage3d.hidden = true;
     canvasStage.hidden = false;
     setModeButtons("2d");
+    if (restore2D) {
+      try { window.KitLab6PreviewView?.restore2D?.(); } catch (_) {}
+    }
     setStatus("2D preview");
   }
 
@@ -235,6 +255,10 @@
       setStatus("Load a template before opening 3D");
       return;
     }
+
+    // Preserve the exact 2D zoom and scroll point before hiding the stage.
+    try { window.KitLab6PreviewView?.capture2D?.(); } catch (_) {}
+
     active3d = true;
     canvasStage.hidden = true;
     stage3d.hidden = false;
@@ -245,12 +269,10 @@
     setStatus("Loading 3D preview...");
     try {
       await ensureInitialized();
-      // Every entry into 3D starts from Full with no piece icon selected.
-      if (currentFocus !== "reset" || activeModel !== "main") {
-        focusCamera("reset", true);
-      } else {
-        setFocusButtonState("reset");
-      }
+
+      // Manual return to 3D keeps the exact previous focus, camera, rotation,
+      // active model and selected icon.
+      setFocusButtonState(currentFocus);
       setStatus("3D preview · drag horizontally to rotate 360°");
       requestRender();
     } catch (error) {
@@ -259,7 +281,7 @@
     }
   }
 
-  btn2d.addEventListener("click", switchTo2d);
+  btn2d.addEventListener("click", () => switchTo2d());
   btn3d.addEventListener("click", () => {
     // The 3D button keeps its original place. While already in 3D it also
     // provides the Full model view because the new toolbar follows the exact
@@ -270,6 +292,38 @@
     }
     switchTo3d();
   });
+
+  function reset3DPreviewForNewContent() {
+    cameraTransition = null;
+    currentFocus = "reset";
+    activeModel = "main";
+    yaw = 0;
+    pitch = 0;
+    rotations.main.yaw = 0;
+    rotations.main.pitch = 0;
+    rotations.armband.yaw = ARMBAND_CAMERA_YAW;
+    rotations.armband.pitch = ARMBAND_CAMERA_PITCH;
+    armbandSpin = ARMBAND_DEFAULT_SPIN;
+
+    if (initialized && focusBounds) {
+      const view = calibratedViewForFocus("reset");
+      cameraTarget = view.target.slice();
+      distance = view.distance;
+      setFocusButtonState("reset");
+    }
+
+    // A Template or Project always opens in 2D. Do not restore the previous
+    // 2D view here: app.js has already reset it to the approved default.
+    if (active3d) {
+      switchTo2d({ restore2D: false });
+    } else {
+      stage3d.hidden = true;
+      canvasStage.hidden = false;
+      setModeButtons("2d");
+    }
+  }
+
+  window.addEventListener("kitlab:content-load-start", reset3DPreviewForNewContent);
 
   if (templateName) {
     new MutationObserver(sync3dAvailability).observe(templateName, { childList: true, subtree: true, characterData: true });
