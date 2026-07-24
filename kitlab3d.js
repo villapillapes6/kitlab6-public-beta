@@ -1,9 +1,8 @@
 (() => {
   "use strict";
 
-  const MAIN_MODEL_URL = "./assets/3d/kitlab6_collar_yes_short.glb?v=1.3.287-production";
-  const SHIRT_NO_MODEL_URL = "./assets/3d/shirt_collar_no.glb?v=1.3.287-production";
-  const ARMBAND_MODEL_URL = "./assets/3d/kitlab6_armband.glb?v=1.3.287-production";
+  const MAIN_MODEL_URL = "./assets/3d/kitlab6_collar_yes_short.glb?v=1.3.288-3d-viewer-only-first-test";
+  const ARMBAND_MODEL_URL = "./assets/3d/kitlab6_armband.glb?v=1.3.288-3d-viewer-only-first-test";
   const ARMBAND_CAMERA_YAW = Math.PI / 2;     // Approved fixed camera: H 90°
   const ARMBAND_CAMERA_PITCH = -Math.PI / 2; // Approved fixed camera: V -90°
   const MAIN_FRAMING_COMPAT_Y = 0.12460509975392142;
@@ -37,7 +36,6 @@
   const btn2d = document.getElementById("kitlab2dModeBtn");
   const btn3d = document.getElementById("kitlab3dModeBtn");
   const templateName = document.getElementById("selectedTemplateName");
-  const selectedCollarName = document.getElementById("selectedCollarName");
   const loadingEl = document.getElementById("kitlab3dLoading");
   const errorEl = document.getElementById("kitlab3dError");
   const resetBtn = document.getElementById("kitlab3dResetBtn");
@@ -60,11 +58,7 @@
   let textureDirty = true;
   let textureDirtySince = 0;
   let textureRefreshTimer = 0;
-  // The current main GLB is split once into Shirt YES and the shared Short/Socks.
-  // Shirt NO is preloaded independently. Collar changes only swap GPU buffer lists.
-  let lowerPrimitives = [];
-  let shirtYesPrimitives = [];
-  let shirtNoPrimitives = [];
+  let primitives = [];
   let armbandPrimitives = [];
   let bounds = null;
   let focusBounds = null;
@@ -85,15 +79,6 @@
     },
   };
   let currentFocus = "reset";
-  // Committed state is what is currently visible in the 3D framebuffer.
-  // Pending state follows the UI selection but is not displayed until the
-  // matching collar texture has finished rendering.
-  let useCollarNoModel = false;
-  let committedCollarLabel = "";
-  let pendingCollarLabel = "";
-  let pendingUseCollarNoModel = false;
-  let collarVisualCommitPending = false;
-  let collarCommitFallbackFrame = 0;
 
   // Final fixed framing. There are no zoom controls in the 3D viewer.
   const FIXED_FOCUS_PERCENT = Object.freeze({
@@ -126,73 +111,6 @@
     return !!text && text !== "no template";
   }
 
-  function selectedCollarLabel() {
-    return String(selectedCollarName?.textContent || "")
-      .replace(/^\s*Collar\s*:\s*/i, "")
-      .trim();
-  }
-
-  function normalizedCollarLabel(label = "") {
-    return String(label || "").trim().toUpperCase();
-  }
-
-  function collarLabelRequiresNoModel(label = "") {
-    return /\/NO\s*$/i.test(String(label || "").trim());
-  }
-
-  function collarNameRequiresNoModel() {
-    return collarLabelRequiresNoModel(selectedCollarLabel());
-  }
-
-  function syncCollarModelFromName() {
-    const nextLabel = selectedCollarLabel();
-    const nextUseNo = collarLabelRequiresNoModel(nextLabel);
-
-    // Before WebGL exists there is nothing visible to preserve.
-    if (!initialized) {
-      useCollarNoModel = nextUseNo;
-      committedCollarLabel = nextLabel;
-      pendingCollarLabel = nextLabel;
-      pendingUseCollarNoModel = nextUseNo;
-      collarVisualCommitPending = false;
-      return;
-    }
-
-    if (
-      normalizedCollarLabel(nextLabel) === normalizedCollarLabel(committedCollarLabel) &&
-      nextUseNo === useCollarNoModel
-    ) {
-      pendingCollarLabel = nextLabel;
-      pendingUseCollarNoModel = nextUseNo;
-      collarVisualCommitPending = false;
-      return;
-    }
-
-    // Do not change geometry yet. The old complete collar remains visible
-    // until app.js confirms that the new collar texture is ready.
-    pendingCollarLabel = nextLabel;
-    pendingUseCollarNoModel = nextUseNo;
-    collarVisualCommitPending = true;
-  }
-
-  function commitPendingCollarVisual() {
-    if (!initialized || !collarVisualCommitPending) return false;
-    if (!uploadTextureFastFromCanvas()) return false;
-
-    // Texture and geometry are committed together before the next WebGL frame.
-    useCollarNoModel = pendingUseCollarNoModel;
-    committedCollarLabel = pendingCollarLabel;
-    collarVisualCommitPending = false;
-
-    // The native canvas upload is immediate. Rebuild the Safe-Strong edge
-    // texture quietly afterwards, without delaying the visible collar swap.
-    textureDirty = true;
-    textureDirtySince = performance.now();
-    scheduleTextureRefresh(80);
-    requestRender();
-    return true;
-  }
-
   function sync3dAvailability() {
     const available = hasActiveTemplate();
     btn3d.disabled = !available;
@@ -221,31 +139,11 @@
     setStatus(message);
   }
 
-  function freezeCurrent3DView() {
-    if (!initialized) return;
-    if (cameraTransition) {
-      updateCameraTransition();
-      cameraTransition = null;
-    }
-    if (activeModel === "main") {
-      rotations.main.yaw = yaw;
-      rotations.main.pitch = pitch;
-    } else {
-      rotations.armband.yaw = yaw;
-      rotations.armband.pitch = pitch;
-    }
-  }
-
-  function switchTo2d(options = {}) {
-    const restore2D = options.restore2D !== false;
-    freezeCurrent3DView();
+  function switchTo2d() {
     active3d = false;
     stage3d.hidden = true;
     canvasStage.hidden = false;
     setModeButtons("2d");
-    if (restore2D) {
-      try { window.KitLab6PreviewView?.restore2D?.(); } catch (_) {}
-    }
     setStatus("2D preview");
   }
 
@@ -255,10 +153,6 @@
       setStatus("Load a template before opening 3D");
       return;
     }
-
-    // Preserve the exact 2D zoom and scroll point before hiding the stage.
-    try { window.KitLab6PreviewView?.capture2D?.(); } catch (_) {}
-
     active3d = true;
     canvasStage.hidden = true;
     stage3d.hidden = false;
@@ -269,10 +163,12 @@
     setStatus("Loading 3D preview...");
     try {
       await ensureInitialized();
-
-      // Manual return to 3D keeps the exact previous focus, camera, rotation,
-      // active model and selected icon.
-      setFocusButtonState(currentFocus);
+      // Every entry into 3D starts from Full with no piece icon selected.
+      if (currentFocus !== "reset" || activeModel !== "main") {
+        focusCamera("reset", true);
+      } else {
+        setFocusButtonState("reset");
+      }
       setStatus("3D preview · drag horizontally to rotate 360°");
       requestRender();
     } catch (error) {
@@ -281,7 +177,7 @@
     }
   }
 
-  btn2d.addEventListener("click", () => switchTo2d());
+  btn2d.addEventListener("click", switchTo2d);
   btn3d.addEventListener("click", () => {
     // The 3D button keeps its original place. While already in 3D it also
     // provides the Full model view because the new toolbar follows the exact
@@ -293,50 +189,10 @@
     switchTo3d();
   });
 
-  function reset3DPreviewForNewContent() {
-    cameraTransition = null;
-    currentFocus = "reset";
-    activeModel = "main";
-    yaw = 0;
-    pitch = 0;
-    rotations.main.yaw = 0;
-    rotations.main.pitch = 0;
-    rotations.armband.yaw = ARMBAND_CAMERA_YAW;
-    rotations.armband.pitch = ARMBAND_CAMERA_PITCH;
-    armbandSpin = ARMBAND_DEFAULT_SPIN;
-
-    if (initialized && focusBounds) {
-      const view = calibratedViewForFocus("reset");
-      cameraTarget = view.target.slice();
-      distance = view.distance;
-      setFocusButtonState("reset");
-    }
-
-    // A Template or Project always opens in 2D. Do not restore the previous
-    // 2D view here: app.js has already reset it to the approved default.
-    if (active3d) {
-      switchTo2d({ restore2D: false });
-    } else {
-      stage3d.hidden = true;
-      canvasStage.hidden = false;
-      setModeButtons("2d");
-    }
-  }
-
-  window.addEventListener("kitlab:content-load-start", reset3DPreviewForNewContent);
-
   if (templateName) {
     new MutationObserver(sync3dAvailability).observe(templateName, { childList: true, subtree: true, characterData: true });
   }
-  if (selectedCollarName) {
-    new MutationObserver(syncCollarModelFromName).observe(selectedCollarName, {
-      childList: true,
-      subtree: true,
-      characterData: true,
-    });
-  }
   sync3dAvailability();
-  syncCollarModelFromName();
 
   function ensureInitialized() {
     if (initialized) return Promise.resolve();
@@ -387,14 +243,8 @@
       return buildModelData(parsed.json, parsed.bin);
     };
 
-    const shirtNoPromise = loadModel(SHIRT_NO_MODEL_URL).catch((error) => {
-      console.warn("KitLab6 Shirt Collar NO could not be loaded; Collar YES remains available", error);
-      return null;
-    });
-
-    const [model, shirtNoModel, armbandModel] = await Promise.all([
+    const [model, armbandModel] = await Promise.all([
       loadModel(MAIN_MODEL_URL),
-      shirtNoPromise,
       loadModel(ARMBAND_MODEL_URL),
     ]);
 
@@ -402,19 +252,7 @@
 
     bounds = model.bounds;
     focusBounds = model.focusBounds;
-
-    const shirtSplitY = (
-      MAIN_APPROVED_FOCUS_BOUNDS.short.max[1] +
-      MAIN_APPROVED_FOCUS_BOUNDS.shirt.min[1]
-    ) * 0.5;
-    const splitMain = splitPrimitivesAtY(model.primitives, shirtSplitY);
-    lowerPrimitives = splitMain.lower.map((primitive) => createPrimitiveBuffers(gl, primitive));
-    shirtYesPrimitives = splitMain.upper.map((primitive) => createPrimitiveBuffers(gl, primitive));
-
-    if (shirtNoModel) {
-      alignStandaloneShirtToReferenceShirt(shirtNoModel, splitMain.upper);
-      shirtNoPrimitives = shirtNoModel.primitives.map((primitive) => createPrimitiveBuffers(gl, primitive));
-    }
+    primitives = model.primitives.map((primitive) => createPrimitiveBuffers(gl, primitive));
 
     // Keep the independent piece above the shirt, outside the Full view.
     // The camera slides upward to this reserved inspection area only when requested.
@@ -431,12 +269,6 @@
     cameraTarget = initialView.target.slice();
 
     initialized = true;
-    const initialCollarLabel = selectedCollarLabel();
-    useCollarNoModel = collarLabelRequiresNoModel(initialCollarLabel);
-    committedCollarLabel = initialCollarLabel;
-    pendingCollarLabel = initialCollarLabel;
-    pendingUseCollarNoModel = useCollarNoModel;
-    collarVisualCommitPending = false;
     if (loadingEl) loadingEl.hidden = true;
     if (errorEl) errorEl.hidden = true;
     resizeCanvas();
@@ -674,90 +506,6 @@
     }
   }
 
-  function splitPrimitivesAtY(sourcePrimitives, splitY) {
-    const lower = [];
-    const upper = [];
-
-    function expandedPrimitive(source, triangleVertexIndices) {
-      const positions = new Float32Array(triangleVertexIndices.length * 3);
-      const normals = new Float32Array(triangleVertexIndices.length * 3);
-      const uvs = new Float32Array(triangleVertexIndices.length * 2);
-
-      for (let outIndex = 0; outIndex < triangleVertexIndices.length; outIndex += 1) {
-        const sourceIndex = triangleVertexIndices[outIndex];
-        positions.set(source.positions.subarray(sourceIndex * 3, sourceIndex * 3 + 3), outIndex * 3);
-        normals.set(source.normals.subarray(sourceIndex * 3, sourceIndex * 3 + 3), outIndex * 3);
-        uvs.set(source.uvs.subarray(sourceIndex * 2, sourceIndex * 2 + 2), outIndex * 2);
-      }
-
-      return {
-        positions,
-        normals,
-        uvs,
-        indices: null,
-        indexComponentType: null,
-      };
-    }
-
-    for (const primitive of sourcePrimitives) {
-      const sourceIndices = primitive.indices || null;
-      const vertexCount = primitive.positions.length / 3;
-      const triangleIndexCount = sourceIndices ? sourceIndices.length : vertexCount;
-      const lowerIndices = [];
-      const upperIndices = [];
-
-      for (let index = 0; index + 2 < triangleIndexCount; index += 3) {
-        const a = sourceIndices ? sourceIndices[index] : index;
-        const b = sourceIndices ? sourceIndices[index + 1] : index + 1;
-        const c = sourceIndices ? sourceIndices[index + 2] : index + 2;
-        const centerY = (
-          primitive.positions[a * 3 + 1] +
-          primitive.positions[b * 3 + 1] +
-          primitive.positions[c * 3 + 1]
-        ) / 3;
-        const target = centerY >= splitY ? upperIndices : lowerIndices;
-        target.push(a, b, c);
-      }
-
-      if (lowerIndices.length) lower.push(expandedPrimitive(primitive, lowerIndices));
-      if (upperIndices.length) upper.push(expandedPrimitive(primitive, upperIndices));
-    }
-
-    return { lower, upper };
-  }
-
-  function primitiveDataBounds(sourcePrimitives) {
-    const min = [Infinity, Infinity, Infinity];
-    const max = [-Infinity, -Infinity, -Infinity];
-    for (const primitive of sourcePrimitives) {
-      for (let index = 0; index < primitive.positions.length; index += 3) {
-        for (let axis = 0; axis < 3; axis += 1) {
-          const value = primitive.positions[index + axis];
-          min[axis] = Math.min(min[axis], value);
-          max[axis] = Math.max(max[axis], value);
-        }
-      }
-    }
-    return { min, max };
-  }
-
-  function alignStandaloneShirtToReferenceShirt(model, referencePrimitives) {
-    const reference = primitiveDataBounds(referencePrimitives);
-    const modelCenterX = (model.bounds.min[0] + model.bounds.max[0]) * 0.5;
-    const modelCenterZ = (model.bounds.min[2] + model.bounds.max[2]) * 0.5;
-    const referenceCenterX = (reference.min[0] + reference.max[0]) * 0.5;
-    const referenceCenterZ = (reference.min[2] + reference.max[2]) * 0.5;
-
-    // Align the shared body exactly to Shirt YES: same X/Z centre and same
-    // lower hem. Collar NO may extend slightly higher because only its collar
-    // geometry is different.
-    translateModelData(model, [
-      referenceCenterX - modelCenterX,
-      reference.min[1] - model.bounds.min[1],
-      referenceCenterZ - modelCenterZ,
-    ]);
-  }
-
   function createPrimitiveBuffers(context, primitive) {
     const positionBuffer = context.createBuffer();
     context.bindBuffer(context.ARRAY_BUFFER, positionBuffer);
@@ -951,46 +699,6 @@
     }, Math.max(0, delay));
   }
 
-  function uploadTextureFastFromCanvas() {
-    if (!gl || !texture || !sourceCanvas) return false;
-    gl.activeTexture(gl.TEXTURE0);
-    gl.bindTexture(gl.TEXTURE_2D, texture);
-    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
-    gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
-
-    try {
-      // Native GPU upload: no getImageData, no edge-bleed loop and no GLB work.
-      // The old framebuffer stays visible until requestRender(), so the user
-      // never sees a half-switched collar.
-      if (!textureReady) {
-        gl.texImage2D(
-          gl.TEXTURE_2D,
-          0,
-          gl.RGBA,
-          gl.RGBA,
-          gl.UNSIGNED_BYTE,
-          sourceCanvas
-        );
-        textureReady = true;
-      } else {
-        gl.texSubImage2D(
-          gl.TEXTURE_2D,
-          0,
-          0,
-          0,
-          gl.RGBA,
-          gl.UNSIGNED_BYTE,
-          sourceCanvas
-        );
-      }
-      textureDirty = false;
-      return true;
-    } catch (error) {
-      console.warn("KitLab6 immediate collar texture upload failed", error);
-      return false;
-    }
-  }
-
   function uploadTexture() {
     if (!gl || !texture || !sourceCanvas) return;
     gl.activeTexture(gl.TEXTURE0);
@@ -1079,37 +787,27 @@
       : mat4Identity();
     gl.uniformMatrix4fv(program.model, false, modelMatrix);
 
-    const primitiveGroups = activeModel === "armband"
-      ? [armbandPrimitives]
-      : [
-          lowerPrimitives,
-          useCollarNoModel && shirtNoPrimitives.length
-            ? shirtNoPrimitives
-            : shirtYesPrimitives,
-        ];
+    const visiblePrimitives = activeModel === "armband" ? armbandPrimitives : primitives;
+    for (const primitive of visiblePrimitives) {
+      gl.bindBuffer(gl.ARRAY_BUFFER, primitive.positionBuffer);
+      gl.enableVertexAttribArray(program.position);
+      gl.vertexAttribPointer(program.position, 3, gl.FLOAT, false, 0, 0);
 
-    for (const visiblePrimitives of primitiveGroups) {
-      for (const primitive of visiblePrimitives) {
-        gl.bindBuffer(gl.ARRAY_BUFFER, primitive.positionBuffer);
-        gl.enableVertexAttribArray(program.position);
-        gl.vertexAttribPointer(program.position, 3, gl.FLOAT, false, 0, 0);
+      if (program.normal >= 0) {
+        gl.bindBuffer(gl.ARRAY_BUFFER, primitive.normalBuffer);
+        gl.enableVertexAttribArray(program.normal);
+        gl.vertexAttribPointer(program.normal, 3, gl.FLOAT, false, 0, 0);
+      }
 
-        if (program.normal >= 0) {
-          gl.bindBuffer(gl.ARRAY_BUFFER, primitive.normalBuffer);
-          gl.enableVertexAttribArray(program.normal);
-          gl.vertexAttribPointer(program.normal, 3, gl.FLOAT, false, 0, 0);
-        }
+      gl.bindBuffer(gl.ARRAY_BUFFER, primitive.uvBuffer);
+      gl.enableVertexAttribArray(program.uv);
+      gl.vertexAttribPointer(program.uv, 2, gl.FLOAT, false, 0, 0);
 
-        gl.bindBuffer(gl.ARRAY_BUFFER, primitive.uvBuffer);
-        gl.enableVertexAttribArray(program.uv);
-        gl.vertexAttribPointer(program.uv, 2, gl.FLOAT, false, 0, 0);
-
-        if (primitive.indexBuffer) {
-          gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, primitive.indexBuffer);
-          gl.drawElements(gl.TRIANGLES, primitive.count, primitive.indexType, 0);
-        } else {
-          gl.drawArrays(gl.TRIANGLES, 0, primitive.count);
-        }
+      if (primitive.indexBuffer) {
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, primitive.indexBuffer);
+        gl.drawElements(gl.TRIANGLES, primitive.count, primitive.indexType, 0);
+      } else {
+        gl.drawArrays(gl.TRIANGLES, 0, primitive.count);
       }
     }
   }
@@ -1333,36 +1031,7 @@
     capture: true,
   });
 
-  window.addEventListener("kitlab:collar-render-ready", (event) => {
-    if (!collarVisualCommitPending) return;
-    const readyLabel = String(event?.detail?.name || "").trim();
-    if (
-      readyLabel &&
-      normalizedCollarLabel(readyLabel) !== normalizedCollarLabel(pendingCollarLabel)
-    ) {
-      return;
-    }
-    if (collarCommitFallbackFrame) {
-      cancelAnimationFrame(collarCommitFallbackFrame);
-      collarCommitFallbackFrame = 0;
-    }
-    commitPendingCollarVisual();
-  });
-
   window.addEventListener("kitlab:canvas-updated", () => {
-    if (collarVisualCommitPending && initialized) {
-      // selectCollarStyle emits a precise collar-ready event after this generic
-      // canvas event. Keep one-frame fallback support for project/template paths
-      // that render a collar without going through selectCollarStyle.
-      if (!collarCommitFallbackFrame) {
-        collarCommitFallbackFrame = requestAnimationFrame(() => {
-          collarCommitFallbackFrame = 0;
-          commitPendingCollarVisual();
-        });
-      }
-      return;
-    }
-
     textureDirty = true;
     textureDirtySince = performance.now();
     // Wait briefly for consecutive slider/render updates, then process only the final canvas.

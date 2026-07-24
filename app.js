@@ -1,7 +1,14 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.287_pes6_loader_only_first_test";
+  const KITLAB_BUILD_VERSION = "v1.3.288_3d_viewer_only_first_test";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
+
+
+  function notifyKitLabCanvasUpdated() {
+    try {
+      window.dispatchEvent(new CustomEvent("kitlab:canvas-updated"));
+    } catch (_) {}
+  }
   console.log("KitLab6 dynamic daily assets", "v1.3.262 Pattern / Team / Brand / Sponsor / TXT manifest");
   console.log("KitLab6 thumb quality no-flicker patch", "v1.3.244_template_gallery_no_flicker_hq_thumbs");
   const KITLAB_BASE_DESIGN_BUTTON_LOCKED = true; // v1.3.199: keep Base Design visible but blocked for beta until its placement rule is fixed.
@@ -1719,6 +1726,7 @@
     drawUv();
     drawGuide();
     drawSlotBoxes();
+    notifyKitLabCanvasUpdated();
   }
 
   function ensureBrandStaticCanvas() {
@@ -14280,6 +14288,7 @@
     if (!exportMode && !cacheBuildMode && state.templateStyle?.selected && !activeLayerRangeDrag) {
       scheduleBuildBrandStaticCache(fastPreview ? 360 : 90);
     }
+    if (!exportMode && !cacheBuildMode) notifyKitLabCanvasUpdated();
   }
 
   function logoPaletteOnlyHtmlForPart(part) {

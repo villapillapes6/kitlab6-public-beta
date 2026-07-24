@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KitLab6 BETA 1.0</title>
-  <link rel="stylesheet" href="./style.css?v=1.3.287-loader-only-first-test" />
+  <link rel="stylesheet" href="./style.css?v=1.3.288-3d-viewer-only-first-test" />
   <style id="kitlab-right-empty-panel-style">
     /* v1.0.80-82 visual test: fixed left/right side blocks, same width at all times. */
     :root {
@@ -1534,6 +1534,478 @@
     }
   </style>
 
+
+  <!-- KitLab6 Web v1.3.288: visor 3D público, primera prueba -->
+  <style id="kitlab3d-background-local-110">
+    /* KitLab6 Local 1.10 — exact same background as the 2D workspace. */
+    #kitlab3dStage,
+    #kitlab3dCanvas {
+      background: #313658 !important;
+    }
+  </style>
+  <style id="kitlab3d-vertical-controls-local-115">
+    /* KitLab6 Local 1.15 — controls float vertically over the full 3D viewport.
+       The existing 2D / 3D switch keeps its exact position and appearance. */
+
+    #kitlab3dToolbar.kitlab3d-top-toolbar {
+      position: absolute !important;
+      top: 50% !important;
+      left: 14px !important;
+      right: auto !important;
+      bottom: auto !important;
+      z-index: 69 !important;
+      width: auto !important;
+      height: auto !important;
+      box-sizing: border-box !important;
+      display: flex !important;
+      flex-direction: column !important;
+      flex-wrap: nowrap !important;
+      align-items: flex-start !important;
+      justify-content: center !important;
+      gap: 8px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      color: rgba(255, 255, 255, .92) !important;
+      overflow: visible !important;
+      white-space: nowrap !important;
+      transform: translateY(-50%) !important;
+    }
+
+    #kitlab3dToolbar .kitlab3d-toolbar-group {
+      width: auto !important;
+      height: auto !important;
+      min-width: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      flex: 0 0 auto !important;
+      gap: 4px !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+    }
+
+    /* Collar YES/NO and Sleeve SHORT/LONG remain paired on one line each. */
+    #kitlab3dToolbar .kitlab3d-toolbar-model-group {
+      flex-direction: row !important;
+    }
+
+    /* Piece buttons follow one another from top to bottom. */
+    #kitlab3dToolbar .kitlab3d-toolbar-focus-group {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 6px !important;
+    }
+#kitlab3dToolbar .kitlab3d-toolbar-label {
+      width: 39px !important;
+      min-width: 39px !important;
+      margin: 0 2px 0 0 !important;
+      color: rgba(255, 255, 255, .72) !important;
+      font-size: 9.5px !important;
+      font-weight: 900 !important;
+      line-height: 1 !important;
+      text-align: left !important;
+      user-select: none !important;
+    }
+
+    /* No enclosing rectangle and no separator lines: only the controls remain. */
+    #kitlab3dToolbar .kitlab3d-toolbar-separator {
+      display: none !important;
+    }
+
+    #kitlab3dToolbar .kitlab3d-choice {
+      min-width: 0 !important;
+      width: auto !important;
+      height: 27px !important;
+      box-sizing: border-box !important;
+      padding: 0 8px !important;
+      margin: 0 !important;
+      border: 1px solid rgba(255, 255, 255, .17) !important;
+      border-radius: 6px !important;
+      background: rgba(18, 22, 31, .78) !important;
+      color: rgba(255, 255, 255, .88) !important;
+      font-size: 9.5px !important;
+      font-weight: 900 !important;
+      line-height: 25px !important;
+      cursor: pointer !important;
+      user-select: none !important;
+      backdrop-filter: blur(2px) !important;
+    }
+
+    #kitlab3dToolbar .kitlab3d-choice:hover:not(:disabled) {
+      border-color: rgba(240, 181, 21, .72) !important;
+      background: rgba(240, 181, 21, .16) !important;
+    }
+
+    #kitlab3dToolbar .kitlab3d-choice.active {
+      border-color: #F0B515 !important;
+      background: rgba(240, 181, 21, .22) !important;
+      color: #fff !important;
+    }
+
+    #kitlab3dToolbar .kitlab3d-choice:disabled {
+      opacity: .35 !important;
+      cursor: default !important;
+    }
+
+    #kitlab3dToolbar .kitlab3d-toolbar-focus-group .kitlab3d-choice {
+      width: 72px !important;
+      min-width: 72px !important;
+      text-align: center !important;
+    }
+/* Restore the model to the complete 3D area. Controls simply float above it. */
+    #kitlab3dStage #kitlab3dCanvas {
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    #kitlab3dStage .kitlab3d-loading,
+    #kitlab3dStage .kitlab3d-error {
+      top: 50% !important;
+    }
+
+    #kitlab3dStage .kitlab3d-panel {
+      display: none !important;
+    }
+
+    /* Existing 2D / 3D switch is not moved or restyled. */
+    .kitlab-view-mode-switch {
+      z-index: 70 !important;
+    }
+    #kitlab3dModelLabel,
+    .kitlab3d-model-label {
+      display: none !important;
+    }
+
+  </style>
+  <style id="kitlab-mode-switch-original-fixed-local-124">
+    /* KitLab6 Local 1.24
+       Same visual position as the original switch, but detached from every
+       2D canvas zoom/pan transform. The buttons themselves are not restyled. */
+    #kitlabFixedViewModeSwitch {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      right: auto !important;
+      bottom: auto !important;
+      margin: 0 !important;
+      transform: none !important;
+      transform-origin: center !important;
+      z-index: 2147482000 !important;
+      will-change: auto !important;
+    }
+  </style>
+  <style id="kitlab-hide-mode-switch-during-loading-local-125">
+    #kitlabFixedViewModeSwitch[data-kitlab-loading-hidden="true"] {
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+  </style>
+  <style id="kitlab3d-real-focus-icons-local-128">
+    /* KitLab6 Local 1.28
+       Exact new PNGs supplied in logos 3d.zip.
+       Their internal spacing and proportions are preserved untouched. */
+
+    #kitlab3dToolbar {
+      gap: 7px !important;
+      align-items: center !important;
+    }
+
+    #kitlab3dToolbar .kitlab3d-toolbar-focus-group {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 7px !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    /* Do not use kitlab3d-choice here. Its legacy hover rule created
+       the coloured rectangle seen in Local 1.26 and 1.27. */
+    #kitlab3dToolbar button.kitlab3d-focus-button,
+    #kitlab3dToolbar button.kitlab3d-focus-button:hover,
+    #kitlab3dToolbar button.kitlab3d-focus-button:hover:not(:disabled),
+    #kitlab3dToolbar button.kitlab3d-focus-button:focus,
+    #kitlab3dToolbar button.kitlab3d-focus-button:focus-visible,
+    #kitlab3dToolbar button.kitlab3d-focus-button:active,
+    #kitlab3dToolbar button.kitlab3d-focus-button.active,
+    #kitlab3dToolbar button.kitlab3d-focus-button.active:hover,
+    #kitlab3dToolbar button.kitlab3d-focus-button.active:hover:not(:disabled) {
+      appearance: none !important;
+      -webkit-appearance: none !important;
+      width: 42px !important;
+      min-width: 42px !important;
+      max-width: 42px !important;
+      height: 42px !important;
+      min-height: 42px !important;
+      max-height: 42px !important;
+      padding: 1px !important;
+      margin: 0 !important;
+      border: 0 !important;
+      border-color: transparent !important;
+      border-radius: 0 !important;
+      outline: 0 !important;
+      outline-color: transparent !important;
+      background: transparent !important;
+      background-color: transparent !important;
+      background-image: none !important;
+      box-shadow: none !important;
+      filter: none !important;
+      display: grid !important;
+      place-items: center !important;
+      overflow: visible !important;
+      cursor: pointer !important;
+      opacity: 1 !important;
+    }
+
+    #kitlab3dToolbar button.kitlab3d-focus-button::before,
+    #kitlab3dToolbar button.kitlab3d-focus-button::after {
+      display: none !important;
+      content: none !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    /* Every icon uses exactly the same box.
+       The visual proportion comes only from the newly supplied PNG. */
+    #kitlab3dToolbar .kitlab3d-focus-icon {
+      width: 40px !important;
+      min-width: 40px !important;
+      max-width: 40px !important;
+      height: 40px !important;
+      min-height: 40px !important;
+      max-height: 40px !important;
+      display: block !important;
+      background: rgba(255, 255, 255, .76) !important;
+      background-color: rgba(255, 255, 255, .76) !important;
+      -webkit-mask-repeat: no-repeat !important;
+      mask-repeat: no-repeat !important;
+      -webkit-mask-position: center !important;
+      mask-position: center !important;
+      -webkit-mask-size: contain !important;
+      mask-size: contain !important;
+      transform: scale(1) !important;
+      transform-origin: center !important;
+      transition:
+        transform 140ms ease,
+        background-color 140ms ease !important;
+      pointer-events: none !important;
+    }
+
+    #kitlab3dToolbar .kitlab3d-focus-icon-full {
+      -webkit-mask-image: url("./assets/ui/3d/focus_full.png?v=1.28") !important;
+      mask-image: url("./assets/ui/3d/focus_full.png?v=1.28") !important;
+    }
+
+    #kitlab3dToolbar .kitlab3d-focus-icon-shirt {
+      -webkit-mask-image: url("./assets/ui/3d/focus_shirt.png?v=1.3.288-3d-viewer-only-first-test") !important;
+      mask-image: url("./assets/ui/3d/focus_shirt.png?v=1.3.288-3d-viewer-only-first-test") !important;
+    }
+
+    #kitlab3dToolbar .kitlab3d-focus-icon-short {
+      -webkit-mask-image: url("./assets/ui/3d/focus_short.png?v=1.3.288-3d-viewer-only-first-test") !important;
+      mask-image: url("./assets/ui/3d/focus_short.png?v=1.3.288-3d-viewer-only-first-test") !important;
+    }
+
+    #kitlab3dToolbar .kitlab3d-focus-icon-socks {
+      -webkit-mask-image: url("./assets/ui/3d/focus_socks.png?v=1.3.288-3d-viewer-only-first-test") !important;
+      mask-image: url("./assets/ui/3d/focus_socks.png?v=1.3.288-3d-viewer-only-first-test") !important;
+    }
+
+    #kitlab3dToolbar .kitlab3d-focus-icon-armband {
+      -webkit-mask-image: url("./assets/ui/3d/focus_armband.png?v=1.3.288-3d-viewer-only-first-test") !important;
+      mask-image: url("./assets/ui/3d/focus_armband.png?v=1.3.288-3d-viewer-only-first-test") !important;
+    }
+
+    /* Hover only enlarges the silhouette. No colour or rectangle is added. */
+    #kitlab3dToolbar button.kitlab3d-focus-button:hover .kitlab3d-focus-icon,
+    #kitlab3dToolbar button.kitlab3d-focus-button:hover:not(:disabled) .kitlab3d-focus-icon {
+      transform: scale(1.08) !important;
+    }
+
+    /* Only the selected silhouette becomes yellow. */
+    #kitlab3dToolbar button.kitlab3d-focus-button.active .kitlab3d-focus-icon,
+    #kitlab3dToolbar button.kitlab3d-focus-button.active:hover .kitlab3d-focus-icon,
+    #kitlab3dToolbar button.kitlab3d-focus-button.active:hover:not(:disabled) .kitlab3d-focus-icon {
+      background: #F0B515 !important;
+      background-color: #F0B515 !important;
+    }
+  </style>
+  <style id="kitlab3d-icons-small-to-large-direct-local-146">
+    /* KitLab6 Local 1.46
+       Only the four vertical 3D icons are changed.
+       They begin at the same smaller visual size as the horizontal module
+       icons and jump directly to the current 40 px selected size. */
+
+    :root {
+      --kitlab3d-focus-gap: 8px;
+      --kitlab3d-focus-button-size: 42px;
+      --kitlab3d-focus-icon-idle-size: 30px;
+      --kitlab3d-focus-icon-large-size: 40px;
+      --kitlab3d-focus-idle: rgba(255, 255, 255, .92);
+      --kitlab3d-focus-active: #F0B515;
+    }
+
+    #kitlab3dToolbar.kitlab3d-top-toolbar {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: auto !important;
+      bottom: auto !important;
+      width: var(--kitlab3d-focus-button-size) !important;
+      height: auto !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      transform: none !important;
+      z-index: 2147481900 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      overflow: visible !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+    #kitlab3dToolbar[data-kitlab-visible="true"] {
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+
+    #kitlab3dToolbar .kitlab3d-toolbar-focus-group {
+      width: var(--kitlab3d-focus-button-size) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      gap: var(--kitlab3d-focus-gap) !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      overflow: visible !important;
+    }
+
+    #kitlab3dToolbar button.kitlab3d-focus-button,
+    #kitlab3dToolbar button.kitlab3d-focus-button:hover,
+    #kitlab3dToolbar button.kitlab3d-focus-button:hover:not(:disabled),
+    #kitlab3dToolbar button.kitlab3d-focus-button:focus,
+    #kitlab3dToolbar button.kitlab3d-focus-button:focus-visible,
+    #kitlab3dToolbar button.kitlab3d-focus-button:active,
+    #kitlab3dToolbar button.kitlab3d-focus-button.active,
+    #kitlab3dToolbar button.kitlab3d-focus-button.active:hover,
+    #kitlab3dToolbar button.kitlab3d-focus-button.active:hover:not(:disabled) {
+      appearance: none !important;
+      -webkit-appearance: none !important;
+      width: var(--kitlab3d-focus-button-size) !important;
+      min-width: var(--kitlab3d-focus-button-size) !important;
+      max-width: var(--kitlab3d-focus-button-size) !important;
+      height: var(--kitlab3d-focus-button-size) !important;
+      min-height: var(--kitlab3d-focus-button-size) !important;
+      max-height: var(--kitlab3d-focus-button-size) !important;
+      padding: 1px !important;
+      margin: 0 !important;
+      border: 0 !important;
+      border-color: transparent !important;
+      border-radius: 0 !important;
+      outline: 0 !important;
+      outline-color: transparent !important;
+      background: transparent !important;
+      background-color: transparent !important;
+      background-image: none !important;
+      box-shadow: none !important;
+      filter: none !important;
+      display: grid !important;
+      place-items: center !important;
+      overflow: visible !important;
+      cursor: pointer !important;
+      opacity: 1 !important;
+      transition: none !important;
+    }
+
+    #kitlab3dToolbar button.kitlab3d-focus-button::before,
+    #kitlab3dToolbar button.kitlab3d-focus-button::after {
+      display: none !important;
+      content: none !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    /* Default unselected size. */
+    #kitlab3dToolbar .kitlab3d-focus-icon {
+      width: var(--kitlab3d-focus-icon-idle-size) !important;
+      min-width: var(--kitlab3d-focus-icon-idle-size) !important;
+      max-width: var(--kitlab3d-focus-icon-idle-size) !important;
+      height: var(--kitlab3d-focus-icon-idle-size) !important;
+      min-height: var(--kitlab3d-focus-icon-idle-size) !important;
+      max-height: var(--kitlab3d-focus-icon-idle-size) !important;
+      background: var(--kitlab3d-focus-idle) !important;
+      background-color: var(--kitlab3d-focus-idle) !important;
+      -webkit-mask-position: center center !important;
+      mask-position: center center !important;
+      -webkit-mask-size: 100% 100% !important;
+      mask-size: 100% 100% !important;
+      -webkit-mask-repeat: no-repeat !important;
+      mask-repeat: no-repeat !important;
+      transform: none !important;
+      transform-origin: center center !important;
+      transition: none !important;
+      animation: none !important;
+      will-change: auto !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+      pointer-events: none !important;
+      opacity: 1 !important;
+    }
+
+    /* Hover jumps immediately to the current approved large size. */
+    #kitlab3dToolbar button.kitlab3d-focus-button:hover .kitlab3d-focus-icon,
+    #kitlab3dToolbar button.kitlab3d-focus-button:hover:not(:disabled) .kitlab3d-focus-icon,
+    #kitlab3dToolbar button.kitlab3d-focus-button:focus-visible .kitlab3d-focus-icon {
+      width: var(--kitlab3d-focus-icon-large-size) !important;
+      min-width: var(--kitlab3d-focus-icon-large-size) !important;
+      max-width: var(--kitlab3d-focus-icon-large-size) !important;
+      height: var(--kitlab3d-focus-icon-large-size) !important;
+      min-height: var(--kitlab3d-focus-icon-large-size) !important;
+      max-height: var(--kitlab3d-focus-icon-large-size) !important;
+      transform: none !important;
+      transition: none !important;
+    }
+
+    /* Selected remains large and yellow, with no transition. */
+    #kitlab3dToolbar button.kitlab3d-focus-button.active .kitlab3d-focus-icon,
+    #kitlab3dToolbar button.kitlab3d-focus-button.active:hover .kitlab3d-focus-icon,
+    #kitlab3dToolbar button.kitlab3d-focus-button.active:hover:not(:disabled) .kitlab3d-focus-icon,
+    #kitlab3dToolbar button.kitlab3d-focus-button.active:focus-visible .kitlab3d-focus-icon {
+      width: var(--kitlab3d-focus-icon-large-size) !important;
+      min-width: var(--kitlab3d-focus-icon-large-size) !important;
+      max-width: var(--kitlab3d-focus-icon-large-size) !important;
+      height: var(--kitlab3d-focus-icon-large-size) !important;
+      min-height: var(--kitlab3d-focus-icon-large-size) !important;
+      max-height: var(--kitlab3d-focus-icon-large-size) !important;
+      transform: none !important;
+      transition: none !important;
+      background: var(--kitlab3d-focus-active) !important;
+      background-color: var(--kitlab3d-focus-active) !important;
+      opacity: 1 !important;
+    }
+  </style>
 </head>
 <body class="profile-villapilla-mode">
     <div id="kitlabToast" class="kitlab-toast" hidden></div>
@@ -1918,6 +2390,11 @@
         <div id="zoomText" hidden>100%</div>
       </header>
 
+      <div id="kitlabFixedViewModeSwitch" class="kitlab-view-mode-switch" aria-label="Preview mode">
+        <button id="kitlab2dModeBtn" class="kitlab-view-mode-btn active" type="button" aria-pressed="true">2D</button>
+        <button id="kitlab3dModeBtn" class="kitlab-view-mode-btn" type="button" aria-pressed="false" disabled>3D</button>
+      </div>
+
       <div class="canvas-wrap" id="canvasWrap">
         <div class="welcome-screen" id="welcomeScreen" aria-label="VillaPilla start screen">
           <img src="./assets/ui/villapilla_start_screen.png?v=1.0.55" alt="VillaPilla editor de kits para PES6" loading="eager" decoding="async" fetchpriority="high" />
@@ -1939,6 +2416,28 @@
                 <span>PES Logos</span>
               </button>
             </div>
+          </div>
+        </div>
+        <div id="kitlab3dStage" class="kitlab3d-stage" hidden aria-label="KitLab6 3D preview">
+          <canvas id="kitlab3dCanvas" aria-label="Interactive 3D kit model"></canvas>
+          <div id="kitlab3dLoading" class="kitlab3d-loading">Loading 3D model...</div>
+          <div id="kitlab3dError" class="kitlab3d-error" hidden></div>
+          <div id="kitlab3dToolbar" class="kitlab3d-top-toolbar" aria-label="3D model controls">
+            <div class="kitlab3d-toolbar-group kitlab3d-toolbar-focus-group" aria-label="3D piece focus">
+              <button id="kitlab3dShirtBtn" class="kitlab3d-focus-button" type="button" aria-label="Shirt" title="Shirt" aria-pressed="false">
+                <span class="kitlab3d-focus-icon kitlab3d-focus-icon-shirt" aria-hidden="true"></span>
+              </button>
+              <button id="kitlab3dShortBtn" class="kitlab3d-focus-button" type="button" aria-label="Short" title="Short" aria-pressed="false">
+                <span class="kitlab3d-focus-icon kitlab3d-focus-icon-short" aria-hidden="true"></span>
+              </button>
+              <button id="kitlab3dSocksBtn" class="kitlab3d-focus-button" type="button" aria-label="Socks" title="Socks" aria-pressed="false">
+                <span class="kitlab3d-focus-icon kitlab3d-focus-icon-socks" aria-hidden="true"></span>
+              </button>
+              <button id="kitlab3dArmbandBtn" class="kitlab3d-focus-button" type="button" aria-label="Armband" title="Armband" aria-pressed="false">
+                <span class="kitlab3d-focus-icon kitlab3d-focus-icon-armband" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div id="kitlab3dHelp" hidden>Drag horizontally to rotate 360°</div>
           </div>
         </div>
         <div class="canvas-stage" id="canvasStage">
@@ -2356,7 +2855,233 @@
       font-variant-numeric: tabular-nums !important;
     }
   </style>
-  <script src="./app.js?v=1.3.287-loader-only-first-test"></script>
+  <script src="./app.js?v=1.3.288-3d-viewer-only-first-test"></script>
+  <script src="./kitlab3d.js?v=1.3.288-3d-viewer-only-first-test"></script>
+  <script id="kitlab-mode-switch-original-fixed-script-local-124">
+    (function () {
+      const TOP_OFFSET = 10;
+      const RIGHT_OFFSET = 12;
+
+      function placeFixedViewModeSwitch() {
+        const switchElement = document.getElementById('kitlabFixedViewModeSwitch');
+        const canvasWrap = document.getElementById('canvasWrap');
+        if (!switchElement || !canvasWrap) return;
+
+        const canvasRect = canvasWrap.getBoundingClientRect();
+        const switchWidth = switchElement.getBoundingClientRect().width;
+
+        switchElement.style.top = `${Math.round(canvasRect.top + TOP_OFFSET)}px`;
+        switchElement.style.left =
+          `${Math.round(canvasRect.right - switchWidth - RIGHT_OFFSET)}px`;
+      }
+
+      function schedulePlacement() {
+        window.requestAnimationFrame(function () {
+          placeFixedViewModeSwitch();
+          window.requestAnimationFrame(placeFixedViewModeSwitch);
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', schedulePlacement, { once: true });
+      } else {
+        schedulePlacement();
+      }
+
+      window.addEventListener('resize', schedulePlacement, { passive: true });
+
+      const canvasWrap = document.getElementById('canvasWrap');
+      if (canvasWrap && 'ResizeObserver' in window) {
+        const observer = new ResizeObserver(schedulePlacement);
+        observer.observe(canvasWrap);
+      }
+    })();
+  </script>
+  <script id="kitlab-hide-mode-switch-during-loading-script-local-125">
+(function () {
+  const SWITCH_ID = 'kitlabFixedViewModeSwitch';
+  const OVERLAY_ID = 'templateLoadingOverlay';
+
+  function loadingOverlayIsVisible() {
+    const overlay = document.getElementById(OVERLAY_ID);
+    if (!overlay) return false;
+    return overlay.hidden !== true && overlay.classList.contains('is-active');
+  }
+
+  function syncModeSwitchWithLoadingOverlay() {
+    const switchElement = document.getElementById(SWITCH_ID);
+    if (!switchElement) return;
+
+    const loading = loadingOverlayIsVisible();
+    switchElement.dataset.kitlabLoadingHidden = loading ? 'true' : 'false';
+    switchElement.setAttribute('aria-hidden', String(loading));
+
+    if ('inert' in switchElement) {
+      switchElement.inert = loading;
+    }
+  }
+
+  function startWatchingLoadingOverlay() {
+    syncModeSwitchWithLoadingOverlay();
+
+    const observer = new MutationObserver(function (mutations) {
+      for (const mutation of mutations) {
+        if (
+          mutation.type === 'childList' ||
+          mutation.type === 'attributes'
+        ) {
+          syncModeSwitchWithLoadingOverlay();
+          break;
+        }
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['hidden', 'class', 'style'],
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener(
+      'DOMContentLoaded',
+      startWatchingLoadingOverlay,
+      { once: true },
+    );
+  } else {
+    startWatchingLoadingOverlay();
+  }
+})();
+  </script>
+  <script id="kitlab3d-right-side-toggle-icons-script-local-133">
+(function () {
+  const RIGHT_INSET = 16;
+
+  function loadingOverlayIsVisible() {
+    const overlay = document.getElementById('templateLoadingOverlay');
+    return Boolean(
+      overlay &&
+      overlay.hidden !== true &&
+      overlay.classList.contains('is-active')
+    );
+  }
+
+  function threeDimensionalViewIsActive() {
+    const stage3d = document.getElementById('kitlab3dStage');
+    return Boolean(stage3d && stage3d.hidden !== true);
+  }
+
+  function safelyPortalToolbarToBody() {
+    const toolbar = document.getElementById('kitlab3dToolbar');
+    if (!toolbar || !document.body) return null;
+
+    if (toolbar.parentElement !== document.body) {
+      document.body.appendChild(toolbar);
+    }
+    return toolbar;
+  }
+
+  function placeToolbarOnRightSideOf3dStage() {
+    const stage3d = document.getElementById('kitlab3dStage');
+    const toolbar = safelyPortalToolbarToBody();
+    if (!stage3d || !toolbar) return;
+
+    const stageRect = stage3d.getBoundingClientRect();
+    const toolbarWidth = toolbar.offsetWidth || 42;
+    const toolbarHeight = toolbar.offsetHeight || 248;
+
+    const left = stageRect.right - toolbarWidth - RIGHT_INSET;
+    const top = stageRect.top + (stageRect.height - toolbarHeight) / 2;
+
+    toolbar.style.setProperty('left', `${Math.round(left)}px`, 'important');
+    toolbar.style.setProperty('top', `${Math.round(top)}px`, 'important');
+  }
+
+  function synchronizeToolbar() {
+    const toolbar = safelyPortalToolbarToBody();
+    if (!toolbar) return;
+
+    const visible =
+      threeDimensionalViewIsActive() &&
+      !loadingOverlayIsVisible();
+
+    toolbar.dataset.kitlabVisible = visible ? 'true' : 'false';
+    toolbar.setAttribute('aria-hidden', String(!visible));
+
+    if ('inert' in toolbar) {
+      toolbar.inert = !visible;
+    }
+
+    placeToolbarOnRightSideOf3dStage();
+  }
+
+  function scheduleToolbarSync() {
+    window.requestAnimationFrame(function () {
+      synchronizeToolbar();
+      window.requestAnimationFrame(synchronizeToolbar);
+    });
+  }
+
+  function initializeToolbarController() {
+    safelyPortalToolbarToBody();
+    scheduleToolbarSync();
+
+    window.addEventListener('resize', scheduleToolbarSync, { passive: true });
+
+    document.addEventListener('click', function (event) {
+      if (
+        event.target &&
+        event.target.closest &&
+        event.target.closest(
+          '#kitlab2dModeBtn, #kitlab3dModeBtn, ' +
+          '#kitlab3dShirtBtn, #kitlab3dShortBtn, ' +
+          '#kitlab3dSocksBtn, #kitlab3dArmbandBtn'
+        )
+      ) {
+        scheduleToolbarSync();
+      }
+    });
+
+    if ('ResizeObserver' in window) {
+      const resizeObserver = new ResizeObserver(scheduleToolbarSync);
+      const stage3d = document.getElementById('kitlab3dStage');
+      const toolbar = document.getElementById('kitlab3dToolbar');
+      if (stage3d) resizeObserver.observe(stage3d);
+      if (toolbar) resizeObserver.observe(toolbar);
+    }
+
+    const mutationObserver = new MutationObserver(scheduleToolbarSync);
+    const stage3d = document.getElementById('kitlab3dStage');
+    const loadingOverlay = document.getElementById('templateLoadingOverlay');
+
+    if (stage3d) {
+      mutationObserver.observe(stage3d, {
+        attributes: true,
+        attributeFilter: ['hidden', 'class', 'style'],
+      });
+    }
+
+    if (loadingOverlay) {
+      mutationObserver.observe(loadingOverlay, {
+        attributes: true,
+        attributeFilter: ['hidden', 'class', 'style'],
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener(
+      'DOMContentLoaded',
+      initializeToolbarController,
+      { once: true },
+    );
+  } else {
+    initializeToolbarController();
+  }
+})();
+  </script>
   <script>
     // v1.1.75: social icons open links without native title/status hover text.
     // v1.2.03: UV/Guide stay hidden by default; modular Brand/Armband settings are per part.
