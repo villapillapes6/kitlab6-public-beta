@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.290_preserve_2d_3d_views_first_test";
+  const KITLAB_BUILD_VERSION = "v1.3.291_logos_instant_wrinkles_first_test";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
 
 
@@ -1477,6 +1477,11 @@
   let brandStaticBuildInProgress = false;
   let suppressBrandLayersForStaticCache = false;
 
+  // Web v1.3.291: reusable canvases dedicated only to the live Logos pass.
+  // They are allocated once and reused while sliders or color pickers move.
+  let brandInstantLiveCanvas = null;
+  let brandInstantWrinkledCanvas = null;
+
   const interactionRenderCache = {
     afterBaseCanvas: null,
     afterBaseValid: false,
@@ -1811,9 +1816,47 @@
 
   function renderBrandUltraFastFromStaticCache() {
     if (!brandStaticCacheIsValid()) return false;
+
+    const { liveCanvas, wrinkledCanvas } = ensureBrandInstantCanvases();
+    const liveCtx = liveCanvas.getContext("2d");
+    const wrinkledCtx = wrinkledCanvas.getContext("2d");
+
+    // Draw only the current Logos to a transparent reusable layer.
+    liveCtx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+    liveCtx.globalAlpha = 1;
+    liveCtx.globalCompositeOperation = "source-over";
+    drawBrandLayersToContext(liveCtx);
+
+    // Recompose only those Logo pixels with the native wrinkle texture.
+    // Body, seams, transparency and collar remain in the exact static kit.
+    wrinkledCtx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+    wrinkledCtx.globalAlpha = 1;
+    wrinkledCtx.globalCompositeOperation = "source-over";
+
+    if (interactionCheckpointIsValid("beforeBrand")) {
+      wrinkledCtx.drawImage(
+        interactionRenderCache.beforeBrandCanvas,
+        0,
+        0,
+        CANVAS_SIZE,
+        CANVAS_SIZE
+      );
+    }
+
+    wrinkledCtx.drawImage(liveCanvas, 0, 0, CANVAS_SIZE, CANVAS_SIZE);
+    drawNativeTextureLayersToContext(wrinkledCtx);
+
+    // Keep precisely the alpha footprint of the live Logos and their borders.
+    wrinkledCtx.save();
+    wrinkledCtx.globalAlpha = 1;
+    wrinkledCtx.globalCompositeOperation = "destination-in";
+    wrinkledCtx.drawImage(liveCanvas, 0, 0, CANVAS_SIZE, CANVAS_SIZE);
+    wrinkledCtx.restore();
+
+    // Exact static kit + only the instant wrinkled Logo layer.
     ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
     ctx.drawImage(brandStaticCanvas, 0, 0, CANVAS_SIZE, CANVAS_SIZE);
-    drawBrandLayers();
+    ctx.drawImage(wrinkledCanvas, 0, 0, CANVAS_SIZE, CANVAS_SIZE);
     drawPreviewInteractionOverlays();
     return true;
   }
@@ -14043,6 +14086,298 @@
     }
   }
 
+
+  function drawLogoImageWithBorderToContext(
+    targetCtx,
+    image,
+    borderImage,
+    border,
+    dx,
+    dy,
+    drawWidth,
+    drawHeight
+  ) {
+    if (!borderImage || !border?.enabled || Number(border.size) <= 0) {
+      targetCtx.drawImage(image, dx, dy, drawWidth, drawHeight);
+      return;
+    }
+
+    // Reuse the exact smooth antialiased Border compositor already approved
+    // in the web version. Only the destination context changes.
+    const composite = smoothLogoBorderComposite(
+      image,
+      borderImage,
+      drawWidth,
+      drawHeight,
+      border
+    );
+    targetCtx.drawImage(
+      composite.canvas,
+      dx - composite.pad,
+      dy - composite.pad,
+      composite.drawWidth,
+      composite.drawHeight
+    );
+  }
+
+  function drawImageWithTransformToContext(
+    targetCtx,
+    image,
+    box,
+    transform,
+    borderImage,
+    border
+  ) {
+    const cx = box.x + box.w / 2;
+    const cy = box.y + box.h / 2;
+
+    targetCtx.save();
+    targetCtx.translate(cx, cy);
+
+    const swapped = transform.includes("rotate_90");
+    if (transform === "flip_hv") {
+      targetCtx.scale(-1, -1);
+    } else if (
+      transform === "rotate_90_cw" ||
+      transform === "rotate_90_cw_flip_hv"
+    ) {
+      targetCtx.rotate(Math.PI / 2);
+      if (transform.endsWith("_flip_hv")) targetCtx.scale(-1, -1);
+    } else if (
+      transform === "rotate_90_ccw" ||
+      transform === "rotate_90_ccw_flip_hv"
+    ) {
+      targetCtx.rotate(-Math.PI / 2);
+      if (transform.endsWith("_flip_hv")) targetCtx.scale(-1, -1);
+    }
+
+    const maxW = swapped ? box.h : box.w;
+    const maxH = swapped ? box.w : box.h;
+    const fit = fitRect(image.width, image.height, maxW, maxH);
+    const dx = -fit.w / 2;
+    const dy = -fit.h / 2;
+
+    drawLogoImageWithBorderToContext(
+      targetCtx,
+      image,
+      borderImage,
+      border,
+      dx,
+      dy,
+      fit.w,
+      fit.h
+    );
+    targetCtx.restore();
+  }
+
+  function drawImageWithTransformStretchToContext(
+    targetCtx,
+    image,
+    box,
+    transform,
+    borderImage,
+    border,
+    layer = null
+  ) {
+    const cx = box.x + box.w / 2;
+    const cy = box.y + box.h / 2;
+
+    targetCtx.save();
+    targetCtx.translate(cx, cy);
+
+    const swapped = transform.includes("rotate_90");
+    if (transform === "flip_hv") {
+      targetCtx.scale(-1, -1);
+    } else if (
+      transform === "rotate_90_cw" ||
+      transform === "rotate_90_cw_flip_hv"
+    ) {
+      targetCtx.rotate(Math.PI / 2);
+      if (transform.endsWith("_flip_hv")) targetCtx.scale(-1, -1);
+    } else if (
+      transform === "rotate_90_ccw" ||
+      transform === "rotate_90_ccw_flip_hv"
+    ) {
+      targetCtx.rotate(-Math.PI / 2);
+      if (transform.endsWith("_flip_hv")) targetCtx.scale(-1, -1);
+    }
+
+    const maxW = swapped ? box.h : box.w;
+    const maxH = swapped ? box.w : box.h;
+    const fit = fitRect(
+      image.width || image.naturalWidth || 1,
+      image.height || image.naturalHeight || 1,
+      maxW,
+      maxH
+    );
+    const heightPct =
+      clamp(Number(layer?.socksHeightPct ?? 80), 1, 180) / 100;
+    const drawW = fit.w;
+    const drawH = fit.h * heightPct;
+    const dx = -drawW / 2;
+    const dy = -drawH / 2;
+
+    drawLogoImageWithBorderToContext(
+      targetCtx,
+      image,
+      borderImage,
+      border,
+      dx,
+      dy,
+      drawW,
+      drawH
+    );
+    targetCtx.restore();
+  }
+
+  function drawShortBackSponsorLayerToContext(
+    targetCtx,
+    image,
+    borderImage,
+    border,
+    slot,
+    scaleX,
+    scaleY,
+    offsetX,
+    offsetY
+  ) {
+    const leftBox = scaledSlotBox(
+      slot.box,
+      scaleX,
+      scaleY,
+      offsetX,
+      offsetY
+    );
+    const rightBox = scaledSlotBox(
+      slot.mirrorBox || slot.box,
+      scaleX,
+      scaleY,
+      -offsetX,
+      offsetY
+    );
+
+    drawImageWithTransformToContext(
+      targetCtx,
+      image,
+      leftBox,
+      "rotate_90_ccw_flip_hv",
+      borderImage,
+      border
+    );
+    drawImageWithTransformToContext(
+      targetCtx,
+      image,
+      rightBox,
+      "rotate_90_cw_flip_hv",
+      borderImage,
+      border
+    );
+  }
+
+  function drawLayerToSlotToContext(targetCtx, layer, slot) {
+    const baseBox = slot.box;
+    const effectiveOffsetX = String(slot.id || "").includes("socks_uv_")
+      ? socksBackTargetOffsetX(layer, slot.id)
+      : (Number(layer.offsetX) || 0);
+    const effectiveOffsetY = Number(layer.offsetY) || 0;
+    const scaleX = effectiveLayerScaleX(layer, slot);
+    const scaleY = effectiveLayerScaleY(layer, slot);
+    const box = {
+      x:
+        baseBox.x +
+        effectiveOffsetX -
+        ((baseBox.w * scaleX) - baseBox.w) / 2,
+      y:
+        baseBox.y +
+        effectiveOffsetY -
+        ((baseBox.h * scaleY) - baseBox.h) / 2,
+      w: baseBox.w * scaleX,
+      h: baseBox.h * scaleY,
+    };
+
+    const image = processedImage(layer, "logo");
+    const borderImage = layer.border.enabled
+      ? processedImage(layer, "border")
+      : null;
+
+    if (slot.transform === "duplicate_full_short_back") {
+      drawShortBackSponsorLayerToContext(
+        targetCtx,
+        image,
+        borderImage,
+        layer.border,
+        slot,
+        scaleX,
+        scaleY,
+        effectiveOffsetX,
+        effectiveOffsetY
+      );
+    } else if (String(slot.id || "").includes("socks_uv_")) {
+      drawImageWithTransformStretchToContext(
+        targetCtx,
+        image,
+        box,
+        slot.transform,
+        borderImage,
+        layer.border,
+        layer
+      );
+    } else {
+      drawImageWithTransformToContext(
+        targetCtx,
+        image,
+        box,
+        slot.transform,
+        borderImage,
+        layer.border
+      );
+    }
+  }
+
+  function drawBrandLayersToContext(targetCtx) {
+    for (const [part] of Object.entries(BRAND_PARTS)) {
+      const group = getPart(part);
+      for (const layer of group.layers) {
+        const targets = getBrandTargetsForPart(part, layer);
+        for (const targetId of targets) {
+          const slot = SLOT_BY_ID[targetId];
+          if (slot) drawLayerToSlotToContext(targetCtx, layer, slot);
+        }
+      }
+    }
+  }
+
+  function ensureBrandInstantCanvases() {
+    if (!brandInstantLiveCanvas) brandInstantLiveCanvas = makeCanvas();
+    if (!brandInstantWrinkledCanvas) {
+      brandInstantWrinkledCanvas = makeCanvas();
+    }
+    return {
+      liveCanvas: brandInstantLiveCanvas,
+      wrinkledCanvas: brandInstantWrinkledCanvas,
+    };
+  }
+
+  function drawNativeTextureLayersToContext(targetCtx) {
+    for (const textureLayer of state.textureLayers) {
+      if (!textureLayer?.image || textureLayer.enabled === false) continue;
+      const opacity = clamp(Number(textureLayer.opacity ?? 1), 0, 1);
+      if (opacity <= 0) continue;
+
+      targetCtx.save();
+      targetCtx.globalAlpha = opacity;
+      targetCtx.globalCompositeOperation =
+        textureLayer.blendMode || "multiply";
+      targetCtx.drawImage(
+        textureLayer.image,
+        0,
+        0,
+        CANVAS_SIZE,
+        CANVAS_SIZE
+      );
+      targetCtx.restore();
+    }
+  }
 
   function displayBoxForLayerSlot(layer, slot) {
     const baseBox = slot.box;
