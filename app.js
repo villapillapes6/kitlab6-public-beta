@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.291_nike_gk_2026_missing_seam_fix";
+  const KITLAB_BUILD_VERSION = "v1.3.292_base_design_web";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
 
 
@@ -19,7 +19,7 @@
   }
   console.log("KitLab6 dynamic daily assets", "v1.3.262 Pattern / Team / Brand / Sponsor / TXT manifest");
   console.log("KitLab6 thumb quality no-flicker patch", "v1.3.244_template_gallery_no_flicker_hq_thumbs");
-  const KITLAB_BASE_DESIGN_BUTTON_LOCKED = true; // v1.3.199: keep Base Design visible but blocked for beta until its placement rule is fixed.
+  const KITLAB_BASE_DESIGN_BUTTON_LOCKED = false; // v1.3.292: Base Design uses the validated Pattern guide engine.
 
   // Public beta UI hide list requested by Villa (2026-07-08).
   // Only hides UI controls/folders; it does not remove or disable the actual rendering layers.
@@ -9117,13 +9117,38 @@
   }
 
   function baseDesignUsesNativeFullCanvas(layer = {}) {
-    if (layer?.isUserBaseDesign !== true) return false;
-    const image = layer.image || null;
-    const w = Number(image?.naturalWidth || image?.width || 0);
-    const h = Number(image?.naturalHeight || image?.height || 0);
-    // Base Design files can be full 2048 template maps, unlike Pattern stamps.
-    // Those must keep their native canvas position and be cropped by guides, never moved to a guide bbox origin.
-    return w >= Math.round(CANVAS_SIZE * 0.75) && h >= Math.round(CANVAS_SIZE * 0.75);
+    // Base Design always uses the exact same placement path as Pattern.
+    // Never bypass guide-bbox placement, even when the source PNG is a full 2048 canvas.
+    return false;
+  }
+
+  function baseDesignSleeveShortFolderKey(value = "") {
+    let text = String(value || "").replace(/\\/g, "/");
+    try { text = decodeURIComponent(text); } catch (_) {}
+    return text
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[_-]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase();
+  }
+
+  function baseDesignLayerIsSleeveShortOnly(layer = {}) {
+    if (layer?.baseDesignSleeveShortOnly === true) return true;
+    const candidates = [
+      ...(Array.isArray(layer?.baseDesignFolderPath) ? layer.baseDesignFolderPath : []),
+      ...(Array.isArray(layer?.patternFolderPath) ? layer.patternFolderPath : []),
+      ...(Array.isArray(layer?.pathParts) ? layer.pathParts : []),
+      layer?.src,
+      layer?.path,
+      layer?.originalPath,
+      layer?.directiveSource,
+    ];
+    return candidates.some((value) => {
+      const key = baseDesignSleeveShortFolderKey(value);
+      return key === "slevee short" || key === "sleeve short" || /(^|\/)sle(?:ev|ve)e short(\/|$)/.test(key);
+    });
   }
 
   function normalizePatternZones(layer = {}) {
@@ -9131,6 +9156,18 @@
     const section = normalizePatternTargetSection(layer?.section || "shirt");
     if (section === "short") {
       layer.patternZones.short = true;
+      return layer.patternZones;
+    }
+    if (baseDesignLayerIsSleeveShortOnly(layer)) {
+      layer.baseDesignSleeveShortOnly = true;
+      layer.patternZones.shirtFront = false;
+      layer.patternZones.shirtBack = false;
+      const legacySleeveShort = typeof layer.patternZones.sleeveShort === "boolean"
+        ? layer.patternZones.sleeveShort
+        : true;
+      if (typeof layer.patternZones.sleeveShortLeft !== "boolean") layer.patternZones.sleeveShortLeft = legacySleeveShort;
+      if (typeof layer.patternZones.sleeveShortRight !== "boolean") layer.patternZones.sleeveShortRight = legacySleeveShort;
+      layer.patternZones.sleeveShort = layer.patternZones.sleeveShortLeft !== false || layer.patternZones.sleeveShortRight !== false;
       return layer.patternZones;
     }
     const fullCanvasBaseDesign = baseDesignUsesNativeFullCanvas(layer);
@@ -9149,11 +9186,17 @@
     if (!layer?.patternMenuOpen) return "";
     if (normalizePatternTargetSection(layer?.section || "shirt") !== "shirt") return "";
     const zones = normalizePatternZones(layer);
-    const rows = [
-      ["shirtFront", "Shirt Front"],
-      ["shirtBack", "Shirt Back"],
-      ["sleeveShort", "Sleeve Short"],
-    ].map(([key, label]) => `<label class="pattern-zone-row"><span>${label}</span><button type="button" class="pattern-zone-switch${zones[key] !== false ? " is-on" : ""}" data-pattern-zone-toggle="${escapeAttr(layer.id)}|${key}" aria-pressed="${zones[key] !== false ? "true" : "false"}"><span></span></button></label>`).join("");
+    const zoneRows = baseDesignLayerIsSleeveShortOnly(layer)
+      ? [
+          ["sleeveShortLeft", "Sleeve Short Left"],
+          ["sleeveShortRight", "Sleeve Short Right"],
+        ]
+      : [
+          ["shirtFront", "Shirt Front"],
+          ["shirtBack", "Shirt Back"],
+          ["sleeveShort", "Sleeve Short"],
+        ];
+    const rows = zoneRows.map(([key, label]) => `<label class="pattern-zone-row"><span>${label}</span><button type="button" class="pattern-zone-switch${zones[key] !== false ? " is-on" : ""}" data-pattern-zone-toggle="${escapeAttr(layer.id)}|${key}" aria-pressed="${zones[key] !== false ? "true" : "false"}"><span></span></button></label>`).join("");
     return `<div class="pattern-zone-dropdown" data-pattern-zone-menu="${escapeAttr(layer.id)}">${rows}</div>`;
   }
 
@@ -10236,6 +10279,13 @@
   }
 
   const BASE_DESIGN_ASSET_ROOT = "assets/base_design";
+  const BASE_DESIGN_FOLDER_THUMB = TEMPLATE_FOLDER_FALLBACK_THUMB;
+  const BASE_DESIGN_ROOT_FOLDERS = Object.freeze([
+    "Diagonal Stripes",
+    "Horizontal Stripes",
+    "Sleeve Short",
+    "Vertical Stripes",
+  ]);
 
   function baseDesignPathParts(pathStack = state.baseDesignGalleryPath || []) {
     return Array.isArray(pathStack) ? pathStack.filter(Boolean).map((part) => String(part)) : [];
@@ -10247,6 +10297,10 @@
 
   function cleanPatternName(name = "") {
     return cleanBrandFileName(decodeHashUnicode(String(name || "").replace(/\.[a-z0-9]+$/i, "").replace(/[_-]+/g, " ")));
+  }
+
+  function baseDesignDisplayName(name = "") {
+    return cleanPatternName(name).replace(/(^|\s)(\S)/g, (_match, space, letter) => `${space}${letter.toUpperCase()}`);
   }
 
   function findTeamThumbForPatternFolder(name = "") {
@@ -10307,18 +10361,50 @@
 
   async function listBaseDesignAssetFolder(pathParts = []) {
     const parts = baseDesignPathParts(pathParts);
-    return listKitlabAssetDirectory(["assets", "base_design", ...parts]);
+    const listed = await listKitlabAssetDirectory(["assets", "base_design", ...parts]);
+    const catalogKey = parts.map(baseDesignSleeveShortFolderKey).join("/");
+    const bundled = BUNDLED_BASE_DESIGN_ASSET_CATALOG[catalogKey] || { folders: [], files: [] };
+    const byName = (a, b) => cleanPatternName(a).localeCompare(cleanPatternName(b), undefined, { sensitivity: "base", numeric: true });
+    const uniqueCaseInsensitive = (values = []) => {
+      const result = [];
+      const seen = new Set();
+      for (const value of values) {
+        const clean = String(value || "").trim();
+        const key = normalizeAssetMatchKey(cleanPatternName(clean));
+        if (!clean || !key || seen.has(key)) continue;
+        seen.add(key);
+        result.push(clean);
+      }
+      return result;
+    };
+    if (!parts.length) {
+      // The Base Design root is intentionally closed to these four folders.
+      // Case variants or stale server folders can never create duplicates.
+      return { folders: [...BASE_DESIGN_ROOT_FOLDERS], files: [] };
+    }
+    return {
+      folders: uniqueCaseInsensitive([...(listed?.folders || []), ...bundled.folders]).sort(byName),
+      files: uniqueCaseInsensitive([...(listed?.files || []), ...bundled.files]).sort(byName),
+    };
   }
+
+  const BUNDLED_BASE_DESIGN_ASSET_CATALOG = Object.freeze({
+    "": Object.freeze({ folders: BASE_DESIGN_ROOT_FOLDERS, files: Object.freeze([]) }),
+    "diagonal stripes": Object.freeze({ folders: Object.freeze([]), files: Object.freeze(["01.png", "02.png", "03.png", "04.png", "05.png", "06.png"]) }),
+    "horizontal stripes": Object.freeze({ folders: Object.freeze([]), files: Object.freeze(Array.from({ length: 24 }, (_value, index) => `${String(index + 1).padStart(2, "0")}.png`)) }),
+    "sleeve short": Object.freeze({ folders: Object.freeze([]), files: Object.freeze(["sleeve short.png"]) }),
+    "vertical stripes": Object.freeze({ folders: Object.freeze([]), files: Object.freeze(Array.from({ length: 12 }, (_value, index) => `${String(index + 1).padStart(2, "0")}.png`)) }),
+  });
 
   async function refreshBaseDesignGalleryFolder(pathStack = state.baseDesignGalleryPath || []) {
     const parts = baseDesignPathParts(pathStack);
     const listed = await listBaseDesignAssetFolder(parts);
     const folders = listed.folders.map((folder) => ({
       type: "folder",
-      name: cleanPatternName(folder),
+      name: baseDesignDisplayName(folder),
       folder,
       pathParts: [...parts, folder],
-      thumb: PATTERN_FOLDER_FALLBACK_THUMB,
+      thumb: BASE_DESIGN_FOLDER_THUMB,
     }));
     const files = listed.files.map((file) => ({
       type: "file",
@@ -10327,7 +10413,11 @@
       pathParts: [...parts, file],
       src: baseDesignAssetUrl([...parts, file]),
       thumb: baseDesignAssetUrl([...parts, file]),
-      team: cleanPatternName(parts[parts.length - 1] || "Base Design"),
+      team: baseDesignDisplayName(parts[parts.length - 1] || "Base Design"),
+      baseDesignSleeveShortOnly: parts.some((part) => {
+        const key = baseDesignSleeveShortFolderKey(part);
+        return key === "slevee short" || key === "sleeve short";
+      }),
     }));
     state.baseDesignGalleryItems = [...folders, ...files];
     return state.baseDesignGalleryItems;
@@ -10469,11 +10559,21 @@
       patternTeam: item.team || "",
       patternFolderPath: Array.isArray(item.pathParts) ? item.pathParts.slice(0, -1) : [],
       baseDesignFolderPath: Array.isArray(item.pathParts) ? item.pathParts.slice(0, -1) : [],
+      baseDesignSleeveShortOnly: item.baseDesignSleeveShortOnly === true,
       patternZones: { shirtFront: true, shirtBack: false, sleeveShort: false },
       patternMenuOpen: false,
       patternGuides: [],
     };
-    if (baseDesignUsesNativeFullCanvas(layer)) {
+    if (baseDesignLayerIsSleeveShortOnly(layer)) {
+      layer.baseDesignSleeveShortOnly = true;
+      layer.patternZones = {
+        shirtFront: false,
+        shirtBack: false,
+        sleeveShort: true,
+        sleeveShortLeft: true,
+        sleeveShortRight: true,
+      };
+    } else if (baseDesignUsesNativeFullCanvas(layer)) {
       // Full-canvas Base Design PNGs are already centered in Photoshop/KIT texture space.
       // Enable every shirt zone by default so the guide files only crop visibility.
       layer.patternZones = { shirtFront: true, shirtBack: true, sleeveShort: true };
@@ -10691,6 +10791,7 @@
         src,
         team: saved.patternTeam || "Base Design",
         pathParts: Array.isArray(saved.baseDesignFolderPath) ? [...saved.baseDesignFolderPath, String(src).split("/").pop()] : (Array.isArray(saved.patternFolderPath) ? [...saved.patternFolderPath, String(src).split("/").pop()] : []),
+        baseDesignSleeveShortOnly: saved.baseDesignSleeveShortOnly === true,
       };
       const layer = createUserPatternLayer({ ...item, folder: "Base Design", order: 850, isUserPattern: false, isUserBaseDesign: true }, null);
       layer.loaded = false;
@@ -10698,11 +10799,23 @@
       layer.opacity = Number(saved.opacity ?? 1);
       layer.blendMode = saved.blendMode || "source-over";
       if (saved.patternZones && typeof saved.patternZones === "object") {
-        layer.patternZones = {
-          shirtFront: saved.patternZones.shirtFront !== false,
-          shirtBack: saved.patternZones.shirtBack === true,
-          sleeveShort: saved.patternZones.sleeveShort === true,
-        };
+        if (baseDesignLayerIsSleeveShortOnly(layer)) {
+          const legacySleeveShort = saved.patternZones.sleeveShort !== false;
+          layer.patternZones = {
+            shirtFront: false,
+            shirtBack: false,
+            sleeveShort: legacySleeveShort,
+            sleeveShortLeft: typeof saved.patternZones.sleeveShortLeft === "boolean" ? saved.patternZones.sleeveShortLeft : legacySleeveShort,
+            sleeveShortRight: typeof saved.patternZones.sleeveShortRight === "boolean" ? saved.patternZones.sleeveShortRight : legacySleeveShort,
+          };
+          normalizePatternZones(layer);
+        } else {
+          layer.patternZones = {
+            shirtFront: saved.patternZones.shirtFront !== false,
+            shirtBack: saved.patternZones.shirtBack === true,
+            sleeveShort: saved.patternZones.sleeveShort === true,
+          };
+        }
       }
       layer.colorMap = sanitizeTemplateColorMap(layer, saved.colorMap || layer.colorMap || {});
       layer._detectedColor = normalizeHexColor(saved.detectedColor || saved.sourceColor || layer._detectedColor || "#000000");
@@ -11084,8 +11197,15 @@
       // Short: yellow/right = 90º counterclockwise; green/left = 90º clockwise; both auto-scale to the guide boxes.
       const isBackGuide = role === "back";
       if (role === "sleeve") {
-        drawRotatedPatternIntoGuideMask(px, patternCanvas, info.cyan, "ccw");
-        drawRotatedPatternIntoGuideMask(px, patternCanvas, info.blue, "cw");
+        if (baseDesignLayerIsSleeveShortOnly(layer)) {
+          // The sleeve placement guide is split by side: blue is the left sleeve
+          // and cyan is the right sleeve. Both use the same source PNG.
+          if (patternZoneEnabled(layer, "sleeveShortRight")) drawRotatedPatternIntoGuideMask(px, patternCanvas, info.cyan, "ccw");
+          if (patternZoneEnabled(layer, "sleeveShortLeft")) drawRotatedPatternIntoGuideMask(px, patternCanvas, info.blue, "cw");
+        } else {
+          drawRotatedPatternIntoGuideMask(px, patternCanvas, info.cyan, "ccw");
+          drawRotatedPatternIntoGuideMask(px, patternCanvas, info.blue, "cw");
+        }
       } else if (role === "short") {
         drawRotatedScaledPatternIntoGuideMask(px, patternCanvas, info.yellow, "ccw");
         drawRotatedScaledPatternIntoGuideMask(px, patternCanvas, info.green, "cw");
@@ -16480,6 +16600,7 @@
       patternTeam: layer.patternTeam || "",
       patternFolderPath: Array.isArray(layer.patternFolderPath) ? layer.patternFolderPath : [],
       baseDesignFolderPath: Array.isArray(layer.baseDesignFolderPath) ? layer.baseDesignFolderPath : [],
+      baseDesignSleeveShortOnly: baseDesignLayerIsSleeveShortOnly(layer),
       patternZones: templateLayerUsesGuidedPatternEngine(layer) ? { ...normalizePatternZones(layer) } : undefined,
     };
   }
@@ -16808,11 +16929,24 @@
       }
       if (templateLayerUsesGuidedPatternEngine(layer) && savedLayer.patternZones && typeof savedLayer.patternZones === "object") {
         markGuidedPatternLayerKind(layer);
-        layer.patternZones = {
-          shirtFront: savedLayer.patternZones.shirtFront !== false,
-          shirtBack: savedLayer.patternZones.shirtBack === true,
-          sleeveShort: savedLayer.patternZones.sleeveShort === true,
-        };
+        if (baseDesignLayerIsSleeveShortOnly(layer) || savedLayer.baseDesignSleeveShortOnly === true) {
+          layer.baseDesignSleeveShortOnly = true;
+          const legacySleeveShort = savedLayer.patternZones.sleeveShort !== false;
+          layer.patternZones = {
+            shirtFront: false,
+            shirtBack: false,
+            sleeveShort: legacySleeveShort,
+            sleeveShortLeft: typeof savedLayer.patternZones.sleeveShortLeft === "boolean" ? savedLayer.patternZones.sleeveShortLeft : legacySleeveShort,
+            sleeveShortRight: typeof savedLayer.patternZones.sleeveShortRight === "boolean" ? savedLayer.patternZones.sleeveShortRight : legacySleeveShort,
+          };
+          normalizePatternZones(layer);
+        } else {
+          layer.patternZones = {
+            shirtFront: savedLayer.patternZones.shirtFront !== false,
+            shirtBack: savedLayer.patternZones.shirtBack === true,
+            sleeveShort: savedLayer.patternZones.sleeveShort === true,
+          };
+        }
       }
       if (layer.manualLab && String(layer.section || "") === "collar_seams" && !Number.isFinite(Number(savedLayer.opacity))) layer.opacity = 1;
       if (layer.manualLab) {
@@ -19769,7 +19903,7 @@
 
     // Re-read the manifest whenever a daily asset gallery opens. This also makes
     // local edits visible after regenerating the manifest, without restarting KitLab6.
-    if (["pattern", "team", "brand", "sponsor", "template"].includes(state.gallerySource)) {
+    if (["pattern", "base_design", "team", "brand", "sponsor", "template"].includes(state.gallerySource)) {
       await refreshKitlabStaticAssetManifest().catch(() => null);
     }
 
@@ -19821,7 +19955,7 @@
       state.gallerySource === "sponsor" ? "SPONSOR" :
       state.gallerySource === "template" ? (templateMode ? (state.templateGalleryBrand ? `TEMPLATE / ${templateModeText} / ${cleanDisplayName(state.templateGalleryBrand)}` : `TEMPLATE / ${templateModeText}`) : "TEMPLATE") :
       state.gallerySource === "pattern" ? (state.patternGalleryPath?.length ? `PATTERN / ${cleanDisplayName(state.patternGalleryPath[state.patternGalleryPath.length - 1])}` : "PATTERN") :
-      state.gallerySource === "base_design" ? (state.baseDesignGalleryPath?.length ? `BASE DESIGN / ${cleanDisplayName(state.baseDesignGalleryPath[state.baseDesignGalleryPath.length - 1])}` : "BASE DESIGN") :
+      state.gallerySource === "base_design" ? (state.baseDesignGalleryPath?.length ? `BASE DESIGN / ${baseDesignDisplayName(state.baseDesignGalleryPath[state.baseDesignGalleryPath.length - 1])}` : "BASE DESIGN") :
       state.gallerySource === "overlay" ? "OVERLAY" :
       state.gallerySource === "collar" ? "COLLAR" :
       state.gallerySource === "armband" ? "ARMBAND" :
@@ -19978,7 +20112,7 @@
       els.internalBrandGrid.innerHTML = items.map((item, idx) => {
         const img = item.thumb || item.src || item.path || TEMPLATE_FOLDER_FALLBACK_THUMB;
         if (item.type === "folder") {
-          return `<button type="button" class="internal-card team-png-card pattern-folder-card base-design-folder-card" data-base-design-folder-index="${idx}" data-base-design-folder-path="${escapeAttr(JSON.stringify(item.pathParts || []))}" title="${escapeAttr(item.name)}"><img src="${escapeAttr(img)}" alt="${escapeAttr(item.name)}" loading="lazy" onerror="this.onerror=null;this.src='${TEMPLATE_FOLDER_FALLBACK_THUMB}'"><span>${escapeHtml(item.name)}</span></button>`;
+          return `<button type="button" class="internal-card team-png-card pattern-folder-card base-design-folder-card" data-base-design-folder-index="${idx}" data-base-design-folder-path="${escapeAttr(JSON.stringify(item.pathParts || []))}" title="${escapeAttr(item.name)}"><img src="${escapeAttr(img)}" alt="${escapeAttr(item.name)}" loading="lazy" onerror="this.onerror=null;this.src='${BASE_DESIGN_FOLDER_THUMB}'"><span>${escapeHtml(item.name)}</span></button>`;
         }
         return `<button type="button" class="internal-card pattern-png-card base-design-png-card" data-base-design-item-index="${idx}" data-base-design-item-path="${escapeAttr(JSON.stringify(item.pathParts || []))}" title="${escapeAttr(item.name)}"><img src="${escapeAttr(img)}" alt="${escapeAttr(item.name)}" loading="lazy"><span>${escapeHtml(item.name)}</span></button>`;
       }).join("");
@@ -21111,7 +21245,9 @@
         if (templateLayerUsesGuidedPatternEngine(layer) && zone) {
           markGuidedPatternLayerKind(layer);
           const zones = normalizePatternZones(layer);
-          zones[zone] = zones[zone] === false;
+          const sleeveShortSideToggle = zone === "sleeveShortLeft" || zone === "sleeveShortRight";
+          if (!baseDesignLayerIsSleeveShortOnly(layer) || sleeveShortSideToggle) zones[zone] = zones[zone] === false;
+          normalizePatternZones(layer);
           renderTemplateDetailPanels();
           fastRender();
           persistTemplateSettingsQuietly();
@@ -23068,4 +23204,3 @@
     subtree: true
   });
 })();
-
