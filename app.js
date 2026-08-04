@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.292_base_design_web";
+  const KITLAB_BUILD_VERSION = "v1.3.293_privacy_terms_web";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
 
 
@@ -19,7 +19,7 @@
   }
   console.log("KitLab6 dynamic daily assets", "v1.3.262 Pattern / Team / Brand / Sponsor / TXT manifest");
   console.log("KitLab6 thumb quality no-flicker patch", "v1.3.244_template_gallery_no_flicker_hq_thumbs");
-  const KITLAB_BASE_DESIGN_BUTTON_LOCKED = false; // v1.3.292: Base Design uses the validated Pattern guide engine.
+  const KITLAB_BASE_DESIGN_BUTTON_LOCKED = false; // v1.3.293: Privacy and Terms pages added; Base Design keeps the validated Pattern guide engine.
 
   // Public beta UI hide list requested by Villa (2026-07-08).
   // Only hides UI controls/folders; it does not remove or disable the actual rendering layers.

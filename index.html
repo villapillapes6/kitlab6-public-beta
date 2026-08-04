@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KitLab6 Web 1.3.292 - Base Design</title>
-  <link rel="stylesheet" href="./style.css?v=1.3.292-base-design-web" />
+  <title>KitLab6 Web 1.3.293 - Privacy Terms</title>
+  <link rel="stylesheet" href="./style.css?v=1.3.293-privacy-terms-web" />
   <style id="kitlab-right-empty-panel-style">
     /* v1.0.80-82 visual test: fixed left/right side blocks, same width at all times. */
     :root {
@@ -2378,6 +2378,12 @@
         <button type="button" class="sidebar-social-link twitter" data-social-url="https://x.com/villapillapes6" aria-label="X"></button>
         <button type="button" class="sidebar-social-link youtube" data-social-url="https://www.youtube.com/@villapillapes6" aria-label="YouTube"></button>
       </div>
+
+      <div class="sidebar-legal-links" aria-label="Legal links">
+        <button type="button" class="sidebar-legal-link" data-legal-open="privacy">Privacy</button>
+        <span class="sidebar-legal-sep">·</span>
+        <button type="button" class="sidebar-legal-link" data-legal-open="terms">Terms</button>
+      </div>
     </aside>
 
     <main class="workspace">
@@ -2855,8 +2861,8 @@
       font-variant-numeric: tabular-nums !important;
     }
   </style>
-  <script src="./app.js?v=1.3.292-base-design-web"></script>
-  <script src="./kitlab3d.js?v=1.3.292-base-design-web"></script>
+  <script src="./app.js?v=1.3.293-privacy-terms-web"></script>
+  <script src="./kitlab3d.js?v=1.3.293-privacy-terms-web"></script>
   <script id="kitlab-mode-switch-original-fixed-script-local-124">
     (function () {
       const TOP_OFFSET = 10;
@@ -3242,6 +3248,369 @@
       z-index: 2147483000 !important;
     }
   </style>
+
+  <style id="kitlab-web-legal-pages-v1293">
+    /* KitLab6 Web 1.3.293 — Privacy / Terms complete legal pages. */
+    .app-shell > aside.sidebar {
+      padding-bottom: 136px !important;
+    }
+
+    .sidebar-donate-form {
+      bottom: 82px !important;
+    }
+
+    .sidebar-social-links {
+      bottom: 40px !important;
+    }
+
+    .sidebar-legal-links {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 14px;
+      z-index: 32;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 10px;
+      line-height: 1;
+    }
+
+    .sidebar-legal-link {
+      appearance: none;
+      -webkit-appearance: none;
+      border: 0;
+      padding: 0;
+      margin: 0;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.70);
+      font: inherit;
+      cursor: pointer;
+      opacity: 0.92;
+      transition: color 0.14s ease, opacity 0.14s ease, transform 0.14s ease;
+    }
+
+    .sidebar-legal-link:hover,
+    .sidebar-legal-link:focus-visible {
+      color: #ffcb43;
+      opacity: 1;
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .sidebar-legal-sep {
+      color: rgba(255, 255, 255, 0.36);
+      user-select: none;
+    }
+
+    .kitlab-legal-shell {
+      position: fixed;
+      inset: 0;
+      z-index: 2147483200;
+      display: none;
+      overflow-y: auto;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 203, 67, 0.08), transparent 34%),
+        var(--bg, #313658);
+      color: rgba(255, 255, 255, 0.95);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .kitlab-legal-shell.is-open {
+      display: block;
+    }
+
+    .kitlab-legal-page {
+      display: none;
+      min-height: 100vh;
+      padding: 86px 24px 72px;
+    }
+
+    .kitlab-legal-page.is-active {
+      display: block;
+    }
+
+    .kitlab-legal-inner {
+      width: min(100%, 620px);
+      margin: 0 auto;
+    }
+
+    .kitlab-legal-back {
+      appearance: none;
+      -webkit-appearance: none;
+      border: 0;
+      padding: 0;
+      margin: 0 0 20px;
+      background: transparent;
+      color: #ffcb43;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    .kitlab-legal-back:hover,
+    .kitlab-legal-back:focus-visible {
+      color: #ffd86b;
+      outline: none;
+    }
+
+    .kitlab-legal-title {
+      margin: 0;
+      color: #ffffff;
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .kitlab-legal-date {
+      margin: 14px 0 22px;
+      color: rgba(255, 255, 255, 0.56);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .kitlab-legal-divider {
+      height: 1px;
+      margin: 0 0 26px;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .kitlab-legal-intro,
+    .kitlab-legal-section p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .kitlab-legal-intro {
+      margin-bottom: 18px;
+    }
+
+    .kitlab-legal-callout {
+      margin: 0 0 26px;
+      padding: 14px 16px;
+      border-left: 3px solid #ffcb43;
+      border-radius: 6px;
+      background: rgba(255, 203, 67, 0.10);
+      color: rgba(255, 255, 255, 0.90);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .kitlab-legal-callout strong {
+      color: #fff3cb;
+    }
+
+    .kitlab-legal-section {
+      margin: 0 0 28px;
+    }
+
+    .kitlab-legal-section h3 {
+      margin: 0 0 10px;
+      color: #ffcb43;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    body.kitlab-legal-open {
+      overflow: hidden;
+    }
+
+    @media (max-width: 700px) {
+      .kitlab-legal-page {
+        padding: 54px 20px 54px;
+      }
+    }
+  </style>
+
+  <div class="kitlab-legal-shell" id="kitlabLegalShell" hidden>
+    <article class="kitlab-legal-page" id="kitlabPrivacyPage" data-legal-page="privacy" aria-labelledby="kitlabPrivacyTitle">
+      <div class="kitlab-legal-inner">
+        <button type="button" class="kitlab-legal-back" data-legal-close>← Back to KitLab6</button>
+        <h1 class="kitlab-legal-title" id="kitlabPrivacyTitle">Privacy Policy</h1>
+        <p class="kitlab-legal-date">Last updated: 4 August 2026</p>
+        <div class="kitlab-legal-divider" aria-hidden="true"></div>
+
+        <p class="kitlab-legal-intro">KitLab6 is a free browser-based tool for editing PES6 kits. This page explains what data is processed when you use this website.</p>
+
+        <div class="kitlab-legal-callout"><strong>Your files never leave your computer.</strong> KitLab6 runs entirely in your browser. The PNG files you upload and the projects you open are processed locally and are never uploaded to any server. We do not receive them, store them, or have access to them.</div>
+
+        <section class="kitlab-legal-section">
+          <h3>No accounts, no tracking</h3>
+          <p>This site does not require registration, does not ask for personal data, and does not use advertising or third-party tracking cookies.</p>
+        </section>
+
+        <section class="kitlab-legal-section">
+          <h3>Local storage</h3>
+          <p>The tool may store small pieces of data in your browser using localStorage to remember your preferences between sessions. This information remains on your device, is not sent anywhere, and can be deleted at any time from your browser settings.</p>
+        </section>
+
+        <section class="kitlab-legal-section">
+          <h3>Hosting</h3>
+          <p>This site is hosted by a static hosting provider, which may keep standard server logs, such as IP address and browser type, for security and reliability purposes. These logs are managed by the hosting provider, and we do not use them to identify individual users.</p>
+        </section>
+
+        <section class="kitlab-legal-section">
+          <h3>External links</h3>
+          <p>This site contains links to third-party websites, for example partner pages or the donation page. We are not responsible for their content or privacy practices; please review their own policies.</p>
+        </section>
+
+        <section class="kitlab-legal-section">
+          <h3>Children</h3>
+          <p>This site is not directed at children under 13 and does not knowingly collect personal data from children.</p>
+        </section>
+
+        <section class="kitlab-legal-section">
+          <h3>Your rights</h3>
+          <p>If you reside in the European Union, you have the right to access, correct or delete any personal data stored about you. Since this site does not collect personal data, in practice there is no information stored that you can request or delete, except for the preferences stored locally in your own browser.</p>
+        </section>
+
+        <section class="kitlab-legal-section">
+          <h3>Changes</h3>
+          <p>This policy may be updated. Any changes will appear on this page with a new “last updated” date.</p>
+        </section>
+
+        <section class="kitlab-legal-section">
+          <h3>Contact</h3>
+          <p>To contact the author regarding this policy, please use the community or project channels linked from KitLab6.</p>
+        </section>
+      </div>
+    </article>
+
+    <article class="kitlab-legal-page" id="kitlabTermsPage" data-legal-page="terms" aria-labelledby="kitlabTermsTitle">
+      <div class="kitlab-legal-inner">
+        <button type="button" class="kitlab-legal-back" data-legal-close>← Back to KitLab6</button>
+        <h1 class="kitlab-legal-title" id="kitlabTermsTitle">Terms of Use</h1>
+        <p class="kitlab-legal-date">Last updated: 4 August 2026</p>
+        <div class="kitlab-legal-divider" aria-hidden="true"></div>
+
+        <section class="kitlab-legal-section">
+          <h3>The service</h3>
+          <p>KitLab6 is a free tool provided as-is for editing PES6 kits. It runs in your browser; no account is required and no files are uploaded to a server.</p>
+        </section>
+
+        <section class="kitlab-legal-section">
+          <h3>No warranty</h3>
+          <p>This tool is provided without any warranty of any kind. Editing game files carries risk: <strong>always keep a backup of your original files.</strong> The author is not responsible for any data loss, corrupted files or damage resulting from the use of this tool.</p>
+        </section>
+
+        <section class="kitlab-legal-section">
+          <h3>Acceptable use</h3>
+          <p>You agree not to use this site for unlawful purposes, nor to attempt to disrupt or misuse the service.</p>
+        </section>
+
+        <section class="kitlab-legal-section">
+          <h3>Intellectual property</h3>
+          <p>KitLab6 and its interface are the work of the author. PES, Pro Evolution Soccer and related trademarks belong to their respective owners; this is an unofficial fan-made tool with no affiliation to or endorsement by them.</p>
+          <p style="margin-top: 10px;">You are responsible for the content you create and for having the rights to any kits, logos, textures or images you use.</p>
+        </section>
+
+        <section class="kitlab-legal-section">
+          <h3>Changes</h3>
+          <p>These terms may be updated at any time. Continued use of the site means you accept the current version.</p>
+        </section>
+      </div>
+    </article>
+  </div>
+
+  <script id="kitlab-web-legal-pages-script-v1293">
+    (function () {
+      const shell = document.getElementById('kitlabLegalShell');
+      if (!shell) return;
+
+      const pages = Array.from(shell.querySelectorAll('[data-legal-page]'));
+      const openButtons = Array.from(document.querySelectorAll('[data-legal-open]'));
+      const closeButtons = Array.from(shell.querySelectorAll('[data-legal-close]'));
+      const baseTitle = document.title;
+
+      function readModeFromHash() {
+        const hash = String(window.location.hash || '').replace(/^#/, '').trim().toLowerCase();
+        return hash === 'privacy' || hash === 'terms' ? hash : '';
+      }
+
+      function setDocumentTitle(mode) {
+        if (mode === 'privacy') {
+          document.title = 'Privacy Policy - KitLab6';
+        } else if (mode === 'terms') {
+          document.title = 'Terms of Use - KitLab6';
+        } else {
+          document.title = baseTitle;
+        }
+      }
+
+      function setLegalPage(mode, updateHash) {
+        const nextMode = mode === 'privacy' || mode === 'terms' ? mode : '';
+        const shouldOpen = Boolean(nextMode);
+
+        pages.forEach(function (page) {
+          page.classList.toggle('is-active', page.getAttribute('data-legal-page') === nextMode);
+        });
+
+        shell.hidden = !shouldOpen;
+        shell.classList.toggle('is-open', shouldOpen);
+        document.body.classList.toggle('kitlab-legal-open', shouldOpen);
+        setDocumentTitle(nextMode);
+
+        if (shouldOpen) {
+          shell.scrollTop = 0;
+          const activePage = shell.querySelector('[data-legal-page="' + nextMode + '"]');
+          if (activePage) activePage.scrollTop = 0;
+
+          if (updateHash !== false && window.location.hash !== '#' + nextMode) {
+            window.location.hash = nextMode;
+          }
+          return;
+        }
+
+        if (updateHash !== false && window.location.hash) {
+          try {
+            history.replaceState(null, '', window.location.pathname + window.location.search);
+          } catch (_) {
+            window.location.hash = '';
+          }
+        }
+      }
+
+      openButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          setLegalPage(button.getAttribute('data-legal-open'), true);
+        });
+      });
+
+      closeButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          setLegalPage('', true);
+        });
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && shell.classList.contains('is-open')) {
+          setLegalPage('', true);
+        }
+      });
+
+      window.addEventListener('hashchange', function () {
+        setLegalPage(readModeFromHash(), false);
+      });
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () {
+          setLegalPage(readModeFromHash(), false);
+        }, { once: true });
+      } else {
+        setLegalPage(readModeFromHash(), false);
+      }
+    })();
+  </script>
+
 
 </body>
 </html>
