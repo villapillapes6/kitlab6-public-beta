@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.295_pattern_shields_pinned_memory";
+  const KITLAB_BUILD_VERSION = "v1.3.296_retro_collar_no";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
 
 
@@ -4999,6 +4999,20 @@
     return value === "Hybrid Special" ? "Hybrid/Special" : cleanDisplayName(value);
   }
 
+  // v1.3.296: every collar inside the Retro category is a Collar NO.
+  // Keep the physical id/folder/PNG routes unchanged and normalize only the
+  // internal/display name used by projects and the 3D collar-model switch.
+  function collarIsRetroCategory(item = {}) {
+    return String(item?.category || "").trim().toLowerCase() === "retro";
+  }
+
+  function normalizeRetroCollarNoName(item = {}, fallbackIndex = null) {
+    if (!item || typeof item !== "object" || !collarIsRetroCategory(item)) return item;
+    const explicitNoName = collarVisibleNoName(item);
+    item.name = explicitNoName || `${collarVisibleNumber(item, fallbackIndex)}/NO`;
+    return item;
+  }
+
   // v1.1.49: Basic collar categories are shown as compact tabs in the Collar modal.
   // Folder names stay unchanged; only the visible labels are shortened.
   function collarCategoryTabLabel(category) {
@@ -5058,6 +5072,10 @@
     const fromSelected = Array.isArray(selected?.collars) ? selected.collars : [];
     const fromManifest = Array.isArray(freshManifest?.collars) ? freshManifest.collars : [];
     const options = fromManifest.length ? fromManifest : (fromSelected.length ? fromSelected : (fromState.length ? fromState : INTERNAL_COLLARS));
+
+    // v1.3.296: applies to the current Retro 01/02/03 collars and to every
+    // future collar added under the same category, without renaming assets.
+    (options || []).forEach((item, index) => normalizeRetroCollarNoName(item, index));
 
     // v1.1.08: Basic now stores collars inside category folders.
     // Keep the gallery tied to the active template manifest, not to a stale project/runtime cache.
@@ -5167,7 +5185,10 @@
   }
 
   function collarVisibleName(item = {}, fallbackIndex = null) {
-    return collarVisibleNoName(item) || collarVisibleNumber(item, fallbackIndex);
+    const explicitNoName = collarVisibleNoName(item);
+    if (explicitNoName) return explicitNoName;
+    const visibleNumber = collarVisibleNumber(item, fallbackIndex);
+    return collarIsRetroCategory(item) ? `${visibleNumber}/NO` : visibleNumber;
   }
 
 
