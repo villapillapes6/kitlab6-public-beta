@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.294_pattern_shields_instant_cache";
+  const KITLAB_BUILD_VERSION = "v1.3.295_pattern_shields_pinned_memory";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
 
 
@@ -9680,9 +9680,10 @@
 
   let patternTeamThumbIndexPromise = null;
 
-  // v1.3.294: Pattern folders are a hot gallery. Keep both their resolved
-  // metadata and decoded shield images alive for the whole page session.
-  // Closing the modal must never turn a warm gallery into a cold one again.
+  // v1.3.295: Pattern folders are a hot gallery. Keep both their resolved
+  // metadata and a decoded in-memory copy of every shield for the whole page
+  // session. Even if another gallery path rebuilds the grid, reopening Pattern
+  // must not request or decode the shield PNGs again.
   const patternGalleryFolderCache = new Map();
   const patternGalleryWarmImageCache = new Map();
   let patternRootGridFragment = null;
@@ -9692,27 +9693,89 @@
     return patternPathParts(pathStack).join("\u001f");
   }
 
-  function warmPatternGalleryImages(items = []) {
-    const urls = [];
-    for (const item of (Array.isArray(items) ? items : [])) {
-      urls.push(item?.thumb || item?.src || item?.path || "");
-    }
-    for (const rawUrl of uniquePatternUrls(urls)) {
-      const url = String(rawUrl || "").trim();
-      if (!url || patternGalleryWarmImageCache.has(url)) continue;
+  function pinPatternGalleryImageUrl(rawUrl = "") {
+    const url = String(rawUrl || "").trim();
+    if (!url) return Promise.resolve("");
+    if (/^(?:blob:|data:)/i.test(url)) return Promise.resolve(url);
+    const cached = patternGalleryWarmImageCache.get(url);
+    if (cached?.ready) return cached.ready;
+
+    const record = { image: null, objectUrl: "", ready: null };
+    record.ready = (async () => {
+      const response = await fetch(url, { cache: "force-cache", credentials: "same-origin" });
+      if (!response.ok) return "";
+      const blob = await response.blob();
+      if (!blob?.size) return "";
+      const objectUrl = URL.createObjectURL(blob);
       const image = new Image();
-      image.decoding = "async";
       image.loading = "eager";
-      const ready = new Promise((resolve) => {
-        image.onload = () => {
-          if (typeof image.decode === "function") image.decode().catch(() => {}).finally(resolve);
-          else resolve();
-        };
-        image.onerror = resolve;
-      });
-      patternGalleryWarmImageCache.set(url, { image, ready });
-      image.src = url;
+      image.decoding = "async";
+      if ("fetchPriority" in image) image.fetchPriority = "high";
+      image.src = objectUrl;
+      try {
+        if (typeof image.decode === "function") await image.decode();
+        else await new Promise((resolve, reject) => {
+          image.onload = resolve;
+          image.onerror = reject;
+        });
+      } catch (_) {
+        URL.revokeObjectURL(objectUrl);
+        return "";
+      }
+      record.image = image;
+      record.objectUrl = objectUrl;
+      return objectUrl;
+    })().catch(() => "");
+    patternGalleryWarmImageCache.set(url, record);
+    return record.ready;
+  }
+
+  function updatePatternCardWithPinnedThumb(root, item, pinnedUrl) {
+    if (!root?.querySelectorAll || !item || !pinnedUrl) return;
+    const wantedPath = JSON.stringify(item.pathParts || []);
+    root.querySelectorAll("[data-pattern-folder-path], [data-pattern-item-path]").forEach((card) => {
+      const cardPath = card.dataset.patternFolderPath || card.dataset.patternItemPath || "";
+      if (cardPath !== wantedPath) return;
+      const img = card.querySelector("img");
+      if (!img || img.src === pinnedUrl) return;
+      img.onerror = null;
+      img.removeAttribute("onerror");
+      img.removeAttribute("data-kitlab-img-fallbacks");
+      img.loading = "eager";
+      img.decoding = "async";
+      if ("fetchPriority" in img) img.fetchPriority = "high";
+      img.src = pinnedUrl;
+      img.dataset.kitlabPatternPinned = "1";
+    });
+  }
+
+  async function pinPatternGalleryItemThumb(item) {
+    if (!item) return "";
+    // Only the root team-folder cards are shields. Full Pattern PNGs can be
+    // 2048x2048 and must keep the normal lazy policy to avoid pinning a large
+    // amount of texture memory when a team folder is opened.
+    const isRootTeamShield = item.type === "folder"
+      && Array.isArray(item.pathParts)
+      && item.pathParts.length === 1;
+    if (!isRootTeamShield) return "";
+    if (item._kitlabPinnedThumb) return item._kitlabPinnedThumb;
+    const candidates = uniquePatternUrls([
+      item.thumb || item.src || item.path || "",
+      ...(Array.isArray(item.thumbFallbacks) ? item.thumbFallbacks : []),
+    ]);
+    for (const candidate of candidates) {
+      const pinned = await pinPatternGalleryImageUrl(candidate);
+      if (!pinned) continue;
+      item._kitlabPinnedThumb = pinned;
+      updatePatternCardWithPinnedThumb(els.internalBrandGrid, item, pinned);
+      updatePatternCardWithPinnedThumb(patternRootGridFragment, item, pinned);
+      return pinned;
     }
+    return "";
+  }
+
+  function warmPatternGalleryImages(items = []) {
+    return Promise.allSettled((Array.isArray(items) ? items : []).map(pinPatternGalleryItemThumb));
   }
 
   function patternRootGridIsLive() {
@@ -20200,8 +20263,9 @@
       const rootImageAttrs = 'loading="eager" decoding="async" fetchpriority="high"';
       const itemImageAttrs = 'loading="eager" decoding="async"';
       els.internalBrandGrid.innerHTML = items.map((item, idx) => {
-        const img = item.thumb || item.src || item.path || TEMPLATE_FOLDER_FALLBACK_THUMB;
-        const fallbacks = Array.isArray(item.thumbFallbacks) ? item.thumbFallbacks : [];
+        const pinnedThumb = String(item._kitlabPinnedThumb || "");
+        const img = pinnedThumb || item.thumb || item.src || item.path || TEMPLATE_FOLDER_FALLBACK_THUMB;
+        const fallbacks = pinnedThumb ? [] : (Array.isArray(item.thumbFallbacks) ? item.thumbFallbacks : []);
         if (item.type === "folder") {
           return `<button type="button" class="internal-card team-png-card pattern-folder-card" data-pattern-folder-index="${idx}" data-pattern-folder-path="${escapeAttr(JSON.stringify(item.pathParts || []))}" title="${escapeAttr(item.name)}">${kitlabGalleryImageFallbackHtml(img, item.name, fallbacks, isPatternRoot ? rootImageAttrs : itemImageAttrs)}<span>${escapeHtml(item.name)}</span></button>`;
         }
@@ -23276,6 +23340,19 @@
 
   function optimizeGalleryImage(img) {
     if (!isGalleryImage(img)) return;
+
+    // Pattern team shields are deliberately kept hot. The old global gallery
+    // optimizer ran after render and silently changed their eager/high settings
+    // back to lazy/low, which made every modal reopening visibly fill by rows.
+    const isPatternRootShield = !!img.closest?.(
+      '#brandGalleryModal[data-gallery-source="pattern"] #internalBrandGrid[data-pattern-gallery-view="root"] .pattern-folder-card'
+    );
+    if (isPatternRootShield || img.dataset.kitlabPatternPinned === '1') {
+      try { img.loading = 'eager'; } catch (err) {}
+      try { img.decoding = 'async'; } catch (err) {}
+      try { if ('fetchPriority' in img) img.fetchPriority = 'high'; } catch (err) {}
+      return;
+    }
 
     try {
       img.loading = 'lazy';
