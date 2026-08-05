@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.293_privacy_terms_web";
+  const KITLAB_BUILD_VERSION = "v1.3.294_pattern_shields_instant_cache";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
 
 
@@ -9680,6 +9680,67 @@
 
   let patternTeamThumbIndexPromise = null;
 
+  // v1.3.294: Pattern folders are a hot gallery. Keep both their resolved
+  // metadata and decoded shield images alive for the whole page session.
+  // Closing the modal must never turn a warm gallery into a cold one again.
+  const patternGalleryFolderCache = new Map();
+  const patternGalleryWarmImageCache = new Map();
+  let patternRootGridFragment = null;
+  let patternRootGridScrollTop = 0;
+
+  function patternGalleryFolderCacheKey(pathStack = []) {
+    return patternPathParts(pathStack).join("\u001f");
+  }
+
+  function warmPatternGalleryImages(items = []) {
+    const urls = [];
+    for (const item of (Array.isArray(items) ? items : [])) {
+      urls.push(item?.thumb || item?.src || item?.path || "");
+    }
+    for (const rawUrl of uniquePatternUrls(urls)) {
+      const url = String(rawUrl || "").trim();
+      if (!url || patternGalleryWarmImageCache.has(url)) continue;
+      const image = new Image();
+      image.decoding = "async";
+      image.loading = "eager";
+      const ready = new Promise((resolve) => {
+        image.onload = () => {
+          if (typeof image.decode === "function") image.decode().catch(() => {}).finally(resolve);
+          else resolve();
+        };
+        image.onerror = resolve;
+      });
+      patternGalleryWarmImageCache.set(url, { image, ready });
+      image.src = url;
+    }
+  }
+
+  function patternRootGridIsLive() {
+    return !!(els.internalBrandGrid
+      && els.internalBrandGrid.dataset.patternGalleryView === "root"
+      && els.internalBrandGrid.childElementCount > 0
+      && !els.internalBrandGrid.querySelector(".gallery-loading"));
+  }
+
+  function stashPatternRootGrid() {
+    if (!patternRootGridIsLive() || String(state.brandGalleryQuery || "").trim()) return false;
+    const fragment = document.createDocumentFragment();
+    patternRootGridScrollTop = Number(els.internalBrandGrid.scrollTop || 0);
+    while (els.internalBrandGrid.firstChild) fragment.appendChild(els.internalBrandGrid.firstChild);
+    patternRootGridFragment = fragment;
+    delete els.internalBrandGrid.dataset.patternGalleryView;
+    return true;
+  }
+
+  function restorePatternRootGrid() {
+    if (!els.internalBrandGrid || !patternRootGridFragment?.childNodes?.length) return false;
+    els.internalBrandGrid.replaceChildren(patternRootGridFragment);
+    patternRootGridFragment = null;
+    els.internalBrandGrid.dataset.patternGalleryView = "root";
+    els.internalBrandGrid.scrollTop = patternRootGridScrollTop;
+    return true;
+  }
+
   async function loadPatternTeamThumbIndex() {
     if (patternTeamThumbIndexPromise) return patternTeamThumbIndexPromise;
     patternTeamThumbIndexPromise = (async () => {
@@ -9715,16 +9776,17 @@
   async function patternTeamShieldCandidates(folderName = "") {
     const original = String(folderName || "").trim();
     const clean = cleanPatternName(original);
-    const candidates = [];
+    const preferred = [];
+    const guessed = [];
     if (original) {
-      candidates.push(encodePathParts(["assets", "team", `${original}.png`]));
-      candidates.push(encodePathParts(["assets", "team", `${original}.webp`]));
-      candidates.push(encodePathParts(["assets", "team", `${original}.jpg`]));
+      guessed.push(encodePathParts(["assets", "team", `${original}.png`]));
+      guessed.push(encodePathParts(["assets", "team", `${original}.webp`]));
+      guessed.push(encodePathParts(["assets", "team", `${original}.jpg`]));
     }
     if (clean && clean !== original) {
-      candidates.push(encodePathParts(["assets", "team", `${clean}.png`]));
-      candidates.push(encodePathParts(["assets", "team", `${clean}.webp`]));
-      candidates.push(encodePathParts(["assets", "team", `${clean}.jpg`]));
+      guessed.push(encodePathParts(["assets", "team", `${clean}.png`]));
+      guessed.push(encodePathParts(["assets", "team", `${clean}.webp`]));
+      guessed.push(encodePathParts(["assets", "team", `${clean}.jpg`]));
     }
     const wanted = normalizeAssetMatchKey(clean || original);
     if (wanted) {
@@ -9733,10 +9795,10 @@
       try {
         const index = await loadPatternTeamThumbIndex();
         const indexedExact = index.get(wanted);
-        if (indexedExact) candidates.push(indexedExact);
+        if (indexedExact) preferred.push(indexedExact);
         for (const [key, url] of index.entries()) {
           if (key && (key.includes(wanted) || wanted.includes(key))) {
-            candidates.push(url);
+            preferred.push(url);
             break;
           }
         }
@@ -9746,23 +9808,25 @@
       // never disappears merely because its filename was omitted or encoded
       // differently in a newly generated manifest.
       const embeddedExact = (PATTERN_TEAM_EMBEDDED_FALLBACKS || []).find((item) => normalizeAssetMatchKey(item.name || item.file || "") === wanted);
-      if (embeddedExact?.src) candidates.push(embeddedExact.src);
+      if (embeddedExact?.src) preferred.push(embeddedExact.src);
       const embeddedLoose = (PATTERN_TEAM_EMBEDDED_FALLBACKS || []).find((item) => {
         const key = normalizeAssetMatchKey(item.name || item.file || "");
         return key && (key.includes(wanted) || wanted.includes(key));
       });
-      if (embeddedLoose?.src) candidates.push(embeddedLoose.src);
+      if (embeddedLoose?.src) preferred.push(embeddedLoose.src);
 
       const exact = (INTERNAL_TEAMS || []).find((item) => normalizeAssetMatchKey(item.name || item.file || "") === wanted);
-      if (exact?.src) candidates.push(exact.src);
+      if (exact?.src) preferred.push(exact.src);
       const loose = (INTERNAL_TEAMS || []).find((item) => {
         const key = normalizeAssetMatchKey(item.name || item.file || "");
         return key && (key.includes(wanted) || wanted.includes(key));
       });
-      if (loose?.src) candidates.push(loose.src);
+      if (loose?.src) preferred.push(loose.src);
     }
-    candidates.push(PATTERN_FOLDER_FALLBACK_THUMB);
-    return uniquePatternUrls(candidates.map((url) => kitlabDynamicAssetUrl(url)));
+    // Use the exact physical manifest path before any guessed root URL. The old
+    // order generated several avoidable 404 attempts per shield before reaching
+    // the real country-folder PNG.
+    return uniquePatternUrls([...preferred, ...guessed, PATTERN_FOLDER_FALLBACK_THUMB].map((url) => kitlabDynamicAssetUrl(url)));
   }
 
   function isPatternThumbFile(file = "") {
@@ -10327,6 +10391,13 @@
   // live Team manifest and keep a fallback chain for legacy encoded filenames.
   async function refreshPatternGalleryFolder(pathStack = state.patternGalleryPath || []) {
     const parts = patternPathParts(pathStack);
+    const cacheKey = patternGalleryFolderCacheKey(parts);
+    const cached = patternGalleryFolderCache.get(cacheKey);
+    if (cached) {
+      state.patternGalleryItems = cached;
+      warmPatternGalleryImages(cached);
+      return cached;
+    }
     const listed = await listAssetFolder(parts);
     let folders = [];
     if (!parts.length) {
@@ -10356,6 +10427,8 @@
         team: cleanPatternName(parts[0] || parts[parts.length - 1] || "Pattern"),
       }));
     state.patternGalleryItems = [...folders, ...files];
+    patternGalleryFolderCache.set(cacheKey, state.patternGalleryItems);
+    warmPatternGalleryImages(state.patternGalleryItems);
     return state.patternGalleryItems;
   }
 
@@ -19869,6 +19942,12 @@
   }
 
   async function openGallery(part, targetLayerIndex = null) {
+    const reuseLivePatternRoot = part === "pattern"
+      && state.gallerySource === "pattern"
+      && patternPathParts(state.patternGalleryPath || []).length === 0
+      && !String(state.brandGalleryQuery || "").trim()
+      && patternRootGridIsLive();
+    if (part !== "pattern" && state.gallerySource === "pattern") stashPatternRootGrid();
     if (part === "pattern") {
       const targetSection = normalizePatternTargetSection(state.patternGalleryTargetSection || "shirt");
       if (!(await ensureActiveTemplatePaintGuidesForSection(targetSection, templatePatternSectionLabel(targetSection)))) return;
@@ -19881,7 +19960,12 @@
     if (part === "template") { state.gallerySource = "template"; resetTemplateGalleryModeEntry(); }
     else if (part === "collar") { state.gallerySource = "collar"; schedulePreloadActiveTemplateCollars({ limit: 8, maxActive: 1 }); }
     else if (part === "armband") { state.gallerySource = "armband"; state.armbandGalleryCategory = null; resetArmbandCategoryThumbs(); }
-    else if (part === "pattern") { state.gallerySource = "pattern"; state.patternGalleryPath = []; state.patternGalleryItems = []; state.patternGalleryTargetSection = normalizePatternTargetSection(state.patternGalleryTargetSection || "shirt"); }
+    else if (part === "pattern") {
+      state.gallerySource = "pattern";
+      state.patternGalleryPath = [];
+      state.patternGalleryItems = patternGalleryFolderCache.get(patternGalleryFolderCacheKey([])) || [];
+      state.patternGalleryTargetSection = normalizePatternTargetSection(state.patternGalleryTargetSection || "shirt");
+    }
     else if (part === "base_design") { state.gallerySource = "base_design"; state.baseDesignGalleryPath = []; state.baseDesignGalleryItems = []; }
     else if (part === "overlay") { state.gallerySource = "overlay"; state.overlayGalleryItems = []; }
     else state.gallerySource = assetTypeForPart(part);
@@ -19899,12 +19983,19 @@
 
     if (els.brandGalleryModal) els.brandGalleryModal.dataset.gallerySource = state.gallerySource;
     els.brandGalleryModal.hidden = false;
-    els.internalBrandGrid.innerHTML = `<div class="gallery-loading">Loading ${galleryTitle.toLowerCase()}...</div>`;
+    const restoredPatternRoot = state.gallerySource === "pattern" && !reuseLivePatternRoot && restorePatternRootGrid();
+    if (!reuseLivePatternRoot && !restoredPatternRoot && !(state.gallerySource === "pattern" && state.patternGalleryItems.length)) {
+      els.internalBrandGrid.innerHTML = `<div class="gallery-loading">Loading ${galleryTitle.toLowerCase()}...</div>`;
+      delete els.internalBrandGrid.dataset.patternGalleryView;
+    }
 
-    // Re-read the manifest whenever a daily asset gallery opens. This also makes
-    // local edits visible after regenerating the manifest, without restarting KitLab6.
-    if (["pattern", "base_design", "team", "brand", "sponsor", "template"].includes(state.gallerySource)) {
+    // Pattern is intentionally session-cached after its first resolution. New
+    // server assets are picked up on page reload; reopening the modal must stay
+    // instant and must not invalidate all already decoded team shields.
+    if (["base_design", "team", "brand", "sponsor", "template"].includes(state.gallerySource)) {
       await refreshKitlabStaticAssetManifest().catch(() => null);
+    } else if (state.gallerySource === "pattern") {
+      await loadKitlabStaticAssetManifest().catch(() => null);
     }
 
     if (state.gallerySource === "sponsor") {
@@ -19914,8 +20005,14 @@
       await refreshArmbandGalleryFromDisk().catch(() => false);
       renderInternalBrandGrid();
     } else if (state.gallerySource === "pattern") {
-      renderInternalBrandGrid();
-      refreshPatternGalleryFolder().then(renderInternalBrandGrid).catch(renderInternalBrandGrid);
+      if (reuseLivePatternRoot || restoredPatternRoot) {
+        warmPatternGalleryImages(state.patternGalleryItems);
+      } else if (state.patternGalleryItems.length) {
+        renderInternalBrandGrid();
+      } else {
+        await refreshPatternGalleryFolder().catch(() => []);
+        renderInternalBrandGrid();
+      }
     } else if (state.gallerySource === "base_design") {
       renderInternalBrandGrid();
       refreshBaseDesignGalleryFolder().then(renderInternalBrandGrid).catch(renderInternalBrandGrid);
@@ -20096,14 +20193,22 @@
 
     // Pattern gallery: root folders use TEAM shields; inside each team, PNGs use their own thumbnail/image.
     if (state.gallerySource === "pattern") {
+      const isPatternRoot = patternPathParts(state.patternGalleryPath || []).length === 0;
+      const isUnfilteredPatternRoot = isPatternRoot && !String(state.brandGalleryQuery || "").trim();
+      if (isUnfilteredPatternRoot && patternRootGridIsLive()) return;
+      if (isUnfilteredPatternRoot && restorePatternRootGrid()) return;
+      const rootImageAttrs = 'loading="eager" decoding="async" fetchpriority="high"';
+      const itemImageAttrs = 'loading="eager" decoding="async"';
       els.internalBrandGrid.innerHTML = items.map((item, idx) => {
         const img = item.thumb || item.src || item.path || TEMPLATE_FOLDER_FALLBACK_THUMB;
         const fallbacks = Array.isArray(item.thumbFallbacks) ? item.thumbFallbacks : [];
         if (item.type === "folder") {
-          return `<button type="button" class="internal-card team-png-card pattern-folder-card" data-pattern-folder-index="${idx}" data-pattern-folder-path="${escapeAttr(JSON.stringify(item.pathParts || []))}" title="${escapeAttr(item.name)}">${kitlabGalleryImageFallbackHtml(img, item.name, fallbacks, 'loading="lazy"')}<span>${escapeHtml(item.name)}</span></button>`;
+          return `<button type="button" class="internal-card team-png-card pattern-folder-card" data-pattern-folder-index="${idx}" data-pattern-folder-path="${escapeAttr(JSON.stringify(item.pathParts || []))}" title="${escapeAttr(item.name)}">${kitlabGalleryImageFallbackHtml(img, item.name, fallbacks, isPatternRoot ? rootImageAttrs : itemImageAttrs)}<span>${escapeHtml(item.name)}</span></button>`;
         }
-        return `<button type="button" class="internal-card pattern-png-card" data-pattern-item-index="${idx}" data-pattern-item-path="${escapeAttr(JSON.stringify(item.pathParts || []))}" title="${escapeAttr(item.name)}">${kitlabGalleryImageFallbackHtml(img, item.name, fallbacks, 'loading="lazy"')}<span>${escapeHtml(item.name)}</span></button>`;
+        return `<button type="button" class="internal-card pattern-png-card" data-pattern-item-index="${idx}" data-pattern-item-path="${escapeAttr(JSON.stringify(item.pathParts || []))}" title="${escapeAttr(item.name)}">${kitlabGalleryImageFallbackHtml(img, item.name, fallbacks, itemImageAttrs)}<span>${escapeHtml(item.name)}</span></button>`;
       }).join("");
+      els.internalBrandGrid.dataset.patternGalleryView = isPatternRoot ? "root" : `folder:${patternGalleryFolderCacheKey(state.patternGalleryPath || [])}`;
+      warmPatternGalleryImages(items);
       return;
     }
 
@@ -20467,15 +20572,22 @@
       event.stopPropagation();
       const item = patternItemFromCard(folderCard, "patternFolderPath", "patternFolderIndex");
       if (!item || item.type !== "folder") return true;
+      stashPatternRootGrid();
       state.patternGalleryPath = Array.isArray(item.pathParts) ? item.pathParts.slice() : [];
       state.brandGalleryQuery = "";
       const input = document.getElementById("brandGallerySearch");
       if (input) input.value = "";
       updateGalleryHeader();
-      if (els.internalBrandGrid) els.internalBrandGrid.innerHTML = `<div class="gallery-loading">Loading patterns...</div>`;
-      refreshPatternGalleryFolder(state.patternGalleryPath)
-        .then(() => { updateGalleryHeader(); renderInternalBrandGrid(); })
-        .catch((error) => { console.warn(error); updateGalleryHeader(); renderInternalBrandGrid(); });
+      const cachedFolderItems = patternGalleryFolderCache.get(patternGalleryFolderCacheKey(state.patternGalleryPath));
+      if (cachedFolderItems) {
+        state.patternGalleryItems = cachedFolderItems;
+        renderInternalBrandGrid();
+      } else {
+        if (els.internalBrandGrid) els.internalBrandGrid.innerHTML = `<div class="gallery-loading">Loading patterns...</div>`;
+        refreshPatternGalleryFolder(state.patternGalleryPath)
+          .then(() => { updateGalleryHeader(); renderInternalBrandGrid(); })
+          .catch((error) => { console.warn(error); updateGalleryHeader(); renderInternalBrandGrid(); });
+      }
       return true;
     }
 
@@ -22221,7 +22333,9 @@
           else if (state.templateGalleryMode) state.templateGalleryMode = null;
         } else if (state.gallerySource === "pattern") {
           state.patternGalleryPath = (state.patternGalleryPath || []).slice(0, -1);
-          refreshPatternGalleryFolder(state.patternGalleryPath).then(renderInternalBrandGrid).catch(renderInternalBrandGrid);
+          const cachedPatternItems = patternGalleryFolderCache.get(patternGalleryFolderCacheKey(state.patternGalleryPath));
+          if (cachedPatternItems) state.patternGalleryItems = cachedPatternItems;
+          else refreshPatternGalleryFolder(state.patternGalleryPath).then(renderInternalBrandGrid).catch(renderInternalBrandGrid);
         } else if (state.gallerySource === "base_design") {
           state.baseDesignGalleryPath = (state.baseDesignGalleryPath || []).slice(0, -1);
           refreshBaseDesignGalleryFolder(state.baseDesignGalleryPath).then(renderInternalBrandGrid).catch(renderInternalBrandGrid);
@@ -22310,13 +22424,20 @@
           event.stopPropagation();
           const item = filteredInternalBrands()[Number(patternFolderCard.dataset.patternFolderIndex || 0)];
           if (!item || item.type !== "folder") return;
+          stashPatternRootGrid();
           state.patternGalleryPath = item.pathParts || [];
           state.brandGalleryQuery = "";
           const input = document.getElementById("brandGallerySearch");
           if (input) input.value = "";
           updateGalleryHeader();
-          els.internalBrandGrid.innerHTML = `<div class="gallery-loading">Loading patterns...</div>`;
-          refreshPatternGalleryFolder(state.patternGalleryPath).then(() => { updateGalleryHeader(); renderInternalBrandGrid(); }).catch((error) => { console.warn(error); renderInternalBrandGrid(); });
+          const cachedFolderItems = patternGalleryFolderCache.get(patternGalleryFolderCacheKey(state.patternGalleryPath));
+          if (cachedFolderItems) {
+            state.patternGalleryItems = cachedFolderItems;
+            renderInternalBrandGrid();
+          } else {
+            els.internalBrandGrid.innerHTML = `<div class="gallery-loading">Loading patterns...</div>`;
+            refreshPatternGalleryFolder(state.patternGalleryPath).then(() => { updateGalleryHeader(); renderInternalBrandGrid(); }).catch((error) => { console.warn(error); renderInternalBrandGrid(); });
+          }
           return;
         }
         const patternPngCard = event.target.closest("[data-pattern-item-index]");
