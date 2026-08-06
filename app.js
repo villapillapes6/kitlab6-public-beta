@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.296_retro_collar_no";
+  const KITLAB_BUILD_VERSION = "v1.3.297_pattern_season_order";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
 
 
@@ -9539,6 +9539,92 @@
     return cleanBrandFileName(decodeHashUnicode(String(name || "").replace(/\.[a-z0-9]+$/i, "").replace(/[_-]+/g, " ")));
   }
 
+  // v1.3.297: Pattern labels are display-only normalized. Physical folders,
+  // filenames and saved source paths remain untouched.
+  function patternDisplayName(name = "") {
+    return cleanPatternName(name)
+      .replace(/\s+/g, " ")
+      .trim()
+      .split(" ")
+      .filter(Boolean)
+      .map((word) => {
+        const lower = word.toLocaleLowerCase();
+        if (lower === "gk") return "GK";
+        return lower.charAt(0).toLocaleUpperCase() + lower.slice(1);
+      })
+      .join(" ");
+  }
+
+  const PATTERN_KIT_TYPE_ORDER = Object.freeze({
+    gk: 0,
+    home: 1,
+    away: 2,
+    third: 3,
+    fourth: 4,
+    fifth: 5,
+    sixth: 6,
+    seventh: 7,
+    eighth: 8,
+    ninth: 9,
+    tenth: 10,
+  });
+
+  function patternSortMetadata(item = {}) {
+    const raw = cleanPatternName(item?.name || item?.file || item?.folder || "")
+      .replace(/\s+/g, " ")
+      .trim();
+    const lower = raw.toLocaleLowerCase();
+    const typeMatches = [...lower.matchAll(/\b(gk|home|away|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth)\b/gi)];
+    const seasonMatches = [...lower.matchAll(/\b(\d{2}|\d{4})\b/g)];
+    let typeMatch = null;
+    let seasonMatch = null;
+    for (let index = seasonMatches.length - 1; index >= 0; index -= 1) {
+      const candidateSeason = seasonMatches[index];
+      const candidateType = typeMatches.find((match) => match.index > candidateSeason.index + candidateSeason[0].length);
+      if (!candidateType) continue;
+      seasonMatch = candidateSeason;
+      typeMatch = candidateType;
+      break;
+    }
+    if (!typeMatch) typeMatch = typeMatches[0] || null;
+    const type = typeMatch ? typeMatch[1].toLocaleLowerCase() : "";
+    const seasonToken = seasonMatch ? seasonMatch[1] : "";
+    const seasonNumber = seasonToken ? Number(seasonToken) : null;
+    const season = Number.isFinite(seasonNumber)
+      ? (seasonToken.length === 2 ? (seasonNumber <= 50 ? 2000 + seasonNumber : 1900 + seasonNumber) : seasonNumber)
+      : null;
+    const afterType = typeMatch ? lower.slice(typeMatch.index + typeMatch[0].length) : "";
+    const variantMatch = /\b(\d+)\b/.exec(afterType);
+    const variant = variantMatch ? Number(variantMatch[1]) : 0;
+    return {
+      season,
+      typeRank: Object.prototype.hasOwnProperty.call(PATTERN_KIT_TYPE_ORDER, type)
+        ? PATTERN_KIT_TYPE_ORDER[type]
+        : Number.MAX_SAFE_INTEGER,
+      variant: Number.isFinite(variant) ? variant : 0,
+      display: patternDisplayName(raw),
+    };
+  }
+
+  function comparePatternGalleryItems(a, b) {
+    const ak = patternSortMetadata(a);
+    const bk = patternSortMetadata(b);
+    const aRootFolder = a?.type === "folder" && Array.isArray(a?.pathParts) && a.pathParts.length === 1;
+    const bRootFolder = b?.type === "folder" && Array.isArray(b?.pathParts) && b.pathParts.length === 1;
+    if (aRootFolder || bRootFolder) {
+      if (aRootFolder !== bRootFolder) return aRootFolder ? -1 : 1;
+      return ak.display.localeCompare(bk.display, undefined, { sensitivity: "base", numeric: true });
+    }
+    if (ak.season !== bk.season) {
+      if (ak.season == null) return 1;
+      if (bk.season == null) return -1;
+      return bk.season - ak.season;
+    }
+    if (ak.typeRank !== bk.typeRank) return ak.typeRank - bk.typeRank;
+    if (ak.variant !== bk.variant) return ak.variant - bk.variant;
+    return ak.display.localeCompare(bk.display, undefined, { sensitivity: "base", numeric: true });
+  }
+
   function uniquePatternUrls(urls = []) {
     const out = [];
     const seen = new Set();
@@ -9934,12 +10020,12 @@
     return {
       type: "file",
       isPatternFolderItem: true,
-      name: cleanPatternName(folder),
+      name: patternDisplayName(folder),
       folder,
       pathParts: src ? [...itemParts, realFile] : itemParts,
       src,
       thumb,
-      team: cleanPatternName(parts[0] || "Pattern"),
+      team: patternDisplayName(parts[0] || "Pattern"),
     };
   }
 
@@ -9966,14 +10052,14 @@
       .filter((file) => !isPatternThumbFile(file))
       .map((file) => ({
         type: "file",
-        name: cleanPatternName(file),
+        name: patternDisplayName(file),
         file,
         pathParts: [...parts, file],
         src: patternAssetUrl([...parts, file]),
         thumb: patternAssetUrl([...parts, file]),
-        team: cleanPatternName(parts[0] || parts[parts.length - 1] || "Pattern"),
+        team: patternDisplayName(parts[0] || parts[parts.length - 1] || "Pattern"),
       }));
-    state.patternGalleryItems = [...folders, ...files];
+    state.patternGalleryItems = [...folders, ...files].sort(comparePatternGalleryItems);
     return state.patternGalleryItems;
   }
 
@@ -10503,14 +10589,14 @@
       .filter((file) => !isPatternThumbFile(file))
       .map((file) => ({
         type: "file",
-        name: cleanPatternName(file),
+        name: patternDisplayName(file),
         file,
         pathParts: [...parts, file],
         src: patternAssetUrl([...parts, file]),
         thumb: patternAssetUrl([...parts, file]),
-        team: cleanPatternName(parts[0] || parts[parts.length - 1] || "Pattern"),
+        team: patternDisplayName(parts[0] || parts[parts.length - 1] || "Pattern"),
       }));
-    state.patternGalleryItems = [...folders, ...files];
+    state.patternGalleryItems = [...folders, ...files].sort(comparePatternGalleryItems);
     patternGalleryFolderCache.set(cacheKey, state.patternGalleryItems);
     warmPatternGalleryImages(state.patternGalleryItems);
     return state.patternGalleryItems;
