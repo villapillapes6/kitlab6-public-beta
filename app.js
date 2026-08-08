@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "v1.3.298_macron_shorts";
+  const KITLAB_BUILD_VERSION = "v1.3.299_macron_shorts_configured";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
 
 
