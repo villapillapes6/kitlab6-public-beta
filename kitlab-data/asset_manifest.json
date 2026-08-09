@@ -1,6 +1,6 @@
 ﻿{
     "version":  "1.3.262-web-dynamic-daily-assets",
-    "generated":  "2026-08-08T23:26:35.2075472Z",
+    "generated":  "2026-08-09T11:26:59.0599206Z",
     "purpose":  "KitLab6 static catalog: dynamic Pattern, Team, Brand, Sponsor and TXT; templates remain controlled in app.js",
     "dynamicRoots":  {
                          "assets/pattern":  {
@@ -5208,6 +5208,7 @@
                   "assets/templates/macron/macron 24-25/short/v1/seams/short iv goma.png",
                   "assets/templates/macron/macron 24-25/short/v1/seams/side 2 iv.png",
                   "assets/templates/macron/macron 24-25/short/v1/seams/side iv.png",
+                  "assets/templates/macron/macron 24-25/short/v1/template_defaults.json",
                   "assets/templates/macron/macron 24-25/short/v1/thumbnail.png",
                   "assets/templates/macron/macron 24-25/short/v1/transparencia.png",
                   "assets/templates/macron/macron 24-25/socks/v1/base/05. socks.png",
@@ -5258,6 +5259,7 @@
                   "assets/templates/macron/macron 26-27/short/v1/seams/side 2 iv.png",
                   "assets/templates/macron/macron 26-27/short/v1/seams/side iv.png",
                   "assets/templates/macron/macron 26-27/short/v1/seams/triangle iv.png",
+                  "assets/templates/macron/macron 26-27/short/v1/template_defaults.json",
                   "assets/templates/macron/macron 26-27/short/v1/thumbnail.png",
                   "assets/templates/macron/macron 26-27/short/v1/transparencia.png",
                   "assets/templates/macron/macron gk 24-25/collar/back.png",
@@ -5368,6 +5370,46 @@
                   "assets/templates/macron/macron gk 25-26/socks/used_by.txt",
                   "assets/templates/macron/macron gk 25-26/thumbnail_gk_25_26_green.png",
                   "assets/templates/macron/macron gk 25-26/used_by.txt",
+                  "assets/templates/macron/macron gk 26-27 v2/collar/border 2.png",
+                  "assets/templates/macron/macron gk 26-27 v2/collar/border.png",
+                  "assets/templates/macron/macron gk 26-27 v2/collar/detail.png",
+                  "assets/templates/macron/macron gk 26-27 v2/collar/seams border iv.png",
+                  "assets/templates/macron/macron gk 26-27 v2/collar/seams center iv.png",
+                  "assets/templates/macron/macron gk 26-27 v2/collar/seams iv.png",
+                  "assets/templates/macron/macron gk 26-27 v2/collar/thumbnail.png",
+                  "assets/templates/macron/macron gk 26-27 v2/collar/transparencia.png",
+                  "assets/templates/macron/macron gk 26-27 v2/shirt/base/01. sleeve short.png",
+                  "assets/templates/macron/macron gk 26-27 v2/shirt/base/02. shirt.png",
+                  "assets/templates/macron/macron gk 26-27 v2/shirt/base/03. sleeve long.png",
+                  "assets/templates/macron/macron gk 26-27 v2/shirt/brand/shirt label macron no colour.png",
+                  "assets/templates/macron/macron gk 26-27 v2/shirt/brand/shirt macron.png",
+                  "assets/templates/macron/macron gk 26-27 v2/shirt/details/shirt curve.png",
+                  "assets/templates/macron/macron gk 26-27 v2/shirt/details/sleeve_long_sleeve_shadow.png",
+                  "assets/templates/macron/macron gk 26-27 v2/shirt/mesh/shirt back.png",
+                  "assets/templates/macron/macron gk 26-27 v2/shirt/mesh/sleeve short pattern.png",
+                  "assets/templates/macron/macron gk 26-27 v2/shirt/pattern/shirt pattern 01.png",
+                  "assets/templates/macron/macron gk 26-27 v2/shirt/pattern/shirt pattern 02.png",
+                  "assets/templates/macron/macron gk 26-27 v2/shirt/seams/seams fj.png",
+                  "assets/templates/macron/macron gk 26-27 v2/shirt/seams/shirt back iv.png",
+                  "assets/templates/macron/macron gk 26-27 v2/shirt/seams/shirt final iv.png",
+                  "assets/templates/macron/macron gk 26-27 v2/shirt/seams/shirt iv.png",
+                  "assets/templates/macron/macron gk 26-27 v2/shirt/seams/shirt ivu costados.png",
+                  "assets/templates/macron/macron gk 26-27 v2/shirt/seams/sleeve short iv cuff.png",
+                  "assets/templates/macron/macron gk 26-27 v2/shirt/seams/sleeve short ivu axilas.png",
+                  "assets/templates/macron/macron gk 26-27 v2/shirt/thumbnail.png",
+                  "assets/templates/macron/macron gk 26-27 v2/shirt/transparencia.png",
+                  "assets/templates/macron/macron gk 26-27 v2/short/base/04. short.png",
+                  "assets/templates/macron/macron gk 26-27 v2/short/brand/short label macron.png",
+                  "assets/templates/macron/macron gk 26-27 v2/short/seams/seams fj.png",
+                  "assets/templates/macron/macron gk 26-27 v2/short/seams/short iv costados.png",
+                  "assets/templates/macron/macron gk 26-27 v2/short/seams/short iv final.png",
+                  "assets/templates/macron/macron gk 26-27 v2/short/seams/short iv goma.png",
+                  "assets/templates/macron/macron gk 26-27 v2/short/transparencia.png",
+                  "assets/templates/macron/macron gk 26-27 v2/socks/base/05. socks.png",
+                  "assets/templates/macron/macron gk 26-27 v2/socks/base/06. ankle.png",
+                  "assets/templates/macron/macron gk 26-27 v2/socks/seams/seams fj.png",
+                  "assets/templates/macron/macron gk 26-27 v2/socks/transparencia.png",
+                  "assets/templates/macron/macron gk 26-27 v2/template_defaults.json",
                   "assets/templates/nike/nike 2026/base/01.sleeve short.png",
                   "assets/templates/nike/nike 2026/base/02. shirt.png",
                   "assets/templates/nike/nike 2026/base/03. sleeve long.png",
@@ -15589,7 +15631,8 @@
                                                                  "macron 25-26",
                                                                  "macron 26-27",
                                                                  "macron gk 24-25",
-                                                                 "macron gk 25-26"
+                                                                 "macron gk 25-26",
+                                                                 "macron gk 26-27 v2"
                                                              ],
                                                  "files":  [
 
@@ -15784,6 +15827,7 @@
                                                                                        "seams"
                                                                                    ],
                                                                        "files":  [
+                                                                                     "template_defaults.json",
                                                                                      "thumbnail.png",
                                                                                      "transparencia.png"
                                                                                  ]
@@ -16001,6 +16045,7 @@
                                                                                        "seams"
                                                                                    ],
                                                                        "files":  [
+                                                                                     "template_defaults.json",
                                                                                      "thumbnail.png",
                                                                                      "transparencia.png"
                                                                                  ]
@@ -16471,6 +16516,169 @@
                                                                                            "seams fj.png"
                                                                                        ]
                                                                          },
+                 "assets/templates/macron/macron gk 26-27 v2":  {
+                                                                    "folders":  [
+                                                                                    "collar",
+                                                                                    "shirt",
+                                                                                    "short",
+                                                                                    "socks"
+                                                                                ],
+                                                                    "files":  [
+                                                                                  "template_defaults.json"
+                                                                              ]
+                                                                },
+                 "assets/templates/macron/macron gk 26-27 v2/collar":  {
+                                                                           "folders":  [
+
+                                                                                       ],
+                                                                           "files":  [
+                                                                                         "border 2.png",
+                                                                                         "border.png",
+                                                                                         "detail.png",
+                                                                                         "seams border iv.png",
+                                                                                         "seams center iv.png",
+                                                                                         "seams iv.png",
+                                                                                         "thumbnail.png",
+                                                                                         "transparencia.png"
+                                                                                     ]
+                                                                       },
+                 "assets/templates/macron/macron gk 26-27 v2/shirt":  {
+                                                                          "folders":  [
+                                                                                          "base",
+                                                                                          "brand",
+                                                                                          "details",
+                                                                                          "mesh",
+                                                                                          "pattern",
+                                                                                          "seams"
+                                                                                      ],
+                                                                          "files":  [
+                                                                                        "thumbnail.png",
+                                                                                        "transparencia.png"
+                                                                                    ]
+                                                                      },
+                 "assets/templates/macron/macron gk 26-27 v2/shirt/base":  {
+                                                                               "folders":  [
+
+                                                                                           ],
+                                                                               "files":  [
+                                                                                             "01. sleeve short.png",
+                                                                                             "02. shirt.png",
+                                                                                             "03. sleeve long.png"
+                                                                                         ]
+                                                                           },
+                 "assets/templates/macron/macron gk 26-27 v2/shirt/brand":  {
+                                                                                "folders":  [
+
+                                                                                            ],
+                                                                                "files":  [
+                                                                                              "shirt label macron no colour.png",
+                                                                                              "shirt macron.png"
+                                                                                          ]
+                                                                            },
+                 "assets/templates/macron/macron gk 26-27 v2/shirt/details":  {
+                                                                                  "folders":  [
+
+                                                                                              ],
+                                                                                  "files":  [
+                                                                                                "shirt curve.png",
+                                                                                                "sleeve_long_sleeve_shadow.png"
+                                                                                            ]
+                                                                              },
+                 "assets/templates/macron/macron gk 26-27 v2/shirt/mesh":  {
+                                                                               "folders":  [
+
+                                                                                           ],
+                                                                               "files":  [
+                                                                                             "shirt back.png",
+                                                                                             "sleeve short pattern.png"
+                                                                                         ]
+                                                                           },
+                 "assets/templates/macron/macron gk 26-27 v2/shirt/pattern":  {
+                                                                                  "folders":  [
+
+                                                                                              ],
+                                                                                  "files":  [
+                                                                                                "shirt pattern 01.png",
+                                                                                                "shirt pattern 02.png"
+                                                                                            ]
+                                                                              },
+                 "assets/templates/macron/macron gk 26-27 v2/shirt/seams":  {
+                                                                                "folders":  [
+
+                                                                                            ],
+                                                                                "files":  [
+                                                                                              "seams fj.png",
+                                                                                              "shirt back iv.png",
+                                                                                              "shirt final iv.png",
+                                                                                              "shirt iv.png",
+                                                                                              "shirt ivu costados.png",
+                                                                                              "sleeve short iv cuff.png",
+                                                                                              "sleeve short ivu axilas.png"
+                                                                                          ]
+                                                                            },
+                 "assets/templates/macron/macron gk 26-27 v2/short":  {
+                                                                          "folders":  [
+                                                                                          "base",
+                                                                                          "brand",
+                                                                                          "seams"
+                                                                                      ],
+                                                                          "files":  [
+                                                                                        "transparencia.png"
+                                                                                    ]
+                                                                      },
+                 "assets/templates/macron/macron gk 26-27 v2/short/base":  {
+                                                                               "folders":  [
+
+                                                                                           ],
+                                                                               "files":  [
+                                                                                             "04. short.png"
+                                                                                         ]
+                                                                           },
+                 "assets/templates/macron/macron gk 26-27 v2/short/brand":  {
+                                                                                "folders":  [
+
+                                                                                            ],
+                                                                                "files":  [
+                                                                                              "short label macron.png"
+                                                                                          ]
+                                                                            },
+                 "assets/templates/macron/macron gk 26-27 v2/short/seams":  {
+                                                                                "folders":  [
+
+                                                                                            ],
+                                                                                "files":  [
+                                                                                              "seams fj.png",
+                                                                                              "short iv costados.png",
+                                                                                              "short iv final.png",
+                                                                                              "short iv goma.png"
+                                                                                          ]
+                                                                            },
+                 "assets/templates/macron/macron gk 26-27 v2/socks":  {
+                                                                          "folders":  [
+                                                                                          "base",
+                                                                                          "seams"
+                                                                                      ],
+                                                                          "files":  [
+                                                                                        "transparencia.png"
+                                                                                    ]
+                                                                      },
+                 "assets/templates/macron/macron gk 26-27 v2/socks/base":  {
+                                                                               "folders":  [
+
+                                                                                           ],
+                                                                               "files":  [
+                                                                                             "05. socks.png",
+                                                                                             "06. ankle.png"
+                                                                                         ]
+                                                                           },
+                 "assets/templates/macron/macron gk 26-27 v2/socks/seams":  {
+                                                                                "folders":  [
+
+                                                                                            ],
+                                                                                "files":  [
+                                                                                              "seams fj.png"
+                                                                                          ]
+                                                                            },
                  "assets/templates/nike":  {
                                                "folders":  [
                                                                "nike 2026",
