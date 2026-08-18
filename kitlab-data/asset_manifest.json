@@ -1,6 +1,6 @@
 ﻿{
     "version":  "1.3.262-web-dynamic-daily-assets",
-    "generated":  "2026-08-09T11:26:59.0599206Z",
+    "generated":  "2026-08-18T18:08:44.3924431Z",
     "purpose":  "KitLab6 static catalog: dynamic Pattern, Team, Brand, Sponsor and TXT; templates remain controlled in app.js",
     "dynamicRoots":  {
                          "assets/pattern":  {
@@ -5848,6 +5848,9 @@
                   "assets/templates/nike/nike 26-27 dry-fit/short v2/seams/short side iv.png",
                   "assets/templates/nike/nike 26-27 dry-fit/short v2/seams/short side triangle 2 iv.png",
                   "assets/templates/nike/nike 26-27 dry-fit/short v2/seams/short side triangle iv.png",
+                  "assets/templates/nike/nike 26-27 dry-fit/short v3/detail short side.png",
+                  "assets/templates/nike/nike 26-27 dry-fit/short v3/mesh short side.png",
+                  "assets/templates/nike/nike 26-27 dry-fit/short v3/seams short side iv.png",
                   "assets/templates/nike/nike 26-27 dry-fit/template_defaults.json",
                   "assets/templates/nike/nike 26-27 dry-fit/thumbnail.png",
                   "assets/templates/nike/nike 26-27 dry-fit/transparencia.png",
@@ -17669,7 +17672,8 @@
                                                                                   "mesh",
                                                                                   "seams",
                                                                                   "short v1",
-                                                                                  "short v2"
+                                                                                  "short v2",
+                                                                                  "short v3"
                                                                               ],
                                                                   "files":  [
                                                                                 "template_defaults.json",
@@ -17828,6 +17832,16 @@
                                                                                                "short side triangle iv.png"
                                                                                            ]
                                                                              },
+                 "assets/templates/nike/nike 26-27 dry-fit/short v3":  {
+                                                                           "folders":  [
+
+                                                                                       ],
+                                                                           "files":  [
+                                                                                         "detail short side.png",
+                                                                                         "mesh short side.png",
+                                                                                         "seams short side iv.png"
+                                                                                     ]
+                                                                       },
                  "assets/templates/nike/nike gk 2026":  {
                                                             "folders":  [
                                                                             "base",
