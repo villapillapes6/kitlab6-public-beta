@@ -8195,3 +8195,10 @@ input:disabled,
 .kitlab-pes2021-reference-preview[hidden] {
   display: none !important;
 }
+
+/* PES2021 guide visibility: the import button and the reference controls have separate states. */
+#importPes2021KitBtn[hidden],
+#pes2021ReferenceControls[hidden],
+#pes2021ReferencePreview[hidden] {
+  display: none !important;
+}

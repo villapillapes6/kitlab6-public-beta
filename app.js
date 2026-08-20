@@ -8649,7 +8649,17 @@
 
     state.templateStyle.collarLayers.sort(templateLayerSort);
     const loadedCollarLayerCount = (state.templateStyle.collarLayers || []).length + (state.templateStyle.collarSeams || []).length + (state.templateStyle.collarTransparency || []).length;
-    await importCollarSpecificSettingsForFastVisual(item);
+    // PROJECT RESTORE FIX: a .kitlab6 project is the authoritative state.
+    // Do not let collar folder/user/local defaults overwrite the collar colors/details
+    // while an exact Project restore is selecting the saved collar.
+    const exactProjectCollarRestore = options?.exactProjectRestoreSaved && typeof options.exactProjectRestoreSaved === "object"
+      ? options.exactProjectRestoreSaved
+      : null;
+    if (exactProjectCollarRestore) {
+      importSavedCollarConfigurations(exactProjectCollarRestore);
+    } else {
+      await importCollarSpecificSettingsForFastVisual(item);
+    }
     applyCurrentCollarConfiguration();
     if (userSelect && loadedCollarLayerCount > 0) {
       // Direct gallery selection must always visibly load the chosen collar.
@@ -15520,8 +15530,15 @@
     const hasReference = Boolean(state.pes2021Reference?.src);
     const opacityPct = Math.round(clamp(Number(state.pes2021Reference?.opacity ?? 0.5), 0, 1) * 100);
 
-    if (els.importPes2021KitBtn) els.importPes2021KitBtn.hidden = !hostReady;
-    if (els.pes2021ReferenceControls) els.pes2021ReferenceControls.hidden = !hostReady || !hasReference;
+    if (els.importPes2021KitBtn) {
+      els.importPes2021KitBtn.hidden = !hostReady;
+      els.importPes2021KitBtn.style.display = hostReady ? "" : "none";
+    }
+    if (els.pes2021ReferenceControls) {
+      const showReferenceControls = hostReady && hasReference;
+      els.pes2021ReferenceControls.hidden = !showReferenceControls;
+      els.pes2021ReferenceControls.style.display = showReferenceControls ? "grid" : "none";
+    }
     if (els.pes2021ReferenceOpacity && document.activeElement !== els.pes2021ReferenceOpacity) {
       els.pes2021ReferenceOpacity.value = String(opacityPct);
     }
@@ -18580,6 +18597,9 @@
   }
 
   function serializeTemplateSettings() {
+    // Capture the live collar immediately before Project serialization so the current
+    // palette/visibility state cannot lag behind the project file being written.
+    rememberCurrentCollarConfiguration();
     const pieceColors = {};
     for (const [id, color] of Object.entries(state.pieceColors || {})) {
       pieceColors[id] = { source: color.source, target: color.target };
@@ -20953,6 +20973,34 @@
     });
   }
 
+  async function reapplyExactProjectVisualState(saved) {
+    if (!saved || typeof saved !== "object") return;
+    const exactProjectRestore = saved._loadedFromKitlabProject === true || saved._savedInsideKitlabProject === true;
+    if (!exactProjectRestore) return;
+
+    // Project base-piece colors always win over template defaults.
+    if (saved.pieceColors && typeof saved.pieceColors === "object") {
+      for (const [id, color] of Object.entries(saved.pieceColors)) {
+        if (!state.pieceColors[id]) continue;
+        const fallback = state.pieceColors[id].source || PIECE_COLOR_FALLBACKS[id] || KITLAB_CANONICAL_DEFAULT_COLOR;
+        state.pieceColors[id].source = normalizeKitDefaultColor(fallback);
+        state.pieceColors[id].target = normalizeKitDefaultColor(color?.target || fallback);
+      }
+      if (!saved.pieceColors.ankle) syncLinkedPieceColors("socks");
+    }
+
+    // Project detail colors / visibility / blend / opacity are reapplied after every
+    // template/collar default has finished loading. This includes collar detail layers.
+    await applySavedTemplateEditableLayers(saved);
+
+    // The saved per-collar configuration is the final authority for the active collar.
+    importSavedCollarConfigurations(saved);
+    applyCurrentCollarConfiguration();
+
+    renderTemplateDetailPanels();
+    renderPieceColorPanels();
+  }
+
   async function loadSavedTemplateSettings(done) {
     let saved = null;
     if (window.__kitlabPendingProjectSettings) {
@@ -20999,22 +21047,27 @@
       saved = await loadInitialTemplateSettingsForActiveTemplate();
     }
 
-    const finishWithoutSettings = () => {
-      if (typeof done === "function") done();
-    };
-
     if (!saved) {
-      finishWithoutSettings();
+      if (typeof done === "function") done();
       return;
     }
     if (!templateSettingsPayloadShouldApply(saved)) {
-      finishWithoutSettings();
+      if (typeof done === "function") done();
       return;
     }
 
-    importSavedCollarConfigurations(saved);
-
     const exactProjectRestore = saved._loadedFromKitlabProject === true || saved._savedInsideKitlabProject === true;
+    let projectRestoreFinalized = false;
+    const finishWithoutSettings = async () => {
+      if (exactProjectRestore && !projectRestoreFinalized) {
+        projectRestoreFinalized = true;
+        try { await reapplyExactProjectVisualState(saved); }
+        catch (error) { console.warn("Project exact visual restore final pass ignored:", error); }
+      }
+      if (typeof done === "function") done();
+    };
+
+    importSavedCollarConfigurations(saved);
 
     const applyAfterCollarReady = async () => {
       if (exactProjectRestore) resetEditableRuntimeBeforeExactProjectRestore(saved);
@@ -21130,7 +21183,7 @@
       const savedCollar = findSavedCollar(saved);
       if (savedCollar) {
         try {
-          await selectCollarStyle(savedCollar);
+          await selectCollarStyle(savedCollar, false, null, exactProjectRestore ? { exactProjectRestoreSaved: saved } : {});
         } catch (error) {
           console.warn("Saved collar ignored:", error);
         }
