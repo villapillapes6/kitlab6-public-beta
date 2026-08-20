@@ -8112,3 +8112,86 @@ input:disabled,
   color: #F0B515 !important;
   text-shadow: none !important;
 }
+
+/* KitLab6 Web Real - PES2021 reference kit overlay */
+.kitlab-pes2021-import-btn {
+  margin-top: 8px;
+}
+.kitlab-pes2021-reference-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 64px 32px;
+  align-items: center;
+  gap: 7px;
+  margin-top: 6px;
+  width: 100%;
+}
+.kitlab-pes2021-reference-range {
+  width: 100%;
+  min-width: 0;
+  accent-color: #f0b515;
+  cursor: pointer;
+}
+.kitlab-pes2021-reference-number-wrap {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 0 5px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 6px;
+  background: rgba(0,0,0,.22);
+  color: rgba(255,255,255,.86);
+  font-size: 11px;
+  box-sizing: border-box;
+}
+.kitlab-pes2021-reference-number {
+  width: 38px;
+  min-width: 0;
+  padding: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  color: #fff !important;
+  text-align: right;
+  font: inherit;
+  box-shadow: none !important;
+}
+.kitlab-pes2021-reference-delete {
+  width: 32px;
+  height: 30px;
+  min-width: 32px;
+  padding: 0 !important;
+  border: 1px solid rgba(236,67,67,.72) !important;
+  border-radius: 6px !important;
+  background: rgba(120,16,16,.18) !important;
+  color: #ff5a5a !important;
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  cursor: pointer;
+}
+.kitlab-pes2021-reference-delete:hover:not(:disabled) {
+  background: rgba(185,25,25,.30) !important;
+  border-color: #ff5a5a !important;
+}
+.kitlab-pes2021-reference-delete:disabled {
+  opacity: .34 !important;
+  cursor: default !important;
+}
+.kitlab-pes2021-reference-preview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: fill;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  z-index: 8;
+  opacity: .5;
+}
+.kitlab-pes2021-reference-preview[hidden] {
+  display: none !important;
+}

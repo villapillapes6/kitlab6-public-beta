@@ -967,6 +967,7 @@
     baseDesignGalleryItems: [],
     overlayGalleryItems: [],
     overlay: { image: null, src: "", name: "", side: "left", size: 100, x: 0, y: 0, controlsOpen: false },
+    pes2021Reference: { image: null, src: "", name: "", opacity: 0.5 },
     armband: { item: null, image: null, src: "", name: "" },
     pieceVisible: { sleeve_short: true, shirt: true, sleeve_long: true, short: true, socks: true, ankle: true },
     brand: {
@@ -1032,6 +1033,13 @@
     exportPes6SafeBtn: document.getElementById("exportPes6SafeBtn"),
     exportPes6SafeStrongBtn: document.getElementById("exportPes6SafeStrongBtn"),
     exportPes61024Btn: document.getElementById("exportPes61024Btn"),
+    importPes2021KitBtn: document.getElementById("importPes2021KitBtn"),
+    pes2021KitUpload: document.getElementById("pes2021KitUpload"),
+    pes2021ReferenceControls: document.getElementById("pes2021ReferenceControls"),
+    pes2021ReferenceOpacity: document.getElementById("pes2021ReferenceOpacity"),
+    pes2021ReferenceOpacityNumber: document.getElementById("pes2021ReferenceOpacityNumber"),
+    pes2021ReferenceDeleteBtn: document.getElementById("pes2021ReferenceDeleteBtn"),
+    pes2021ReferencePreview: document.getElementById("pes2021ReferencePreview"),
     loadProjectBtn: document.getElementById("loadProjectBtn"),
     saveProjectBtn: document.getElementById("saveProjectBtn"),
     saveProjectAsBtn: document.getElementById("saveProjectAsBtn"),
@@ -15501,6 +15509,54 @@
     }
   }
 
+  function hasPes2021ReferenceHost() {
+    const templateLoaded = Boolean(state.templateStyle?.selected) || (els.selectedTemplateName && !/^no template$/i.test(String(els.selectedTemplateName.textContent || "").trim()));
+    const projectLoaded = Boolean(Array.isArray(state.project?.kits) && state.project.kits.length > 0 && String(state.project?.name || "").trim() && !/^untitled project$/i.test(String(state.project?.name || "").trim()));
+    return templateLoaded || projectLoaded;
+  }
+
+  function syncPes2021ReferenceControls() {
+    const hostReady = hasPes2021ReferenceHost();
+    const hasReference = Boolean(state.pes2021Reference?.src);
+    const opacityPct = Math.round(clamp(Number(state.pes2021Reference?.opacity ?? 0.5), 0, 1) * 100);
+
+    if (els.importPes2021KitBtn) els.importPes2021KitBtn.hidden = !hostReady;
+    if (els.pes2021ReferenceControls) els.pes2021ReferenceControls.hidden = !hostReady || !hasReference;
+    if (els.pes2021ReferenceOpacity && document.activeElement !== els.pes2021ReferenceOpacity) {
+      els.pes2021ReferenceOpacity.value = String(opacityPct);
+    }
+    if (els.pes2021ReferenceOpacityNumber && document.activeElement !== els.pes2021ReferenceOpacityNumber) {
+      els.pes2021ReferenceOpacityNumber.value = String(opacityPct);
+    }
+    if (els.pes2021ReferenceDeleteBtn) els.pes2021ReferenceDeleteBtn.disabled = !hasReference;
+    if (els.pes2021ReferencePreview) {
+      els.pes2021ReferencePreview.style.opacity = String(clamp(Number(state.pes2021Reference?.opacity ?? 0.5), 0, 1));
+      if (hostReady && hasReference) {
+        if (els.pes2021ReferencePreview.src !== state.pes2021Reference.src) els.pes2021ReferencePreview.src = state.pes2021Reference.src;
+        els.pes2021ReferencePreview.hidden = false;
+      } else {
+        els.pes2021ReferencePreview.hidden = true;
+        els.pes2021ReferencePreview.removeAttribute("src");
+      }
+    }
+  }
+
+  function setPes2021ReferenceKit(image, name = "PES2021 Kit", src = "") {
+    state.pes2021Reference.image = image || null;
+    state.pes2021Reference.src = String(src || "");
+    state.pes2021Reference.name = String(name || "PES2021 Kit");
+    syncPes2021ReferenceControls();
+    if (image) setStatus(`PES2021 reference loaded: ${state.pes2021Reference.name}`);
+  }
+
+  function deletePes2021ReferenceKit() {
+    state.pes2021Reference.image = null;
+    state.pes2021Reference.src = "";
+    state.pes2021Reference.name = "";
+    syncPes2021ReferenceControls();
+    setStatus("PES2021 reference removed");
+  }
+
   function drawArmbandLayer() {
     if (!state.armband || !state.armband.image) return;
     ctx.save();
@@ -15566,6 +15622,7 @@
     if (!exportMode && !cacheBuildMode) drawUv();
     if (!exportMode && !cacheBuildMode) drawGuide();
     if (!exportMode && !cacheBuildMode) drawSlotBoxes();
+    if (!exportMode && !cacheBuildMode) syncPes2021ReferenceControls();
 
     if (!exportMode && !cacheBuildMode && state.templateStyle?.selected && !activeLayerRangeDrag) {
       scheduleBuildBrandStaticCache(fastPreview ? 360 : 90);
@@ -23858,6 +23915,58 @@
       state.checkerBg = event.target.checked;
       els.canvasWrap.classList.toggle("checker", state.checkerBg);
     });
+
+    if (els.importPes2021KitBtn && els.pes2021KitUpload) {
+      els.importPes2021KitBtn.addEventListener("click", () => {
+        if (!hasPes2021ReferenceHost()) return;
+        els.pes2021KitUpload.click();
+      });
+      els.pes2021KitUpload.addEventListener("change", (event) => {
+        const file = event.target.files?.[0];
+        event.target.value = "";
+        if (!file) return;
+        if (!(file.type === "image/png" || /\.png$/i.test(file.name || ""))) {
+          setStatus("Import Kit PES2021 only accepts PNG");
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = () => {
+          const src = String(reader.result || "");
+          loadImageFromSrc(src, (image) => {
+            setPes2021ReferenceKit(image, file.name || "PES2021 Kit", src);
+          }, () => setStatus("Could not load PES2021 reference kit"));
+        };
+        reader.onerror = () => setStatus("Could not read PES2021 reference kit");
+        reader.readAsDataURL(file);
+      });
+    }
+    if (els.pes2021ReferenceOpacity) {
+      els.pes2021ReferenceOpacity.addEventListener("input", (event) => {
+        const pct = clamp(Number(event.target.value), 0, 100);
+        state.pes2021Reference.opacity = pct / 100;
+        if (els.pes2021ReferenceOpacityNumber) els.pes2021ReferenceOpacityNumber.value = String(Math.round(pct));
+        if (els.pes2021ReferencePreview) els.pes2021ReferencePreview.style.opacity = String(state.pes2021Reference.opacity);
+      });
+    }
+    if (els.pes2021ReferenceOpacityNumber) {
+      const commitPes2021OpacityNumber = (event) => {
+        const pct = clamp(Number(event.target.value), 0, 100);
+        event.target.value = String(Math.round(pct));
+        state.pes2021Reference.opacity = pct / 100;
+        if (els.pes2021ReferenceOpacity) els.pes2021ReferenceOpacity.value = String(Math.round(pct));
+        if (els.pes2021ReferencePreview) els.pes2021ReferencePreview.style.opacity = String(state.pes2021Reference.opacity);
+      };
+      els.pes2021ReferenceOpacityNumber.addEventListener("input", commitPes2021OpacityNumber);
+      els.pes2021ReferenceOpacityNumber.addEventListener("change", commitPes2021OpacityNumber);
+      els.pes2021ReferenceOpacityNumber.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          commitPes2021OpacityNumber(event);
+          event.currentTarget.blur();
+        }
+      });
+    }
+    if (els.pes2021ReferenceDeleteBtn) els.pes2021ReferenceDeleteBtn.addEventListener("click", deletePes2021ReferenceKit);
+    syncPes2021ReferenceControls();
 
     if (els.loadTextureBtn && els.textureUpload) {
       els.loadTextureBtn.addEventListener("click", () => els.textureUpload.click());

@@ -2118,6 +2118,16 @@
           <button id="exportTemplateSettingsBtn" type="button">Export Template Settings</button>
           <button id="exportStateBtn" type="button" hidden>Export Brand state</button>
           <button id="resetBrandBtn" type="button" hidden>Reset Brand</button>
+          <button id="importPes2021KitBtn" class="primary kitlab-pes2021-import-btn" type="button" hidden>Import Kit PES2021</button>
+          <input class="hidden-file" id="pes2021KitUpload" type="file" accept="image/png" />
+          <div id="pes2021ReferenceControls" class="kitlab-pes2021-reference-controls" aria-label="PES2021 reference opacity controls" hidden>
+            <input id="pes2021ReferenceOpacity" class="kitlab-pes2021-reference-range" type="range" min="0" max="100" step="1" value="50" aria-label="PES2021 reference opacity" />
+            <div class="kitlab-pes2021-reference-number-wrap">
+              <input id="pes2021ReferenceOpacityNumber" class="kitlab-pes2021-reference-number" type="number" min="0" max="100" step="1" value="50" inputmode="numeric" aria-label="PES2021 reference opacity percent" />
+              <span>%</span>
+            </div>
+            <button id="pes2021ReferenceDeleteBtn" class="kitlab-pes2021-reference-delete" type="button" title="Remove PES2021 reference kit" aria-label="Remove PES2021 reference kit" disabled>×</button>
+          </div>
         </section>
       </section>
 
@@ -2449,6 +2459,7 @@
         </div>
         <div class="canvas-stage" id="canvasStage">
           <canvas id="kitCanvas" width="2048" height="2048" aria-label="KitLab6 preview canvas"></canvas>
+          <img id="pes2021ReferencePreview" class="kitlab-pes2021-reference-preview" alt="PES2021 reference kit" hidden />
         </div>
       </div>
     </main>
