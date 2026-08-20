@@ -1031,6 +1031,7 @@
     exportBtn: document.getElementById("exportBtn"),
     exportPes6SafeBtn: document.getElementById("exportPes6SafeBtn"),
     exportPes6SafeStrongBtn: document.getElementById("exportPes6SafeStrongBtn"),
+    exportPes61024Btn: document.getElementById("exportPes61024Btn"),
     loadProjectBtn: document.getElementById("loadProjectBtn"),
     saveProjectBtn: document.getElementById("saveProjectBtn"),
     saveProjectAsBtn: document.getElementById("saveProjectAsBtn"),
@@ -16586,20 +16587,523 @@
     ], { type: 'image/png' });
   }
 
-  async function exportKitPes6FastMap() {
-    const button = els.exportBtn;
+
+
+  // KitLab6 PES6 1024 exporter — definitive Kit Resizer v1.3.7 engine.
+  // Fixed settings: Detalles nítidos + Refuerzo alto + medias overlay + localized soft right-strip protection.
+  const KITLAB_PES6_1024_SIZE = 1024;
+  const KITLAB_PES6_1024_REFERENCE_SIZE = 2048;
+  const KITLAB_PES6_1024_RIGHT_STRIP = { x: 1930, y: 0, width: 118, height: 720 };
+
+  function kitlabPes61024WorkerMain() {
+    'use strict';
+    const cache = new Map();
+  
+    self.onmessage = (event) => {
+      const { id, width, height, buffer, mode, target } = event.data;
+      try {
+        const src = new Uint8ClampedArray(buffer);
+        if (width < target || height < target) {
+          throw new Error(`La imagen es menor de ${target}×${target}.`);
+        }
+        postMessage({ id, type: 'progress', value: 0.03, label: 'Calculando filtro Lanczos…' });
+        const output = resizeLanczosPremultiplied(src, width, height, target, target, mode, event.data.textureBoost, id);
+        postMessage({ id, type: 'done', width: target, height: target, buffer: output.buffer }, [output.buffer]);
+      } catch (error) {
+        postMessage({ id, type: 'error', message: error?.message || String(error) });
+      }
+    };
+  
+    function lanczos(x, a = 3) {
+      const ax = Math.abs(x);
+      if (ax < 1e-8) return 1;
+      if (ax >= a) return 0;
+      const pix = Math.PI * x;
+      return (a * Math.sin(pix) * Math.sin(pix / a)) / (pix * pix);
+    }
+  
+    function buildContribs(srcSize, dstSize) {
+      const key = `${srcSize}:${dstSize}`;
+      if (cache.has(key)) return cache.get(key);
+      const scale = srcSize / dstSize;
+      const a = 3;
+      const support = scale > 1 ? a * scale : a;
+      const filterScale = scale > 1 ? scale : 1;
+      const starts = new Int32Array(dstSize);
+      const counts = new Int16Array(dstSize);
+      const weights = [];
+      const offsets = new Int32Array(dstSize);
+  
+      for (let d = 0; d < dstSize; d++) {
+        const center = (d + 0.5) * scale - 0.5;
+        let left = Math.ceil(center - support);
+        let right = Math.floor(center + support);
+        left = Math.max(left, 0);
+        right = Math.min(right, srcSize - 1);
+        starts[d] = left;
+        offsets[d] = weights.length;
+        let total = 0;
+        for (let s = left; s <= right; s++) {
+          const w = lanczos((s - center) / filterScale, a);
+          weights.push(w);
+          total += w;
+        }
+        const count = right - left + 1;
+        counts[d] = count;
+        if (Math.abs(total) < 1e-12) total = 1;
+        for (let i = weights.length - count; i < weights.length; i++) weights[i] /= total;
+      }
+      const result = { starts, counts, offsets, weights: new Float32Array(weights) };
+      cache.set(key, result);
+      return result;
+    }
+  
+    function resizeLanczosPremultiplied(src, sw, sh, dw, dh, mode, textureBoost, jobId) {
+      const cx = buildContribs(sw, dw);
+      const cy = buildContribs(sh, dh);
+      const temp = new Float32Array(dw * sh * 4);
+  
+      for (let y = 0; y < sh; y++) {
+        const srcRow = y * sw * 4;
+        const dstRow = y * dw * 4;
+        for (let x = 0; x < dw; x++) {
+          const start = cx.starts[x];
+          const count = cx.counts[x];
+          const off = cx.offsets[x];
+          let r = 0, g = 0, b = 0, a = 0;
+          for (let k = 0; k < count; k++) {
+            const si = srcRow + (start + k) * 4;
+            const w = cx.weights[off + k];
+            const alpha = src[si + 3] / 255;
+            r += src[si] * alpha * w;
+            g += src[si + 1] * alpha * w;
+            b += src[si + 2] * alpha * w;
+            a += src[si + 3] * w;
+          }
+          const di = dstRow + x * 4;
+          temp[di] = r;
+          temp[di + 1] = g;
+          temp[di + 2] = b;
+          temp[di + 3] = a;
+        }
+        if ((y & 63) === 0) {
+          postMessage({ jobId, type: 'noop' });
+          postMessage({ id: jobId, type: 'progress', value: 0.05 + 0.42 * (y / sh), label: 'Filtrando horizontalmente…' });
+        }
+      }
+  
+      const out = new Uint8ClampedArray(dw * dh * 4);
+      for (let y = 0; y < dh; y++) {
+        const start = cy.starts[y];
+        const count = cy.counts[y];
+        const off = cy.offsets[y];
+        for (let x = 0; x < dw; x++) {
+          let pr = 0, pg = 0, pb = 0, pa = 0;
+          for (let k = 0; k < count; k++) {
+            const si = ((start + k) * dw + x) * 4;
+            const w = cy.weights[off + k];
+            pr += temp[si] * w;
+            pg += temp[si + 1] * w;
+            pb += temp[si + 2] * w;
+            pa += temp[si + 3] * w;
+          }
+          const di = (y * dw + x) * 4;
+          const alpha255 = clamp(pa, 0, 255);
+          if (alpha255 > 0.01) {
+            const invA = 255 / alpha255;
+            pr = clamp(pr, 0, alpha255);
+            pg = clamp(pg, 0, alpha255);
+            pb = clamp(pb, 0, alpha255);
+            out[di] = clamp(Math.round(pr * invA), 0, 255);
+            out[di + 1] = clamp(Math.round(pg * invA), 0, 255);
+            out[di + 2] = clamp(Math.round(pb * invA), 0, 255);
+          } else {
+            out[di] = out[di + 1] = out[di + 2] = 0;
+          }
+          out[di + 3] = Math.round(alpha255);
+        }
+        if ((y & 31) === 0) {
+          postMessage({ id: jobId, type: 'progress', value: 0.48 + 0.42 * (y / dh), label: 'Filtrando verticalmente…' });
+        }
+      }
+  
+      if (mode !== 'smooth') {
+        const amount = mode === 'detail' ? 0.34 : 0.16;
+        const threshold = mode === 'detail' ? 1.4 : 2.2;
+        sharpenOpaqueInterior(out, dw, dh, amount, threshold, jobId);
+      }
+      if (textureBoost && textureBoost !== 'off') {
+        enhanceMicroTexture(out, dw, dh, textureBoost, jobId);
+      }
+      postMessage({ id: jobId, type: 'progress', value: 0.98, label: 'Preparando PNG…' });
+      return out;
+    }
+  
+    function sharpenOpaqueInterior(data, w, h, amount, threshold, jobId) {
+      const src = new Uint8ClampedArray(data);
+      const kernel = [1, 2, 1, 2, 4, 2, 1, 2, 1];
+      for (let y = 1; y < h - 1; y++) {
+        for (let x = 1; x < w - 1; x++) {
+          const i = (y * w + x) * 4;
+          if (src[i + 3] < 250) continue;
+          let allOpaque = true;
+          let kr = 0, kg = 0, kb = 0;
+          let ki = 0;
+          for (let yy = -1; yy <= 1; yy++) {
+            for (let xx = -1; xx <= 1; xx++, ki++) {
+              const ni = ((y + yy) * w + (x + xx)) * 4;
+              if (src[ni + 3] < 250) { allOpaque = false; break; }
+              const kw = kernel[ki];
+              kr += src[ni] * kw;
+              kg += src[ni + 1] * kw;
+              kb += src[ni + 2] * kw;
+            }
+            if (!allOpaque) break;
+          }
+          if (!allOpaque) continue;
+          const blurR = kr / 16, blurG = kg / 16, blurB = kb / 16;
+          const dr = src[i] - blurR, dg = src[i + 1] - blurG, db = src[i + 2] - blurB;
+          if (Math.abs(dr) >= threshold) data[i] = clamp(Math.round(src[i] + dr * amount), 0, 255);
+          if (Math.abs(dg) >= threshold) data[i + 1] = clamp(Math.round(src[i + 1] + dg * amount), 0, 255);
+          if (Math.abs(db) >= threshold) data[i + 2] = clamp(Math.round(src[i + 2] + db * amount), 0, 255);
+        }
+        if ((y & 63) === 0) {
+          postMessage({ id: jobId, type: 'progress', value: 0.91 + 0.06 * (y / h), label: 'Recuperando detalles finos…' });
+        }
+      }
+    }
+  
+    function enhanceMicroTexture(data, w, h, level, jobId) {
+      const src = new Uint8ClampedArray(data);
+      const config = {
+        soft: { amount: 0.20, low: 0.8, high: 13.5, minRatio: 1.08 },
+        medium: { amount: 0.32, low: 0.7, high: 16.5, minRatio: 1.04 },
+        strong: { amount: 0.46, low: 0.6, high: 20.0, minRatio: 1.00 },
+      }[level] || { amount: 0.32, low: 0.7, high: 16.5, minRatio: 1.04 };
+  
+      for (let y = 2; y < h - 2; y++) {
+        for (let x = 2; x < w - 2; x++) {
+          const i = (y * w + x) * 4;
+          if (src[i + 3] < 250) continue;
+  
+          const li1 = i - 4, ri1 = i + 4, li2 = i - 8, ri2 = i + 8;
+          const ui1 = i - w * 4, di1 = i + w * 4, ui2 = i - w * 8, di2 = i + w * 8;
+          if (src[li1 + 3] < 250 || src[ri1 + 3] < 250 || src[ui1 + 3] < 250 || src[di1 + 3] < 250) continue;
+  
+          const lumC = 0.299 * src[i] + 0.587 * src[i + 1] + 0.114 * src[i + 2];
+          const lumH = (
+            (0.299 * src[li2] + 0.587 * src[li2 + 1] + 0.114 * src[li2 + 2]) +
+            2 * (0.299 * src[li1] + 0.587 * src[li1 + 1] + 0.114 * src[li1 + 2]) +
+            2 * (0.299 * src[ri1] + 0.587 * src[ri1 + 1] + 0.114 * src[ri1 + 2]) +
+            (0.299 * src[ri2] + 0.587 * src[ri2 + 1] + 0.114 * src[ri2 + 2])
+          ) / 6;
+          const lumV = (
+            (0.299 * src[ui2] + 0.587 * src[ui2 + 1] + 0.114 * src[ui2 + 2]) +
+            2 * (0.299 * src[ui1] + 0.587 * src[ui1 + 1] + 0.114 * src[ui1 + 2]) +
+            2 * (0.299 * src[di1] + 0.587 * src[di1 + 1] + 0.114 * src[di1 + 2]) +
+            (0.299 * src[di2] + 0.587 * src[di2 + 1] + 0.114 * src[di2 + 2])
+          ) / 6;
+  
+          const dH = lumC - lumH;
+          const dV = lumC - lumV;
+          const absH = Math.abs(dH), absV = Math.abs(dV);
+          let orientation = null;
+          let base0 = 0, base1 = 0, base2 = 0;
+          let detailMag = 0;
+          let otherMag = 0;
+  
+          if (absH >= absV) {
+            orientation = 'h';
+            detailMag = absH;
+            otherMag = absV;
+            base0 = (src[li2] + 2 * src[li1] + 2 * src[ri1] + src[ri2]) / 6;
+            base1 = (src[li2 + 1] + 2 * src[li1 + 1] + 2 * src[ri1 + 1] + src[ri2 + 1]) / 6;
+            base2 = (src[li2 + 2] + 2 * src[li1 + 2] + 2 * src[ri1 + 2] + src[ri2 + 2]) / 6;
+          } else {
+            orientation = 'v';
+            detailMag = absV;
+            otherMag = absH;
+            base0 = (src[ui2] + 2 * src[ui1] + 2 * src[di1] + src[di2]) / 6;
+            base1 = (src[ui2 + 1] + 2 * src[ui1 + 1] + 2 * src[di1 + 1] + src[di2 + 1]) / 6;
+            base2 = (src[ui2 + 2] + 2 * src[ui1 + 2] + 2 * src[di1 + 2] + src[di2 + 2]) / 6;
+          }
+  
+          if (detailMag < config.low || detailMag > config.high) continue;
+          const ratio = detailMag / (otherMag + 0.35);
+          if (ratio < config.minRatio) continue;
+  
+          const midFactor = 1 - Math.abs((detailMag - ((config.low + config.high) * 0.5)) / ((config.high - config.low) * 0.5));
+          const contrastFactor = clamp(midFactor, 0.15, 1.0);
+          const gain = config.amount * contrastFactor * clamp((ratio - config.minRatio + 0.25) / 1.25, 0.2, 1.0);
+  
+          const d0 = src[i] - base0;
+          const d1 = src[i + 1] - base1;
+          const d2 = src[i + 2] - base2;
+          data[i] = clamp(Math.round(src[i] + d0 * gain), 0, 255);
+          data[i + 1] = clamp(Math.round(src[i + 1] + d1 * gain), 0, 255);
+          data[i + 2] = clamp(Math.round(src[i + 2] + d2 * gain), 0, 255);
+        }
+        if ((y & 63) === 0) {
+          postMessage({ id: jobId, type: 'progress', value: 0.955 + 0.02 * (y / h), label: 'Refuerzo de microtexturas…' });
+        }
+      }
+    }
+  
+    function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+  }
+
+  let kitlabPes61024WorkerUrl = null;
+  const kitlabPes61024SockOverlayState = { promise: null, imageData: null };
+  const KITLAB_PES6_1024_SOCK_OVERLAY_DATA_URL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAQACAYAAAB/HSuDAAAACXBIWXMAAAsSAAALEgHS3X78AAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAECnSURBVHja7N17tF11fTb6Z87shBBCCDFybUQgUIoXlAOlKqW1p60iel6qvO3hqLVtUsRe7LFaeXUch2XIqJfW1tFWQeRUq3W0KkpruAgichVRAyhXJVxCuCSMQICEi9l7z3n+2HuHlZW15lw7N7J6Pp8x9ljztmb2hr/Ws57vbxZ1XQcAAAD47630nwAAAAAEAAAAAIAAAAAAABAAAAAAAAIAAAAAQAAAAAAACAAAAAAAAQAAAAAgAAAAAAABAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAAAAgAAAABAAAAAAAAIAAAAAEAAAAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAAACAAAAABAAAAAAAAIAAAAAQAAAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAAAgAAAAAAAEAAAAAAAAgAAAABAAAAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAAACAAAAAEAAAAAAAAgAAAAAAAEAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAAAAAIAAAAAQAAAAAAACAAAAABAAAAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAAAAgAAAAAQAAAAAAACAAAAAEAAAAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAACAAAAAAAAEAAAAAIAAAAAAABAAAAAAAAIAAAAAQAAAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAAAAgAAAABAAAAAAAAIAAAAAAABAAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAAACAAAAAEAAAAAAAAIAAAAAQAAAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAAAAAIAAAAAEAAAAAAAAgAAAABAAAAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAgAAAAAAABAAAAACAAAAAAAAQAAAAAAACAAAAAEAAAAAAAAgAAAAAAAEAAAAAIAAAAAAAAQAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAAAAAIAAAAAQAAAAAAACAAAAAAAAQAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAAAAgAAAABAAAAAAAACAAAAAEAAAAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAIAAAAAAABAAAAAAAAIAAAAAQAAAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAIAAAAAAAAQAAAAAgAAAAAAAEAAAAAAAAgAAAABAAAAAAAAIAAAAAAABAAAAACAAAAAAAAEAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAAACAAAAAEAAAAAAAAgAAAAAQAAAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAAAAAIAAAAAQAAAAAAAAgAAAABAAAAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAACAAAAAAAAQAAAAAAACAAAAAEAAAAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAAAAAIAAAAAQAAAAAAACAAAAAAAAQAAAAAgAAAAAAABAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAAAAgAAAABAAAAAAAAIAAAAAEAAAAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAAACAAAAABAAAAAAAAIAAAAAQAAAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAAAgAAAAAAAEAAAAAAAAgAAAABAAAAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAAACAAAAAEAAAAAAAAgAAAAAAAEAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAAAAAIAAAAAQAAAAAAAAgD/CQAAAEAAAAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAAACAAAAABAAAAAAAAIAAAAAQAAAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAIAAAAAAAAQAAAAAgAAAAAAAEAAAAAAAAgAAAABAAAAAAAAIAAAAAAABAAAAACAAAAAAAAEAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAAACAAAAAEAAAAAAAAgAAAAAAAEAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAAAAAIAAAAAQAAAAAAAAgAAAABAAAAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAACAAAAAAAAQAAAAAAACAAAAAEAAAAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAACAAAAAAAAEAAAAAIAAAAAAABAAAAAAAAIAAAAAQAAAAAAACAAAAAAAAQAAAAAgAAAAAAABAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAAAAgAAAABAAAAAAAAIAAAAAEAAAAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAAACAAAAAEAAAAAAAAIAAAAAQAAAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAAAgAAAAAAAEAAAAAAAAgAAAABAAAAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAAACAAAAAEAAAAAAAAgAAAAAAAEAAAAAIAAAAAAAAQAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAAAAAIAAAAAQAAAAAAACAAAAABAAAAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAAAAgAAAAAQAAAAAAACAAAAAEAAAAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAIAAAAAAABAAAAAAAAIAAAAAQAAAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAAAAgAAAABAAAAAAAAIAAAAAAABAAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAAACAAAAAEAAAAAAAAgAAAAAQAAAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAAAAAIAAAAAEAAAAAAAAgAAAABAAAAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAgAAAAAAABAAAAACAAAAAAAAQAAAAAAACAAAAAEAAAAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAAAAAIAAAAAQAAAAAAACAAAAAAAAQAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAAAAgAAAABAAAAAAAACAAAAAEAAAAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAAACAAAAABAAAAAAAAIAAAAAQAAAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAIAAAAAAAAQAAAAAgAAAAAAAEAAAAAAAAgAAAABAAAAAAAAIAAAAAAABAAAAACAAAAAAAAEAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAAACAAAAAEAAAAAAAAgAAAAAAAEAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAAAAAIAAAAAQAAAAAAAAgAAAABAAAAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAACAAAAAAAAQAAAAAAACAAAAAEAAAAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAAAgAPCfAAAAAAQAAAAAgAAAAAAAEAAAAAAAAgAAAABAAAAAAAAIAAAAAAABAAAAACAAAAAAAAEAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAAACAAAAAEAAAAAAAAgAAAAAQAAAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAAAAAIAAAAAEAAAAAAAAgAAAABAAAAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAACAAAAAAAAQAAAAAAACAAAAAEAAAAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAAAAAIAAAAAQAAAAAAACAAAAAAAAQAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAAAAgAAAABAAAAAAAAIAAAAAEAAAAAAAAgAAAAAAAEAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAAAACAAAAABAAAAAAAAIAAAAAQAAAAAAACAAAAAAAAQAAAAAgAAAAAAAEAAAAAIAAAAAAAAQAAAAAgAAAAAAAEAAAAAAAAgAAAABAAAAAAAAIAAAAAAABAAAAACAAAAAAAAQAAAAA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';
+
+  function kitlabPes61024Clamp(value, low, high) {
+    return value < low ? low : value > high ? high : value;
+  }
+
+  function kitlabPes61024RunWorker(sourceRgba, width, height) {
+    if (!kitlabPes61024WorkerUrl) {
+      kitlabPes61024WorkerUrl = URL.createObjectURL(new Blob([`(${kitlabPes61024WorkerMain.toString()})()`], { type: 'application/javascript' }));
+    }
+    const worker = new Worker(kitlabPes61024WorkerUrl);
+    const transferable = new Uint8ClampedArray(sourceRgba);
+    const jobId = `kitlab-pes6-1024-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    return new Promise((resolve, reject) => {
+      const cleanup = () => { try { worker.terminate(); } catch (_) {} };
+      worker.addEventListener('message', (event) => {
+        const message = event.data || {};
+        if (message.id !== jobId) return;
+        if (message.type === 'done') {
+          cleanup();
+          resolve(new Uint8ClampedArray(message.buffer));
+        } else if (message.type === 'error') {
+          cleanup();
+          reject(new Error(message.message || 'Error reduciendo el kit PES6 a 1024.'));
+        }
+      });
+      worker.addEventListener('error', (error) => {
+        cleanup();
+        reject(new Error(error?.message || 'Error interno del reductor PES6 1024.'));
+      });
+      worker.postMessage({
+        id: jobId,
+        width,
+        height,
+        buffer: transferable.buffer,
+        mode: 'detail',
+        textureBoost: 'strong',
+        target: KITLAB_PES6_1024_SIZE,
+      }, [transferable.buffer]);
+    });
+  }
+
+  function kitlabPes61024LoadSockOverlayImageData() {
+    if (kitlabPes61024SockOverlayState.imageData) return Promise.resolve(kitlabPes61024SockOverlayState.imageData);
+    if (kitlabPes61024SockOverlayState.promise) return kitlabPes61024SockOverlayState.promise;
+    kitlabPes61024SockOverlayState.promise = new Promise((resolve, reject) => {
+      const image = new Image();
+      image.onload = () => {
+        try {
+          const overlayCanvas = document.createElement('canvas');
+          overlayCanvas.width = image.naturalWidth;
+          overlayCanvas.height = image.naturalHeight;
+          const overlayCtx = overlayCanvas.getContext('2d', { alpha: true, willReadFrequently: true });
+          overlayCtx.clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
+          overlayCtx.drawImage(image, 0, 0);
+          kitlabPes61024SockOverlayState.imageData = overlayCtx.getImageData(0, 0, overlayCanvas.width, overlayCanvas.height);
+          resolve(kitlabPes61024SockOverlayState.imageData);
+        } catch (error) { reject(error); }
+      };
+      image.onerror = () => reject(new Error('No se pudo cargar la textura integrada de medias PES6 1024.'));
+      image.src = KITLAB_PES6_1024_SOCK_OVERLAY_DATA_URL;
+    });
+    return kitlabPes61024SockOverlayState.promise;
+  }
+
+  function kitlabPes61024OverlayBlend(base, blend) {
+    return base <= 0.5 ? (2 * base * blend) : (1 - 2 * (1 - base) * (1 - blend));
+  }
+
+  function kitlabPes61024DetectSockOverlayOpacity(data, overlayData) {
+    const overlay = overlayData.data;
+    let sumW = 0, sumR = 0, sumG = 0, sumB = 0;
+    for (let i = 0; i < overlay.length; i += 4) {
+      const oa = overlay[i + 3];
+      const ba = data[i + 3];
+      if (oa < 8 || ba < 200) continue;
+      const weight = oa / 255;
+      sumW += weight;
+      sumR += data[i] * weight;
+      sumG += data[i + 1] * weight;
+      sumB += data[i + 2] * weight;
+    }
+    if (sumW <= 0.0001) return 0.45;
+    const r = sumR / sumW, g = sumG / sumW, b = sumB / sumW;
+    const maxc = Math.max(r, g, b);
+    const minc = Math.min(r, g, b);
+    const saturation = maxc <= 0 ? 0 : (maxc - minc) / maxc;
+    const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+    return (luminance >= 0.90 && saturation <= 0.12) ? 1.0 : 0.45;
+  }
+
+  async function kitlabPes61024ApplySockOverlay(data, width, height) {
+    const overlayData = await kitlabPes61024LoadSockOverlayImageData();
+    if (!overlayData || overlayData.width !== width || overlayData.height !== height) return;
+    const opacity = kitlabPes61024DetectSockOverlayOpacity(data, overlayData);
+    const overlay = overlayData.data;
+    for (let i = 0; i < overlay.length; i += 4) {
+      const oa = overlay[i + 3];
+      const ba = data[i + 3];
+      if (oa < 8 || ba < 8) continue;
+      const alpha = (oa / 255) * opacity * (ba / 255);
+      if (alpha <= 0.0001) continue;
+      const baseR = data[i] / 255, baseG = data[i + 1] / 255, baseB = data[i + 2] / 255;
+      const blendR = overlay[i] / 255, blendG = overlay[i + 1] / 255, blendB = overlay[i + 2] / 255;
+      const overR = kitlabPes61024OverlayBlend(baseR, blendR);
+      const overG = kitlabPes61024OverlayBlend(baseG, blendG);
+      const overB = kitlabPes61024OverlayBlend(baseB, blendB);
+      data[i] = Math.round((baseR * (1 - alpha) + overR * alpha) * 255);
+      data[i + 1] = Math.round((baseG * (1 - alpha) + overG * alpha) * 255);
+      data[i + 2] = Math.round((baseB * (1 - alpha) + overB * alpha) * 255);
+    }
+  }
+
+  function kitlabPes61024ExtractProtectedRightStrip(sourceRgba, fullWidth, fullHeight) {
+    const ref = KITLAB_PES6_1024_RIGHT_STRIP;
+    const sx = Math.max(0, Math.round(ref.x * fullWidth / KITLAB_PES6_1024_REFERENCE_SIZE));
+    const sy = Math.max(0, Math.round(ref.y * fullHeight / KITLAB_PES6_1024_REFERENCE_SIZE));
+    const sw = Math.max(2, Math.min(fullWidth - sx, Math.round(ref.width * fullWidth / KITLAB_PES6_1024_REFERENCE_SIZE)));
+    const sh = Math.max(2, Math.min(fullHeight - sy, Math.round(ref.height * fullHeight / KITLAB_PES6_1024_REFERENCE_SIZE)));
+    const crop = new Uint8ClampedArray(sw * sh * 4);
+    for (let y = 0; y < sh; y++) {
+      const start = ((sy + y) * fullWidth + sx) * 4;
+      crop.set(sourceRgba.subarray(start, start + sw * 4), y * sw * 4);
+    }
+    return { data: crop, width: sw, height: sh, fullWidth, fullHeight, sx, sy };
+  }
+
+  function kitlabPes61024SampleAverage(src, width, height, x0, y0, x1, y1) {
+    const ix0 = kitlabPes61024Clamp(Math.floor(x0), 0, width - 1);
+    const iy0 = kitlabPes61024Clamp(Math.floor(y0), 0, height - 1);
+    const ix1 = kitlabPes61024Clamp(Math.ceil(x1), ix0 + 1, width);
+    const iy1 = kitlabPes61024Clamp(Math.ceil(y1), iy0 + 1, height);
+    let r = 0, g = 0, b = 0, a = 0, n = 0;
+    for (let yy = iy0; yy < iy1; yy++) {
+      let index = (yy * width + ix0) * 4;
+      for (let xx = ix0; xx < ix1; xx++, index += 4) {
+        r += src[index]; g += src[index + 1]; b += src[index + 2]; a += src[index + 3]; n++;
+      }
+    }
+    return n ? [r / n, g / n, b / n, a / n] : [0, 0, 0, 0];
+  }
+
+  function kitlabPes61024SampleNearest(src, width, height, x, y) {
+    const ix = kitlabPes61024Clamp(Math.round(x), 0, width - 1);
+    const iy = kitlabPes61024Clamp(Math.round(y), 0, height - 1);
+    const index = (iy * width + ix) * 4;
+    return [src[index], src[index + 1], src[index + 2], src[index + 3]];
+  }
+
+  function kitlabPes61024StripEdgeBoost(y, height) {
+    const topSpan = Math.max(1, height * 0.14);
+    const bottomSpan = Math.max(1, height * 0.14);
+    const topBoost = kitlabPes61024Clamp(1 - y / topSpan, 0, 1);
+    const bottomBoost = kitlabPes61024Clamp(1 - ((height - 1) - y) / bottomSpan, 0, 1);
+    return Math.max(topBoost, bottomBoost);
+  }
+
+  function kitlabPes61024RecoverSoftHorizontalDetail(data, width, height) {
+    const src = new Uint8ClampedArray(data);
+    for (let y = 1; y < height - 1; y++) {
+      const edgeBoost = kitlabPes61024StripEdgeBoost(y, height);
+      const strength = 0.16 + edgeBoost * 0.10;
+      for (let x = 0; x < width; x++) {
+        const i = (y * width + x) * 4;
+        if (src[i + 3] < 12) continue;
+        const up = ((y - 1) * width + x) * 4;
+        const down = ((y + 1) * width + x) * 4;
+        for (let c = 0; c < 3; c++) {
+          const smooth = (src[up + c] + src[down + c]) * 0.5;
+          const detail = src[i + c] - smooth;
+          if (Math.abs(detail) < 0.18) continue;
+          data[i + c] = kitlabPes61024Clamp(Math.round(src[i + c] + detail * strength), 0, 255);
+        }
+      }
+    }
+  }
+
+  function kitlabPes61024BuildSoftProtectedRightStrip(regionSource, outputWidth, outputHeight) {
+    const { data: src, width: sw, height: sh, fullWidth, fullHeight, sx, sy } = regionSource;
+    const dx = Math.max(0, Math.round(sx * outputWidth / fullWidth));
+    const dy = Math.max(0, Math.round(sy * outputHeight / fullHeight));
+    const dw = Math.max(1, Math.min(outputWidth - dx, Math.round(sw * outputWidth / fullWidth)));
+    const dh = Math.max(1, Math.min(outputHeight - dy, Math.round(sh * outputHeight / fullHeight)));
+    if (dw < 2 || dh < 2) return null;
+    const out = new Uint8ClampedArray(dw * dh * 4);
+    const scaleX = sw / dw, scaleY = sh / dh;
+    for (let y = 0; y < dh; y++) {
+      const y0 = y * scaleY, y1 = (y + 1) * scaleY;
+      const edgeBoost = kitlabPes61024StripEdgeBoost(y, dh);
+      for (let x = 0; x < dw; x++) {
+        const x0 = x * scaleX, x1 = (x + 1) * scaleX;
+        const avg = kitlabPes61024SampleAverage(src, sw, sh, x0, y0, x1, y1);
+        const center = kitlabPes61024SampleNearest(src, sw, sh, x0 + scaleX * 0.5, y0 + scaleY * 0.5);
+        const mix = kitlabPes61024Clamp(0.16 + edgeBoost * 0.08, 0, 0.28);
+        const i = (y * dw + x) * 4;
+        for (let c = 0; c < 4; c++) out[i + c] = kitlabPes61024Clamp(Math.round(avg[c] * (1 - mix) + center[c] * mix), 0, 255);
+      }
+    }
+    kitlabPes61024RecoverSoftHorizontalDetail(out, dw, dh);
+    return { data: out, dx, dy, width: dw, height: dh };
+  }
+
+  function kitlabPes61024PasteSoftProtectedRightStrip(outputData, outputWidth, region) {
+    if (!region) return;
+    const { data, dx, dy, width: dw, height: dh } = region;
+    const featherLeft = Math.min(5, dw);
+    const featherBottom = Math.min(6, dh);
+    for (let y = 0; y < dh; y++) {
+      for (let x = 0; x < dw; x++) {
+        const si = (y * dw + x) * 4;
+        const di = ((dy + y) * outputWidth + (dx + x)) * 4;
+        const alphaBase = data[si + 3] / 255;
+        if (alphaBase <= 0.0001) continue;
+        let blend = 0.88;
+        if (x < featherLeft) blend *= 0.35 + 0.65 * (x / featherLeft);
+        if (y >= dh - featherBottom) blend *= 0.55 + 0.45 * (((dh - 1 - y) / featherBottom) + (1 / featherBottom));
+        const alpha = kitlabPes61024Clamp(alphaBase * blend, 0, 1);
+        if (alpha <= 0.0001) continue;
+        for (let c = 0; c < 3; c++) outputData[di + c] = kitlabPes61024Clamp(Math.round(outputData[di + c] * (1 - alpha) + data[si + c] * alpha), 0, 255);
+        outputData[di + 3] = Math.max(outputData[di + 3], data[si + 3]);
+      }
+    }
+  }
+
+  async function kitlabPes6ResizeDefinitive1024(sourceRgba, width = SIZE, height = SIZE) {
+    if (!sourceRgba || sourceRgba.length !== width * height * 4) throw new Error('No se pudo preparar el kit PES6 2048 para reducirlo a 1024.');
+    const rightStrip = kitlabPes61024ExtractProtectedRightStrip(sourceRgba, width, height);
+    const reduced = await kitlabPes61024RunWorker(sourceRgba, width, height);
+    await kitlabPes61024ApplySockOverlay(reduced, KITLAB_PES6_1024_SIZE, KITLAB_PES6_1024_SIZE);
+    const protectedRegion = kitlabPes61024BuildSoftProtectedRightStrip(rightStrip, KITLAB_PES6_1024_SIZE, KITLAB_PES6_1024_SIZE);
+    kitlabPes61024PasteSoftProtectedRightStrip(reduced, KITLAB_PES6_1024_SIZE, protectedRegion);
+    return reduced;
+  }
+
+
+  async function exportKitPes6FastMapAtSize(outputSize, button) {
     const started = performance.now();
     let saveHandle = null;
+    const exportButtons = [els.exportBtn, els.exportPes6BridgeBtn, els.exportPes61024Btn].filter(Boolean);
+    const label = outputSize === KITLAB_PES6_1024_SIZE ? '1024' : '2048';
 
     try {
-      if (button) button.disabled = true;
+      for (const item of exportButtons) item.disabled = true;
 
       // Ask for destination first while the click still counts as a direct user gesture.
       saveHandle = await pes6ChooseSaveHandle('all.png');
       if (saveHandle === false) return;
 
-      setStatus('Export PES6: preparando kit...');
-      showToast('Export PES6: preparando kit...');
+      setStatus(`Export PES6 (${label}): preparando kit...`);
+      showToast(`Export PES6 (${label}): preparando kit...`);
       render({ exportMode: true });
       await new Promise((resolve) => requestAnimationFrame(resolve));
 
@@ -16608,9 +17112,6 @@
       }
 
       const sourceImage = ctx.getImageData(0, 0, SIZE, SIZE);
-
-      // Same PES6-safe source preparation used to validate the standalone
-      // geometric converter. It preserves hidden RGB around transparent edges.
       const source = bleedEdgeRgbForPes6Strong(sourceImage.data, SIZE, SIZE, {
         hiddenAlphaMax: 8,
         semiAlphaMax: 96,
@@ -16619,26 +17120,46 @@
         radius: 40,
       });
 
-      setStatus('Export PES6: convirtiendo...');
+      setStatus(`Export PES6 (${label}): convirtiendo...`);
       const result = await pes6GeometricConvertRgba(source);
 
-      setStatus('Export PES6: creando all.png...');
-      const pngBlob = await pes6FastEncodeCompressedPng(result.pixels, SIZE, SIZE);
+      let outputPixels = result.pixels;
+      let finalSize = SIZE;
+      if (outputSize === KITLAB_PES6_1024_SIZE) {
+        setStatus('Export PES6 (1024): reduciendo con calidad definitiva...');
+        showToast('Export PES6 (1024): reduciendo...');
+        outputPixels = await kitlabPes6ResizeDefinitive1024(result.pixels, SIZE, SIZE);
+        finalSize = KITLAB_PES6_1024_SIZE;
+      }
+
+      setStatus(`Export PES6 (${label}): creando all.png...`);
+      const pngBlob = await pes6FastEncodeCompressedPng(outputPixels, finalSize, finalSize);
       await pes6SaveBlob(pngBlob, saveHandle, 'all.png');
 
       const elapsed = ((performance.now() - started) / 1000).toFixed(2);
       const conversionMs = Math.round(result.ms);
-      setStatus(`Kit PES6 exportado en ${elapsed} s`);
-      showToast(`Kit PES6 exportado · ${conversionMs} ms`);
+      setStatus(`Kit PES6 (${label}) exportado en ${elapsed} s`);
+      showToast(`Kit PES6 (${label}) exportado · ${conversionMs} ms`);
     } catch (error) {
-      console.error('Export PES6 geometric converter failed', error);
-      setStatus('Export PES6 failed');
-      showToast('Export PES6 failed');
-      alert('Export PES6 falló:\n\n' + (error && error.message ? error.message : error));
+      console.error(`Export PES6 (${label}) failed`, error);
+      setStatus(`Export PES6 (${label}) failed`);
+      showToast(`Export PES6 (${label}) failed`);
+      alert(`Export PES6 (${label}) falló:
+
+` + (error && error.message ? error.message : error));
     } finally {
       render();
-      if (button) button.disabled = false;
+      for (const item of exportButtons) item.disabled = false;
     }
+  }
+
+  async function exportKitPes6FastMap() {
+    const button = els.exportPes6BridgeBtn || els.exportBtn;
+    return exportKitPes6FastMapAtSize(SIZE, button);
+  }
+
+  async function exportKitPes6FastMap1024() {
+    return exportKitPes6FastMapAtSize(KITLAB_PES6_1024_SIZE, els.exportPes61024Btn);
   }
 
 
@@ -23806,8 +24327,12 @@
       els.exportTemplateSettingsBtn.addEventListener("click", exportTemplateSettingsFile);
     }
     if (els.exportBtn) {
-      els.exportBtn.textContent = "Export Kits PES6";
+      els.exportBtn.textContent = "Export Kits PES6 (2048)";
       els.exportBtn.addEventListener("click", exportKitPes6FastMap);
+      if (els.exportPes61024Btn) {
+        els.exportPes61024Btn.textContent = "Export Kits PES6 (1024)";
+        els.exportPes61024Btn.addEventListener("click", exportKitPes6FastMap1024);
+      }
       const preloadPes6Maps = () => pes6FastEnsureMaps().catch((error) => console.warn("PES6 map preload failed", error));
       if ("requestIdleCallback" in window) window.requestIdleCallback(preloadPes6Maps, { timeout: 2500 });
       else window.setTimeout(preloadPes6Maps, 250);
