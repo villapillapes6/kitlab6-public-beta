@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KitLab6 by VillaPilla</title>
-  <link rel="stylesheet" href="./style.css?v=1.3.293-privacy-terms-web" />
+  <link rel="stylesheet" href="./style.css?v=1.3.302-dual-project-v05-web" />
   <style id="kitlab-right-empty-panel-style">
     /* v1.0.80-82 visual test: fixed left/right side blocks, same width at all times. */
     :root {
@@ -2466,9 +2466,11 @@
 
     <aside class="sidebar right-sidebar-empty project-sidebar" id="projectSidebar" aria-label="Project kits">
       <div class="project-panel">
-        <div class="project-panel-heading">
-          <div id="projectPanelName" class="project-panel-name">Untitled Project</div>
+        <div id="kitlabProjectWorkspaceBar" class="kitlab-project-workspace-bar" hidden>
+          <div id="kitlabProjectWorkspaceTabs" class="kitlab-project-workspace-tabs" role="tablist" aria-label="Open projects"></div>
+          <button id="kitlabCrossProjectCopyBtn" class="kitlab-project-workspace-copy" type="button" aria-haspopup="menu" aria-expanded="false" hidden>Copy</button>
         </div>
+        <div id="kitlabCrossProjectCopyMenu" class="kitlab-cross-project-copy-menu" role="menu" hidden></div>
         <div class="project-kit-list" id="projectKitList" aria-label="Project kit list"></div>
       </div>
     </aside>
@@ -2873,7 +2875,7 @@
       font-variant-numeric: tabular-nums !important;
     }
   </style>
-  <script src="./app.js?v=1.3.301-nike-26-27-short-v3-pattern-project-restore"></script>
+  <script src="./app.js?v=1.3.302-dual-project-v05-web"></script>
   <script src="./kitlab3d.js?v=1.3.293-privacy-terms-web"></script>
   <script id="kitlab-mode-switch-original-fixed-script-local-124">
     (function () {

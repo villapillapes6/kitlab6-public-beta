@@ -1045,6 +1045,10 @@
     saveProjectAsBtn: document.getElementById("saveProjectAsBtn"),
     projectSidebar: document.getElementById("projectSidebar"),
     projectPanelName: document.getElementById("projectPanelName"),
+    projectWorkspaceBar: document.getElementById("kitlabProjectWorkspaceBar"),
+    projectWorkspaceTabs: document.getElementById("kitlabProjectWorkspaceTabs"),
+    crossProjectCopyBtn: document.getElementById("kitlabCrossProjectCopyBtn"),
+    crossProjectCopyMenu: document.getElementById("kitlabCrossProjectCopyMenu"),
     projectKitList: document.getElementById("projectKitList"),
     addProjectKitBtn: document.getElementById("addProjectKitBtn"),
     duplicateProjectKitBtn: document.getElementById("duplicateProjectKitBtn"),
@@ -18669,6 +18673,14 @@
   let kitlabProjectFileHandle = null;
   let kitlabProjectFileName = "";
   let kitlabProjectSwitching = false;
+
+  // Dual-project workspace (validated first in Web Local): maximum two independent projects.
+  const kitlabOpenProjectSessions = [];
+  let kitlabActiveProjectSessionId = "";
+  let kitlabWorkspaceSwitching = false;
+  let kitlabWorkspaceLoadingProject = false;
+  let kitlabWorkspaceSessionSerial = 0;
+
   let kitlabProjectDragId = "";
   let kitlabProjectDragMoved = false;
   // v1.2.08: a manually loaded template is a clean draft until dragged into a right-panel slot.
@@ -18679,6 +18691,305 @@
   // The .kitlab6 file is still written only when the user presses Save Project / Save As Project.
   const kitlabProjectRuntimeCache = new Map();
   const kitlabProjectTemplateBaseCache = new Map();
+
+  function kitlabWorkspaceSessionById(sessionId = "") {
+    const id = String(sessionId || "");
+    return kitlabOpenProjectSessions.find((item) => item.id === id) || null;
+  }
+
+  function kitlabActiveWorkspaceSession() {
+    return kitlabWorkspaceSessionById(kitlabActiveProjectSessionId);
+  }
+
+  function kitlabOtherWorkspaceSession() {
+    if (kitlabOpenProjectSessions.length !== 2) return null;
+    return kitlabOpenProjectSessions.find((item) => item.id !== kitlabActiveProjectSessionId) || null;
+  }
+
+  function kitlabWorkspaceDisplayName(session) {
+    if (!session) return "Project";
+    const fileName = String(session.fileName || session.project?.fileName || "").trim();
+    if (fileName) return kitlabProjectNameFromFileName(fileName, session.project?.projectName || "Project");
+    return kitlabProjectDisplayName(session.project?.projectName || session.project?.name || "Project", "Project");
+  }
+
+  function kitlabReplaceMap(target, source) {
+    target.clear();
+    if (!source) return;
+    for (const [key, value] of source.entries()) target.set(key, value);
+  }
+
+  function kitlabSnapshotCurrentWorkspaceSessionData(options = {}) {
+    const saveCurrent = options.saveCurrent !== false;
+    if (saveCurrent && state.project) ensureCurrentKitSaved({ capturePreview: true, renderPanel: false });
+    return {
+      project: cloneKitlabProjectData(normalizeKitlabProject(state.project)),
+      fileName: String(kitlabProjectFileName || state.project?.fileName || ""),
+      fileHandle: kitlabProjectFileHandle || null,
+      draftMode: kitlabProjectDraftMode === true,
+      runtimeCache: new Map(kitlabProjectRuntimeCache),
+      templateBaseCache: new Map(kitlabProjectTemplateBaseCache),
+      pes2021Reference: cloneProjectRuntimeValue(state.pes2021Reference || { image: null, src: "", name: "", opacity: 0.5 }),
+    };
+  }
+
+  function kitlabCaptureActiveWorkspaceSession(options = {}) {
+    const session = kitlabActiveWorkspaceSession();
+    if (!session) return null;
+    Object.assign(session, kitlabSnapshotCurrentWorkspaceSessionData(options));
+    return session;
+  }
+
+  function kitlabCreateWorkspaceSessionFromCurrent() {
+    const snapshot = kitlabSnapshotCurrentWorkspaceSessionData({ saveCurrent: false });
+    kitlabWorkspaceSessionSerial += 1;
+    return { id: `project_session_${Date.now()}_${kitlabWorkspaceSessionSerial}`, ...snapshot };
+  }
+
+  function kitlabRestorePes2021ReferenceForSession(session) {
+    state.pes2021Reference = cloneProjectRuntimeValue(
+      session?.pes2021Reference || { image: null, src: "", name: "", opacity: 0.5 },
+    );
+    try { syncPes2021ReferenceControls(); } catch (_) {}
+  }
+
+  function kitlabInstallWorkspaceSession(session) {
+    if (!session) return false;
+    kitlabProjectFileHandle = session.fileHandle || null;
+    kitlabProjectFileName = String(session.fileName || session.project?.fileName || "");
+    kitlabProjectDraftMode = session.draftMode === true;
+    kitlabReplaceMap(kitlabProjectRuntimeCache, session.runtimeCache || new Map());
+    kitlabReplaceMap(kitlabProjectTemplateBaseCache, session.templateBaseCache || new Map());
+    state.project = normalizeKitlabProject({ ...(session.project || {}), fileName: kitlabProjectFileName });
+    const activeKit = state.project.kits.find((kit) => kit.id === state.project.activeKitId) || state.project.kits[0] || null;
+    const saved = activeKit?.settings || activeKit?.data || null;
+    let restored = false;
+    if (activeKit) restored = restoreProjectKitRuntimeFromCache(activeKit.id, saved);
+    if (!restored && !saved) {
+      clearEditorForEmptyProjectKit();
+      restored = true;
+    }
+    kitlabRestorePes2021ReferenceForSession(session);
+    renderProjectKitPanel();
+    renderKitlabProjectWorkspaceBar();
+    return restored;
+  }
+
+  function closeKitlabCrossProjectCopyMenu() {
+    const menu = els.crossProjectCopyMenu;
+    if (!menu) return;
+    menu.hidden = true;
+    menu.innerHTML = "";
+    menu.style.left = "";
+    menu.style.top = "";
+    if (els.crossProjectCopyBtn) els.crossProjectCopyBtn.setAttribute("aria-expanded", "false");
+  }
+
+  function positionKitlabCrossProjectCopyMenu() {
+    const menu = els.crossProjectCopyMenu;
+    const button = els.crossProjectCopyBtn;
+    if (!menu || !button || menu.hidden) return;
+    if (menu.parentElement !== document.body) document.body.appendChild(menu);
+    const buttonRect = button.getBoundingClientRect();
+    const menuRect = menu.getBoundingClientRect();
+    const gap = 8;
+    const margin = 10;
+    const width = Math.max(240, menuRect.width || 260);
+    let left = buttonRect.right - width;
+    left = Math.max(margin, Math.min(left, window.innerWidth - width - margin));
+    let top = buttonRect.bottom + gap;
+    if (top + menuRect.height > window.innerHeight - margin) top = Math.max(margin, buttonRect.top - menuRect.height - gap);
+    menu.style.left = `${Math.round(left)}px`;
+    menu.style.top = `${Math.round(top)}px`;
+  }
+
+  function uniqueCopiedProjectKitName(name, kits = []) {
+    const base = String(name || "Kit").replace(/\s+/g, " ").trim() || "Kit";
+    const used = new Set((kits || []).map((kit) => String(kit?.name || "").toLowerCase()));
+    if (!used.has(base.toLowerCase())) return base;
+    let n = 2;
+    while (used.has(`${base} ${n}`.toLowerCase())) n += 1;
+    return `${base} ${n}`;
+  }
+
+  function renderKitlabProjectWorkspaceBar() {
+    const bar = els.projectWorkspaceBar;
+    const tabs = els.projectWorkspaceTabs;
+    if (!bar || !tabs) return;
+    const sessions = kitlabOpenProjectSessions;
+    bar.hidden = sessions.length === 0;
+    tabs.innerHTML = sessions.map((session) => {
+      const active = session.id === kitlabActiveProjectSessionId;
+      const name = kitlabWorkspaceDisplayName(session);
+      return `<div class="kitlab-project-workspace-tab${active ? " active" : ""}" data-project-session-id="${escapeHtml(session.id)}" role="tab" aria-selected="${active ? "true" : "false"}"><button class="kitlab-project-workspace-tab-select" type="button" data-project-session-select="${escapeHtml(session.id)}" title="${escapeHtml(name)}">${escapeHtml(name)}</button><button class="kitlab-project-workspace-tab-close" type="button" data-project-session-close="${escapeHtml(session.id)}" title="Close project" aria-label="Close ${escapeHtml(name)}">×</button></div>`;
+    }).join("");
+    if (els.crossProjectCopyBtn) {
+      const other = kitlabOtherWorkspaceSession();
+      const activeIndex = sessions.findIndex((session) => session.id === kitlabActiveProjectSessionId);
+      const showCopy = sessions.length === 2 && activeIndex >= 0;
+      els.crossProjectCopyBtn.hidden = !showCopy;
+      els.crossProjectCopyBtn.title = other ? `Copy a kit from ${kitlabWorkspaceDisplayName(other)}` : "Copy kit from the other project";
+      if (showCopy) {
+        const activeTab = Array.from(tabs.children).find((node) => node?.dataset?.projectSessionId === kitlabActiveProjectSessionId) || null;
+        const closeButton = activeTab?.querySelector?.(".kitlab-project-workspace-tab-close") || null;
+        if (activeTab) {
+          activeTab.classList.add("has-copy");
+          if (closeButton) activeTab.insertBefore(els.crossProjectCopyBtn, closeButton);
+          else activeTab.appendChild(els.crossProjectCopyBtn);
+        }
+      }
+    }
+    if (els.loadProjectBtn) {
+      const loadLocked = sessions.length >= 2;
+      els.loadProjectBtn.disabled = loadLocked;
+      els.loadProjectBtn.classList.toggle("kitlab-load-project-locked", loadLocked);
+      els.loadProjectBtn.setAttribute("aria-disabled", loadLocked ? "true" : "false");
+      els.loadProjectBtn.title = loadLocked ? "Close one open project before loading another." : "Load Project";
+    }
+    if (sessions.length !== 2) closeKitlabCrossProjectCopyMenu();
+  }
+
+  async function switchKitlabWorkspaceProject(sessionId = "") {
+    const target = kitlabWorkspaceSessionById(sessionId);
+    if (!target || target.id === kitlabActiveProjectSessionId || kitlabWorkspaceSwitching) return;
+    closeKitlabCrossProjectCopyMenu();
+    kitlabWorkspaceSwitching = true;
+    try {
+      kitlabCaptureActiveWorkspaceSession({ saveCurrent: true });
+      kitlabActiveProjectSessionId = target.id;
+      kitlabInstallWorkspaceSession(target);
+      setStatus(`Project active: ${kitlabWorkspaceDisplayName(target)}`);
+    } finally {
+      kitlabWorkspaceSwitching = false;
+      renderKitlabProjectWorkspaceBar();
+    }
+  }
+
+  function resetKitlabWorkspaceToNoProject() {
+    closeKitlabCrossProjectCopyMenu();
+    kitlabActiveProjectSessionId = "";
+    kitlabProjectFileHandle = null;
+    kitlabProjectFileName = "";
+    kitlabProjectDraftMode = false;
+    clearProjectRuntimeCache();
+    kitlabProjectTemplateBaseCache.clear();
+    state.project = normalizeKitlabProject({
+      projectName: "Untitled Project",
+      name: "Untitled Project",
+      fileName: "",
+      activeKitId: "home",
+      kitOrder: ["home"],
+      kits: [{ id: "home", name: "Home", slot: "Home", settings: null, preview: "", savedAt: "" }],
+    });
+    clearEditorForEmptyProjectKit();
+    state.pes2021Reference = { image: null, src: "", name: "", opacity: 0.5 };
+    try { syncPes2021ReferenceControls(); } catch (_) {}
+    renderProjectKitPanel();
+    renderKitlabProjectWorkspaceBar();
+  }
+
+  async function closeKitlabWorkspaceProject(sessionId = "") {
+    const session = kitlabWorkspaceSessionById(sessionId);
+    if (!session || kitlabWorkspaceSwitching) return;
+    const isActive = session.id === kitlabActiveProjectSessionId;
+    if (isActive) kitlabCaptureActiveWorkspaceSession({ saveCurrent: true });
+    const index = kitlabOpenProjectSessions.findIndex((item) => item.id === session.id);
+    if (index >= 0) kitlabOpenProjectSessions.splice(index, 1);
+    if (!isActive) {
+      renderKitlabProjectWorkspaceBar();
+      return;
+    }
+    const next = kitlabOpenProjectSessions[0] || null;
+    if (!next) {
+      resetKitlabWorkspaceToNoProject();
+      setStatus("Project closed");
+      return;
+    }
+    kitlabWorkspaceSwitching = true;
+    try {
+      kitlabActiveProjectSessionId = next.id;
+      kitlabInstallWorkspaceSession(next);
+      setStatus(`Project active: ${kitlabWorkspaceDisplayName(next)}`);
+    } finally {
+      kitlabWorkspaceSwitching = false;
+      renderKitlabProjectWorkspaceBar();
+    }
+  }
+
+  function sourceProjectKitsForCrossCopy() {
+    const other = kitlabOtherWorkspaceSession();
+    if (!other) return [];
+    const project = normalizeKitlabProject(other.project);
+    return project.kitOrder.map((id) => project.kits.find((kit) => kit.id === id)).filter(Boolean);
+  }
+
+  function openKitlabCrossProjectCopyMenu() {
+    const menu = els.crossProjectCopyMenu;
+    const button = els.crossProjectCopyBtn;
+    const other = kitlabOtherWorkspaceSession();
+    if (!menu || !button || !other || kitlabOpenProjectSessions.length !== 2) return;
+    const kits = sourceProjectKitsForCrossCopy();
+    const otherName = kitlabWorkspaceDisplayName(other);
+    menu.innerHTML = `<div class="kitlab-cross-project-copy-title">Copy from ${escapeHtml(otherName)}</div><div class="kitlab-cross-project-copy-grid">${kits.map((kit) => {
+      const kitName = escapeHtml(kit.name || kit.id || "Kit");
+      const preview = kit.preview ? `<img src="${kit.preview}" alt="" />` : `<span class="kitlab-cross-project-copy-placeholder">NO PREVIEW</span>`;
+      return `<button class="kitlab-cross-project-copy-card" type="button" data-cross-project-copy-kit="${escapeHtml(kit.id)}" title="Copy ${kitName}" aria-label="Copy ${kitName}"><span class="kitlab-cross-project-copy-thumb">${preview}</span></button>`;
+    }).join("") || `<div class="kitlab-cross-project-copy-empty">No kits available</div>`}</div>`;
+    if (menu.parentElement !== document.body) document.body.appendChild(menu);
+    menu.hidden = false;
+    button.setAttribute("aria-expanded", "true");
+    requestAnimationFrame(positionKitlabCrossProjectCopyMenu);
+  }
+
+  function copyKitlabKitFromOtherProject(sourceKitId = "") {
+    const destinationSession = kitlabActiveWorkspaceSession();
+    const sourceSession = kitlabOtherWorkspaceSession();
+    if (!destinationSession || !sourceSession) return;
+    const sourceProject = normalizeKitlabProject(sourceSession.project);
+    const sourceKit = sourceProject.kits.find((kit) => String(kit.id || "").toLowerCase() === String(sourceKitId || "").toLowerCase());
+    if (!sourceKit) return;
+
+    let destinationProject = ensureCurrentKitSaved({ capturePreview: true, renderPanel: false });
+    const copiedName = uniqueCopiedProjectKitName(sourceKit.name || sourceKit.id || "Kit", destinationProject.kits);
+    const copiedId = makeUniqueProjectKitId(copiedName, destinationProject.kits, copiedName);
+    const copiedSettings = cloneKitlabProjectData(sourceKit.settings || sourceKit.data || null);
+    const copiedKit = {
+      id: copiedId,
+      name: copiedName,
+      slot: sourceKit.slot || copiedName,
+      settings: copiedSettings,
+      preview: sourceKit.preview || "",
+      savedAt: new Date().toISOString(),
+    };
+    destinationProject.kits.push(copiedKit);
+    destinationProject.kitOrder.push(copiedId);
+    state.project = destinationProject;
+
+    const sourceRuntime = sourceSession.runtimeCache?.get(String(sourceKit.id || "").toLowerCase()) || null;
+    if (sourceRuntime) kitlabProjectRuntimeCache.set(copiedId, cloneProjectRuntimeValue(sourceRuntime));
+
+    kitlabCaptureActiveWorkspaceSession({ saveCurrent: false });
+    renderProjectKitPanel();
+    renderKitlabProjectWorkspaceBar();
+    closeKitlabCrossProjectCopyMenu();
+    setStatus(`Kit copied from ${kitlabWorkspaceDisplayName(sourceSession)}: ${copiedName}`);
+    showToast(`Kit copied: ${copiedName}`);
+  }
+
+  function kitlabRegisterCurrentProjectInWorkspace() {
+    const session = kitlabCreateWorkspaceSessionFromCurrent();
+    kitlabOpenProjectSessions.push(session);
+    kitlabActiveProjectSessionId = session.id;
+    renderKitlabProjectWorkspaceBar();
+    return session;
+  }
+
+  function kitlabUpdateActiveWorkspaceSessionFromCurrent(options = {}) {
+    const session = kitlabActiveWorkspaceSession();
+    if (!session) return;
+    Object.assign(session, kitlabSnapshotCurrentWorkspaceSessionData({ saveCurrent: options.saveCurrent === true }));
+    renderKitlabProjectWorkspaceBar();
+  }
 
   function kitlabProjectFileTypes() {
     return [{
@@ -19163,6 +19474,13 @@
         textureLayers: cloneProjectRuntimeValue(state.textureLayers),
         textureSelected: Number(state.textureSelected || 0),
         armband: cloneProjectRuntimeValue(state.armband),
+        overlay: cloneProjectRuntimeValue(state.overlay),
+        showUv: state.showUv === true,
+        showGuide: state.showGuide === true,
+        uvOpacity: Number(state.uvOpacity ?? 0.5),
+        guideOpacity: Number(state.guideOpacity ?? 0.5),
+        showSlotBoxes: state.showSlotBoxes === true,
+        checkerBg: state.checkerBg === true,
         pieceVisible: cloneProjectRuntimeValue(state.pieceVisible),
         expandedParts: cloneProjectRuntimeValue(state.expandedParts),
         brandModuleOpen: state.brandModuleOpen === true,
@@ -19273,6 +19591,13 @@
     state.textureLayers = cloneProjectRuntimeValue(runtime.textureLayers || []);
     state.textureSelected = Number(runtime.textureSelected || 0);
     state.armband = cloneProjectRuntimeValue(runtime.armband || { item: null, image: null, src: "", name: "" });
+    state.overlay = cloneProjectRuntimeValue(runtime.overlay || { image: null, src: "", name: "", side: "left", size: 100, x: 0, y: 0, controlsOpen: false });
+    if (typeof runtime.showUv === "boolean") state.showUv = runtime.showUv;
+    if (typeof runtime.showGuide === "boolean") state.showGuide = runtime.showGuide;
+    if (Number.isFinite(Number(runtime.uvOpacity))) state.uvOpacity = Number(runtime.uvOpacity);
+    if (Number.isFinite(Number(runtime.guideOpacity))) state.guideOpacity = Number(runtime.guideOpacity);
+    if (typeof runtime.showSlotBoxes === "boolean") state.showSlotBoxes = runtime.showSlotBoxes;
+    if (typeof runtime.checkerBg === "boolean") state.checkerBg = runtime.checkerBg;
     state.pieceVisible = cloneProjectRuntimeValue(runtime.pieceVisible || state.pieceVisible || {});
     state.expandedParts = cloneProjectRuntimeValue(runtime.expandedParts || state.expandedParts || {});
     state.brandModuleOpen = runtime.brandModuleOpen === true;
@@ -19289,7 +19614,18 @@
     renderTextureLayers();
     renderPieceColorPanels();
     updateAllBrandUI();
-    try { syncSettingsVisibilityIcons(); } catch (_) {}
+    try {
+      if (els.showUv) els.showUv.checked = state.showUv === true;
+      if (els.showGuide) els.showGuide.checked = state.showGuide === true;
+      if (els.showSlotBoxes) els.showSlotBoxes.checked = state.showSlotBoxes === true;
+      if (els.checkerBg) els.checkerBg.checked = state.checkerBg === true;
+      if (els.canvasWrap) els.canvasWrap.classList.toggle("checker", state.checkerBg === true);
+      if (els.uvOpacity) els.uvOpacity.value = String(Math.round(clamp(Number(state.uvOpacity ?? 0.5), 0, 1) * 100));
+      if (els.guideOpacity) els.guideOpacity.value = String(Math.round(clamp(Number(state.guideOpacity ?? 0.5), 0, 1) * 100));
+      if (els.uvOpacityText) els.uvOpacityText.textContent = `${Math.round(clamp(Number(state.uvOpacity ?? 0.5), 0, 1) * 100)}%`;
+      if (els.guideOpacityText) els.guideOpacityText.textContent = `${Math.round(clamp(Number(state.guideOpacity ?? 0.5), 0, 1) * 100)}%`;
+      syncSettingsVisibilityIcons();
+    } catch (_) {}
     if (runtime.activeSection) setActiveSection(runtime.activeSection);
     updateOverlayUi();
     render({ immediate: true });
@@ -19359,6 +19695,7 @@
       return `<div class="project-kit-row${activeClass}${emptyClass}" role="button" tabindex="0" draggable="true" data-project-kit-id="${id}">${thumb}<span class="project-kit-text"><span class="project-kit-name" data-project-kit-name="${id}" draggable="false" title="Double click to rename">${escapeHtml(kit.name || kit.id || "Kit")}</span><span class="project-kit-meta">${escapeHtml(meta)}</span></span><span class="project-kit-row-actions"><button type="button" class="project-kit-action-btn project-kit-new-slot" data-project-kit-new-slot="${id}" title="New empty kit below" aria-label="New empty kit below">${newKitIcon}</button><button type="button" class="project-kit-action-btn project-kit-duplicate-kit" data-project-kit-duplicate-kit="${id}" title="Duplicate this kit" aria-label="Duplicate this kit"><img src="./assets/ui/project_duplicate_white_v1208.png" alt="" /></button><button type="button" class="project-kit-action-btn project-kit-delete-slot" data-project-kit-delete-slot="${id}" title="Delete slot" aria-label="Delete slot"><img src="./assets/ui/project_delete_red_v1208.png" alt="" /></button></span></div>`;
     }).join("");
     syncLogosCopyControl(project);
+    renderKitlabProjectWorkspaceBar();
   }
 
   function savedLogoModulesFromProjectKit(kit = null) {
@@ -20244,6 +20581,9 @@
     kitlabProjectDraftMode = false;
     state.project = normalized;
     renderProjectKitPanel();
+    if (!kitlabWorkspaceLoadingProject && kitlabActiveWorkspaceSession()) {
+      kitlabUpdateActiveWorkspaceSessionFromCurrent({ saveCurrent: false });
+    }
   }
 
   async function saveKitlabProjectAs() {
@@ -20549,7 +20889,50 @@
     }
   }
 
+  async function applyIncomingKitlabProjectToWorkspace(project, fileName = "", fileHandle = null) {
+    if (kitlabOpenProjectSessions.length >= 2) {
+      throw new Error("Only two projects can be open at the same time. Close one project first.");
+    }
+    const previousSessionId = kitlabActiveProjectSessionId;
+    if (previousSessionId) kitlabCaptureActiveWorkspaceSession({ saveCurrent: true });
+
+    kitlabActiveProjectSessionId = "";
+    kitlabWorkspaceLoadingProject = true;
+    kitlabProjectFileHandle = null;
+    kitlabProjectFileName = "";
+    kitlabProjectDraftMode = false;
+    clearProjectRuntimeCache();
+    kitlabProjectTemplateBaseCache.clear();
+    state.pes2021Reference = { image: null, src: "", name: "", opacity: 0.5 };
+    try { syncPes2021ReferenceControls(); } catch (_) {}
+
+    try {
+      await applyKitlabProject(project, fileName, fileHandle);
+      const session = kitlabRegisterCurrentProjectInWorkspace();
+      renderProjectKitPanel();
+      renderKitlabProjectWorkspaceBar();
+      return session;
+    } catch (error) {
+      if (previousSessionId) {
+        const previous = kitlabWorkspaceSessionById(previousSessionId);
+        if (previous) {
+          kitlabActiveProjectSessionId = previous.id;
+          kitlabInstallWorkspaceSession(previous);
+        }
+      }
+      throw error;
+    } finally {
+      kitlabWorkspaceLoadingProject = false;
+      renderKitlabProjectWorkspaceBar();
+    }
+  }
+
   async function loadKitlabProject() {
+    if (kitlabOpenProjectSessions.length >= 2) {
+      setStatus("Two projects are already open. Close one project before loading another.");
+      showToast("Close one project before opening another");
+      return;
+    }
     if (canUseKitlabFileSystemAccess()) {
       try {
         const [handle] = await window.showOpenFilePicker({
@@ -20561,8 +20944,7 @@
         const loadingName = kitlabProjectNameFromFileName(file.name, file.name || "Project");
         setStatus(`Loading project: ${loadingName}`);
         const project = await readKitlabProjectFile(file);
-        clearProjectRuntimeCache();
-        await applyKitlabProject(project, file.name || "", handle);
+        await applyIncomingKitlabProjectToWorkspace(project, file.name || "", handle);
         return;
       } catch (error) {
         if (error?.name === "AbortError") return;
@@ -20585,8 +20967,7 @@
         const loadingName = kitlabProjectNameFromFileName(file.name, file.name || "Project");
         setStatus(`Loading project: ${loadingName}`);
         const project = await readKitlabProjectFile(file);
-        clearProjectRuntimeCache();
-        await applyKitlabProject(project, file.name || "", null);
+        await applyIncomingKitlabProjectToWorkspace(project, file.name || "", null);
       } catch (error) {
         console.error(error);
         window.__kitlabPendingProjectSettings = null;
@@ -24345,6 +24726,46 @@
     if (els.loadProjectBtn) els.loadProjectBtn.addEventListener("click", loadKitlabProject);
     if (els.saveProjectBtn) els.saveProjectBtn.addEventListener("click", saveKitlabProject);
     if (els.saveProjectAsBtn) els.saveProjectAsBtn.addEventListener("click", saveKitlabProjectAs);
+
+    if (els.projectWorkspaceTabs) {
+      els.projectWorkspaceTabs.addEventListener("click", (event) => {
+        const closeButton = event.target?.closest?.("[data-project-session-close]");
+        if (closeButton) {
+          event.preventDefault();
+          event.stopPropagation();
+          closeKitlabWorkspaceProject(closeButton.dataset.projectSessionClose || "");
+          return;
+        }
+        const selectButton = event.target?.closest?.("[data-project-session-select]");
+        if (selectButton) {
+          event.preventDefault();
+          switchKitlabWorkspaceProject(selectButton.dataset.projectSessionSelect || "");
+        }
+      });
+    }
+    if (els.crossProjectCopyBtn) {
+      els.crossProjectCopyBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        if (els.crossProjectCopyMenu && !els.crossProjectCopyMenu.hidden) closeKitlabCrossProjectCopyMenu();
+        else openKitlabCrossProjectCopyMenu();
+      });
+    }
+    if (els.crossProjectCopyMenu) {
+      els.crossProjectCopyMenu.addEventListener("click", (event) => {
+        const card = event.target?.closest?.("[data-cross-project-copy-kit]");
+        if (!card) return;
+        event.preventDefault();
+        copyKitlabKitFromOtherProject(card.dataset.crossProjectCopyKit || "");
+      });
+    }
+    document.addEventListener("pointerdown", (event) => {
+      const menu = els.crossProjectCopyMenu;
+      if (!menu || menu.hidden) return;
+      if (menu.contains(event.target) || els.crossProjectCopyBtn?.contains?.(event.target)) return;
+      closeKitlabCrossProjectCopyMenu();
+    }, true);
+    window.addEventListener("resize", positionKitlabCrossProjectCopyMenu);
+    renderKitlabProjectWorkspaceBar();
     if (els.addProjectKitBtn) els.addProjectKitBtn.addEventListener("click", addProjectKit);
     if (els.duplicateProjectKitBtn) els.duplicateProjectKitBtn.addEventListener("click", duplicateProjectKit);
     if (els.setProjectKitThumbnailBtn) els.setProjectKitThumbnailBtn.addEventListener("click", setActiveProjectKitThumbnail);
