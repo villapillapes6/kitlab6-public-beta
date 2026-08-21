@@ -14247,6 +14247,27 @@
     }
   }
 
+  function applyExternalTeamNativeSizing(part, layer, image) {
+    if (!layer || assetTypeForPart(part) !== "team") return;
+    const targetId = BRAND_PARTS?.[part]?.targets?.[0];
+    const slot = targetId ? SLOT_BY_ID[targetId] : null;
+    const naturalW = Math.max(1, Number(image?.naturalWidth || image?.width || layer.nativeWidth || 1));
+    const naturalH = Math.max(1, Number(image?.naturalHeight || image?.height || layer.nativeHeight || 1));
+    const slotW = Math.max(1, Number(slot?.box?.w || 100));
+    const slotH = Math.max(1, Number(slot?.box?.h || 100));
+
+    // A PNG uploaded from disk enters the 2048 canvas at its actual pixel dimensions.
+    // Size remains 0 in the UI; baseScale contains only the native-pixel conversion.
+    layer.sourceKind = "external";
+    layer.preserveNativeGeometry = true;
+    layer.nativeWidth = naturalW;
+    layer.nativeHeight = naturalH;
+    layer.baseScaleX = naturalW / slotW;
+    layer.baseScaleY = naturalH / slotH;
+    layer.scaleX = 1;
+    layer.scaleY = 1;
+  }
+
   function paletteSwatchesHtml(part, layer, layerIndex) {
     if (!layerAllowsLogoColor(part, layer) || !layer.palette.length) return "";
     const colorMap = layer.colorMap || {};
@@ -14391,6 +14412,10 @@
       scaleY: 1,
       baseScaleX: 1,
       baseScaleY: 1,
+      sourceKind: "library",
+      preserveNativeGeometry: false,
+      nativeWidth: Number(image?.naturalWidth || image?.width || 0),
+      nativeHeight: Number(image?.naturalHeight || image?.height || 0),
       socksHeightPct: 80,
       side: "front",
       backOffsets: {},
@@ -14411,6 +14436,9 @@
       colorMap: { ...(layer.colorMap || {}) },
       backOffsets: { ...(layer.backOffsets || {}) },
       border: { ...layer.border },
+      // Duplicated Team rows may share the immutable source Image, but never runtime caches.
+      // This prevents replacing/recoloring/deleting one row from leaking state into its copy.
+      _processedImageCache: {},
     };
   }
 
@@ -14473,11 +14501,14 @@
     setPartLayers(part, [layer]);
   }
 
-  function loadLayerIntoPartAtIndex(part, image, fileName, src, layerIndex = null) {
+  function loadLayerIntoPartAtIndex(part, image, fileName, src, layerIndex = null, options = {}) {
     const group = getPart(part);
     const layer = makeLayer(image, fileName, src);
     layer.assetType = assetTypeForPart(part);
     applyDefaultLayerSizing(part, layer);
+    if (options?.externalUpload === true && options?.nativeSize === true && layer.assetType === "team") {
+      applyExternalTeamNativeSizing(part, layer, image);
+    }
 
     const index = Number(layerIndex);
     if (!Number.isFinite(index) || index < 0) {
@@ -14487,10 +14518,25 @@
 
     const targetIndex = Math.min(Math.floor(index), Math.max(group.layers.length, 0));
     const previous = group.layers[targetIndex] || null;
-    if (previous) copyLayerTransformSettings(previous, layer);
+    const isExternalNativeTeam = options?.externalUpload === true && options?.nativeSize === true && layer.assetType === "team";
+    if (previous) {
+      if (!isExternalNativeTeam && previous.preserveNativeGeometry !== true) {
+        // DATABASE / INTERNAL ASSETS: preserve the exact legacy KitLab behavior.
+        // Their calibrated sizing must remain untouched by the external-PNG feature.
+        copyLayerTransformSettings(previous, layer);
+      } else {
+        // EXTERNAL PNG, or a database asset replacing an external native-size PNG:
+        // keep only row-specific positioning/border. Never inherit native pixel scaling.
+        layer.offsetX = Number(previous.offsetX) || 0;
+        layer.offsetY = Number(previous.offsetY) || 0;
+        layer.backOffsets = { ...(previous.backOffsets || {}) };
+        layer.border = { ...(previous.border || { enabled: false, color: "#ffffff", size: 2 }) };
+        layer.side = previous.side === "back" ? "back" : "front";
+      }
+    }
 
-    // Loading/replacing a PNG is a fresh brand selection: visible Size must return to 0.
-    // For Socks only, keep the internal height squeeze at 80% without reducing width.
+    // Loading/replacing a PNG is a fresh selection: visible Size returns to 0.
+    // Database assets keep KitLab's calibrated baseScale; only a disk PNG can carry native geometry.
     layer.scaleX = 1;
     layer.scaleY = 1;
     if (part === "socks") layer.socksHeightPct = 80;
@@ -14500,18 +14546,17 @@
     group.selected = targetIndex;
   }
 
-  function handleImageLoadedForPart(part, image, fileName, src, layerIndex = null) {
+  function handleImageLoadedForPart(part, image, fileName, src, layerIndex = null, options = {}) {
     const type = assetTypeForPart(part);
     const index = Number.isFinite(Number(layerIndex)) ? Number(layerIndex) : null;
     if (type === "team") {
       state.logoModuleOpen = true;
       prepareTeamImageColorMode(image, fileName, src);
-      // TEAM shirt and TEAM short use the same selected PNG, but each duplicated row stays independent.
-      loadLayerIntoPartAtIndex("logo_shirt", image, fileName, src, index);
-      loadLayerIntoPartAtIndex("logo_short", image, fileName, src, index);
-      state.expandedParts.logo_shirt = false;
-      state.expandedParts.logo_short = false;
-      setStatus("Team loaded into Shirt and Short");
+      // TEAM Shirt and TEAM Short are fully independent modules. Loading into one never
+      // creates/replaces a layer in the other.
+      loadLayerIntoPartAtIndex(part, image, fileName, src, index, options);
+      state.expandedParts[part] = false;
+      setStatus(`Team loaded into ${BRAND_PARTS[part].label}`);
     } else if (type === "sponsor") {
       state.sponsorModuleOpen = true;
       // Sponsor Front and Back are independent and do not share PNG.
@@ -14535,7 +14580,8 @@
     if (!requireTemplateLoaded("uploads")) return;
     const reader = new FileReader();
     reader.onload = () => {
-      loadImageFromSrc(reader.result, (image) => handleImageLoadedForPart(part, image, file.name, reader.result, layerIndex));
+      const isPng = file.type === "image/png" || /\.png$/i.test(file.name || "");
+      loadImageFromSrc(reader.result, (image) => handleImageLoadedForPart(part, image, file.name, reader.result, layerIndex, { externalUpload: true, nativeSize: isPng }));
     };
     reader.readAsDataURL(file);
   }
@@ -14543,9 +14589,14 @@
   function deletePart(part) {
     const type = assetTypeForPart(part);
     if (type === "team") {
-      setPartLayers("logo_shirt", []);
-      setPartLayers("logo_short", []);
-      setStatus("Team deleted from Shirt and Short");
+      const group = getPart(part);
+      if (Array.isArray(group.layers) && group.layers.length) {
+        // The main Shirt/Short row is layer 0. Delete only that logo; duplicated Team rows
+        // remain intact and slide up independently instead of the whole module being cleared.
+        group.layers.splice(0, 1);
+        group.selected = Math.max(0, Math.min(Number(group.selected || 0), Math.max(0, group.layers.length - 1)));
+      }
+      setStatus(`Team deleted from ${BRAND_PARTS[part].label}`);
     } else if (type === "sponsor") {
       setPartLayers(part, []);
       setStatus(`Sponsor deleted from ${BRAND_PARTS[part].label}`);
@@ -14568,16 +14619,14 @@
     }
 
     if (assetTypeForPart(part) === "team") {
-      for (const teamPart of ["logo_shirt", "logo_short"]) {
-        const baseLayer = getLayerByIndex(teamPart, sourceLayerIndex) || getSelectedLayer(teamPart) || getPart(teamPart).layers[0];
-        if (!baseLayer) continue;
-        const teamGroup = getPart(teamPart);
-        const copy = resetDuplicatedLayerDefaults(teamPart, cloneLayer(baseLayer));
-        teamGroup.layers.push(copy);
-        teamGroup.selected = teamGroup.layers.length - 1;
-        state.expandedParts[teamPart] = true;
-      }
-      setStatus("Team layer duplicated in Shirt and Short");
+      const teamGroup = getPart(part);
+      const copy = cloneLayer(layer);
+      // Duplicating a row creates an independent logo with the same current size/position.
+      // From this moment either row can be replaced, moved, resized or deleted alone.
+      teamGroup.layers.push(copy);
+      teamGroup.selected = teamGroup.layers.length - 1;
+      state.expandedParts[part] = true;
+      setStatus(`Team layer duplicated in ${BRAND_PARTS[part].label}`);
       updateAllBrandUI();
       invalidateInteractionRenderCache("brand");
       scheduleBrandInteractionRender({ accurate: true, accurateDelayMs: 180 });
@@ -14711,7 +14760,10 @@
 
     try {
       applyPaletteColorMap(octx, off, layer);
-      const result = trimTransparentCanvas(off);
+      // External Team PNGs are intentionally kept on their original full PNG canvas.
+      // Their transparent margins are part of the requested real pixel size, so recoloring
+      // must never trim the image and silently change its on-kit dimensions.
+      const result = layer.preserveNativeGeometry === true ? off : trimTransparentCanvas(off);
       layer._processedImageCache[mode] = { key: cacheKey, image: result };
       return result;
     } catch (error) {
@@ -18455,6 +18507,10 @@
           scaleY: Number(layer.scaleY || 1),
           baseScaleX: Number(layer.baseScaleX || 1),
           baseScaleY: Number(layer.baseScaleY || 1),
+          sourceKind: layer.sourceKind || "library",
+          preserveNativeGeometry: layer.preserveNativeGeometry === true,
+          nativeWidth: Number(layer.nativeWidth || layer.image?.naturalWidth || layer.image?.width || 0),
+          nativeHeight: Number(layer.nativeHeight || layer.image?.naturalHeight || layer.image?.height || 0),
           socksHeightPct: Number(layer.socksHeightPct ?? 80),
           side: part === "socks" ? layerSocksSide(layer) : undefined,
           backOffsets: layer.backOffsets || {},
@@ -18518,6 +18574,10 @@
           layer.scaleY = Number(savedLayer.scaleY || 1);
           layer.baseScaleX = Number(savedLayer.baseScaleX || 1);
           layer.baseScaleY = Number(savedLayer.baseScaleY || 1);
+          layer.sourceKind = savedLayer.sourceKind || "library";
+          layer.preserveNativeGeometry = savedLayer.preserveNativeGeometry === true;
+          layer.nativeWidth = Number(savedLayer.nativeWidth || image?.naturalWidth || image?.width || 0);
+          layer.nativeHeight = Number(savedLayer.nativeHeight || image?.naturalHeight || image?.height || 0);
           layer.socksHeightPct = part === "socks" ? normalizeSocksBrandHeightPct(savedLayer.socksHeightPct) : Number(savedLayer.socksHeightPct ?? 80);
           layer.side = savedLayer.side === "back" ? "back" : (part === "socks" && savedLayer.side !== "front" ? (state.brand?.socks?.side === "back" ? "back" : "front") : "front");
           layer.backOffsets = savedLayer.backOffsets || {};
@@ -19731,6 +19791,10 @@
           scaleY: Number(layer.scaleY || 1),
           baseScaleX: Number(layer.baseScaleX || 1),
           baseScaleY: Number(layer.baseScaleY || 1),
+          sourceKind: layer.sourceKind || "library",
+          preserveNativeGeometry: layer.preserveNativeGeometry === true,
+          nativeWidth: Number(layer.nativeWidth || layer.image?.naturalWidth || layer.image?.width || 0),
+          nativeHeight: Number(layer.nativeHeight || layer.image?.naturalHeight || layer.image?.height || 0),
           socksHeightPct: Number(layer.socksHeightPct ?? 80),
           side: part === "socks" ? (layer.side === "back" ? "back" : "front") : undefined,
           backOffsets: layer.backOffsets || {},
@@ -21987,12 +22051,13 @@
   function selectTeamGalleryItem(item) {
     if (!item || !item.src) return;
     const targetPart = assetTypeForPart(state.galleryTargetPart) === "team" ? state.galleryTargetPart : "logo_shirt";
+    const targetLayerIndex = Number.isFinite(Number(state.galleryTargetLayerIndex)) ? Number(state.galleryTargetLayerIndex) : 0;
     setStatus(`Loading team: ${item.name}`);
     const applyLoaded = (image, finalSrc) => {
       const visibleName = item.name || cleanBrandFileName(decodeHashUnicode(item.file || ""));
       if (Array.isArray(item.palette)) image.kitlab6Palette = item.palette;
       prepareTeamImageColorMode(image, `${visibleName} ${item.file || ""}`, finalSrc || item.src);
-      handleImageLoadedForPart(targetPart, image, visibleName, finalSrc || item.src);
+      handleImageLoadedForPart(targetPart, image, visibleName, finalSrc || item.src, targetLayerIndex);
       closeGallery();
     };
     loadImageAsDataUrlWhenPossible(item.src, applyLoaded);
