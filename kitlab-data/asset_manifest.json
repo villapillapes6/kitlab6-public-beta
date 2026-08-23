@@ -1,11 +1,11 @@
 ﻿{
     "version":  "1.3.262-web-dynamic-daily-assets",
-    "generated":  "2026-08-21T15:57:34.9713385Z",
+    "generated":  "2026-08-23T09:09:06.8311802Z",
     "purpose":  "KitLab6 static catalog: dynamic Pattern, Team, Brand, Sponsor and TXT; templates remain controlled in app.js",
     "dynamicRoots":  {
                          "assets/pattern":  {
                                                 "mode":  "manifest-authoritative",
-                                                "imageFiles":  555,
+                                                "imageFiles":  573,
                                                 "directFolders":  [
                                                                       "1. FC Heidenheim",
                                                                       "1. FC K#U00f6ln",
@@ -72,6 +72,7 @@
                                                                       "FC Dallas",
                                                                       "FC Internazionale",
                                                                       "FC Porto",
+                                                                      "FC Schalke 04",
                                                                       "FC Shakhtar Donetsk",
                                                                       "FC St. Pauli",
                                                                       "FC Twente",
@@ -126,6 +127,7 @@
                                                                       "San Diego FC",
                                                                       "San Jose Earthquakes",
                                                                       "Seattle Sounders FC",
+                                                                      "Sevilla FC",
                                                                       "Sociedade Esportiva Palmeiras",
                                                                       "Sport Club Internacional",
                                                                       "Sport Lisboa e Benfica",
@@ -1213,6 +1215,7 @@
                   "assets/pattern/AC Milan/milan_24_pleasures.png",
                   "assets/pattern/AC Milan/milan_25_home.png",
                   "assets/pattern/AC Milan/milan_25_third.png",
+                  "assets/pattern/AC Milan/milan_26_away.png",
                   "assets/pattern/ACF Fiorentina/fiorentina_25_home.png",
                   "assets/pattern/AFC Ajax/ajax_24_away - 1.png",
                   "assets/pattern/AFC Ajax/ajax_24_away - 2.png",
@@ -1237,6 +1240,7 @@
                   "assets/pattern/Arsenal FC/arsenal_25_third - 1.png",
                   "assets/pattern/Arsenal FC/arsenal_25_third - 2.png",
                   "assets/pattern/Arsenal FC/arsenal_26_away.png",
+                  "assets/pattern/Arsenal FC/arsenal_26_third.png",
                   "assets/pattern/AS Roma/roma_25_third.png",
                   "assets/pattern/Aston Villa FC/aston_villa_23_away.png",
                   "assets/pattern/Aston Villa FC/aston_villa_23_home.png",
@@ -1273,6 +1277,7 @@
                   "assets/pattern/Borussia Dortmund/dortmund_25_away - 2.png",
                   "assets/pattern/Borussia Dortmund/dortmund_25_cwc.png",
                   "assets/pattern/Borussia Dortmund/dortmund_25_home.png",
+                  "assets/pattern/Borussia Dortmund/dortmund_26_away.png",
                   "assets/pattern/Borussia Dortmund/dortmund_26_home.png",
                   "assets/pattern/Borussia M#U00f6nchengladbach/monchengladbach_24_away.png",
                   "assets/pattern/Borussia M#U00f6nchengladbach/monchengladbach_24_home_1.png",
@@ -1378,6 +1383,7 @@
                   "assets/pattern/FC Barcelona/barcelona_24_third.png",
                   "assets/pattern/FC Barcelona/barcelona_25_home.png",
                   "assets/pattern/FC Barcelona/barcelona_26_away.png",
+                  "assets/pattern/FC Barcelona/barcelona_26_third.png",
                   "assets/pattern/FC Bayern Munich/bayern_24_home.png",
                   "assets/pattern/FC Bayern Munich/bayern_24_third.png",
                   "assets/pattern/FC Bayern Munich/bayern_25_away - 1.png",
@@ -1409,6 +1415,7 @@
                   "assets/pattern/FC Internazionale/inter_25_home.png",
                   "assets/pattern/FC Internazionale/inter_26_home.png",
                   "assets/pattern/FC Porto/porto_25_away.png",
+                  "assets/pattern/FC Schalke 04/schalke_26_home.png",
                   "assets/pattern/FC Shakhtar Donetsk/shakhtar_25_away.png",
                   "assets/pattern/FC Shakhtar Donetsk/shakhtar_25_third.png",
                   "assets/pattern/FC St. Pauli/st_pauli_24_away_1.png",
@@ -1426,7 +1433,9 @@
                   "assets/pattern/Feyenoord Rotterdam/feyenoord_25_away.png",
                   "assets/pattern/Feyenoord Rotterdam/feyenoord_25_third.png",
                   "assets/pattern/Fulham FC/fulham_25_home.png",
+                  "assets/pattern/Fulham FC/fulham_26_away.png",
                   "assets/pattern/Fulham FC/fulham_26_home.png",
+                  "assets/pattern/Fulham FC/fulham_26_third.png",
                   "assets/pattern/Galatasaray SK/galatasaray_24_away.png",
                   "assets/pattern/Galatasaray SK/galatasaray_24_third_1.png",
                   "assets/pattern/Galatasaray SK/galatasaray_24_third_2.png",
@@ -1437,6 +1446,7 @@
                   "assets/pattern/Granada CF/granada_24_fourth.png",
                   "assets/pattern/Grenoble Foot 38/grenoble_foot_24_home.png",
                   "assets/pattern/Hamburger SV/hamburg_25_home.png",
+                  "assets/pattern/Hamburger SV/hamburg_26_home.png",
                   "assets/pattern/Holstein Kiel/holstein_kiel_24_away.png",
                   "assets/pattern/Holstein Kiel/holstein_kiel_24_home.png",
                   "assets/pattern/Houston Dynamo FC/houston_25_home.png",
@@ -1451,15 +1461,18 @@
                   "assets/pattern/Juventus FC/juventus_25_away - 1.png",
                   "assets/pattern/Juventus FC/juventus_25_away - 2.png",
                   "assets/pattern/Juventus FC/juventus_25_third.png",
+                  "assets/pattern/Juventus FC/juventus_26_third.png",
                   "assets/pattern/Juventus FC/juventus_home_25.png",
                   "assets/pattern/Leeds United FC/leeds_25_third - 1.png",
                   "assets/pattern/Leeds United FC/leeds_25_third - 2.png",
                   "assets/pattern/Leeds United FC/leeds_25_third - 3.png",
+                  "assets/pattern/Leeds United FC/leeds_26_away.png",
                   "assets/pattern/Leicester City FC/leicester_24_home.png",
                   "assets/pattern/Leicester City FC/leicester_24_third.png",
                   "assets/pattern/Liverpool FC/liverpool_24_home.png",
                   "assets/pattern/Liverpool FC/liverpool_24_lebron.png",
                   "assets/pattern/Liverpool FC/liverpool_24_third.png",
+                  "assets/pattern/Liverpool FC/liverpool_26_away.png",
                   "assets/pattern/Liverpool FC/liverpool_26_home.png",
                   "assets/pattern/Los Angeles FC/los_angeles_26_home.png",
                   "assets/pattern/Los Angeles Galaxy/la_galaxy_24_home.png",
@@ -1467,6 +1480,7 @@
                   "assets/pattern/Los Angeles Galaxy/la_galaxy_26_home - 2.png",
                   "assets/pattern/Malaga CF/malaga_26_home_1.png",
                   "assets/pattern/Malaga CF/malaga_26_home_2.png",
+                  "assets/pattern/Malaga CF/malaga_26_third.png",
                   "assets/pattern/Manchester City FC/manchester_city_23_away.png",
                   "assets/pattern/Manchester City FC/manchester_city_23_home.png",
                   "assets/pattern/Manchester City FC/manchester_city_24_third.png",
@@ -1475,6 +1489,7 @@
                   "assets/pattern/Manchester City FC/manchester_city_25_home.png",
                   "assets/pattern/Manchester City FC/manchester_city_25_third.png",
                   "assets/pattern/Manchester City FC/manchester_city_26_away.png",
+                  "assets/pattern/Manchester United FC/man_utd_26_third.png",
                   "assets/pattern/Manchester United FC/manchester_united_23_home.png",
                   "assets/pattern/Manchester United FC/manchester_united_24_away.png",
                   "assets/pattern/Manchester United FC/manchester_united_25_away.png",
@@ -1679,6 +1694,7 @@
                   "assets/pattern/Olympique de Marsella/marseille_26_third.png",
                   "assets/pattern/Olympique Lyonnais/lyon_25_home.png",
                   "assets/pattern/Olympique Lyonnais/lyon_25_third.png",
+                  "assets/pattern/Olympique Lyonnais/lyon_26_third.png",
                   "assets/pattern/Orlando City SC/orlando_25_home.png",
                   "assets/pattern/Paris Saint-Germain FC/psg_25_home_1.png",
                   "assets/pattern/Paris Saint-Germain FC/psg_25_home_2.png",
@@ -1705,10 +1721,12 @@
                   "assets/pattern/RCD Espanyol/espanyol_26_third.png",
                   "assets/pattern/RCD Mallorca/mallorca_26_away.png",
                   "assets/pattern/RCD Mallorca/mallorca_26_third.png",
+                  "assets/pattern/Real Jaen/jaen_26_away.png",
                   "assets/pattern/Real Jaen/jaen_26_home.png",
                   "assets/pattern/Real Madrid CF/real_madrid_25_away.png",
                   "assets/pattern/Real Madrid CF/real_madrid_25_third.png",
                   "assets/pattern/Real Madrid CF/real_madrid_26_away.png",
+                  "assets/pattern/Real Madrid CF/real_madrid_26_third.png",
                   "assets/pattern/Real Oviedo/oviedo_26_away.png",
                   "assets/pattern/Real Oviedo/oviedo_26_home.png",
                   "assets/pattern/Real Oviedo/oviedo_26_third_1.png",
@@ -1722,6 +1740,7 @@
                   "assets/pattern/San Jose Earthquakes/san_jose_24_home.png",
                   "assets/pattern/San Jose Earthquakes/san_jose_25_home.png",
                   "assets/pattern/Seattle Sounders FC/seattle_25_away.png",
+                  "assets/pattern/Sevilla FC/sevilla_26_home.png",
                   "assets/pattern/Sociedade Esportiva Palmeiras/palmeiras_home_25.png",
                   "assets/pattern/Sport Club Internacional/internacional_25_away.png",
                   "assets/pattern/Sport Lisboa e Benfica/benfica_25_away.png",
@@ -1740,6 +1759,7 @@
                   "assets/pattern/Toronto FC/toronto_24_away.png",
                   "assets/pattern/Toronto FC/toronto_25_home.png",
                   "assets/pattern/Tottenham Hotspur FC/tottenham_25_away.png",
+                  "assets/pattern/Tottenham Hotspur FC/tottenham_26_home.png",
                   "assets/pattern/UD Las Palmas/las_palmas_25_home.png",
                   "assets/pattern/Universidad Catolica/universidad_catolica_25_third.png",
                   "assets/pattern/Urawa Red Diamonds/urawa_25_third.png",
@@ -7691,6 +7711,7 @@
                                                         "FC Dallas",
                                                         "FC Internazionale",
                                                         "FC Porto",
+                                                        "FC Schalke 04",
                                                         "FC Shakhtar Donetsk",
                                                         "FC St. Pauli",
                                                         "FC Twente",
@@ -7745,6 +7766,7 @@
                                                         "San Diego FC",
                                                         "San Jose Earthquakes",
                                                         "Seattle Sounders FC",
+                                                        "Sevilla FC",
                                                         "Sociedade Esportiva Palmeiras",
                                                         "Sport Club Internacional",
                                                         "Sport Lisboa e Benfica",
@@ -7823,7 +7845,8 @@
                                                                "milan_24_home_2.png",
                                                                "milan_24_pleasures.png",
                                                                "milan_25_home.png",
-                                                               "milan_25_third.png"
+                                                               "milan_25_third.png",
+                                                               "milan_26_away.png"
                                                            ]
                                              },
                  "assets/pattern/ACF Fiorentina":  {
@@ -7903,7 +7926,8 @@
                                                                  "arsenal_25_home.png",
                                                                  "arsenal_25_third - 1.png",
                                                                  "arsenal_25_third - 2.png",
-                                                                 "arsenal_26_away.png"
+                                                                 "arsenal_26_away.png",
+                                                                 "arsenal_26_third.png"
                                                              ]
                                                },
                  "assets/pattern/AS Roma":  {
@@ -8017,6 +8041,7 @@
                                                                         "dortmund_25_away - 2.png",
                                                                         "dortmund_25_cwc.png",
                                                                         "dortmund_25_home.png",
+                                                                        "dortmund_26_away.png",
                                                                         "dortmund_26_home.png"
                                                                     ]
                                                       },
@@ -8359,7 +8384,8 @@
                                                      "files":  [
                                                                    "barcelona_24_third.png",
                                                                    "barcelona_25_home.png",
-                                                                   "barcelona_26_away.png"
+                                                                   "barcelona_26_away.png",
+                                                                   "barcelona_26_third.png"
                                                                ]
                                                  },
                  "assets/pattern/FC Bayern Munich":  {
@@ -8435,6 +8461,14 @@
                                                                "porto_25_away.png"
                                                            ]
                                              },
+                 "assets/pattern/FC Schalke 04":  {
+                                                      "folders":  [
+
+                                                                  ],
+                                                      "files":  [
+                                                                    "schalke_26_home.png"
+                                                                ]
+                                                  },
                  "assets/pattern/FC Shakhtar Donetsk":  {
                                                             "folders":  [
 
@@ -8492,7 +8526,9 @@
                                                               ],
                                                   "files":  [
                                                                 "fulham_25_home.png",
-                                                                "fulham_26_home.png"
+                                                                "fulham_26_away.png",
+                                                                "fulham_26_home.png",
+                                                                "fulham_26_third.png"
                                                             ]
                                               },
                  "assets/pattern/Galatasaray SK":  {
@@ -8537,7 +8573,8 @@
 
                                                                  ],
                                                      "files":  [
-                                                                   "hamburg_25_home.png"
+                                                                   "hamburg_25_home.png",
+                                                                   "hamburg_26_home.png"
                                                                ]
                                                  },
                  "assets/pattern/Holstein Kiel":  {
@@ -8580,6 +8617,7 @@
                                                                   "juventus_25_away - 1.png",
                                                                   "juventus_25_away - 2.png",
                                                                   "juventus_25_third.png",
+                                                                  "juventus_26_third.png",
                                                                   "juventus_home_25.png"
                                                               ]
                                                 },
@@ -8590,7 +8628,8 @@
                                                         "files":  [
                                                                       "leeds_25_third - 1.png",
                                                                       "leeds_25_third - 2.png",
-                                                                      "leeds_25_third - 3.png"
+                                                                      "leeds_25_third - 3.png",
+                                                                      "leeds_26_away.png"
                                                                   ]
                                                     },
                  "assets/pattern/Leicester City FC":  {
@@ -8610,6 +8649,7 @@
                                                                    "liverpool_24_home.png",
                                                                    "liverpool_24_lebron.png",
                                                                    "liverpool_24_third.png",
+                                                                   "liverpool_26_away.png",
                                                                    "liverpool_26_home.png"
                                                                ]
                                                  },
@@ -8637,7 +8677,8 @@
                                                               ],
                                                   "files":  [
                                                                 "malaga_26_home_1.png",
-                                                                "malaga_26_home_2.png"
+                                                                "malaga_26_home_2.png",
+                                                                "malaga_26_third.png"
                                                             ]
                                               },
                  "assets/pattern/Manchester City FC":  {
@@ -8660,6 +8701,7 @@
 
                                                                          ],
                                                              "files":  [
+                                                                           "man_utd_26_third.png",
                                                                            "manchester_united_23_home.png",
                                                                            "manchester_united_24_away.png",
                                                                            "manchester_united_25_away.png",
@@ -9299,7 +9341,8 @@
                                                                        ],
                                                            "files":  [
                                                                          "lyon_25_home.png",
-                                                                         "lyon_25_third.png"
+                                                                         "lyon_25_third.png",
+                                                                         "lyon_26_third.png"
                                                                      ]
                                                        },
                  "assets/pattern/Orlando City SC":  {
@@ -9410,6 +9453,7 @@
 
                                                               ],
                                                   "files":  [
+                                                                "jaen_26_away.png",
                                                                 "jaen_26_home.png"
                                                             ]
                                               },
@@ -9420,7 +9464,8 @@
                                                        "files":  [
                                                                      "real_madrid_25_away.png",
                                                                      "real_madrid_25_third.png",
-                                                                     "real_madrid_26_away.png"
+                                                                     "real_madrid_26_away.png",
+                                                                     "real_madrid_26_third.png"
                                                                  ]
                                                    },
                  "assets/pattern/Real Oviedo":  {
@@ -9478,6 +9523,14 @@
                                                                           "seattle_25_away.png"
                                                                       ]
                                                         },
+                 "assets/pattern/Sevilla FC":  {
+                                                   "folders":  [
+
+                                                               ],
+                                                   "files":  [
+                                                                 "sevilla_26_home.png"
+                                                             ]
+                                               },
                  "assets/pattern/Sociedade Esportiva Palmeiras":  {
                                                                       "folders":  [
 
@@ -9563,7 +9616,8 @@
 
                                                                          ],
                                                              "files":  [
-                                                                           "tottenham_25_away.png"
+                                                                           "tottenham_25_away.png",
+                                                                           "tottenham_26_home.png"
                                                                        ]
                                                          },
                  "assets/pattern/UD Las Palmas":  {
