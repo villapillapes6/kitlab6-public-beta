@@ -1,0 +1,20 @@
+KITLAB6 — BLOQUEO PÚBLICO TEMPORAL
+===================================
+
+Este paquete NO contiene ni modifica la aplicación Web Real de KitLab6.
+Contiene únicamente una página pública temporal de mantenimiento.
+
+USO
+---
+1. Guarda una copia segura del index.html actual de la Web Real.
+2. Sustituye temporalmente SOLO el index.html público por el index.html de este paquete.
+3. No es necesario borrar app.js, style.css, assets, templates ni ningún otro archivo del servidor.
+4. Para volver a abrir KitLab6, restaura el index.html original de la Web Real.
+
+IMPORTANTE
+----------
+Esta solución impide el acceso normal a KitLab6 desde la página principal porque la aplicación real ya no se carga.
+No es un sistema de autenticación de servidor. Si tu hosting expone otras páginas HTML o rutas independientes,
+deben bloquearse también desde el propio hosting para un cierre técnico absoluto.
+
+La Web Local de tu PC no se ve afectada.
