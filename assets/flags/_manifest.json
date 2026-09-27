@@ -1,0 +1,1172 @@
+[
+  {
+    "name": "Afghanistan",
+    "iso_alpha2": "AF",
+    "file": "Afghanistan.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Albania",
+    "iso_alpha2": "AL",
+    "file": "Albania.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Algeria",
+    "iso_alpha2": "DZ",
+    "file": "Algeria.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Andorra",
+    "iso_alpha2": "AD",
+    "file": "Andorra.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Angola",
+    "iso_alpha2": "AO",
+    "file": "Angola.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Antigua and Barbuda",
+    "iso_alpha2": "AG",
+    "file": "Antigua and Barbuda.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Argentina",
+    "iso_alpha2": "AR",
+    "file": "Argentina.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Armenia",
+    "iso_alpha2": "AM",
+    "file": "Armenia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Australia",
+    "iso_alpha2": "AU",
+    "file": "Australia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Austria",
+    "iso_alpha2": "AT",
+    "file": "Austria.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Azerbaijan",
+    "iso_alpha2": "AZ",
+    "file": "Azerbaijan.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Bahamas",
+    "iso_alpha2": "BS",
+    "file": "Bahamas.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Bahrain",
+    "iso_alpha2": "BH",
+    "file": "Bahrain.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Bangladesh",
+    "iso_alpha2": "BD",
+    "file": "Bangladesh.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Barbados",
+    "iso_alpha2": "BB",
+    "file": "Barbados.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Belarus",
+    "iso_alpha2": "BY",
+    "file": "Belarus.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Belgium",
+    "iso_alpha2": "BE",
+    "file": "Belgium.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Belize",
+    "iso_alpha2": "BZ",
+    "file": "Belize.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Benin",
+    "iso_alpha2": "BJ",
+    "file": "Benin.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Bhutan",
+    "iso_alpha2": "BT",
+    "file": "Bhutan.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Bolivia",
+    "iso_alpha2": "BO",
+    "file": "Bolivia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Bosnia and Herzegovina",
+    "iso_alpha2": "BA",
+    "file": "Bosnia and Herzegovina.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Botswana",
+    "iso_alpha2": "BW",
+    "file": "Botswana.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Brazil",
+    "iso_alpha2": "BR",
+    "file": "Brazil.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Brunei",
+    "iso_alpha2": "BN",
+    "file": "Brunei.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Bulgaria",
+    "iso_alpha2": "BG",
+    "file": "Bulgaria.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Burkina Faso",
+    "iso_alpha2": "BF",
+    "file": "Burkina Faso.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Burundi",
+    "iso_alpha2": "BI",
+    "file": "Burundi.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Cabo Verde",
+    "iso_alpha2": "CV",
+    "file": "Cabo Verde.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Cambodia",
+    "iso_alpha2": "KH",
+    "file": "Cambodia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Cameroon",
+    "iso_alpha2": "CM",
+    "file": "Cameroon.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Canada",
+    "iso_alpha2": "CA",
+    "file": "Canada.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Central African Republic",
+    "iso_alpha2": "CF",
+    "file": "Central African Republic.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Chad",
+    "iso_alpha2": "TD",
+    "file": "Chad.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Chile",
+    "iso_alpha2": "CL",
+    "file": "Chile.png",
+    "size": "512x384"
+  },
+  {
+    "name": "China",
+    "iso_alpha2": "CN",
+    "file": "China.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Colombia",
+    "iso_alpha2": "CO",
+    "file": "Colombia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Comoros",
+    "iso_alpha2": "KM",
+    "file": "Comoros.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Congo",
+    "iso_alpha2": "CG",
+    "file": "Congo.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Costa Rica",
+    "iso_alpha2": "CR",
+    "file": "Costa Rica.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Cote dIvoire",
+    "iso_alpha2": "CI",
+    "file": "Cote dIvoire.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Croatia",
+    "iso_alpha2": "HR",
+    "file": "Croatia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Cuba",
+    "iso_alpha2": "CU",
+    "file": "Cuba.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Cyprus",
+    "iso_alpha2": "CY",
+    "file": "Cyprus.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Czechia",
+    "iso_alpha2": "CZ",
+    "file": "Czechia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Democratic Republic of the Congo",
+    "iso_alpha2": "CD",
+    "file": "Democratic Republic of the Congo.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Denmark",
+    "iso_alpha2": "DK",
+    "file": "Denmark.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Djibouti",
+    "iso_alpha2": "DJ",
+    "file": "Djibouti.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Dominica",
+    "iso_alpha2": "DM",
+    "file": "Dominica.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Dominican Republic",
+    "iso_alpha2": "DO",
+    "file": "Dominican Republic.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Ecuador",
+    "iso_alpha2": "EC",
+    "file": "Ecuador.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Egypt",
+    "iso_alpha2": "EG",
+    "file": "Egypt.png",
+    "size": "512x384"
+  },
+  {
+    "name": "El Salvador",
+    "iso_alpha2": "SV",
+    "file": "El Salvador.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Equatorial Guinea",
+    "iso_alpha2": "GQ",
+    "file": "Equatorial Guinea.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Eritrea",
+    "iso_alpha2": "ER",
+    "file": "Eritrea.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Estonia",
+    "iso_alpha2": "EE",
+    "file": "Estonia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Eswatini",
+    "iso_alpha2": "SZ",
+    "file": "Eswatini.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Ethiopia",
+    "iso_alpha2": "ET",
+    "file": "Ethiopia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Fiji",
+    "iso_alpha2": "FJ",
+    "file": "Fiji.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Finland",
+    "iso_alpha2": "FI",
+    "file": "Finland.png",
+    "size": "512x384"
+  },
+  {
+    "name": "France",
+    "iso_alpha2": "FR",
+    "file": "France.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Gabon",
+    "iso_alpha2": "GA",
+    "file": "Gabon.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Gambia",
+    "iso_alpha2": "GM",
+    "file": "Gambia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Georgia",
+    "iso_alpha2": "GE",
+    "file": "Georgia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Germany",
+    "iso_alpha2": "DE",
+    "file": "Germany.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Ghana",
+    "iso_alpha2": "GH",
+    "file": "Ghana.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Greece",
+    "iso_alpha2": "GR",
+    "file": "Greece.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Grenada",
+    "iso_alpha2": "GD",
+    "file": "Grenada.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Guatemala",
+    "iso_alpha2": "GT",
+    "file": "Guatemala.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Guinea",
+    "iso_alpha2": "GN",
+    "file": "Guinea.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Guinea-Bissau",
+    "iso_alpha2": "GW",
+    "file": "Guinea-Bissau.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Guyana",
+    "iso_alpha2": "GY",
+    "file": "Guyana.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Haiti",
+    "iso_alpha2": "HT",
+    "file": "Haiti.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Honduras",
+    "iso_alpha2": "HN",
+    "file": "Honduras.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Hungary",
+    "iso_alpha2": "HU",
+    "file": "Hungary.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Iceland",
+    "iso_alpha2": "IS",
+    "file": "Iceland.png",
+    "size": "512x384"
+  },
+  {
+    "name": "India",
+    "iso_alpha2": "IN",
+    "file": "India.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Indonesia",
+    "iso_alpha2": "ID",
+    "file": "Indonesia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Iran",
+    "iso_alpha2": "IR",
+    "file": "Iran.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Iraq",
+    "iso_alpha2": "IQ",
+    "file": "Iraq.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Ireland",
+    "iso_alpha2": "IE",
+    "file": "Ireland.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Israel",
+    "iso_alpha2": "IL",
+    "file": "Israel.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Italy",
+    "iso_alpha2": "IT",
+    "file": "Italy.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Jamaica",
+    "iso_alpha2": "JM",
+    "file": "Jamaica.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Japan",
+    "iso_alpha2": "JP",
+    "file": "Japan.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Jordan",
+    "iso_alpha2": "JO",
+    "file": "Jordan.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Kazakhstan",
+    "iso_alpha2": "KZ",
+    "file": "Kazakhstan.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Kenya",
+    "iso_alpha2": "KE",
+    "file": "Kenya.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Kiribati",
+    "iso_alpha2": "KI",
+    "file": "Kiribati.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Kuwait",
+    "iso_alpha2": "KW",
+    "file": "Kuwait.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Kyrgyzstan",
+    "iso_alpha2": "KG",
+    "file": "Kyrgyzstan.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Laos",
+    "iso_alpha2": "LA",
+    "file": "Laos.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Latvia",
+    "iso_alpha2": "LV",
+    "file": "Latvia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Lebanon",
+    "iso_alpha2": "LB",
+    "file": "Lebanon.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Lesotho",
+    "iso_alpha2": "LS",
+    "file": "Lesotho.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Liberia",
+    "iso_alpha2": "LR",
+    "file": "Liberia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Libya",
+    "iso_alpha2": "LY",
+    "file": "Libya.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Liechtenstein",
+    "iso_alpha2": "LI",
+    "file": "Liechtenstein.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Lithuania",
+    "iso_alpha2": "LT",
+    "file": "Lithuania.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Luxembourg",
+    "iso_alpha2": "LU",
+    "file": "Luxembourg.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Madagascar",
+    "iso_alpha2": "MG",
+    "file": "Madagascar.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Malawi",
+    "iso_alpha2": "MW",
+    "file": "Malawi.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Malaysia",
+    "iso_alpha2": "MY",
+    "file": "Malaysia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Maldives",
+    "iso_alpha2": "MV",
+    "file": "Maldives.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Mali",
+    "iso_alpha2": "ML",
+    "file": "Mali.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Malta",
+    "iso_alpha2": "MT",
+    "file": "Malta.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Marshall Islands",
+    "iso_alpha2": "MH",
+    "file": "Marshall Islands.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Mauritania",
+    "iso_alpha2": "MR",
+    "file": "Mauritania.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Mauritius",
+    "iso_alpha2": "MU",
+    "file": "Mauritius.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Mexico",
+    "iso_alpha2": "MX",
+    "file": "Mexico.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Micronesia",
+    "iso_alpha2": "FM",
+    "file": "Micronesia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Moldova",
+    "iso_alpha2": "MD",
+    "file": "Moldova.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Monaco",
+    "iso_alpha2": "MC",
+    "file": "Monaco.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Mongolia",
+    "iso_alpha2": "MN",
+    "file": "Mongolia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Montenegro",
+    "iso_alpha2": "ME",
+    "file": "Montenegro.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Morocco",
+    "iso_alpha2": "MA",
+    "file": "Morocco.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Mozambique",
+    "iso_alpha2": "MZ",
+    "file": "Mozambique.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Myanmar",
+    "iso_alpha2": "MM",
+    "file": "Myanmar.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Namibia",
+    "iso_alpha2": "NA",
+    "file": "Namibia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Nauru",
+    "iso_alpha2": "NR",
+    "file": "Nauru.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Nepal",
+    "iso_alpha2": "NP",
+    "file": "Nepal.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Netherlands",
+    "iso_alpha2": "NL",
+    "file": "Netherlands.png",
+    "size": "512x384"
+  },
+  {
+    "name": "New Zealand",
+    "iso_alpha2": "NZ",
+    "file": "New Zealand.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Nicaragua",
+    "iso_alpha2": "NI",
+    "file": "Nicaragua.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Niger",
+    "iso_alpha2": "NE",
+    "file": "Niger.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Nigeria",
+    "iso_alpha2": "NG",
+    "file": "Nigeria.png",
+    "size": "512x384"
+  },
+  {
+    "name": "North Korea",
+    "iso_alpha2": "KP",
+    "file": "North Korea.png",
+    "size": "512x384"
+  },
+  {
+    "name": "North Macedonia",
+    "iso_alpha2": "MK",
+    "file": "North Macedonia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Norway",
+    "iso_alpha2": "NO",
+    "file": "Norway.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Oman",
+    "iso_alpha2": "OM",
+    "file": "Oman.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Pakistan",
+    "iso_alpha2": "PK",
+    "file": "Pakistan.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Palau",
+    "iso_alpha2": "PW",
+    "file": "Palau.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Palestine",
+    "iso_alpha2": "PS",
+    "file": "Palestine.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Panama",
+    "iso_alpha2": "PA",
+    "file": "Panama.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Papua New Guinea",
+    "iso_alpha2": "PG",
+    "file": "Papua New Guinea.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Paraguay",
+    "iso_alpha2": "PY",
+    "file": "Paraguay.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Peru",
+    "iso_alpha2": "PE",
+    "file": "Peru.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Philippines",
+    "iso_alpha2": "PH",
+    "file": "Philippines.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Poland",
+    "iso_alpha2": "PL",
+    "file": "Poland.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Portugal",
+    "iso_alpha2": "PT",
+    "file": "Portugal.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Qatar",
+    "iso_alpha2": "QA",
+    "file": "Qatar.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Romania",
+    "iso_alpha2": "RO",
+    "file": "Romania.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Russia",
+    "iso_alpha2": "RU",
+    "file": "Russia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Rwanda",
+    "iso_alpha2": "RW",
+    "file": "Rwanda.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Saint Kitts and Nevis",
+    "iso_alpha2": "KN",
+    "file": "Saint Kitts and Nevis.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Saint Lucia",
+    "iso_alpha2": "LC",
+    "file": "Saint Lucia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Saint Vincent and the Grenadines",
+    "iso_alpha2": "VC",
+    "file": "Saint Vincent and the Grenadines.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Samoa",
+    "iso_alpha2": "WS",
+    "file": "Samoa.png",
+    "size": "512x384"
+  },
+  {
+    "name": "San Marino",
+    "iso_alpha2": "SM",
+    "file": "San Marino.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Sao Tome and Principe",
+    "iso_alpha2": "ST",
+    "file": "Sao Tome and Principe.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Saudi Arabia",
+    "iso_alpha2": "SA",
+    "file": "Saudi Arabia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Senegal",
+    "iso_alpha2": "SN",
+    "file": "Senegal.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Serbia",
+    "iso_alpha2": "RS",
+    "file": "Serbia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Seychelles",
+    "iso_alpha2": "SC",
+    "file": "Seychelles.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Sierra Leone",
+    "iso_alpha2": "SL",
+    "file": "Sierra Leone.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Singapore",
+    "iso_alpha2": "SG",
+    "file": "Singapore.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Slovakia",
+    "iso_alpha2": "SK",
+    "file": "Slovakia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Slovenia",
+    "iso_alpha2": "SI",
+    "file": "Slovenia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Solomon Islands",
+    "iso_alpha2": "SB",
+    "file": "Solomon Islands.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Somalia",
+    "iso_alpha2": "SO",
+    "file": "Somalia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "South Africa",
+    "iso_alpha2": "ZA",
+    "file": "South Africa.png",
+    "size": "512x384"
+  },
+  {
+    "name": "South Korea",
+    "iso_alpha2": "KR",
+    "file": "South Korea.png",
+    "size": "512x384"
+  },
+  {
+    "name": "South Sudan",
+    "iso_alpha2": "SS",
+    "file": "South Sudan.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Spain",
+    "iso_alpha2": "ES",
+    "file": "Spain.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Sri Lanka",
+    "iso_alpha2": "LK",
+    "file": "Sri Lanka.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Sudan",
+    "iso_alpha2": "SD",
+    "file": "Sudan.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Suriname",
+    "iso_alpha2": "SR",
+    "file": "Suriname.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Sweden",
+    "iso_alpha2": "SE",
+    "file": "Sweden.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Switzerland",
+    "iso_alpha2": "CH",
+    "file": "Switzerland.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Syria",
+    "iso_alpha2": "SY",
+    "file": "Syria.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Tajikistan",
+    "iso_alpha2": "TJ",
+    "file": "Tajikistan.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Tanzania",
+    "iso_alpha2": "TZ",
+    "file": "Tanzania.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Thailand",
+    "iso_alpha2": "TH",
+    "file": "Thailand.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Timor-Leste",
+    "iso_alpha2": "TL",
+    "file": "Timor-Leste.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Togo",
+    "iso_alpha2": "TG",
+    "file": "Togo.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Tonga",
+    "iso_alpha2": "TO",
+    "file": "Tonga.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Trinidad and Tobago",
+    "iso_alpha2": "TT",
+    "file": "Trinidad and Tobago.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Tunisia",
+    "iso_alpha2": "TN",
+    "file": "Tunisia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Turkey",
+    "iso_alpha2": "TR",
+    "file": "Turkey.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Turkmenistan",
+    "iso_alpha2": "TM",
+    "file": "Turkmenistan.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Tuvalu",
+    "iso_alpha2": "TV",
+    "file": "Tuvalu.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Uganda",
+    "iso_alpha2": "UG",
+    "file": "Uganda.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Ukraine",
+    "iso_alpha2": "UA",
+    "file": "Ukraine.png",
+    "size": "512x384"
+  },
+  {
+    "name": "United Arab Emirates",
+    "iso_alpha2": "AE",
+    "file": "United Arab Emirates.png",
+    "size": "512x384"
+  },
+  {
+    "name": "United Kingdom",
+    "iso_alpha2": "GB",
+    "file": "United Kingdom.png",
+    "size": "512x384"
+  },
+  {
+    "name": "United States",
+    "iso_alpha2": "US",
+    "file": "United States.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Uruguay",
+    "iso_alpha2": "UY",
+    "file": "Uruguay.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Uzbekistan",
+    "iso_alpha2": "UZ",
+    "file": "Uzbekistan.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Vanuatu",
+    "iso_alpha2": "VU",
+    "file": "Vanuatu.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Vatican City",
+    "iso_alpha2": "VA",
+    "file": "Vatican City.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Venezuela",
+    "iso_alpha2": "VE",
+    "file": "Venezuela.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Vietnam",
+    "iso_alpha2": "VN",
+    "file": "Vietnam.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Yemen",
+    "iso_alpha2": "YE",
+    "file": "Yemen.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Zambia",
+    "iso_alpha2": "ZM",
+    "file": "Zambia.png",
+    "size": "512x384"
+  },
+  {
+    "name": "Zimbabwe",
+    "iso_alpha2": "ZW",
+    "file": "Zimbabwe.png",
+    "size": "512x384"
+  }
+]

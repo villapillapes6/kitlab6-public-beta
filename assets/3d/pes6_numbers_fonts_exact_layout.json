@@ -1,0 +1,79 @@
+{
+  "version": 2,
+  "sourceGuide": "Base VillaPilla HD(2).png",
+  "sourceResolution": [
+    2048,
+    2048
+  ],
+  "rule": "All PES6 PNG atlases use these fixed zones and fixed glyph sizes. Player names are not auto-shrunk.",
+  "zones": {
+    "backName": {
+      "zone": [
+        850,
+        734,
+        348,
+        95
+      ],
+      "visibleContent": [
+        850,
+        785,
+        337,
+        44
+      ],
+      "contentHeightRatio": 0.4631578947368421,
+      "maxWidthRatio": 0.9683908045977011
+    },
+    "backNumber": {
+      "zone": [
+        850,
+        398,
+        348,
+        332
+      ],
+      "visibleContent": [
+        872,
+        414,
+        297,
+        291
+      ],
+      "contentHeightRatio": 0.8765060240963856
+    },
+    "frontNumber": {
+      "zone": [
+        928,
+        1197,
+        189,
+        215
+      ],
+      "visibleContent": [
+        953,
+        1224,
+        146,
+        161
+      ],
+      "contentHeightRatio": 0.7488372093023256
+    },
+    "shortLeft": {
+      "zone": [
+        192,
+        1591,
+        152,
+        168
+      ]
+    },
+    "shortRight": {
+      "zone": [
+        1704,
+        1591,
+        152,
+        168
+      ]
+    }
+  },
+  "backNumberGeometry": {
+    "defaultY": 12,
+    "worldYOffset": 0.06,
+    "surfaceOffset": 0.012,
+    "rule": "Every Back Number vertex is projected onto the real back shirt surface; controls transform texture only."
+  }
+}
