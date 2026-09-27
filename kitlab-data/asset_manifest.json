@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-09-27T08:39:46.093Z",
+  "generated": "2026-09-27T15:01:46.280Z",
   "dirs": {
     "assets": {
       "folders": [
@@ -774,11 +774,11 @@
         "fifa_wc_26_white_2.png",
         "fifa_wc_winner_22_gold.png",
         "fifa_wc_winner_22_white.png",
+        "ucl_15.png",
         "ucl_4.png",
         "ucl_5.png",
         "ucl_6.png",
         "ucl_7.png",
-        "ucl_15.png",
         "ucl_europa_winners_25.png",
         "ucl.png",
         "uefa_foundation_10_yrs.png",
@@ -1965,6 +1965,8 @@
       "folders": [],
       "files": [
         "japan_26_away - 1.png",
+        "japan_26_away - 10.png",
+        "japan_26_away - 11.png",
         "japan_26_away - 2.png",
         "japan_26_away - 3.png",
         "japan_26_away - 4.png",
@@ -1973,8 +1975,6 @@
         "japan_26_away - 7.png",
         "japan_26_away - 8.png",
         "japan_26_away - 9.png",
-        "japan_26_away - 10.png",
-        "japan_26_away - 11.png",
         "japan_26_goalkeeper - 1.png",
         "japan_26_goalkeeper - 2.png",
         "japan_26_goalkeeper - 3.png",
@@ -3555,8 +3555,8 @@
     "assets/team/Ecuador": {
       "folders": [],
       "files": [
-        "9 de Octubre FC.png",
         "22 de Julio FC.png",
+        "9 de Octubre FC.png",
         "Atl#U00e9tico Santo Domingo.png",
         "B#U00fahos ULVR FC.png",
         "Barcelona Sporting Club.png",
@@ -4720,8 +4720,8 @@
     "assets/team/Poland": {
       "folders": [],
       "files": [
-        "#U015al#U0105sk Wroc#U0142aw.png",
         "#U0141KS #U0141#U00f3d#U017a.png",
+        "#U015al#U0105sk Wroc#U0142aw.png",
         "Arka Gdynia.png",
         "Bruk-Bet Termalica Nieciecza KS.png",
         "FKS Stal Mielec.png",
@@ -5367,9 +5367,9 @@
         "#U00c7aykur Rizespor.png",
         "#U00c7orum FK.png",
         "#U00dcmraniyespor.png",
-        "#U015eanl#U0131urfaspor SK.png",
         "#U0130stanbul Ba#U015fak#U015fehir FK.png",
         "#U0130stanbulspor.png",
+        "#U015eanl#U0131urfaspor SK.png",
         "Adana Demirspor.png",
         "Adanaspor.png",
         "Akhisar Belediyespor.png",
@@ -5720,15 +5720,226 @@
     },
     "assets/templates/adidas": {
       "folders": [
+        "adidas 2026",
         "adidas 25-26",
         "adidas 25-26 aeroready",
         "adidas 26-27 climacool",
-        "adidas 2026",
         "adidas gk 2026",
         "adidas gk trefoil 2026",
         "adidas trefoil 2026"
       ],
       "files": []
+    },
+    "assets/templates/adidas/adidas 2026": {
+      "folders": [
+        "base",
+        "brand",
+        "collar",
+        "details",
+        "fabric",
+        "guide",
+        "mesh",
+        "seams",
+        "tights"
+      ],
+      "files": [
+        "thumbnail.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/adidas/adidas 2026/base": {
+      "folders": [],
+      "files": [
+        "01. short sleeves.png",
+        "02. shirt.png",
+        "03. sleeve long.png",
+        "04. short.png",
+        "05. socks.png",
+        "06. ankle.png"
+      ]
+    },
+    "assets/templates/adidas/adidas 2026/brand": {
+      "folders": [],
+      "files": [
+        "climacool.png",
+        "label black_gold.png",
+        "label black_white.png",
+        "label white_black.png",
+        "label white_gold.png",
+        "short adidas.png"
+      ]
+    },
+    "assets/templates/adidas/adidas 2026/collar": {
+      "folders": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07_no"
+      ],
+      "files": []
+    },
+    "assets/templates/adidas/adidas 2026/collar/01": {
+      "folders": [],
+      "files": [
+        "border v2.png",
+        "border.png",
+        "details.png",
+        "seams iv.png",
+        "thumbnail.png",
+        "tights rubber band 2 fusion opacidad.png",
+        "tights rubber band fusion opacidad.png",
+        "transparency.png"
+      ]
+    },
+    "assets/templates/adidas/adidas 2026/collar/02": {
+      "folders": [],
+      "files": [
+        "border.png",
+        "details.png",
+        "seams iv.png",
+        "thumbnail.png",
+        "tights rubber band 2 fusion opacidad.png",
+        "tights rubber band fusion opacidad.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/adidas/adidas 2026/collar/03": {
+      "folders": [],
+      "files": [
+        "details.png",
+        "seams iv.png",
+        "thumbnail.png",
+        "tights rubber band fusion opacidad.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/adidas/adidas 2026/collar/04": {
+      "folders": [],
+      "files": [
+        "border.png",
+        "detail.png",
+        "rubber band 2 fusion opacidad.png",
+        "rubber band fusion opacidad.png",
+        "seams 2 iv.png",
+        "seams 3 iv.png",
+        "seams iv.png",
+        "thumbnail.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/adidas/adidas 2026/collar/05": {
+      "folders": [],
+      "files": [
+        "detail back.png",
+        "detail.png",
+        "rubber band 2 fusion opacidad.png",
+        "rubber band fusion opacidad.png",
+        "seams 2 iv.png",
+        "seams 3 iv.png",
+        "seams iv.png",
+        "thumbnail.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/adidas/adidas 2026/collar/06": {
+      "folders": [],
+      "files": [
+        "border.png",
+        "detail back.png",
+        "detail.png",
+        "rubber band 2 fusion opacidad.png",
+        "rubber band fusion opacidad.png",
+        "seams 2 iv.png",
+        "seams back iv.png",
+        "seams iv.png",
+        "thumbnail.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/adidas/adidas 2026/collar/07_no": {
+      "folders": [],
+      "files": [
+        "detail front.png",
+        "detail.png",
+        "line 2.png",
+        "line 3.png",
+        "line.png",
+        "rubber band 2 fusion opacidad.png",
+        "rubber band fusion opacidad.png",
+        "seams iv.png",
+        "seams size iv.png",
+        "shadow opacidad.png",
+        "thumbnail.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/adidas/adidas 2026/details": {
+      "folders": [],
+      "files": [
+        "shirt lineas adidas.png",
+        "short final franja.png",
+        "short final.png",
+        "short lineas adidas.png",
+        "short respiraderos goma.png",
+        "short sleeves franja puño.png",
+        "short sleeves puño.png",
+        "sleeves_long_sleeve_shadow.png",
+        "socks trim.png"
+      ]
+    },
+    "assets/templates/adidas/adidas 2026/fabric": {
+      "folders": [],
+      "files": [
+        "shirt climacool fusion opacidad.png"
+      ]
+    },
+    "assets/templates/adidas/adidas 2026/guide": {
+      "folders": [],
+      "files": [
+        "shirt back.png",
+        "shirt front.png",
+        "sleeve short.png"
+      ]
+    },
+    "assets/templates/adidas/adidas 2026/mesh": {
+      "folders": [],
+      "files": [
+        "shirt lineas adidas.png",
+        "short goma.png",
+        "short lineas adidas.png",
+        "short malla.png",
+        "sleeve short goma.png",
+        "sleeve short puño malla.png",
+        "sleeve short.png"
+      ]
+    },
+    "assets/templates/adidas/adidas 2026/seams": {
+      "folders": [],
+      "files": [
+        "seams fj.png",
+        "shirt final iv.png",
+        "shirt hombros iv.png",
+        "shirt laterales iv.png",
+        "shirt principal curva iv.png",
+        "short final iv.png",
+        "short goma iv.png",
+        "sleeve short puño iv.png"
+      ]
+    },
+    "assets/templates/adidas/adidas 2026/tights": {
+      "folders": [],
+      "files": [
+        "shirt lineas adidas.png",
+        "short goma.png",
+        "short lineas adidas.png",
+        "short malla.png",
+        "sleeve short goma.png",
+        "sleeve short puño malla.png",
+        "sleeve short.png"
+      ]
     },
     "assets/templates/adidas/adidas 25-26": {
       "folders": [
@@ -6329,218 +6540,7 @@
         "short final iv.png",
         "short goma iv.png",
         "short seams fj.png",
-        "sleeve short pu#u00f1o iv.png"
-      ]
-    },
-    "assets/templates/adidas/adidas 2026": {
-      "folders": [
-        "base",
-        "brand",
-        "collar",
-        "details",
-        "fabric",
-        "guide",
-        "mesh",
-        "seams",
-        "tights"
-      ],
-      "files": [
-        "thumbnail.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/adidas/adidas 2026/base": {
-      "folders": [],
-      "files": [
-        "01. short sleeves.png",
-        "02. shirt.png",
-        "03. sleeve long.png",
-        "04. short.png",
-        "05. socks.png",
-        "06. ankle.png"
-      ]
-    },
-    "assets/templates/adidas/adidas 2026/brand": {
-      "folders": [],
-      "files": [
-        "climacool.png",
-        "label black_gold.png",
-        "label black_white.png",
-        "label white_black.png",
-        "label white_gold.png",
-        "short adidas.png"
-      ]
-    },
-    "assets/templates/adidas/adidas 2026/collar": {
-      "folders": [
-        "01",
-        "02",
-        "03",
-        "04",
-        "05",
-        "06",
-        "07_no"
-      ],
-      "files": []
-    },
-    "assets/templates/adidas/adidas 2026/collar/01": {
-      "folders": [],
-      "files": [
-        "border v2.png",
-        "border.png",
-        "details.png",
-        "seams iv.png",
-        "thumbnail.png",
-        "tights rubber band 2 fusion opacidad.png",
-        "tights rubber band fusion opacidad.png",
-        "transparency.png"
-      ]
-    },
-    "assets/templates/adidas/adidas 2026/collar/02": {
-      "folders": [],
-      "files": [
-        "border.png",
-        "details.png",
-        "seams iv.png",
-        "thumbnail.png",
-        "tights rubber band 2 fusion opacidad.png",
-        "tights rubber band fusion opacidad.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/adidas/adidas 2026/collar/03": {
-      "folders": [],
-      "files": [
-        "details.png",
-        "seams iv.png",
-        "thumbnail.png",
-        "tights rubber band fusion opacidad.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/adidas/adidas 2026/collar/04": {
-      "folders": [],
-      "files": [
-        "border.png",
-        "detail.png",
-        "rubber band 2 fusion opacidad.png",
-        "rubber band fusion opacidad.png",
-        "seams 2 iv.png",
-        "seams 3 iv.png",
-        "seams iv.png",
-        "thumbnail.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/adidas/adidas 2026/collar/05": {
-      "folders": [],
-      "files": [
-        "detail back.png",
-        "detail.png",
-        "rubber band 2 fusion opacidad.png",
-        "rubber band fusion opacidad.png",
-        "seams 2 iv.png",
-        "seams 3 iv.png",
-        "seams iv.png",
-        "thumbnail.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/adidas/adidas 2026/collar/06": {
-      "folders": [],
-      "files": [
-        "border.png",
-        "detail back.png",
-        "detail.png",
-        "rubber band 2 fusion opacidad.png",
-        "rubber band fusion opacidad.png",
-        "seams 2 iv.png",
-        "seams back iv.png",
-        "seams iv.png",
-        "thumbnail.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/adidas/adidas 2026/collar/07_no": {
-      "folders": [],
-      "files": [
-        "detail front.png",
-        "detail.png",
-        "line 2.png",
-        "line 3.png",
-        "line.png",
-        "rubber band 2 fusion opacidad.png",
-        "rubber band fusion opacidad.png",
-        "seams iv.png",
-        "seams size iv.png",
-        "shadow opacidad.png",
-        "thumbnail.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/adidas/adidas 2026/details": {
-      "folders": [],
-      "files": [
-        "shirt lineas adidas.png",
-        "short final franja.png",
-        "short final.png",
-        "short lineas adidas.png",
-        "short respiraderos goma.png",
-        "short sleeves franja pu#u00f1o.png",
-        "short sleeves pu#u00f1o.png",
-        "sleeves_long_sleeve_shadow.png",
-        "socks trim.png"
-      ]
-    },
-    "assets/templates/adidas/adidas 2026/fabric": {
-      "folders": [],
-      "files": [
-        "shirt climacool fusion opacidad.png"
-      ]
-    },
-    "assets/templates/adidas/adidas 2026/guide": {
-      "folders": [],
-      "files": [
-        "shirt back.png",
-        "shirt front.png",
-        "sleeve short.png"
-      ]
-    },
-    "assets/templates/adidas/adidas 2026/mesh": {
-      "folders": [],
-      "files": [
-        "shirt lineas adidas.png",
-        "short goma.png",
-        "short lineas adidas.png",
-        "short malla.png",
-        "sleeve short goma.png",
-        "sleeve short pu#u00f1o malla.png",
-        "sleeve short.png"
-      ]
-    },
-    "assets/templates/adidas/adidas 2026/seams": {
-      "folders": [],
-      "files": [
-        "seams fj.png",
-        "shirt final iv.png",
-        "shirt hombros iv.png",
-        "shirt laterales iv.png",
-        "shirt principal curva iv.png",
-        "short final iv.png",
-        "short goma iv.png",
-        "sleeve short pu#u00f1o iv.png"
-      ]
-    },
-    "assets/templates/adidas/adidas 2026/tights": {
-      "folders": [],
-      "files": [
-        "shirt lineas adidas.png",
-        "short goma.png",
-        "short lineas adidas.png",
-        "short malla.png",
-        "sleeve short goma.png",
-        "sleeve short pu#u00f1o malla.png",
-        "sleeve short.png"
+        "sleeve short puño iv.png"
       ]
     },
     "assets/templates/adidas/adidas gk 2026": {
@@ -6733,7 +6733,7 @@
       "files": [
         "short lineas adidas.png",
         "sleeve short lineas adidas.png",
-        "sleeve short pu#u00f1o.png"
+        "sleeve short puño.png"
       ]
     },
     "assets/templates/adidas/adidas gk trefoil 2026/seams": {
@@ -6865,8 +6865,8 @@
         "short lineas adidas.png",
         "sleeve short lineas adidas.png",
         "sleeve short malla.png",
-        "sleeve short pu#u00f1o 2.png",
-        "sleeve short pu#u00f1o.png"
+        "sleeve short puño 2.png",
+        "sleeve short puño.png"
       ]
     },
     "assets/templates/adidas/adidas trefoil 2026/seams": {
@@ -7703,7 +7703,8 @@
     "assets/templates/joma/joma gk 26-27/pattern": {
       "folders": [],
       "files": [
-        "shirt pattern.png"
+        "shirt pattern.png",
+        "sleeve short pattern.png"
       ]
     },
     "assets/templates/joma/joma gk 26-27/seams": {
@@ -8698,20 +8699,216 @@
     },
     "assets/templates/nike": {
       "folders": [
+        "nike 2026",
         "nike 23-24 shared",
         "nike 24-25 shared",
         "nike 25-26",
         "nike 25-26 v2",
         "nike 25-26 v3",
         "nike 26-27 dry-fit",
-        "nike 2026",
+        "nike gk 2026",
         "nike gk 25-26",
         "nike gk 26-27 dry-fit",
-        "nike gk 2026",
         "nike gk worldcup 26-27",
         "nike total 90 25-26"
       ],
       "files": []
+    },
+    "assets/templates/nike/nike 2026": {
+      "folders": [
+        "base",
+        "brand",
+        "collar",
+        "details",
+        "extra",
+        "guide",
+        "mesh",
+        "seams",
+        "tights"
+      ],
+      "files": [
+        "thumbnail.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/nike/nike 2026/base": {
+      "folders": [],
+      "files": [
+        "01.sleeve short.png",
+        "02. shirt.png",
+        "03. sleeve long.png",
+        "04. short.png",
+        "05. socks.png",
+        "06. ankle.png"
+      ]
+    },
+    "assets/templates/nike/nike 2026/brand": {
+      "folders": [],
+      "files": [
+        "shirt aero-fit.png",
+        "shirt etiqueta no color.png"
+      ]
+    },
+    "assets/templates/nike/nike 2026/collar": {
+      "folders": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "files": []
+    },
+    "assets/templates/nike/nike 2026/collar/1": {
+      "folders": [],
+      "files": [
+        "detail.png",
+        "preview.png",
+        "seams iv.png",
+        "thumbnail.png",
+        "tights rubber band fusion opacidad.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/nike/nike 2026/collar/2": {
+      "folders": [],
+      "files": [
+        "detail 2.png",
+        "detail.png",
+        "preview.png",
+        "seams iv 2.png",
+        "seams iv.png",
+        "thumbnail.png",
+        "tights rubber band fusion opacidad.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/nike/nike 2026/collar/3": {
+      "folders": [],
+      "files": [
+        "detail.png",
+        "preview.png",
+        "seams 2 iv.png",
+        "seams 3 iv.png",
+        "seams iv.png",
+        "thumbnail.png",
+        "tights rubber band 2 fusion opacidad.png",
+        "tights rubber band fusion opacidad.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/nike/nike 2026/collar/4": {
+      "folders": [],
+      "files": [
+        "detail.png",
+        "preview.png",
+        "seams 2 iv.png",
+        "seams iv.png",
+        "thumbnail.png",
+        "tights 2 rubber band fusion opacidad.png",
+        "tights rubber band fusion opacidad.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/nike/nike 2026/collar/5": {
+      "folders": [],
+      "files": [
+        "detail.png",
+        "preview.png",
+        "seams iv 2.png",
+        "seams iv.png",
+        "thumbnail.png",
+        "tights 2 rubber band fusion opacidad.png",
+        "tights rubber band fusion opacidad.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/nike/nike 2026/collar/6": {
+      "folders": [],
+      "files": [
+        "button opacidad.png",
+        "button shadow opacidad.png",
+        "button.png",
+        "detail 2.png",
+        "detail 3.png",
+        "detail.png",
+        "preview.png",
+        "seams 2 iv.png",
+        "seams 3 iv.png",
+        "seams iv.png",
+        "shadow opacidad.png",
+        "thumbnail.png",
+        "tights rubber band fusion opacidad.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/nike/nike 2026/details": {
+      "folders": [],
+      "files": [
+        "shirt_axila.png",
+        "shirt_detail_01.png",
+        "shirt_trim.png",
+        "shorts_detail.png",
+        "shorts_mesh_waistband.png",
+        "shorts_trim.png",
+        "sleeve_cuffs.png",
+        "sleeve_long_sleeve_shadow.png"
+      ]
+    },
+    "assets/templates/nike/nike 2026/extra": {
+      "folders": [],
+      "files": [
+        "shirt_aero-fit fusion opacidad.png",
+        "short_aero-fit fusion opacidad.png",
+        "short_sleeve_aero-fit fusion opacidad.png"
+      ]
+    },
+    "assets/templates/nike/nike 2026/guide": {
+      "folders": [],
+      "files": [
+        "shirt back.png",
+        "shirt front.png",
+        "sleeve cuffs.png",
+        "sleeve short.png"
+      ]
+    },
+    "assets/templates/nike/nike 2026/mesh": {
+      "folders": [],
+      "files": [
+        "shirt axila.png",
+        "shirt costados.png",
+        "short costados.png",
+        "sleeve short rubber band.png"
+      ]
+    },
+    "assets/templates/nike/nike 2026/seams": {
+      "folders": [],
+      "files": [
+        "seams fj.png",
+        "shirt iv axilas.png",
+        "shirt iv costados 2.png",
+        "shirt iv costados.png",
+        "shirt iv final.png",
+        "shirt iv hombro.png",
+        "short iv costados 2.png",
+        "short iv costados.png",
+        "short iv final.png",
+        "short iv goma 2.png",
+        "short iv goma.png",
+        "short iv rubber band.png",
+        "sleeve short iv axila.png",
+        "sleeve short iv cuff.png"
+      ]
+    },
+    "assets/templates/nike/nike 2026/tights": {
+      "folders": [],
+      "files": [
+        "shirt axila.png",
+        "shirt costados.png",
+        "short costados.png",
+        "sleeve short rubber band.png"
+      ]
     },
     "assets/templates/nike/nike 23-24 shared": {
       "folders": [
@@ -9476,393 +9673,6 @@
         "seams short side iv.png"
       ]
     },
-    "assets/templates/nike/nike 2026": {
-      "folders": [
-        "base",
-        "brand",
-        "collar",
-        "details",
-        "extra",
-        "guide",
-        "mesh",
-        "seams",
-        "tights"
-      ],
-      "files": [
-        "thumbnail.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/nike/nike 2026/base": {
-      "folders": [],
-      "files": [
-        "01.sleeve short.png",
-        "02. shirt.png",
-        "03. sleeve long.png",
-        "04. short.png",
-        "05. socks.png",
-        "06. ankle.png"
-      ]
-    },
-    "assets/templates/nike/nike 2026/brand": {
-      "folders": [],
-      "files": [
-        "shirt aero-fit.png",
-        "shirt etiqueta no color.png"
-      ]
-    },
-    "assets/templates/nike/nike 2026/collar": {
-      "folders": [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6"
-      ],
-      "files": []
-    },
-    "assets/templates/nike/nike 2026/collar/1": {
-      "folders": [],
-      "files": [
-        "detail.png",
-        "preview.png",
-        "seams iv.png",
-        "thumbnail.png",
-        "tights rubber band fusion opacidad.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/nike/nike 2026/collar/2": {
-      "folders": [],
-      "files": [
-        "detail 2.png",
-        "detail.png",
-        "preview.png",
-        "seams iv 2.png",
-        "seams iv.png",
-        "thumbnail.png",
-        "tights rubber band fusion opacidad.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/nike/nike 2026/collar/3": {
-      "folders": [],
-      "files": [
-        "detail.png",
-        "preview.png",
-        "seams 2 iv.png",
-        "seams 3 iv.png",
-        "seams iv.png",
-        "thumbnail.png",
-        "tights rubber band 2 fusion opacidad.png",
-        "tights rubber band fusion opacidad.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/nike/nike 2026/collar/4": {
-      "folders": [],
-      "files": [
-        "detail.png",
-        "preview.png",
-        "seams 2 iv.png",
-        "seams iv.png",
-        "thumbnail.png",
-        "tights 2 rubber band fusion opacidad.png",
-        "tights rubber band fusion opacidad.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/nike/nike 2026/collar/5": {
-      "folders": [],
-      "files": [
-        "detail.png",
-        "preview.png",
-        "seams iv 2.png",
-        "seams iv.png",
-        "thumbnail.png",
-        "tights 2 rubber band fusion opacidad.png",
-        "tights rubber band fusion opacidad.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/nike/nike 2026/collar/6": {
-      "folders": [],
-      "files": [
-        "button opacidad.png",
-        "button shadow opacidad.png",
-        "button.png",
-        "detail 2.png",
-        "detail 3.png",
-        "detail.png",
-        "preview.png",
-        "seams 2 iv.png",
-        "seams 3 iv.png",
-        "seams iv.png",
-        "shadow opacidad.png",
-        "thumbnail.png",
-        "tights rubber band fusion opacidad.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/nike/nike 2026/details": {
-      "folders": [],
-      "files": [
-        "shirt_axila.png",
-        "shirt_detail_01.png",
-        "shirt_trim.png",
-        "shorts_detail.png",
-        "shorts_mesh_waistband.png",
-        "shorts_trim.png",
-        "sleeve_cuffs.png",
-        "sleeve_long_sleeve_shadow.png"
-      ]
-    },
-    "assets/templates/nike/nike 2026/extra": {
-      "folders": [],
-      "files": [
-        "shirt_aero-fit fusion opacidad.png",
-        "short_aero-fit fusion opacidad.png",
-        "short_sleeve_aero-fit fusion opacidad.png"
-      ]
-    },
-    "assets/templates/nike/nike 2026/guide": {
-      "folders": [],
-      "files": [
-        "shirt back.png",
-        "shirt front.png",
-        "sleeve cuffs.png",
-        "sleeve short.png"
-      ]
-    },
-    "assets/templates/nike/nike 2026/mesh": {
-      "folders": [],
-      "files": [
-        "shirt axila.png",
-        "shirt costados.png",
-        "short costados.png",
-        "sleeve short rubber band.png"
-      ]
-    },
-    "assets/templates/nike/nike 2026/seams": {
-      "folders": [],
-      "files": [
-        "seams fj.png",
-        "shirt iv axilas.png",
-        "shirt iv costados 2.png",
-        "shirt iv costados.png",
-        "shirt iv final.png",
-        "shirt iv hombro.png",
-        "short iv costados 2.png",
-        "short iv costados.png",
-        "short iv final.png",
-        "short iv goma 2.png",
-        "short iv goma.png",
-        "short iv rubber band.png",
-        "sleeve short iv axila.png",
-        "sleeve short iv cuff.png"
-      ]
-    },
-    "assets/templates/nike/nike 2026/tights": {
-      "folders": [],
-      "files": [
-        "shirt axila.png",
-        "shirt costados.png",
-        "short costados.png",
-        "sleeve short rubber band.png"
-      ]
-    },
-    "assets/templates/nike/nike gk 25-26": {
-      "folders": [
-        "base",
-        "brand",
-        "collar",
-        "details",
-        "fabric",
-        "mesh",
-        "pattern",
-        "seams"
-      ],
-      "files": [
-        "thumbnail.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/nike/nike gk 25-26/base": {
-      "folders": [],
-      "files": [
-        "01.sleeve short.png",
-        "02. shirt.png",
-        "03. sleeve long.png",
-        "04. short.png",
-        "05. socks.png",
-        "06. ankle.png"
-      ]
-    },
-    "assets/templates/nike/nike gk 25-26/brand": {
-      "folders": [],
-      "files": [
-        "shirt dry-fit.png",
-        "shirt etiqueta no color.png"
-      ]
-    },
-    "assets/templates/nike/nike gk 25-26/collar": {
-      "folders": [
-        "1"
-      ],
-      "files": []
-    },
-    "assets/templates/nike/nike gk 25-26/collar/1": {
-      "folders": [],
-      "files": [
-        "detail.png",
-        "seams back iv.png",
-        "seams front iv.png",
-        "seams iv.png",
-        "thumbnail.png",
-        "tights rubber band fusion opacidad.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/nike/nike gk 25-26/details": {
-      "folders": [],
-      "files": [
-        "shirt side.png",
-        "shirt triangle back.png",
-        "shirt triangle front.png",
-        "short in.png",
-        "short side triangle left 2.png",
-        "short side triangle left.png",
-        "short side triangle right 2.png",
-        "short side triangle right.png",
-        "short side.png",
-        "sleeve short puno.png",
-        "sleeve_long_sleeve_shadow.png",
-        "socks doblado.png"
-      ]
-    },
-    "assets/templates/nike/nike gk 25-26/fabric": {
-      "folders": [],
-      "files": []
-    },
-    "assets/templates/nike/nike gk 25-26/mesh": {
-      "folders": [],
-      "files": [
-        "shirt side triangle.png",
-        "shirt side.png",
-        "short side triangle.png",
-        "short side.png"
-      ]
-    },
-    "assets/templates/nike/nike gk 25-26/pattern": {
-      "folders": [],
-      "files": [
-        "shirt front.png"
-      ]
-    },
-    "assets/templates/nike/nike gk 25-26/seams": {
-      "folders": [],
-      "files": [
-        "seams fj.png",
-        "shirt hombros iv.png",
-        "shirt iv final.png",
-        "shirt side iv.png",
-        "shirt sleeve short iv hombro.png",
-        "shirt triangle back iv.png",
-        "shirt triangle front iv.png",
-        "short final iv.png",
-        "short in iv.png",
-        "short iv goma 2.png",
-        "short side iv.png",
-        "short side triangle 2 iv.png",
-        "short side triangle iv.png",
-        "sleeve short iv cuff.png",
-        "sleeve short underarm iv.png"
-      ]
-    },
-    "assets/templates/nike/nike gk 26-27 dry-fit": {
-      "folders": [
-        "base",
-        "collar",
-        "details",
-        "mesh",
-        "pattern",
-        "seams"
-      ],
-      "files": [
-        "thumbnail.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/nike/nike gk 26-27 dry-fit/base": {
-      "folders": [],
-      "files": [
-        "01.sleeve short.png",
-        "02. shirt.png",
-        "03. sleeve long.png",
-        "04. short.png",
-        "05. socks.png",
-        "06. ankle.png"
-      ]
-    },
-    "assets/templates/nike/nike gk 26-27 dry-fit/collar": {
-      "folders": [
-        "1"
-      ],
-      "files": []
-    },
-    "assets/templates/nike/nike gk 26-27 dry-fit/collar/1": {
-      "folders": [],
-      "files": [
-        "detail fusion opacidad.png",
-        "detail.png",
-        "seams iv 2.png",
-        "seams iv.png",
-        "thumbnail.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/nike/nike gk 26-27 dry-fit/details": {
-      "folders": [],
-      "files": [
-        "shirt axila 01.png",
-        "shirt_detail_01.png",
-        "shirt_trim.png",
-        "sleeve_cuffs.png",
-        "sleeve_long_sleeve_shadow.png"
-      ]
-    },
-    "assets/templates/nike/nike gk 26-27 dry-fit/mesh": {
-      "folders": [],
-      "files": [
-        "shirt axilas.png",
-        "shirt_1.png"
-      ]
-    },
-    "assets/templates/nike/nike gk 26-27 dry-fit/pattern": {
-      "folders": [],
-      "files": [
-        "pattern 01.png",
-        "pattern 02.png"
-      ]
-    },
-    "assets/templates/nike/nike gk 26-27 dry-fit/seams": {
-      "folders": [],
-      "files": [
-        "seams fj.png",
-        "shirt iv axilas.png",
-        "shirt iv costados 2.png",
-        "shirt iv costados.png",
-        "shirt iv final.png",
-        "shirt iv hombro.png",
-        "short iv final.png",
-        "short iv goma.png",
-        "short seams fj.png",
-        "short side iv.png",
-        "sleeve short iv axila.png",
-        "sleeve short iv cuff.png"
-      ]
-    },
     "assets/templates/nike/nike gk 2026": {
       "folders": [
         "base",
@@ -9976,6 +9786,200 @@
         "shirt axilas.png",
         "shirt_1.png",
         "short 1.png"
+      ]
+    },
+    "assets/templates/nike/nike gk 25-26": {
+      "folders": [
+        "base",
+        "brand",
+        "collar",
+        "details",
+        "fabric",
+        "mesh",
+        "pattern",
+        "seams"
+      ],
+      "files": [
+        "thumbnail.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/nike/nike gk 25-26/base": {
+      "folders": [],
+      "files": [
+        "01.sleeve short.png",
+        "02. shirt.png",
+        "03. sleeve long.png",
+        "04. short.png",
+        "05. socks.png",
+        "06. ankle.png"
+      ]
+    },
+    "assets/templates/nike/nike gk 25-26/brand": {
+      "folders": [],
+      "files": [
+        "shirt dry-fit.png",
+        "shirt etiqueta no color.png"
+      ]
+    },
+    "assets/templates/nike/nike gk 25-26/collar": {
+      "folders": [
+        "1"
+      ],
+      "files": []
+    },
+    "assets/templates/nike/nike gk 25-26/collar/1": {
+      "folders": [],
+      "files": [
+        "detail.png",
+        "seams back iv.png",
+        "seams front iv.png",
+        "seams iv.png",
+        "thumbnail.png",
+        "tights rubber band fusion opacidad.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/nike/nike gk 25-26/details": {
+      "folders": [],
+      "files": [
+        "shirt side.png",
+        "shirt triangle back.png",
+        "shirt triangle front.png",
+        "short in.png",
+        "short side triangle left 2.png",
+        "short side triangle left.png",
+        "short side triangle right 2.png",
+        "short side triangle right.png",
+        "short side.png",
+        "shorts_mesh_waistband.png",
+        "sleeve short puno.png",
+        "sleeve_long_sleeve_shadow.png",
+        "socks doblado.png"
+      ]
+    },
+    "assets/templates/nike/nike gk 25-26/fabric": {
+      "folders": [],
+      "files": []
+    },
+    "assets/templates/nike/nike gk 25-26/mesh": {
+      "folders": [],
+      "files": [
+        "shirt side triangle.png",
+        "shirt side.png",
+        "short side triangle.png",
+        "short side.png"
+      ]
+    },
+    "assets/templates/nike/nike gk 25-26/pattern": {
+      "folders": [],
+      "files": [
+        "shirt front.png"
+      ]
+    },
+    "assets/templates/nike/nike gk 25-26/seams": {
+      "folders": [],
+      "files": [
+        "seams fj.png",
+        "shirt hombros iv.png",
+        "shirt iv final.png",
+        "shirt side iv.png",
+        "shirt sleeve short iv hombro.png",
+        "shirt triangle back iv.png",
+        "shirt triangle front iv.png",
+        "short final iv.png",
+        "short in iv.png",
+        "short iv goma 2.png",
+        "short iv goma.png",
+        "short iv rubber band.png",
+        "short side iv.png",
+        "short side triangle 2 iv.png",
+        "short side triangle iv.png",
+        "sleeve short iv cuff.png",
+        "sleeve short underarm iv.png"
+      ]
+    },
+    "assets/templates/nike/nike gk 26-27 dry-fit": {
+      "folders": [
+        "base",
+        "collar",
+        "details",
+        "mesh",
+        "pattern",
+        "seams"
+      ],
+      "files": [
+        "thumbnail.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/nike/nike gk 26-27 dry-fit/base": {
+      "folders": [],
+      "files": [
+        "01.sleeve short.png",
+        "02. shirt.png",
+        "03. sleeve long.png",
+        "04. short.png",
+        "05. socks.png",
+        "06. ankle.png"
+      ]
+    },
+    "assets/templates/nike/nike gk 26-27 dry-fit/collar": {
+      "folders": [
+        "1"
+      ],
+      "files": []
+    },
+    "assets/templates/nike/nike gk 26-27 dry-fit/collar/1": {
+      "folders": [],
+      "files": [
+        "detail fusion opacidad.png",
+        "detail.png",
+        "seams iv 2.png",
+        "seams iv.png",
+        "thumbnail.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/nike/nike gk 26-27 dry-fit/details": {
+      "folders": [],
+      "files": [
+        "shirt axila 01.png",
+        "shirt_detail_01.png",
+        "shirt_trim.png",
+        "sleeve_cuffs.png",
+        "sleeve_long_sleeve_shadow.png"
+      ]
+    },
+    "assets/templates/nike/nike gk 26-27 dry-fit/mesh": {
+      "folders": [],
+      "files": [
+        "shirt axilas.png",
+        "shirt_1.png"
+      ]
+    },
+    "assets/templates/nike/nike gk 26-27 dry-fit/pattern": {
+      "folders": [],
+      "files": [
+        "pattern 01.png",
+        "pattern 02.png"
+      ]
+    },
+    "assets/templates/nike/nike gk 26-27 dry-fit/seams": {
+      "folders": [],
+      "files": [
+        "seams fj.png",
+        "shirt iv axilas.png",
+        "shirt iv costados 2.png",
+        "shirt iv costados.png",
+        "shirt iv final.png",
+        "shirt iv hombro.png",
+        "short iv final.png",
+        "short iv goma.png",
+        "short seams fj.png",
+        "short side iv.png",
+        "sleeve short iv axila.png",
+        "sleeve short iv cuff.png"
       ]
     },
     "assets/templates/nike/nike gk worldcup 26-27": {
@@ -10207,15 +10211,193 @@
     },
     "assets/templates/puma": {
       "folders": [
+        "puma 2026",
         "puma 26-27 drycell",
         "puma 26-27 ultraweave",
         "puma 26-27 v2 drycell",
-        "puma 2026",
         "puma gk 2026 v1",
         "puma gk 2026 v2",
         "puma gk worldcup 2026"
       ],
       "files": []
+    },
+    "assets/templates/puma/puma 2026": {
+      "folders": [
+        "base",
+        "brand",
+        "collar",
+        "details",
+        "fabric",
+        "guide",
+        "mesh",
+        "seams",
+        "tights"
+      ],
+      "files": [
+        "thumbnail.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/puma/puma 2026/base": {
+      "folders": [],
+      "files": [
+        "01.sleeve short.png",
+        "02. shirt.png",
+        "03. sleeve long.png",
+        "04. short.png",
+        "05. socks.png",
+        "06. ankle.png"
+      ]
+    },
+    "assets/templates/puma/puma 2026/brand": {
+      "folders": [],
+      "files": [
+        "shirt etiqueta no color.png",
+        "shirt puma.png",
+        "shirt short ultraweave.png"
+      ]
+    },
+    "assets/templates/puma/puma 2026/collar": {
+      "folders": [
+        "03_no",
+        "1",
+        "2",
+        "4"
+      ],
+      "files": []
+    },
+    "assets/templates/puma/puma 2026/collar/03_no": {
+      "folders": [
+        "button"
+      ],
+      "files": [
+        "apertura 2 iv.png",
+        "apertura iv.png",
+        "detail 2.png",
+        "detail border 2.png",
+        "detail border.png",
+        "detail.png",
+        "seams 2 iv.png",
+        "seams iv.png",
+        "thumbnail.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/puma/puma 2026/collar/03_no/button": {
+      "folders": [],
+      "files": [
+        "button shadow.png",
+        "button shine.png",
+        "button.png"
+      ]
+    },
+    "assets/templates/puma/puma 2026/collar/1": {
+      "folders": [],
+      "files": [
+        "details back.png",
+        "details.png",
+        "seams 2 iv.png",
+        "seams 3 iv.png",
+        "seams iv.png",
+        "thumbnail.png",
+        "tights fusion opacidad.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/puma/puma 2026/collar/2": {
+      "folders": [],
+      "files": [
+        "border.png",
+        "detail back.png",
+        "detail.png",
+        "rubber band 2 fusion opacidad.png",
+        "rubber band fusion opacidad.png",
+        "seams 3 iv.png",
+        "seams iv.png",
+        "thumbnail.png",
+        "transparency.png"
+      ]
+    },
+    "assets/templates/puma/puma 2026/collar/4": {
+      "folders": [],
+      "files": [
+        "detail back.png",
+        "detail border.png",
+        "detail.png",
+        "rubber band 2 fusion opacidad.png",
+        "rubber band fusion opacidad.png",
+        "seams back iv.png",
+        "seams front iv.png",
+        "seams iv.png",
+        "thumbnail.png",
+        "transparencia.png"
+      ]
+    },
+    "assets/templates/puma/puma 2026/details": {
+      "folders": [],
+      "files": [
+        "shirt detalle.png",
+        "shirt sleeve short axilas.png",
+        "short back.png",
+        "short lateral.png",
+        "short puntos.png",
+        "sleeve short puños.png",
+        "sleeves_long_sleeve_shadow.png"
+      ]
+    },
+    "assets/templates/puma/puma 2026/fabric": {
+      "folders": [],
+      "files": [
+        "shirt back ultraweaver.png",
+        "shirt front ultraweaver.png",
+        "short ultraweaver.png",
+        "sleeve short ultraweaver.png"
+      ]
+    },
+    "assets/templates/puma/puma 2026/guide": {
+      "folders": [],
+      "files": [
+        "shirt back.png",
+        "shirt front.png",
+        "sleeve cuffs.png",
+        "sleeve short.png"
+      ]
+    },
+    "assets/templates/puma/puma 2026/mesh": {
+      "folders": [],
+      "files": [
+        "shirt axilas.png",
+        "shirt front.png",
+        "short back.png"
+      ]
+    },
+    "assets/templates/puma/puma 2026/seams": {
+      "folders": [],
+      "files": [
+        "seams fj.png",
+        "shirt axilas iv.png",
+        "shirt back iv.png",
+        "shirt detalles iv.png",
+        "shirt final back iv.png",
+        "shirt final iv.png",
+        "shirt hombros iv.png",
+        "shirt laterales basic iv.png",
+        "shirt sleeves iv.png",
+        "short back iv.png",
+        "short final iv.png",
+        "short goma iv.png",
+        "short lateral 2 iv.png",
+        "short lateral iv.png",
+        "sleeve short puños iv.png"
+      ]
+    },
+    "assets/templates/puma/puma 2026/tights": {
+      "folders": [],
+      "files": [
+        "shirt axilas.png",
+        "shirt front.png",
+        "short back.png"
+      ]
     },
     "assets/templates/puma/puma 26-27 drycell": {
       "folders": [
@@ -10527,184 +10709,6 @@
         "short back.png"
       ]
     },
-    "assets/templates/puma/puma 2026": {
-      "folders": [
-        "base",
-        "brand",
-        "collar",
-        "details",
-        "fabric",
-        "guide",
-        "mesh",
-        "seams",
-        "tights"
-      ],
-      "files": [
-        "thumbnail.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/puma/puma 2026/base": {
-      "folders": [],
-      "files": [
-        "01.sleeve short.png",
-        "02. shirt.png",
-        "03. sleeve long.png",
-        "04. short.png",
-        "05. socks.png",
-        "06. ankle.png"
-      ]
-    },
-    "assets/templates/puma/puma 2026/brand": {
-      "folders": [],
-      "files": [
-        "shirt etiqueta no color.png",
-        "shirt puma.png",
-        "shirt short ultraweave.png"
-      ]
-    },
-    "assets/templates/puma/puma 2026/collar": {
-      "folders": [
-        "1",
-        "2",
-        "03_no",
-        "4"
-      ],
-      "files": []
-    },
-    "assets/templates/puma/puma 2026/collar/1": {
-      "folders": [],
-      "files": [
-        "details back.png",
-        "details.png",
-        "seams 2 iv.png",
-        "seams 3 iv.png",
-        "seams iv.png",
-        "thumbnail.png",
-        "tights fusion opacidad.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/puma/puma 2026/collar/2": {
-      "folders": [],
-      "files": [
-        "border.png",
-        "detail back.png",
-        "detail.png",
-        "rubber band 2 fusion opacidad.png",
-        "rubber band fusion opacidad.png",
-        "seams 3 iv.png",
-        "seams iv.png",
-        "thumbnail.png",
-        "transparency.png"
-      ]
-    },
-    "assets/templates/puma/puma 2026/collar/03_no": {
-      "folders": [
-        "button"
-      ],
-      "files": [
-        "apertura 2 iv.png",
-        "apertura iv.png",
-        "detail 2.png",
-        "detail border 2.png",
-        "detail border.png",
-        "detail.png",
-        "seams 2 iv.png",
-        "seams iv.png",
-        "thumbnail.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/puma/puma 2026/collar/03_no/button": {
-      "folders": [],
-      "files": [
-        "button shadow.png",
-        "button shine.png",
-        "button.png"
-      ]
-    },
-    "assets/templates/puma/puma 2026/collar/4": {
-      "folders": [],
-      "files": [
-        "detail back.png",
-        "detail border.png",
-        "detail.png",
-        "rubber band 2 fusion opacidad.png",
-        "rubber band fusion opacidad.png",
-        "seams back iv.png",
-        "seams front iv.png",
-        "seams iv.png",
-        "thumbnail.png",
-        "transparencia.png"
-      ]
-    },
-    "assets/templates/puma/puma 2026/details": {
-      "folders": [],
-      "files": [
-        "shirt detalle.png",
-        "shirt sleeve short axilas.png",
-        "short back.png",
-        "short lateral.png",
-        "short puntos.png",
-        "sleeve short pu#u00f1os.png",
-        "sleeves_long_sleeve_shadow.png"
-      ]
-    },
-    "assets/templates/puma/puma 2026/fabric": {
-      "folders": [],
-      "files": [
-        "shirt back ultraweaver.png",
-        "shirt front ultraweaver.png",
-        "short ultraweaver.png",
-        "sleeve short ultraweaver.png"
-      ]
-    },
-    "assets/templates/puma/puma 2026/guide": {
-      "folders": [],
-      "files": [
-        "shirt back.png",
-        "shirt front.png",
-        "sleeve cuffs.png",
-        "sleeve short.png"
-      ]
-    },
-    "assets/templates/puma/puma 2026/mesh": {
-      "folders": [],
-      "files": [
-        "shirt axilas.png",
-        "shirt front.png",
-        "short back.png"
-      ]
-    },
-    "assets/templates/puma/puma 2026/seams": {
-      "folders": [],
-      "files": [
-        "seams fj.png",
-        "shirt axilas iv.png",
-        "shirt back iv.png",
-        "shirt detalles iv.png",
-        "shirt final back iv.png",
-        "shirt final iv.png",
-        "shirt hombros iv.png",
-        "shirt laterales basic iv.png",
-        "shirt sleeves iv.png",
-        "short back iv.png",
-        "short final iv.png",
-        "short goma iv.png",
-        "short lateral 2 iv.png",
-        "short lateral iv.png",
-        "sleeve short pu#u00f1os iv.png"
-      ]
-    },
-    "assets/templates/puma/puma 2026/tights": {
-      "folders": [],
-      "files": [
-        "shirt axilas.png",
-        "shirt front.png",
-        "short back.png"
-      ]
-    },
     "assets/templates/puma/puma gk 2026 v1": {
       "folders": [
         "base",
@@ -10887,7 +10891,7 @@
         "short goma.png",
         "short lateral.png",
         "short puntos.png",
-        "sleeve short pu#u00f1os.png",
+        "sleeve short puños.png",
         "sleeves_long_sleeve_shadow.png",
         "socks doblado.png"
       ]
@@ -10931,7 +10935,7 @@
         "short goma iv.png",
         "short lateral 2 iv.png",
         "short lateral iv.png",
-        "sleeve short pu#u00f1os iv.png",
+        "sleeve short puños iv.png",
         "sleeves short iv.png"
       ]
     },
@@ -11630,10 +11634,10 @@
   },
   "textFiles": [
     "assets/flags/_README_ES.txt",
+    "assets/templates/adidas/adidas 2026/used_by.txt",
     "assets/templates/adidas/adidas 25-26 aeroready/used_by.txt",
     "assets/templates/adidas/adidas 25-26/used_by.txt",
     "assets/templates/adidas/adidas 26-27 climacool/used_by.txt",
-    "assets/templates/adidas/adidas 2026/used_by.txt",
     "assets/templates/adidas/adidas gk 2026/used_by.txt",
     "assets/templates/adidas/adidas gk trefoil 2026/used_by.txt",
     "assets/templates/adidas/adidas trefoil 2026/used_by.txt",
@@ -11658,23 +11662,23 @@
     "assets/templates/macron/macron gk 25-26/short/used_by.txt",
     "assets/templates/macron/macron gk 25-26/socks/used_by.txt",
     "assets/templates/macron/macron gk 25-26/used_by.txt",
+    "assets/templates/nike/nike 2026/used_by.txt",
     "assets/templates/nike/nike 23-24 shared/used_by.txt",
     "assets/templates/nike/nike 24-25 shared/used_by.txt",
     "assets/templates/nike/nike 25-26 v2/used_by.txt",
     "assets/templates/nike/nike 25-26 v3/used_by.txt",
     "assets/templates/nike/nike 25-26/used_by.txt",
     "assets/templates/nike/nike 26-27 dry-fit/used_by.txt",
-    "assets/templates/nike/nike 2026/used_by.txt",
+    "assets/templates/nike/nike gk 2026/used_by.txt",
     "assets/templates/nike/nike gk 25-26/used_by.txt",
     "assets/templates/nike/nike gk 26-27 dry-fit/used_by.txt",
-    "assets/templates/nike/nike gk 2026/used_by.txt",
     "assets/templates/nike/nike gk worldcup 26-27/used_by.txt",
     "assets/templates/nike/nike total 90 25-26/short/used_by.txt",
     "assets/templates/nike/nike total 90 25-26/used_by.txt",
+    "assets/templates/puma/puma 2026/used_by.txt",
     "assets/templates/puma/puma 26-27 drycell/used_by.txt",
     "assets/templates/puma/puma 26-27 ultraweave/used_by.txt",
     "assets/templates/puma/puma 26-27 v2 drycell/used_by.txt",
-    "assets/templates/puma/puma 2026/used_by.txt",
     "assets/templates/puma/puma gk 2026 v1/used_by.txt",
     "assets/templates/puma/puma gk 2026 v2/used_by.txt",
     "assets/templates/puma/puma gk worldcup 2026/used_by.txt",
