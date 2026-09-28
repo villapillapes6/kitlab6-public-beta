@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "KitLab6_Web_Real_Template_Settings_Restore_2026_09_28";
+  const KITLAB_BUILD_VERSION = "KitLab6_Web_Public_Hidden_Author_Controls_2026_09_28";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
 
   const TEMPLATE_SETTINGS_BUNDLE_URL = "./kitlab-data/templates/_bundle.json";
@@ -24,12 +24,12 @@
   console.log("KitLab6 thumb quality no-flicker patch", "v1.3.244_template_gallery_no_flicker_hq_thumbs");
   const KITLAB_BASE_DESIGN_BUTTON_LOCKED = false; // v1.3.293: Privacy and Terms pages added; Base Design keeps the validated Pattern guide engine.
 
-  // Public beta UI hide list requested by Villa (2026-07-08).
+  // Public web UI hide list requested by Villa (2026-09-28).
   // Only hides UI controls/folders; it does not remove or disable the actual rendering layers.
   const KITLAB_PUBLIC_BETA_HIDE = Object.freeze({
     textureWrinklesSettings: false,
-    templateSettingsButtons: false,
-    seamsFolders: false,
+    templateSettingsButtons: true,
+    seamsFolders: true,
   });
 
   function kitlabPublicBetaNormalizeUiName(value = "") {
@@ -42,9 +42,10 @@
       .toLowerCase();
   }
 
-  function kitlabPublicBetaIsHiddenSeamsFolder(folder = "") {
+  function kitlabPublicBetaIsHiddenSeamsFolder(folder = "", section = "") {
     if (!KITLAB_PUBLIC_BETA_HIDE.seamsFolders) return false;
-    return kitlabPublicBetaNormalizeUiName(folder) === "seams";
+    return kitlabPublicBetaNormalizeUiName(section) === "shirt" &&
+      kitlabPublicBetaNormalizeUiName(folder) === "seams";
   }
 
   const CANVAS_SIZE = 2048;
@@ -9933,10 +9934,10 @@
     let html = "";
     for (const unit of units) {
       if (unit.type === "folder") {
-        if (kitlabPublicBetaIsHiddenSeamsFolder(unit.folder)) continue;
+        if (kitlabPublicBetaIsHiddenSeamsFolder(unit.folder, "collar")) continue;
         html += templateFolderBlockHtml("collar", unit.folder, unit.items);
       } else {
-        const visibleItems = (unit.items || []).filter((layer) => !kitlabPublicBetaIsHiddenSeamsFolder(layer?.folder));
+        const visibleItems = (unit.items || []).filter((layer) => !kitlabPublicBetaIsHiddenSeamsFolder(layer?.folder, "collar"));
         html += templateDetailsRowsHtml(visibleItems);
       }
     }
@@ -9948,7 +9949,7 @@
     let html = "";
     for (let i = 0; i < layers.length;) {
       const layer = layers[i];
-      if (kitlabPublicBetaIsHiddenSeamsFolder(layer?.folder)) {
+      if (kitlabPublicBetaIsHiddenSeamsFolder(layer?.folder, section)) {
         const folder = layer.folder || "Seams";
         while (i < layers.length && String(layers[i].folder || "") === String(folder || "")) i += 1;
         continue;
@@ -9960,7 +9961,7 @@
           items.push(layers[i]);
           i += 1;
         }
-        if (!kitlabPublicBetaIsHiddenSeamsFolder(folder)) html += templateFolderBlockHtml(section, folder, items);
+        if (!kitlabPublicBetaIsHiddenSeamsFolder(folder, section)) html += templateFolderBlockHtml(section, folder, items);
       } else {
         html += templateDetailsRowsHtml([layer]);
         i += 1;
@@ -13550,7 +13551,7 @@
   }
 
   function seamsLabFolderHtml() {
-    if (kitlabPublicBetaIsHiddenSeamsFolder("SEAMS")) return "";
+    if (kitlabPublicBetaIsHiddenSeamsFolder("SEAMS", "shirt")) return "";
     const seams = manualSeams();
     if (!seams.length) return "";
     const open = state.seamFolderOpen !== false;
@@ -13561,7 +13562,7 @@
   }
 
   function collarSeamsLabFolderHtml() {
-    if (kitlabPublicBetaIsHiddenSeamsFolder("SEAMS")) return "";
+    if (kitlabPublicBetaIsHiddenSeamsFolder("SEAMS", "collar")) return "";
     const seams = manualCollarSeams();
     if (!seams.length) return "";
     const open = state.collarSeamsFolderOpen !== false;
