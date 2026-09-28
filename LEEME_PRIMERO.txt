@@ -1,0 +1,27 @@
+KITLAB6 - REPARACION DE CONFIGURACIONES DE TEMPLATES
+===================================================
+
+Este es el paquete recomendado para publicar ahora.
+
+Contiene solo 3 archivos necesarios:
+  - app.js
+  - index.html
+  - kitlab-data/templates/_bundle.json
+
+La carpeta recuperada contiene 155 configuraciones. Para evitar que la subida
+web de GitHub falle por exceso de archivos, esas configuraciones también están
+consolidadas dentro de _bundle.json. KitLab intentará primero el JSON individual
+y, si no existe en la web, cargará automáticamente la configuración desde el
+bundle.
+
+IMPORTANTE:
+  1. Extrae el ZIP.
+  2. Copia SU CONTENIDO en la raíz del repositorio kitlab6-public-beta.
+  3. Acepta reemplazar app.js e index.html.
+  4. Confirma que _bundle.json queda exactamente en:
+     kitlab-data/templates/_bundle.json
+  5. Haz commit y push a la rama main.
+
+Versión esperada:
+  KitLab6_Web_Real_Template_Settings_Restore_2026_09_28
+

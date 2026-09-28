@@ -1,7 +1,10 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "KitLab6_Web_Real_Template_Assets_Fix_2026_09_27";
+  const KITLAB_BUILD_VERSION = "KitLab6_Web_Real_Template_Settings_Restore_2026_09_28";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
+
+  const TEMPLATE_SETTINGS_BUNDLE_URL = "./kitlab-data/templates/_bundle.json";
+  let templateSettingsBundlePromise = null;
 
 
   function notifyKitLabCanvasUpdated() {
@@ -17622,6 +17625,41 @@
     return `./kitlab-data/templates/${encodedId}/template_settings.json`;
   }
 
+  async function loadTemplateSettingsBundle() {
+    if (templateSettingsBundlePromise) return templateSettingsBundlePromise;
+
+    templateSettingsBundlePromise = (async () => {
+      try {
+        const version = encodeURIComponent(KITLAB_BUILD_VERSION);
+        const response = await fetch(`${TEMPLATE_SETTINGS_BUNDLE_URL}?v=${version}`, { cache: "no-store" });
+        if (!response.ok) return null;
+        const bundle = await response.json();
+        if (!bundle || typeof bundle !== "object" || !bundle.settings || typeof bundle.settings !== "object") {
+          return null;
+        }
+        return bundle.settings;
+      } catch (error) {
+        return null;
+      }
+    })();
+
+    return templateSettingsBundlePromise;
+  }
+
+  async function loadStaticTemplateSettingsFromBundle(templateId = activeTemplateSettingsId()) {
+    const stableId = templateSettingsStableIdFromValue(templateId || "basic").replace(/^\/+|\/+$/g, "") || "basic";
+    const settings = await loadTemplateSettingsBundle();
+    const bundled = settings?.[stableId];
+    if (!bundled || typeof bundled !== "object") return null;
+
+    const data = clonePlainData(bundled) || bundled;
+    data._loadedFromUserFolder = true;
+    data._loadedFromStaticKitlabData = true;
+    data._loadedFromTemplateSettingsBundle = true;
+    data._kitlabStaticDataPath = `${TEMPLATE_SETTINGS_BUNDLE_URL}#${stableId}`;
+    return data;
+  }
+
   async function loadStaticTemplateSettingsFromKitlabData(templateId = activeTemplateSettingsId()) {
     const url = templateSettingsStaticDataUrl(templateId);
     try {
@@ -17637,7 +17675,7 @@
     } catch (error) {
       // Static defaults are optional; missing files should not block template loading.
     }
-    return null;
+    return await loadStaticTemplateSettingsFromBundle(templateId);
   }
 
   async function loadTemplateSettingsFromUserFolder(templateId = activeTemplateSettingsId()) {
