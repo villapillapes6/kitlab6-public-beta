@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const KITLAB_BUILD_VERSION = "KitLab6_Web_Public_Hidden_Author_Controls_2026_09_28";
+  const KITLAB_BUILD_VERSION = "KitLab6_Web_Base_Design_Path_Fix_2026_09_28";
   console.log("KitLab6 build", KITLAB_BUILD_VERSION);
 
   const TEMPLATE_SETTINGS_BUNDLE_URL = "./kitlab-data/templates/_bundle.json";
@@ -7821,10 +7821,10 @@
   function loadImagePromise(src) {
     return new Promise((resolve) => {
       if (!src) { resolve(null); return; }
-      // The web asset tree is intentionally normalized to lowercase. The local
-      // Windows build accepts mixed-case paths, but GitHub Pages is case-sensitive.
-      // Normalize only bundled template assets; never alter uploads or data URLs.
-      const requestSrc = /^assets\/templates\//i.test(String(src))
+      // Bundled template and Base Design assets use lowercase web paths. Windows
+      // accepts display-cased folder names, while the public host is case-sensitive.
+      // Never alter uploads, blobs, data URLs, or unrelated asset collections.
+      const requestSrc = /^assets\/(?:templates|base_design)\//i.test(String(src))
         ? String(src).toLowerCase()
         : src;
       let done = false;
@@ -11237,14 +11237,20 @@
   const BASE_DESIGN_ASSET_ROOT = "assets/base_design";
   const BASE_DESIGN_FOLDER_THUMB = TEMPLATE_FOLDER_FALLBACK_THUMB;
   const BASE_DESIGN_ROOT_FOLDERS = Object.freeze([
-    "Diagonal Stripes",
-    "Horizontal Stripes",
-    "Sleeve Short",
-    "Vertical Stripes",
+    "diagonal stripes",
+    "horizontal stripes",
+    "sleeve short",
+    "vertical stripes",
   ]);
 
   function baseDesignPathParts(pathStack = state.baseDesignGalleryPath || []) {
-    return Array.isArray(pathStack) ? pathStack.filter(Boolean).map((part) => String(part)) : [];
+    return Array.isArray(pathStack)
+      ? pathStack.filter(Boolean).map((part) => {
+          const raw = String(part);
+          const folderKey = baseDesignSleeveShortFolderKey(raw);
+          return BASE_DESIGN_ROOT_FOLDERS.includes(folderKey) ? folderKey : raw;
+        })
+      : [];
   }
 
   function baseDesignAssetUrl(parts = []) {
